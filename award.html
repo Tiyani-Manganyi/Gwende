@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Index - Logis Bootstrap Template</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
+  <title>Tiyani Manganyi | Software Developer Portfolio</title>
+  <meta name="description" content="Tiyani Manganyi - Software Developer. Diploma in Computer Science,certified in   AI, Full Stack Development.">
+  <meta name="keywords" content="Tiyani Manganyi, software development, data science, certificates, Azure, AWS, NLP, full stack">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
@@ -28,57 +27,242 @@
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: Logis
-  * Template URL: https://bootstrapmade.com/logis-bootstrap-logistics-website-template/
-  * Updated: Aug 07 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
-<style>
-  .btn-apply {
-  background-color: #e63946; /* red */
-  color: white !important;    /* white text */
-  padding: 10px 20px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: 600;
-  display: inline-block;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.btn-apply:hover {
-  background-color: #d12737; /* darker red on hover */
-  color: white !important;
-}
-
-</style>
+  <style>
+    .btn-apply {
+      background-color: #e63946;
+      color: white !important;
+      padding: 8px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-block;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-right: 8px;
+      margin-bottom: 8px;
+      font-size: 0.85rem;
+    }
+    .btn-apply:hover {
+      background-color: #c1121f;
+      color: white !important;
+    }
+    .card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      background: #fff;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+    }
+    .card-img {
+      width: 100%;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+    }
+    .slide-wrapper {
+      width: 100%;
+      position: relative;
+    }
+    .slide-wrapper img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    /* Zoom on hover */
+    .card-img.zoom-on-hover:hover .slide-wrapper img {
+      transform: scale(1.1);
+    }
+    /* Zoom modal styles with enhanced zoom controls */
+    .zoom-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.95);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .zoom-modal.active {
+      display: flex;
+    }
+    .zoom-modal .zoom-container {
+      position: relative;
+      width: 90%;
+      height: 85%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    .zoom-modal img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+      transition: transform 0.2s ease;
+      cursor: zoom-in;
+    }
+    .zoom-modal img.zoomed {
+      cursor: zoom-out;
+    }
+    .zoom-modal .close-zoom {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      color: #fff;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      z-index: 10000;
+    }
+    .zoom-modal .close-zoom:hover {
+      color: #e63946;
+    }
+    .zoom-modal .zoom-caption {
+      color: #fff;
+      margin-top: 15px;
+      text-align: center;
+      font-size: 1rem;
+      max-width: 80%;
+    }
+    .zoom-controls {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 15px;
+      background: rgba(0,0,0,0.7);
+      padding: 10px 20px;
+      border-radius: 40px;
+      z-index: 10000;
+    }
+    .zoom-controls button {
+      background: #e63946;
+      color: white;
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .zoom-controls button:hover {
+      background: #c1121f;
+      transform: scale(1.1);
+    }
+    .zoom-controls .zoom-reset {
+      background: #2c3e50;
+    }
+    .zoom-controls .zoom-reset:hover {
+      background: #1a2a3a;
+    }
+    .zoom-controls span {
+      color: white;
+      font-size: 14px;
+      align-self: center;
+      padding: 0 10px;
+    }
+    .card h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      padding: 0 1rem;
+      margin-top: 1rem !important;
+      margin-bottom: 0.5rem;
+      color: #1e2a3a;
+    }
+    .card p {
+      font-size: 0.9rem;
+      color: #4a5568;
+      padding: 0 1rem;
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+    .mt-auto {
+      padding: 0 1rem 1.25rem 1rem;
+      margin-top: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .hero-img img {
+      border-radius: 50%;
+      width: 280px;
+      height: 280px;
+      object-fit: cover;
+      border: 5px solid rgba(255,255,255,0.3);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    .section-title h2 {
+      font-size: 2rem;
+      font-weight: 800;
+    }
+    footer a {
+      text-decoration: none;
+    }
+    .stats-item {
+      background: rgba(255,255,255,0.1);
+      padding: 15px;
+      border-radius: 12px;
+      backdrop-filter: blur(5px);
+    }
+    .stats-item h4 {
+      color: #e63946;
+      font-weight: 700;
+      font-size: 1.8rem;
+    }
+    .dark-background {
+      background: linear-gradient(135deg, #0a192f 0%, #1e2a3a 100%);
+    }
+    .specialization-badge {
+      display: inline-block;
+      background: rgba(230, 57, 70, 0.2);
+      border: 1px solid #e63946;
+      color: #e63946;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
+    .hover-slide-container {
+      width: 100%;
+    }
+  </style>
 </head>
 
 <body class="index-page">
 
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
-
       <a href="index.html" class="logo d-flex align-items-center me-auto">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
         <h1 class="sitename">#Brainsmustwork</h1>
       </a>
-
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="index.html" class="active">Home<br></a></li>
-       
+          <li><a href="index.html" class="active">Home</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
-
-      <a class="btn-getstarted" href="award.html">My Awards</a>
-
+      <a class="btn-getstarted" href="#certificates-section">My Awards</a>
     </div>
   </header>
 
@@ -86,343 +270,334 @@
 
     <!-- Hero Section -->
     <section id="hero" class="hero section dark-background">
-
       <img src="assets/img/world-dotted-map.png" alt="" class="hero-bg" data-aos="fade-in">
-
       <div class="container">
-        <div class="row gy-4 d-flex justify-content-between">
+        <div class="row gy-4 d-flex justify-content-between align-items-center">
           <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
-            <h2 data-aos="fade-up">
-              ACHIEVEMENTS AWARDS
-              
-            </h2>
-            <p data-aos="fade-up" data-aos-delay="100">I have earned the FNB Academy Certificate and AWS certification, strengthening my skills in financial systems and cloud computing. I developed a Text Classification NLP project, showcasing my abilities in AI and machine learning. Currently, I am pursuing a Diploma in Office Administration, enhancing my organizational and professional skills. These achievements reflect my dedication to continuous learning and excellence in both technology and administration.</p>
-
-            <form id="searchForm" class="form-search d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="200">
-              <input type="text" id="searchInput" class="form-control" placeholder="Search my projects ... ...">
-              <button type="submit" class="btn btn-primary">Search</button>
-            </form>
-
-            <div class="row gy-4" data-aos="fade-up" data-aos-delay="300">
-
-              <div class="col-lg-3 col-6">
-                <div class="stats-item text-center w-100 h-100">
-                  
-               
-                </div>
-              </div><!-- End Stats Item -->
-
-              <div class="col-lg-3 col-6">
-                <div class="stats-item text-center w-100 h-100">
-                 
-                </div>
-              </div><!-- End Stats Item -->
-
-              <div class="col-lg-3 col-6">
-                <div class="stats-item text-center w-100 h-100">
-                  
-                  
-                </div>
-              </div><!-- End Stats Item -->
-
-              <div class="col-lg-3 col-6">
-                <div class="stats-item text-center w-100 h-100">
-                 
-                
-                </div>
-              </div><!-- End Stats Item -->
-
+            <h2 data-aos="fade-up">Tiyani Manganyi</h2>
+            <h4 data-aos="fade-up" data-aos-delay="50" style="color: #e63946;">Software Developer </h4>
+            <p data-aos="fade-up" data-aos-delay="100">I specialize in <strong>Software Development</strong> <strong></strong>, holding a Diploma in Computer Science (2026) and multiple industry certifications. My expertise spans full-stack development, cloud computing (AWS/Azure), machine learning, NLP, and data analytics. <strong>✨ Click any certificate image to zoom - use mouse wheel or +/- buttons to zoom in/out ✨</strong></p>
+            <div data-aos="fade-up" data-aos-delay="120">
+              <span class="specialization-badge">💻 Full Stack Development</span>
+              <span class="specialization-badge">📊 Data Science & ML</span>
+              <span class="specialization-badge">☁️ Cloud Architecture</span>
+              <span class="specialization-badge">🤖 NLP & AI</span>
+              <span class="specialization-badge">🐍 Python/JavaScript</span>
             </div>
-
+            <form id="searchForm" class="form-search d-flex align-items-stretch mb-3 mt-3" data-aos="fade-up" data-aos-delay="200">
+              <input type="text" id="searchInput" class="form-control" placeholder="Search certificates (e.g., Azure, Huawei, Cisco, FNB, NLP...)" style="border-radius: 8px 0 0 8px;">
+              <button type="submit" class="btn btn-primary" style="border-radius: 0 8px 8px 0; background: #e63946; border-color: #e63946;">Search</button>
+            </form>
+            <div class="row gy-4" data-aos="fade-up" data-aos-delay="300">
+              <div class="col-lg-4 col-6">
+                <div class="stats-item text-center"><h4>13+</h4><p>Certifications</p></div>
+              </div>
+              <div class="col-lg-4 col-6">
+                <div class="stats-item text-center"><h4>2026</h4><p>Graduation Year</p></div>
+              </div>
+              <div class="col-lg-4 col-6">
+                <div class="stats-item text-center"><h4>AWS/Azure</h4><p>Cloud Certified</p></div>
+              </div>
+            </div>
           </div>
-
-          <div class="col-lg-5 order-1 order-lg-2 hero-img" data-aos="zoom-out">
-            <img src="assets/img/Tiyani.jpg" 
-                 class="img-fluid mb-3 mb-lg-0" 
-                 alt=""
-                 style="border-radius: 50%; width: 300px; height: 300px; object-fit: cover;">
+          <div class="col-lg-5 order-1 order-lg-2 hero-img text-center" data-aos="zoom-out">
+            <img src="assets/img/Tiyani.jpg" class="img-fluid" alt="Tiyani Manganyi Profile" onerror="this.src='https://placehold.co/400x400?text=Tiyani+Manganyi'">
           </div>
-          
         </div>
       </div>
+    </section>
 
-    </section><!-- /Hero Section -->
-
-
-
-    <!-- About Section -->
-   
-
-    <!-- Services Section -->
-
-    <section id="services" class="services section">
-
-      <!-- Section Title -->
+    <!-- Certificates Section -->
+    <section id="certificates-section" class="services section">
       <div class="container section-title" data-aos="fade-up">
-        <h2>ACHIEVEMENTS AWARDS</h2>
-        <p>Here’s a showcase of six projects I’ve developed — blending creativity, code, and functionality.</p>
+        <h2>📜 My Certificates & Achievements</h2>
+        <p>All certificates stored in assets/img/ and assets/pdf/ — click Download PDF or Download IMAGE to save your credentials. <strong>👉 Click any certificate image to open zoom viewer - use mouse wheel, pinch, or +/- buttons to zoom in/out 👈</strong></p>
       </div>
-      <!-- End Section Title -->
-    
+
       <div class="container">
-        <div class="row gy-4">
-    
+        <div class="row gy-4" id="certificates-container">
+
+          <!-- 1. FNB CERTIFICATE (FULL STACK DEVELOPMENT) -->
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
             <div class="card h-100 d-flex flex-column">
-              <div class="card-img hover-slide-container">
+              <div class="card-img hover-slide-container zoom-on-hover" data-full-img="assets/img/FNB_certificate-1.jpg" data-title="FNB Certificate - Full Stack Development">
                 <div class="slide-wrapper">
-                  <img src="assets/img/FNB_certificate-1.jpg" alt="Doctors Appointment" class="img-fluid">
-                  <img src="assets/img/FNB_certificate-1.jpg" alt="Doctors Appointment Hover" class="img-fluid">
-                  
+                  <img src="assets/img/FNB_certificate-1.jpg" alt="FNB Certificate" class="img-fluid">
+                  <img src="assets/img/FNB_certificate-1.jpg" alt="FNB Certificate Hover" class="img-fluid">
                 </div>
               </div>
-              <h3 class="mt-3">FNB CERTIFICATE(FULL STACK DEVELOPMENT) </h3>
-              <p>I have enrolled this certificate at fnb App Academy 2025  (Certificate in full stack  Development)</p>
+              <h3 class="mt-3">FNB CERTIFICATE (FULL STACK DEVELOPMENT)</h3>
+              <p>I have enrolled this certificate at fnb App Academy 2025 (Certificate in full stack Development)</p>
               <div class="mt-auto">
-                <!-- Download Image -->
-<a href="assets/pdf/Tiyani.pdf" 
-download="doctors-booking.png" 
-class="btn btn-apply">
-Download PDF
-</a>
-
-<!-- Download PDF -->
-<a href="" 
-download="doctors-booking.pdf" 
-class="btn btn-apply">
-Download IMAGE
-</a>
-
+                <a href="assets/pdf/Tiyani.pdf" download="FNB-Certificate.pdf" class="btn btn-apply">Download PDF</a>
+                <a href="assets/img/FNB_certificate-1.jpg" download="FNB-Certificate.jpg" class="btn btn-apply">Download IMAGE</a>
               </div>
             </div>
           </div>
-          
-          
-          <!-- Modal for Project 1 -->
-          <div class="modal fade" id="project1Modal" tabindex="-1" aria-labelledby="project1ModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="project1ModalLabel">AMAZON CERTIFICATE</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+          <!-- 2. HUAWEI DATA MANAGEMENT & ANALYTICS -->
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="150">
+            <div class="card h-100 d-flex flex-column">
+              <div class="card-img hover-slide-container zoom-on-hover" data-full-img="assets/img/DATA_MANAGEMENT_CERTIFICATE_page-0001.jpg" data-title="Huawei Data Management & Analytics">
+                <div class="slide-wrapper">
+                  <img src="assets/img/DATA_MANAGEMENT_CERTIFICATE_page-0001.jpg" alt="Huawei Data Management" class="img-fluid">
+                  <img src="assets/img/DATA_MANAGEMENT_CERTIFICATE_page-0001.jpg" alt="Huawei Data Management Hover" class="img-fluid">
                 </div>
-                <div class="modal-body p-0">
-                  <div class="ratio ratio-16x9">
-                    <iframe src="https://www.youtube.com/embed/2mbwqzL4XOU" title="Agric Job Portal Video" allowfullscreen></iframe>
-                  </div>
-                </div>
+              </div>
+              <h3 class="mt-3">HUAWEI ICT ACADEMY - DATA MANAGEMENT & ANALYTICS</h3>
+              <p>Successfully completed Data Management and Analytics course through Huawei ICT Academy. Certificate issued: 2026-02-17.</p>
+              <div class="mt-auto">
+                <a href="assets/pdf/DATA_MANAGEMENT_CERTIFICATE.pdf" download="Huawei_DataManagement.pdf" class="btn btn-apply">Download PDF</a>
+                <a href="assets/img/DATA_MANAGEMENT_CERTIFICATE_page-0001.jpg" download="Huawei_DataManagement.jpg" class="btn btn-apply">Download IMAGE</a>
               </div>
             </div>
           </div>
-    
-          <!-- 2: E-commerce Platform -->
+
+          <!-- 3. MICROSOFT AZURE FUNDAMENTALS (AZ-900) -->
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
             <div class="card h-100 d-flex flex-column">
-              <div class="slide-wrapper">
-                <img src="assets/img/AWS-1.jpg" alt="Doctors Appointment" class="img-fluid">
-             
+              <div class="card-img hover-slide-container zoom-on-hover" data-full-img="assets/img/AZ900_Certificate_page-0001.jpg" data-title="Microsoft Azure Fundamentals AZ-900">
+                <div class="slide-wrapper">
+                  <img src="assets/img/AZ900_Certificate_page-0001.jpg" alt="Azure Fundamentals" class="img-fluid">
+                  <img src="assets/img/AZ900_Certificate_page-0001.jpg" alt="Azure Fundamentals Hover" class="img-fluid">
+                </div>
               </div>
-          
-              <h3 class="mt-3">CIRRICULAM VITAE</h3>
-              <p>I am certified in Amazon Cloud Foundations, demonstrating a solid understanding of cloud computing concepts and the AWS ecosystem. Through this certification, I have gained knowledge of core AWS services such as EC2, S3, RDS, and Lambda, as well as foundational skills in cloud security, compliance, and cost management. This certification highlights my ability to understand, manage, and optimize cloud resources, providing a strong foundation for working with cloud technologies in real-world applications.</p>
-             
-          
+              <h3 class="mt-3">MICROSOFT AZURE FUNDAMENTALS (AZ-900)</h3>
+              <p>Certified in Azure Fundamentals via Mzansi Digital Learning (Feb 2026). Demonstrates cloud concepts, Azure services, security, compliance.</p>
               <div class="mt-auto">
-                <a href="assets/pdf/AWS.pdf" 
-                download="doctors-booking.png" 
-                class="btn btn-apply">
-                Download PDF
-                </a>
+                <a href="assets/pdf/AZ900_Certificate.pdf" download="Azure_AZ900_Certificate.pdf" class="btn btn-apply">Download PDF</a>
+                <a href="assets/img/AZ900_Certificate_page-0001.jpg" download="Azure_AZ900.jpg" class="btn btn-apply">Download IMAGE</a>
               </div>
             </div>
           </div>
-          
-    
-          <!-- 3: Personal Portfolio -->
+
+          <!-- 4. DIPLOMA IN COMPUTER SCIENCE -->
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="250">
+            <div class="card h-100 d-flex flex-column">
+              <div class="card-img hover-slide-container zoom-on-hover" data-full-img="assets/img/Letter_page-0001.jpg" data-title="Diploma in Computer Science">
+                <div class="slide-wrapper">
+                  <img src="assets/img/Letter_page-0001.jpg" alt="Diploma in Computer Science" class="img-fluid">
+                  <img src="assets/img/Letter_page-0001.jpg" alt="Diploma Hover" class="img-fluid">
+                </div>
+              </div>
+              <h3 class="mt-3">DIPLOMA IN COMPUTER SCIENCE</h3>
+              <p>Official confirmation: Tiyani Manganyi has met all requirements for Diploma in Computer Science, effective 01-FEB-2026.</p>
+              <div class="mt-auto">
+                <a href="assets/pdf/Letter.pdf" download="Diploma_ComputerScience_Tiyani.pdf" class="btn btn-apply">Download PDF</a>
+                <a href="assets/img/Letter_page-0001.jpg" download="Diploma_Letter.jpg" class="btn btn-apply">Download IMAGE</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. CYBERSECURITY ESSENTIALS -->
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
             <div class="card h-100 d-flex flex-column">
-              <div class="card-img">
-                <img src="assets/img/NLP-1.jpg" alt="Doctors Appointment" class="img-fluid">
+              <div class="card-img hover-slide-container zoom-on-hover" data-full-img="assets/img/Cyber_Security_UK_page-0001.jpg" data-title="Cybersecurity Essentials UK">
+                <div class="slide-wrapper">
+                  <img src="assets/img/Cyber_Security_UK_page-0001.jpg" alt="Cybersecurity UK" class="img-fluid">
+                  <img src="assets/img/Cyber_Security_UK_page-0001.jpg" alt="Cybersecurity UK Hover" class="img-fluid">
+                </div>
               </div>
-              <h3 class="mt-3">BUILDING A TEXT CLASSIFICATION MODEL WITH NLP</h3>
-            <P>I am certified in Building Text Classification Models with NLP, gaining hands-on experience in processing and analyzing text data. Through this certification, I learned to preprocess text, extract meaningful features, and train machine learning models to automatically classify text into categories. This knowledge enables me to apply NLP techniques for real-world applications such as sentiment analysis, spam detection, and intelligent job-matching systems.
+              <h3 class="mt-3">CYBERSECURITY ESSENTIALS (UK WORKFORCE)</h3>
+              <p>Issued by Knights of Safety on 2026-02-11. Covers core security principles, threat mitigation, and UK-specific compliance.</p>
               <div class="mt-auto">
-
-              </P>  
-
-                <a href="https://youtu.be/rx06wRwUw0Q" target="_blank" rel="noopener noreferrer" class="btn btn-apply">Download image</a>
-
-                <a href="assets/pdf/jpg2pdf.pdf" 
-                download="doctors-booking.png" 
-                class="btn btn-apply">
-                Download PDF
-                </a>
+                <a href="assets/pdf/Cyber_Security_UK.pdf" download="Cybersecurity_UK_Certificate.pdf" class="btn btn-apply">Download PDF</a>
+                <a href="assets/img/Cyber_Security_UK_page-0001.jpg" download="Cybersecurity_UK.jpg" class="btn btn-apply">Download IMAGE</a>
               </div>
             </div>
           </div>
-    
-          <!-- 4: Task Management App -->
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+
+          <!-- 6. CISCO PACKET TRACER -->
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="350">
             <div class="card h-100 d-flex flex-column">
-              <div class="slide-wrapper">
-                <img src="assets/img/AWS-1.jpg" alt="Doctors Appointment" class="img-fluid">
-             
+              <div class="card-img hover-slide-container zoom-on-hover" data-full-img="assets/img/CISCO CERTIFICATE_page-0001.jpg" data-title="Cisco Packet Tracer Certificate">
+                <div class="slide-wrapper">
+                  <img src="assets/img/CISCO CERTIFICATE_page-0001.jpg" alt="Cisco Packet Tracer" class="img-fluid">
+                  <img src="assets/img/CISCO CERTIFICATE_page-0001.jpg" alt="Cisco Packet Tracer Hover" class="img-fluid">
+                </div>
               </div>
-          
-              <h3 class="mt-3">AMAZON CERTIFICATE</h3>
-              <p>I am certified in Amazon Cloud Foundations, demonstrating a solid understanding of cloud computing concepts and the AWS ecosystem. Through this certification, I have gained knowledge of core AWS services such as EC2, S3, RDS, and Lambda, as well as foundational skills in cloud security, compliance, and cost management. This certification highlights my ability to understand, manage, and optimize cloud resources, providing a strong foundation for working with cloud technologies in real-world applications.</p>
-             
-          
+              <h3 class="mt-3">CISCO - GETTING STARTED WITH PACKET TRACER</h3>
+              <p>Networking Academy certification validating hands-on skills in network simulation and device configuration.</p>
               <div class="mt-auto">
-                <a href="assets/pdf/jpg2pdf.pdf" 
-                download="doctors-booking.png" 
-                class="btn btn-apply">
-                Download PDF
-                </a>
+                <a href="assets/pdf/CISCO CERTIFICATE.pdfpdf" download="Cisco_PacketTracer.pdf" class="btn btn-apply">Download PDF</a>
+                <a href="assets/img/CISCO CERTIFICATE_page-0001.jpg" download="Cisco_PacketTracer.jpg" class="btn btn-apply">Download IMAGE</a>
               </div>
             </div>
           </div>
-          
-    
-          <!-- 5: Blogging Platform -->
+
+          <!-- 7. AWS CLOUD PRACTITIONER -->
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="card h-100 d-flex flex-column">
+              <div class="card-img hover-slide-container zoom-on-hover" data-full-img="assets/img/AWS-1.jpg" data-title="AWS Cloud Practitioner">
+                <div class="slide-wrapper">
+                  <img src="assets/img/AWS-1.jpg" alt="AWS Cloud Practitioner" class="img-fluid">
+                  <img src="assets/img/AWS-1.jpg" alt="AWS Cloud Practitioner Hover" class="img-fluid">
+                </div>
+              </div>
+              <h3 class="mt-3">AWS CLOUD PRACTITIONER (AMAZON CLOUD FOUNDATIONS)</h3>
+              <p>Certified in Amazon Cloud Foundations: EC2, S3, RDS, Lambda, cloud security, and cost management.</p>
+              <div class="mt-auto">
+                <a href="assets/pdf/AWS.pdf" download="AWS_Cloud_Practitioner.pdf" class="btn btn-apply">Download PDF</a>
+                <a href="assets/img/AWS-1.jpg" download="AWS_Certificate.jpg" class="btn btn-apply">Download IMAGE</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 8. NLP TEXT CLASSIFICATION -->
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="450">
+            <div class="card h-100 d-flex flex-column">
+              <div class="card-img hover-slide-container zoom-on-hover" data-full-img="assets/img/NLP-1.jpg" data-title="NLP Text Classification Model">
+                <div class="slide-wrapper">
+                  <img src="assets/img/NLP-1.jpg" alt="NLP Certificate" class="img-fluid">
+                  <img src="assets/img/NLP-1.jpg" alt="NLP Certificate Hover" class="img-fluid">
+                </div>
+              </div>
+              <h3 class="mt-3">BUILDING TEXT CLASSIFICATION MODELS WITH NLP</h3>
+              <p>Hands-on certification in Natural Language Processing: text preprocessing, feature extraction, and ML classification.</p>
+              <div class="mt-auto">
+                <a href="assets/pdf/jpg2pdf.pdf" download="NLP_TextClassification.pdf" class="btn btn-apply">Download PDF</a>
+                <a href="assets/img/NLP-1.jpg" download="NLP_Certificate.jpg" class="btn btn-apply">Download IMAGE</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 9. CURRICULUM VITAE -->
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
             <div class="card h-100 d-flex flex-column">
-              <div class="card-img">
-                <img src="https://images.unsplash.com/photo-1484417894907-623942c8ee29?auto=format&fit=crop&w=800&q=80" alt="Blogging Platform" class="img-fluid">
+              <div class="card-img hover-slide-container zoom-on-hover" data-full-img="assets/img/AWS-1.jpg" data-title="Curriculum Vitae - Cloud & Full Stack">
+                <div class="slide-wrapper">
+                  <img src="assets/img/AWS-1.jpg" alt="Curriculum Vitae" class="img-fluid">
+                  <img src="assets/img/AWS-1.jpg" alt="CV Hover" class="img-fluid">
+                </div>
               </div>
-              <h3 class="mt-3">TRACKING APPLICATION RESUME</h3>
-              <p>This resume is a formal document that job seekers use to present their background, skills, and accomplishments to potential employers. It’s usually the first impression you give to recruiters or hiring managers and plays a big role in whether you get called for an interview.</p>
+              <h3 class="mt-3">CURRICULUM VITAE (CLOUD & FULL STACK)</h3>
+              <p>Certified in Amazon Cloud Foundations, demonstrating solid understanding of cloud computing concepts and AWS ecosystem.</p>
               <div class="mt-auto">
-
-                <a href="https://resume-analyzer-ashen.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-apply">View Project</a>
-
-                <a href="" class="btn btn-apply">Download Code</a>
+                <a href="assets/pdf/AWS.pdf" download="AWS-Certificate.pdf" class="btn btn-apply">Download PDF</a>
+                <a href="assets/img/AWS-1.jpg" download="CV_Certificate.jpg" class="btn btn-apply">Download IMAGE</a>
               </div>
             </div>
           </div>
-    
-          <!-- 5: Blogging Platform -->
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
-            <div class="card h-100 d-flex flex-column">
-              <div class="card-img">
-                <img src="https://images.unsplash.com/photo-1484417894907-623942c8ee29?auto=format&fit=crop&w=800&q=80" alt="Blogging Platform" class="img-fluid">
-              </div>
-              <h3 class="mt-3">4IR RESUME WEBSITE</h3>
-              <p>A 4IR (Fourth Industrial Revolution) Resume Website is a digital CV platform that uses modern web technologies and AI to let individuals showcase their skills, projects, and achievements in a way that matches the needs of future jobs in the 4IR era</p>
-              <div class="mt-auto">
-                <a href="https://4-ir-resume-rxi9.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-apply">View Project</a>
-                <a href="" class="btn btn-apply">Download Code</a>
-              </div>
-            </div>
-          </div>
-    
 
     
+
+        </div>
+      </div>
     </section>
-    
 
-    <!-- Testimonials Section -->
-    
+    <!-- Enhanced Zoom Modal with zoom controls -->
+    <div id="imageZoomModal" class="zoom-modal">
+      <span class="close-zoom">&times;</span>
+      <div class="zoom-container">
+        <img id="zoomImage" src="" alt="Zoomed Certificate">
+      </div>
+      <div id="zoomCaption" class="zoom-caption"></div>
+      <div class="zoom-controls">
+        <button id="zoomOutBtn" title="Zoom Out">−</button>
+        <span id="zoomLevel">100%</span>
+        <button id="zoomInBtn" title="Zoom In">+</button>
+        <button id="zoomResetBtn" class="zoom-reset" title="Reset Zoom">⟳</button>
+      </div>
+    </div>
+
   </main>
 
   <footer id="footer" class="footer dark-background">
-
     <div class="container footer-top">
       <div class="row gy-4">
         <div class="col-lg-5 col-md-12 footer-about">
-          <a href="index.html" class="logo d-flex align-items-center">
-            <span class="sitename">#Brainsmustwork</span>
-          </a>
-         
+          <a href="index.html" class="logo d-flex align-items-center"><span class="sitename">#Brainsmustwork</span></a>
           <div class="social-links d-flex mt-4">
-            <a href=""><i class="bi bi-twitter-x"></i></a>
+            <a href="#"><i class="bi bi-twitter-x"></i></a>
             <a href="https://www.facebook.com/TmanG0g0"><i class="bi bi-facebook"></i></a>
-            <a href=""><i class="bi bi-instagram"></i></a>
             <a href="https://github.com/Tiyani-Manganyi"><i class="bi bi-github"></i></a>
             <a href="https://www.linkedin.com/in/tiyani-manganyi-137625316/"><i class="bi bi-linkedin"></i></a>
           </div>
         </div>
-
-        <div class="col-lg-2 col-6 footer-links">
-          <h4>Useful Links</h4>
-          <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Terms of service</a></li>
-            <li><a href="#">Privacy policy</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-2 col-6 footer-links">
-          <h4>Our Services</h4>
-          <ul>
-            <li><a href="#">Web Design</a></li>
-            <li><a href="https://resume-analyzer-ashen.vercel.app/">Resume</a></li>
-            <li><a href="http://localhost:3000/login">Login</a></li>
-            <li><a href="http://localhost:3000/signup">signup</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
-          <h4>Contact Us</h4>
-          <p>180 Burgers Street</p>
-          <p>Pretoria</p>
-          <p>South Africa</p>
-          <p class="mt-4"><strong>Phone:</strong> <span>060  817 5627</span></p>
-          <p><strong>Email:</strong> <span>kbmagoda2024@gmail.com</span></p>
-        </div>
-
+        <div class="col-lg-2 col-6 footer-links"><h4>Useful Links</h4><ul><li><a href="#">Home</a></li><li><a href="#certificates-section">Certificates</a></li></ul></div>
+        <div class="col-lg-3 col-md-12 footer-contact"><h4>Contact</h4><p>180 Burgers Street, Pretoria, South Africa</p><p><strong>Phone:</strong> 060 817 5627</p><p><strong>Email:</strong> kbmagoda2024@gmail.com</p></div>
       </div>
     </div>
-
-    <div class="container copyright text-center mt-4">
-      <p>© <span>Copyright</span> <strong class="px-1 sitename">agric</strong> <span>All Rights Reserved</span></p>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you've purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-        Designed by <a href="https://bootstrapmade.com/">Tiyani Manganyi</a>
-      </div>
-    </div>
-
+    <div class="container copyright text-center mt-4"><p>© <span>Copyright</span> <strong>Tiyani Manganyi</strong> All Rights Reserved</p></div>
   </footer>
 
-  <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Preloader -->
-  <div id="preloader"></div>
-
-  <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
 
-  <!-- Main JS File -->
-  <script src="assets/js/main.js">
-    
-  </script>
-<script>
-  const searchInput = document.getElementById('searchInput');
-  const jobCards = document.querySelectorAll('.services .card');
+  <script>
+    // Search functionality
+    const searchInput = document.getElementById('searchInput');
+    const certCards = document.querySelectorAll('#certificates-container .col-lg-4');
+    function filterCertificates() {
+      const query = searchInput.value.toLowerCase().trim();
+      certCards.forEach(card => {
+        const title = card.querySelector('h3')?.textContent.toLowerCase() || '';
+        const desc = card.querySelector('p')?.textContent.toLowerCase() || '';
+        card.style.display = (title.includes(query) || desc.includes(query) || query === '') ? 'block' : 'none';
+      });
+    }
+    if (searchInput) {
+      searchInput.addEventListener('input', filterCertificates);
+      document.getElementById('searchForm')?.addEventListener('submit', e => { e.preventDefault(); filterCertificates(); });
+    }
 
-  searchInput.addEventListener('input', function() {
-    const query = searchInput.value.toLowerCase();
+    // Enhanced Zoom functionality with zoom in/out using wheel and buttons
+    const zoomModal = document.getElementById('imageZoomModal');
+    const zoomImage = document.getElementById('zoomImage');
+    const zoomCaption = document.getElementById('zoomCaption');
+    const closeZoom = document.querySelector('.close-zoom');
+    let currentScale = 1;
+    const minScale = 0.5;
+    const maxScale = 3;
 
-    jobCards.forEach(card => {
-      const title = card.querySelector('h3').textContent.toLowerCase();
-      if (title.includes(query)) {
-        card.parentElement.style.display = 'block'; // show card
-      } else {
-        card.parentElement.style.display = 'none'; // hide card
-      }
+    function updateZoom() {
+      zoomImage.style.transform = `scale(${currentScale})`;
+      document.getElementById('zoomLevel').innerText = Math.round(currentScale * 100) + '%';
+    }
+
+    function zoomIn() { if (currentScale < maxScale) { currentScale += 0.2; updateZoom(); } }
+    function zoomOut() { if (currentScale > minScale) { currentScale -= 0.2; updateZoom(); } }
+    function zoomReset() { currentScale = 1; updateZoom(); }
+
+    document.querySelectorAll('.card-img').forEach(imgContainer => {
+      imgContainer.addEventListener('click', function(e) {
+        if (e.target.tagName === 'A' || e.target.closest('.btn-apply')) return;
+        const fullImgUrl = this.getAttribute('data-full-img');
+        const title = this.getAttribute('data-title') || 'Certificate Image';
+        if (fullImgUrl) {
+          zoomImage.src = fullImgUrl;
+          zoomCaption.textContent = title;
+          currentScale = 1;
+          updateZoom();
+          zoomModal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        }
+      });
     });
-  });
-</script>
-</body>
 
+    // Mouse wheel zoom on the image
+    zoomImage.addEventListener('wheel', function(e) {
+      e.preventDefault();
+      if (e.deltaY < 0) { zoomIn(); }
+      else { zoomOut(); }
+    });
+
+    document.getElementById('zoomInBtn').addEventListener('click', zoomIn);
+    document.getElementById('zoomOutBtn').addEventListener('click', zoomOut);
+    document.getElementById('zoomResetBtn').addEventListener('click', zoomReset);
+
+    function closeModal() {
+      zoomModal.classList.remove('active');
+      document.body.style.overflow = '';
+      currentScale = 1;
+      updateZoom();
+    }
+    closeZoom.addEventListener('click', closeModal);
+    zoomModal.addEventListener('click', function(e) { if (e.target === zoomModal) closeModal(); });
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && zoomModal.classList.contains('active')) closeModal(); });
+
+    AOS.init({ duration: 700, once: true });
+  </script>
+</body>
 </html>
