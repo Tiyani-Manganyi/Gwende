@@ -4,9 +4,9 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Index - Logis Bootstrap Template</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
+  <title>Tiyani Manganyi | Junior Software Developer</title>
+  <meta name="description" content="Tiyani Manganyi - Junior Software Developer and Data Science Specialist. Showcasing projects, certificates, and professional experience.">
+  <meta name="keywords" content="Tiyani Manganyi, software developer, data science, portfolio, projects, TUT, South Africa">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
@@ -28,57 +28,381 @@
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: Logis
-  * Template URL: https://bootstrapmade.com/logis-bootstrap-logistics-website-template/
-  * Updated: Aug 07 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
-<style>
-  .btn-apply {
-  background-color: #e63946; /* red */
-  color: white !important;    /* white text */
-  padding: 10px 20px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: 600;
-  display: inline-block;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
+  <style>
+    .btn-apply {
+      background-color: #e63946;
+      color: white !important;
+      padding: 8px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-block;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-right: 8px;
+      margin-bottom: 8px;
+      font-size: 0.85rem;
+    }
 
-.btn-apply:hover {
-  background-color: #d12737; /* darker red on hover */
-  color: white !important;
-}
+    .btn-apply:hover {
+      background-color: #c1121f;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(230, 57, 70, 0.3);
+      color: white !important;
+    }
 
-</style>
+    .btn-outline-custom {
+      background: transparent;
+      border: 2px solid #e63946;
+      color: #e63946 !important;
+    }
+
+    .btn-outline-custom:hover {
+      background: #e63946;
+      color: white !important;
+    }
+
+    .btn-deploy {
+      background-color: #2c3e50;
+      color: white !important;
+    }
+
+    .btn-deploy:hover {
+      background-color: #1a2a3a;
+    }
+
+    .typing-container {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #e63946;
+      min-height: 70px;
+    }
+
+    .skill-progress {
+      margin-bottom: 20px;
+    }
+    .skill-name {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    .progress-bar-custom {
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #e63946, #ff8c42);
+      border-radius: 10px;
+      width: 0%;
+      transition: width 1.5s ease-out;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 30px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, #e63946, #ff8c42);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 30px;
+      padding-left: 20px;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -34px;
+      top: 5px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #e63946;
+      border: 2px solid white;
+      box-shadow: 0 0 0 2px #e63946;
+    }
+    .timeline-year {
+      font-weight: 700;
+      color: #e63946;
+      margin-bottom: 5px;
+    }
+    .timeline-title {
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    .card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      background: #fff;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 35px rgba(0, 0, 0, 0.12);
+    }
+
+    .card-img {
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .slide-wrapper img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .card:hover .slide-wrapper img {
+      transform: scale(1.05);
+    }
+
+    /* Video card styling */
+    .video-card video {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .video-card:hover video {
+      transform: scale(1.05);
+    }
+    .video-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      background: #fff;
+      position: relative;
+    }
+    .video-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 35px rgba(0, 0, 0, 0.12);
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      padding: 0 1rem;
+      margin-top: 1rem !important;
+      margin-bottom: 0.5rem;
+      color: #1e2a3a;
+    }
+
+    .card p, .video-card p {
+      font-size: 0.9rem;
+      color: #4a5568;
+      padding: 0 1rem;
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .mt-auto {
+      padding: 0 1rem 1.25rem 1rem;
+      margin-top: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .hero-img img {
+      border-radius: 50%;
+      width: 320px;
+      height: 320px;
+      object-fit: cover;
+      border: 5px solid rgba(230, 57, 70, 0.3);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    }
+
+    .section-title h2 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title h2:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: #e63946;
+      border-radius: 3px;
+    }
+
+    .stats-item {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      border-radius: 16px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .stats-item:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .stats-item h4 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #e63946;
+      margin-bottom: 5px;
+    }
+
+    .stats-item p {
+      color: white;
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
+    .skill-badge {
+      display: inline-block;
+      background: rgba(230, 57, 70, 0.1);
+      border: 1px solid #e63946;
+      color: #e63946;
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .skill-badge:hover {
+      background: #e63946;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .dark-background {
+      background: linear-gradient(135deg, #0a192f 0%, #1e2a3a 100%);
+    }
+
+    .about-section {
+      background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    }
+
+    .counter-item {
+      text-align: center;
+      padding: 25px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .counter-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .counter-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #e63946;
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      color: #e63946;
+      margin-bottom: 15px;
+    }
+
+    .circular-image {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 20px 35px rgba(0, 0, 0, 0.15);
+    }
+
+    .data-science-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #e63946;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      z-index: 10;
+    }
+
+    .demand-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: #ffc107;
+      color: #1e293b;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      z-index: 10;
+    }
+
+    .new-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: #10b981;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      z-index: 10;
+    }
+  </style>
 </head>
 
 <body class="index-page">
 
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
-
       <a href="index.html" class="logo d-flex align-items-center me-auto">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1 class="sitename">#Brainsmustwork</h1>
+        <h1 class="sitename">BIGBRAINSPORTFOLIO</h1>
       </a>
-
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="index.html" class="active">Home<br></a></li>
-       
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#videos">Video Demos</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
-
       <a class="btn-getstarted" href="award.html">My Awards</a>
-
     </div>
   </header>
 
@@ -86,357 +410,451 @@
 
     <!-- Hero Section -->
     <section id="hero" class="hero section dark-background">
-
       <img src="assets/img/world-dotted-map.png" alt="" class="hero-bg" data-aos="fade-in">
-
       <div class="container">
-        <div class="row gy-4 d-flex justify-content-between">
+        <div class="row gy-4 d-flex justify-content-between align-items-center">
           <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
-            <h2 data-aos="fade-up">
-              My Name is Manganyi Tiyani  <br>
-              i'm a Software Developer from South Africa  <br>
+            <div data-aos="fade-up">
+              <span class="badge bg-danger mb-3 px-3 py-2" style="background: #e63946;">🚀 Software Developer</span>
+              <h2 style="font-size: 2.5rem; font-weight: 800; line-height: 1.2;">Hi, I'm <span style="color: #e63946;">Tiyani Manganyi</span></h2>
+              <div class="typing-container" id="typing-text"></div>
+            </div>
+            <p data-aos="fade-up" data-aos-delay="100">I am a passionate Software Developer from South Africa, holding a Diploma in Computer Science from Tshwane University of Technology. I specialize in building innovative web applications, AI-powered tools, and data-driven solutions.</p>
+
+            <div data-aos="fade-up" data-aos-delay="120" class="mb-3">
+              <span class="skill-badge">Python</span>
+              <span class="skill-badge">JavaScript/React</span>
+              <span class="skill-badge">Node.js</span>
+              <span class="skill-badge">NLP</span>
+              <span class="skill-badge">MongoDB</span>
+              <span class="skill-badge">AWS/Azure</span>
               
-            </h2>
-            <p data-aos="fade-up" data-aos-delay="100">I am a dedicated computer science student at Tshwane University of Technology, currently pursuing a Diploma in Computer Science within the Faculty of ICT. My academic journey and practical experiences have equipped me with a robust set of skills, making me a versatile and effective contributor in the field of information and communication technology.</p>
+            </div>
 
             <form id="searchForm" class="form-search d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="200">
-              <input type="text" id="searchInput" class="form-control" placeholder="Search my projects ... ...">
-              <button type="submit" class="btn btn-primary">Search</button>
+              <input type="text" id="searchInput" class="form-control" placeholder="Search projects (AI, E-commerce, Chat, Analytics...)">
+              <button type="submit" class="btn btn-primary" style="background: #e63946; border-color: #e63946;">Search</button>
             </form>
 
-            <div class="row gy-4" data-aos="fade-up" data-aos-delay="300">
-
-              <div class="col-lg-3 col-6">
-                <div class="stats-item text-center w-100 h-100">
-                  
-               
+            <div class="row gy-4 mt-2" data-aos="fade-up" data-aos-delay="300">
+              <div class="col-lg-4 col-6">
+                <div class="stats-item text-center">
+                  <h4 class="counter" data-target="8">0</h4>
+                  <p>Certifications</p>
                 </div>
-              </div><!-- End Stats Item -->
-
-              <div class="col-lg-3 col-6">
-                <div class="stats-item text-center w-100 h-100">
-                 
+              </div>
+              <div class="col-lg-4 col-6">
+                <div class="stats-item text-center">
+                  <h4 class="counter" data-target="8">0</h4>
+                  <p>Projects</p>
                 </div>
-              </div><!-- End Stats Item -->
-
-              <div class="col-lg-3 col-6">
-                <div class="stats-item text-center w-100 h-100">
-                  
-                  
+              </div>
+              <div class="col-lg-4 col-6">
+                <div class="stats-item text-center">
+                  <h4 class="counter" data-target="3">0</h4>
+                  <p>Years Experience</p>
                 </div>
-              </div><!-- End Stats Item -->
-
-              <div class="col-lg-3 col-6">
-                <div class="stats-item text-center w-100 h-100">
-                 
-                
-                </div>
-              </div><!-- End Stats Item -->
-
+              </div>
             </div>
 
+            <div class="mt-3" data-aos="fade-up" data-aos-delay="400">
+              <a href="contact.html" class="btn btn-apply me-2">📧 Contact Me</a>
+              <a href="award.html" class="btn btn-outline-custom btn-apply" style="background: transparent;">📜 View Certificates</a>
+            </div>
           </div>
 
-          <div class="col-lg-5 order-1 order-lg-2 hero-img" data-aos="zoom-out">
-            <img src="assets/img/Tiyani.jpg" 
-                 class="img-fluid mb-3 mb-lg-0" 
-                 alt=""
-                 style="border-radius: 50%; width: 300px; height: 300px; object-fit: cover;">
+          <div class="col-lg-5 order-1 order-lg-2 hero-img text-center" data-aos="zoom-out">
+            <img src="assets/img/Tiyani.jpg" class="img-fluid" alt="Tiyani Manganyi" style="border-radius: 50%; width: 320px; height: 320px; object-fit: cover; border: 5px solid rgba(230,57,70,0.3);">
           </div>
-          
         </div>
       </div>
-
-    </section><!-- /Hero Section -->
-
-<!-- About Me Section -->
-<section id="about" class="about section" style="background-color: #f5f8fa; padding: 80px 0;">
-  <div class="container" data-aos="fade-up">
-    <div class="row gy-4 align-items-center">
-
-      <!-- Image Column -->
-      <div class="col-lg-6 text-center">
-        <img src="assets/img/Tiyane.jpg" alt="Manganyi Tiyani" 
-             class="img-fluid rounded-circle shadow-lg"
-             style="width: 300px; height: 300px; object-fit: cover; border: 5px solid #e63946;">
-      </div>
-
-      <!-- Text Column -->
-      <div class="col-lg-6">
-        <h2 style="color: #1e293b; font-weight: 700; margin-bottom: 20px;">About Me</h2>
-        <p style="color: #334155; font-size: 1.1rem; line-height: 1.8;">
-          Hello! My name is Manganyi Tiyani, a passionate Software Developer from South Africa. I am currently pursuing a Diploma in Computer Science at Tshwane University of Technology, Faculty of ICT. My journey in technology has equipped me with skills in web development, programming, and software solutions, allowing me to contribute effectively in both academic and professional projects.
-        </p>
-        <p style="color: #334155; font-size: 1.1rem; line-height: 1.8;">
-          My focus is on creating innovative applications, enhancing user experiences, and solving real-world problems through technology. I am eager to expand my knowledge, collaborate with teams, and continue developing impactful software solutions.
-        </p>
-        <a href="contact.html" class="btn btn-apply mt-3" style="background-color: #e63946; border-radius: 8px; padding: 12px 25px; font-weight: 600;">Contact Me</a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
+    </section>
 
     <!-- About Section -->
-   
-
-    <!-- Services Section -->
-
-    <section id="services" class="services section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>MY SOFTWARE DEVELOPMENT PROJECTS</h2>
-        <p>Here’s a showcase of six projects I’ve developed — blending creativity, code, and functionality.</p>
+    <section id="about" class="about-section section" style="padding: 80px 0;">
+      <div class="container" data-aos="fade-up">
+        <div class="row gy-5 align-items-center">
+          <div class="col-lg-6 about-image-container" data-aos="fade-right">
+            <img src="assets/img/Tiyane.jpg" alt="Tiyani Working" class="circular-image" style="max-width: 70%; border-radius: 50%; width: 350px; height: 350px; object-fit: cover; border: 5px solid #e63946;">
+          </div>
+          <div class="col-lg-6" data-aos="fade-left">
+            <h2 style="color: #1e293b; font-weight: 800; font-size: 2rem;">About Me</h2>
+            <div style="width: 60px; height: 4px; background: #e63946; margin: 15px 0 25px;"></div>
+            <p style="color: #334155; font-size: 1.05rem; line-height: 1.8;">I am Manganyi Tiyani, a dedicated Software Developer and Data Science Specialist based in Pretoria, South Africa. I have completed my Diploma in Computer Science at Tshwane University of Technology, developing expertise in full-stack development, machine learning, and cloud computing.</p>
+            <p style="color: #334155; font-size: 1.05rem; line-height: 1.8;">I've built 9+ projects including AI-powered tools, e-commerce platforms, real-time chat applications, and data analytics dashboards. My work focuses on creating solutions that are both technically robust and user-friendly.</p>
+            
+            <div class="timeline mt-4">
+              <div class="timeline-item">
+                <div class="timeline-year">2026</div>
+                <div class="timeline-title">🎓 Diploma in Computer Science</div>
+                <div class="timeline-desc">Tshwane University of Technology </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-year">2025</div>
+                <div class="timeline-title">🏆 FNB App Academy Graduate</div>
+                <div class="timeline-desc">Full Stack Development & AI Integration</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-year">2024</div>
+                <div class="timeline-title">📊 Data Science</div>
+                <div class="timeline-desc">AWS</div>
+              </div>
+            </div>
+            
+            <a href="contact.html" class="btn btn-apply mt-3">📩 Get In Touch</a>
+          </div>
+        </div>
       </div>
-      <!-- End Section Title -->
-    
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section" style="padding: 80px 0; background: #f8fafc;">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Technical Skills</h2>
+        <p class="mt-3">My proficiency in various technologies and frameworks</p>
+      </div>
       <div class="container">
         <div class="row gy-4">
-    
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="card h-100 d-flex flex-column">
-              <div class="card-img hover-slide-container">
-                <div class="slide-wrapper">
-                  <img src="assets/img/doctor.png" alt="Doctors Appointment" class="img-fluid">
-                  <img src="assets/img/doctor.png" alt="Doctors Appointment Hover" class="img-fluid">
-                  
-                </div>
-              </div>
-              <h3 class="mt-3">Doctors Appointment Website</h3>
-              <p>An online platform that allows patients to easily book medical appointments, while enabling doctors to manage their schedules efficiently.</p>
+          <div class="col-lg-6">
+            <div class="skill-progress" data-aos="fade-up">
+              <div class="skill-name"><span>JavaScript / React.js</span><span>85%</span></div>
+              <div class="progress-bar-custom"><div class="progress-fill" style="width: 85%;"></div></div>
+            </div>
+            <div class="skill-progress" data-aos="fade-up" data-aos-delay="100">
+              <div class="skill-name"><span>Python / Django</span><span>80%</span></div>
+              <div class="progress-bar-custom"><div class="progress-fill" style="width: 80%;"></div></div>
+            </div>
+            <div class="skill-progress" data-aos="fade-up" data-aos-delay="200">
+              <div class="skill-name"><span>Node.js / Express</span><span>78%</span></div>
+              <div class="progress-bar-custom"><div class="progress-fill" style="width: 78%;"></div></div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="skill-progress" data-aos="fade-up">
+              <div class="skill-name"><span>MongoDB</span><span>82%</span></div>
+              <div class="progress-bar-custom"><div class="progress-fill" style="width: 82%;"></div></div>
+            </div>
+            <div class="skill-progress" data-aos="fade-up" data-aos-delay="100">
+              <div class="skill-name"><span> NLP</span><span>75%</span></div>
+              <div class="progress-bar-custom"><div class="progress-fill" style="width: 75%;"></div></div>
+            </div>
+            <div class="skill-progress" data-aos="fade-up" data-aos-delay="200">
+              <div class="skill-name"><span>AWS / Azure Cloud</span><span>70%</span></div>
+              <div class="progress-bar-custom"><div class="progress-fill" style="width: 70%;"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="section dark-background" style="padding: 60px 0;">
+      <div class="container">
+        <div class="row gy-4 text-center">
+          <div class="col-lg-3 col-md-6" data-aos="fade-up">
+            <div class="counter-item">
+              <i class="bi bi-code-slash feature-icon"></i>
+              <div class="counter-number stat-counter" data-target="18">0</div>
+              <p>Total Projects</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="counter-item">
+              <i class="bi bi-bar-chart-line feature-icon"></i>
+              <div class="counter-number stat-counter" data-target="8">0</div>
+              <p>AI/ML Projects</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="counter-item">
+              <i class="bi bi-award feature-icon"></i>
+              <div class="counter-number stat-counter" data-target="13">0</div>
+              <p>Certifications</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="counter-item">
+              <i class="bi bi-github feature-icon"></i>
+              <div class="counter-number stat-counter" data-target="30">0</div>
+              <p>GitHub Repos</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section with existing projects -->
+    <section id="projects" class="services section" style="padding: 80px 0;">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>My Projects</h2>
+        <p class="mt-3">Software Development <span style="color: #e63946;">&</span> Data Science Projects</p>
+      </div>
+
+      <div class="container">
+        <div class="row gy-4" id="projects-container">
+          
+          <!-- AI Resume Analyzer -->
+          <div class="col-lg-4 col-md-6 project-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="card h-100 d-flex flex-column position-relative">
+              <div class="demand-badge">🔥 HIGH DEMAND</div>
+              <div class="data-science-badge">🤖 AI</div>
+              <div class="card-img"><div class="slide-wrapper"><img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=800&q=80" alt="AI Resume Analyzer" class="img-fluid"></div></div>
+              <h3 class="mt-3">AI Resume Analyzer</h3>
+              <p>AI-powered tool analyzing resumes for ATS compatibility, keyword optimization, and skill gaps. Helps job seekers pass automated screening systems.</p>
               <div class="mt-auto">
-                <a href="https://doctors-booking.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-apply">View Project</a>
-                <a href="http://localhost:3000/login" class="btn btn-apply">Download Code</a>
+                <a href="https://resume-analyzer-ashen.vercel.app/" target="_blank" class="btn btn-apply btn-deploy">🚀 Live Demo</a>
+                <a href="#" class="btn btn-apply" onclick="alert('GitHub: github.com/Tiyani-Manganyi/resume-analyzer'); return false;">📁 View Code</a>
               </div>
             </div>
           </div>
-          
-          
-          <!-- Modal for Project 1 -->
-          <div class="modal fade" id="project1Modal" tabindex="-1" aria-labelledby="project1ModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="project1ModalLabel">Agric Job Portal Website</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body p-0">
-                  <div class="ratio ratio-16x9">
-                    <iframe src="https://www.youtube.com/embed/2mbwqzL4XOU" title="Agric Job Portal Video" allowfullscreen></iframe>
+
+          <!-- House Price Prediction -->
+          <div class="col-lg-4 col-md-6 project-card" data-aos="fade-up" data-aos-delay="600">
+            <div class="card h-100 d-flex flex-column position-relative">
+              <div class="data-science-badge">🏠 Regression</div>
+              <div class="card-img"><div class="slide-wrapper"><img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80" alt="House Price" class="img-fluid"></div></div>
+              <h3 class="mt-3">House Price Prediction</h3>
+              <p>Regression model predicting real estate prices with R² score of 0.87. Used by FinTech and real estate companies.</p>
+              <div class="mt-auto">
+                <a href="#" class="btn btn-apply btn-deploy" onclick="alert('Live demo: https://house-price-predictor.streamlit.app'); return false;">🚀 Live Demo</a>
+                <a href="#" class="btn btn-apply" onclick="alert('GitHub: github.com/Tiyani-Manganyi/house-price-prediction'); return false;">📁 View Code</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 project-card" data-aos="fade-up" data-aos-delay="600">
+            <a href="https://your-sa-case-law-app.streamlit.app" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; display: block;">
+              <div class="card h-100 d-flex flex-column position-relative">
+                <div class="data-science-badge">⚖️ AI & Law</div>
+                <div class="card-img">
+                  <div class="slide-wrapper">
+                    <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80" alt="South African Case Law AI" class="img-fluid">
                   </div>
                 </div>
+                <h3 class="mt-3">South African Case Law AI</h3>
+                <p>Semantic search + GPT over landmark SA constitutional cases. Ask a legal question and get cited answers grounded in actual judgments.</p>
+                <div class="mt-auto">
+                  <a href="https://4ir-ai-tut.base44.app/" target="_blank" class="btn btn-apply btn-deploy">🚀 Live Demo</a>
+                  <a href="https://4ir-ai-tut.base44.app/" target="_blank" class="btn btn-apply">📁 View Code</a>
+                </div>
               </div>
-            </div>
+            </a>
           </div>
-    
-          <!-- 2: E-commerce Platform -->
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+
+          <!-- Doctors Appointment -->
+          <div class="col-lg-4 col-md-6 project-card" data-aos="fade-up" data-aos-delay="800">
             <div class="card h-100 d-flex flex-column">
-              <div class="card-img">
-                <!-- Vimeo embed instead of static image -->
-                <iframe 
-                  src="https://player.vimeo.com/video/1109924811?h=000000&title=0&byline=0&portrait=0" 
-                  width="100%" 
-                  height="250" 
-                  frameborder="0" 
-                  allow="autoplay; fullscreen; picture-in-picture" 
-                  allowfullscreen>
-                </iframe>
-              </div>
-          
-              <h3 class="mt-3">FRUITS AND VEGETABLE WEBSITE</h3>
-              <p>
-                An interactive e-commerce platform dedicated to selling fresh fruits and vegetables,
-                featuring secure online payments, personalized user accounts, and a powerful admin 
-                dashboard for managing products and orders.
-              </p>
-          
+              <div class="card-img"><div class="slide-wrapper"><img src="assets/img/doctor.png" alt="Doctors Appointment" class="img-fluid"></div></div>
+              <h3 class="mt-3">Doctors Appointment Website</h3>
+              <p>Online platform for booking medical appointments with calendar integration and secure scheduling.</p>
               <div class="mt-auto">
-                <a href="https://github.com/Tiyani-Manganyi/Fruits_and_vegetable_web" class="btn btn-apply">
-                  Download Code
-                </a>
+                <a href="https://doctors-booking.vercel.app/" target="_blank" class="btn btn-apply btn-deploy">🚀 Live Demo</a>
+                <a href="#" class="btn btn-apply" onclick="alert('GitHub: github.com/Tiyani-Manganyi/doctors-booking'); return false;">📁 View Code</a>
               </div>
             </div>
           </div>
-          
-    
-          <!-- 3: Personal Portfolio -->
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+
+          <!-- Fruits & Vegetable E-commerce -->
+          <div class="col-lg-4 col-md-6 project-card" data-aos="fade-up" data-aos-delay="900">
             <div class="card h-100 d-flex flex-column">
-              <div class="card-img">
-                <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=800&q=80" alt="Portfolio" class="img-fluid">
-              </div>
-              <h3 class="mt-3">TUT 4IR LAB FORM</h3>
-            <P>This form is designed to capture and store staff information for the TUT 4IR Lab within the Precom CRUD system. It enables administrators to efficiently add new staff members by recording essential details such as their full name, staff ID, department, and role. The submitted data will be processed and securely stored, ensuring that staff records are accurate, accessible, and up to date for operational and administrative purposes.
+              <div class="card-img"><div class="slide-wrapper"><img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=800&q=80" alt="E-commerce" class="img-fluid"></div></div>
+              <h3 class="mt-3">Fruits & Vegetable E-commerce</h3>
+              <p>Full-stack e-commerce platform with secure payments, user accounts, and admin dashboard.</p>
               <div class="mt-auto">
-
-              </P>  
-
-                <a href="https://youtu.be/rx06wRwUw0Q" target="_blank" rel="noopener noreferrer" class="btn btn-apply">View Project</a>
-
-                <a href="http://localhost:3000/login" class="btn btn-apply">Download Code</a>
+                <a href="https://github.com/Tiyani-Manganyi/Fruits_and_vegetable_web" target="_blank" class="btn btn-apply">📁 View Code</a>
               </div>
             </div>
           </div>
-    
-          <!-- 4: Task Management App -->
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+
+          <!-- 4IR Resume Website -->
+          <div class="col-lg-4 col-md-6 project-card" data-aos="fade-up" data-aos-delay="1000">
             <div class="card h-100 d-flex flex-column">
-              <div class="card-img">
-                <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" alt="Task App" class="img-fluid">
-              </div>
-              <h3 class="mt-3">AGRICULTURAL JOB PORTAL WEBSITE</h3>
-              <p>It’s a specialized online platform where farmers, agri-businesses, and companies can post job openings, and job seekers (students, graduates, farmworkers, agricultural experts) can search and apply for these jobs.</p>
+              <div class="card-img"><div class="slide-wrapper"><img src="https://images.unsplash.com/photo-1484417894907-623942c8ee29?auto=format&fit=crop&w=800&q=80" alt="4IR Resume" class="img-fluid"></div></div>
+              <h3 class="mt-3">4IR Resume Website</h3>
+              <p>Digital CV platform using modern web technologies for the Fourth Industrial Revolution era.</p>
               <div class="mt-auto">
-
-                <a href="https://doctors-booking.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-apply">View Project</a>
-
-                <a href="http://localhost:3000/login" class="btn btn-apply">Download Code</a>
+                <a href="https://4-ir-resume-rxi9.vercel.app/" target="_blank" class="btn btn-apply btn-deploy">🚀 Live Demo</a>
               </div>
             </div>
           </div>
-    
-          <!-- 5: Blogging Platform -->
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
-            <div class="card h-100 d-flex flex-column">
-              <div class="card-img">
-                <img src="https://images.unsplash.com/photo-1484417894907-623942c8ee29?auto=format&fit=crop&w=800&q=80" alt="Blogging Platform" class="img-fluid">
-              </div>
-              <h3 class="mt-3">TRACKING APPLICATION RESUME</h3>
-              <p>This resume is a formal document that job seekers use to present their background, skills, and accomplishments to potential employers. It’s usually the first impression you give to recruiters or hiring managers and plays a big role in whether you get called for an interview.</p>
-              <div class="mt-auto">
 
-                <a href="https://resume-analyzer-ashen.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-apply">View Project</a>
-
-                <a href="" class="btn btn-apply">Download Code</a>
-              </div>
-            </div>
-          </div>
-    
-          <!-- 5: Blogging Platform -->
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
-            <div class="card h-100 d-flex flex-column">
-              <div class="card-img">
-                <img src="https://images.unsplash.com/photo-1484417894907-623942c8ee29?auto=format&fit=crop&w=800&q=80" alt="Blogging Platform" class="img-fluid">
-              </div>
-              <h3 class="mt-3">4IR RESUME WEBSITE</h3>
-              <p>A 4IR (Fourth Industrial Revolution) Resume Website is a digital CV platform that uses modern web technologies and AI to let individuals showcase their skills, projects, and achievements in a way that matches the needs of future jobs in the 4IR era</p>
-              <div class="mt-auto">
-                <a href="https://4-ir-resume-rxi9.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-apply">View Project</a>
-                <a href="" class="btn btn-apply">Download Code</a>
-              </div>
-            </div>
-          </div>
-    
-
-    
+        </div>
+      </div>
     </section>
-    
 
-    <!-- Testimonials Section -->
-    
+    <!-- ========== NEW: VIDEO DEMOS SECTION ========== -->
+    <section id="videos" class="section" style="padding: 80px 0; background: #f8fafc;">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Project Video Demos</h2>
+        <p class="mt-3">Watch 3 short demos of my latest projects</p>
+      </div>
+      <div class="container">
+        <div class="row gy-4">
+          <!-- Video 1 -->
+          <div class="col-lg-4 col-md-6" data-aos="fade-up">
+            <div class="video-card h-100 d-flex flex-column">
+              <div class="card-img">
+                <video controls preload="metadata">
+                  <source src="assets/img/n8n_AI_AGENT_2.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              <h3 class="mt-3">AI Resume Analyzer Demo</h3>
+              <p>Walkthrough of the AI Resume Analyzer – see how it scans resumes, highlights keywords, and suggests improvements.</p>
+              <div class="mt-auto">
+              <a href="https://resume-analyzer-ashen.vercel.app/" target="_blank" class="btn btn-apply btn-deploy">🚀 Live Demo</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Video 2 -->
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="video-card h-100 d-flex flex-column">
+              <div class="card-img">
+                <video controls preload="metadata">
+                  <source src="assets/img/Record.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+             <h3 class="mt-3">TUT Job Portal – Smart Career Matching</h3> <p>Explore job opportunities tailored to your skills and qualifications. The TUT Job Portal uses intelligent algorithms to connect students and alumni with employers, streamlining applications and providing real‑time vacancy alerts across all faculties.</p>
+              <div class="mt-auto">
+                <a href="https://4ir-ai-tut.base44.app/" target="_blank" class="btn btn-apply btn-deploy">Try the App</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Video 3 -->
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="video-card h-100 d-flex flex-column">
+              <div class="card-img">
+                <video controls preload="metadata">
+                  <source src="assets/img/South African Case AI_.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              <h3 class="mt-3">South African Case Law AI Demo</h3>
+              <p>See how the AI legal assistant retrieves relevant case law and answers constitutional questions in seconds.</p>
+                 <a href="https://4ir-ai-tut.base44.app/" target="_blank" class="btn btn-apply btn-deploy">Try the App</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ========== END VIDEO DEMOS SECTION ========== -->
+
   </main>
 
   <footer id="footer" class="footer dark-background">
-
     <div class="container footer-top">
       <div class="row gy-4">
         <div class="col-lg-5 col-md-12 footer-about">
-          <a href="index.html" class="logo d-flex align-items-center">
-            <span class="sitename">#Brainsmustwork</span>
-          </a>
-         
+          <a href="index.html" class="logo d-flex align-items-center"><span class="sitename">#Brainsmustwork</span></a>
+          <p class="mt-3">Software Developer t creating innovative solutions that bridge technology, AI, and human needs.</p>
           <div class="social-links d-flex mt-4">
-            <a href=""><i class="bi bi-twitter-x"></i></a>
-            <a href="https://www.facebook.com/TmanG0g0"><i class="bi bi-facebook"></i></a>
-            <a href=""><i class="bi bi-instagram"></i></a>
-            <a href="https://github.com/Tiyani-Manganyi"><i class="bi bi-github"></i></a>
-            <a href="https://www.linkedin.com/in/tiyani-manganyi-137625316/"><i class="bi bi-linkedin"></i></a>
+            <a href="https://github.com/Tiyani-Manganyi" target="_blank"><i class="bi bi-github"></i></a>
+            <a href="https://www.linkedin.com/in/tiyani-manganyi-137625316/" target="_blank"><i class="bi bi-linkedin"></i></a>
+            <a href="https://www.facebook.com/TmanG0g0" target="_blank"><i class="bi bi-facebook"></i></a>
           </div>
         </div>
-
-        <div class="col-lg-2 col-6 footer-links">
-          <h4>Useful Links</h4>
-          <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Terms of service</a></li>
-            <li><a href="#">Privacy policy</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-2 col-6 footer-links">
-          <h4>Our Services</h4>
-          <ul>
-            <li><a href="#">Web Design</a></li>
-            <li><a href="https://resume-analyzer-ashen.vercel.app/">Resume</a></li>
-            <li><a href="http://localhost:3000/login">Login</a></li>
-            <li><a href="http://localhost:3000/signup">signup</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
-          <h4>Contact Us</h4>
-          <p>180 Burgers Street</p>
-          <p>Pretoria</p>
-          <p>South Africa</p>
-          <p class="mt-4"><strong>Phone:</strong> <span>060  817 5627</span></p>
-          <p><strong>Email:</strong> <span>kbmagoda2024@gmail.com</span></p>
-        </div>
-
+        <div class="col-lg-2 col-6 footer-links"><h4>Quick Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="#about">About</a></li><li><a href="#videos">Video Demos</a></li><li><a href="contact.html">Contact</a></li><li><a href="award.html">Certificates</a></li></ul></div>
+        <div class="col-lg-2 col-6 footer-links"><h4>New Projects</h4><ul><li><a href="#" onclick="alert('Real-Time Chat App'); return false;">Chat Application</a></li><li><a href="#" onclick="alert('TaskFlow Management'); return false;">TaskFlow</a></li><li><a href="#" onclick="alert('Weather Dashboard'); return false;">Weather Dashboard</a></li></ul></div>
+        <div class="col-lg-3 col-md-12 footer-contact"><h4>Contact Info</h4><p>180 Burgers Street, Pretoria, South Africa</p><p><strong>Phone:</strong> 060 817 5627</p><p><strong>Email:</strong> kbmagoda2024@gmail.com</p></div>
       </div>
     </div>
-
-    <div class="container copyright text-center mt-4">
-      <p>© <span>Copyright</span> <strong class="px-1 sitename">agric</strong> <span>All Rights Reserved</span></p>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you've purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-        Designed by <a href="https://bootstrapmade.com/">Tiyani Manganyi</a>
-      </div>
-    </div>
-
+    <div class="container copyright text-center mt-4"><p>© <span>Copyright</span> <strong>Tiyani Manganyi</strong> All Rights Reserved</p><div class="credits">Software Developer & Data Science Specialist | Open to Work</div></div>
   </footer>
 
-  <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Preloader -->
   <div id="preloader"></div>
 
-  <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
 
-  <!-- Main JS File -->
-  <script src="assets/js/main.js">
+  <script>
     
-  </script>
-<script>
-  const searchInput = document.getElementById('searchInput');
-  const jobCards = document.querySelectorAll('.services .card');
+    // Typing Animation
+    const roles = ["Software Developer", "Full Stack Developer", "AI Enthusiast"];
+    let roleIndex = 0, charIndex = 0, isDeleting = false;
+    const typingElement = document.getElementById('typing-text');
 
-  searchInput.addEventListener('input', function() {
-    const query = searchInput.value.toLowerCase();
-
-    jobCards.forEach(card => {
-      const title = card.querySelector('h3').textContent.toLowerCase();
-      if (title.includes(query)) {
-        card.parentElement.style.display = 'block'; // show card
+    function typeEffect() {
+      const currentRole = roles[roleIndex];
+      if (isDeleting) {
+        typingElement.textContent = currentRole.substring(0, charIndex - 1);
+        charIndex--;
       } else {
-        card.parentElement.style.display = 'none'; // hide card
+        typingElement.textContent = currentRole.substring(0, charIndex + 1);
+        charIndex++;
       }
-    });
-  });
-</script>
+      if (!isDeleting && charIndex === currentRole.length) {
+        isDeleting = true;
+        setTimeout(typeEffect, 2000);
+        return;
+      }
+      if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        roleIndex = (roleIndex + 1) % roles.length;
+        setTimeout(typeEffect, 500);
+        return;
+      }
+      setTimeout(typeEffect, isDeleting ? 50 : 100);
+    }
+    typeEffect();
+
+    // Search functionality
+    const searchInput = document.getElementById('searchInput');
+    const projectCards = document.querySelectorAll('.project-card');
+    function filterProjects() {
+      const query = searchInput.value.toLowerCase().trim();
+      projectCards.forEach(card => {
+        const title = card.querySelector('h3')?.textContent.toLowerCase() || '';
+        const desc = card.querySelector('p')?.textContent.toLowerCase() || '';
+        card.style.display = (title.includes(query) || desc.includes(query) || query === '') ? 'block' : 'none';
+      });
+    }
+    if (searchInput) {
+      searchInput.addEventListener('input', filterProjects);
+      document.getElementById('searchForm')?.addEventListener('submit', e => { e.preventDefault(); filterProjects(); });
+    }
+
+    // Counter animation
+    function animateCounter(element, target) {
+      let current = 0;
+      const increment = target / 50;
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) { element.textContent = target; clearInterval(timer); } 
+        else { element.textContent = Math.floor(current); }
+      }, 30);
+    }
+    const counters = document.querySelectorAll('.counter, .stat-counter');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const element = entry.target;
+          const target = parseInt(element.getAttribute('data-target'));
+          if (target && !element.classList.contains('animated')) {
+            animateCounter(element, target);
+            element.classList.add('animated');
+          }
+        }
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(counter => observer.observe(counter));
+
+    const progressBars = document.querySelectorAll('.progress-fill');
+    const progressObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) { entry.target.style.width = entry.target.style.width; } });
+    }, { threshold: 0.5 });
+    progressBars.forEach(bar => progressObserver.observe(bar));
+
+    AOS.init({ duration: 800, once: true });
+  </script>
 </body>
 
 </html>
