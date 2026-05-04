@@ -74,7 +74,6 @@
   <link href="assets/css/main.css" rel="stylesheet">
 
   <style>
-    /* ===== original styles + enhancements ===== */
     .btn-apply {
       background-color: #e63946;
       color: white !important;
@@ -90,34 +89,41 @@
       margin-bottom: 8px;
       font-size: 0.85rem;
     }
+
     .btn-apply:hover {
       background-color: #c1121f;
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(230, 57, 70, 0.3);
       color: white !important;
     }
+
     .btn-outline-custom {
       background: transparent;
       border: 2px solid #e63946;
       color: #e63946 !important;
     }
+
     .btn-outline-custom:hover {
       background: #e63946;
       color: white !important;
     }
+
     .btn-deploy {
       background-color: #2c3e50;
       color: white !important;
     }
+
     .btn-deploy:hover {
       background-color: #1a2a3a;
     }
+
     .typing-container {
       font-size: 1.8rem;
       font-weight: 600;
       color: #e63946;
       min-height: 70px;
     }
+
     .skill-progress {
       margin-bottom: 20px;
     }
@@ -140,6 +146,7 @@
       width: 0%;
       transition: width 1.5s ease-out;
     }
+
     .timeline {
       position: relative;
       padding-left: 30px;
@@ -179,6 +186,7 @@
       font-weight: 600;
       color: #1e293b;
     }
+
     .card {
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       height: 100%;
@@ -190,23 +198,29 @@
       background: #fff;
       position: relative;
     }
+
     .card:hover {
       transform: translateY(-8px);
       box-shadow: 0 20px 35px rgba(0, 0, 0, 0.12);
     }
+
     .card-img {
       width: 100%;
       overflow: hidden;
     }
+
     .slide-wrapper img {
       width: 100%;
       height: 220px;
       object-fit: cover;
       transition: transform 0.5s ease;
     }
+
     .card:hover .slide-wrapper img {
       transform: scale(1.05);
     }
+
+    /* Video card styling */
     .video-card video {
       width: 100%;
       height: 220px;
@@ -231,7 +245,8 @@
       transform: translateY(-8px);
       box-shadow: 0 20px 35px rgba(0, 0, 0, 0.12);
     }
-    .card h3, .video-card h3 {
+
+    .card h3 {
       font-size: 1.2rem;
       font-weight: 700;
       padding: 0 1rem;
@@ -239,6 +254,7 @@
       margin-bottom: 0.5rem;
       color: #1e2a3a;
     }
+
     .card p, .video-card p {
       font-size: 0.9rem;
       color: #4a5568;
@@ -246,6 +262,7 @@
       margin-bottom: 1rem;
       line-height: 1.5;
     }
+
     .mt-auto {
       padding: 0 1rem 1.25rem 1rem;
       margin-top: auto;
@@ -253,6 +270,7 @@
       flex-wrap: wrap;
       gap: 8px;
     }
+
     .hero-img img {
       border-radius: 50%;
       width: 320px;
@@ -261,12 +279,14 @@
       border: 5px solid rgba(230, 57, 70, 0.3);
       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
     }
+
     .section-title h2 {
       font-size: 2.2rem;
       font-weight: 800;
       position: relative;
       display: inline-block;
     }
+
     .section-title h2:after {
       content: '';
       position: absolute;
@@ -278,6 +298,7 @@
       background: #e63946;
       border-radius: 3px;
     }
+
     .stats-item {
       background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(10px);
@@ -286,21 +307,25 @@
       text-align: center;
       transition: all 0.3s ease;
     }
+
     .stats-item:hover {
       transform: translateY(-5px);
       background: rgba(255, 255, 255, 0.2);
     }
+
     .stats-item h4 {
       font-size: 2.2rem;
       font-weight: 800;
       color: #e63946;
       margin-bottom: 5px;
     }
+
     .stats-item p {
       color: white;
       margin: 0;
       font-size: 0.9rem;
     }
+
     .skill-badge {
       display: inline-block;
       background: rgba(230, 57, 70, 0.1);
@@ -313,17 +338,21 @@
       margin: 5px;
       transition: all 0.3s ease;
     }
+
     .skill-badge:hover {
       background: #e63946;
       color: white;
       transform: translateY(-2px);
     }
+
     .dark-background {
       background: linear-gradient(135deg, #0a192f 0%, #1e2a3a 100%);
     }
+
     .about-section {
       background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
     }
+
     .counter-item {
       text-align: center;
       padding: 25px;
@@ -332,20 +361,24 @@
       box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
       transition: all 0.3s ease;
     }
+
     .counter-item:hover {
       transform: translateY(-5px);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     }
+
     .counter-number {
       font-size: 2.5rem;
       font-weight: 800;
       color: #e63946;
     }
+
     .feature-icon {
       font-size: 2.5rem;
       color: #e63946;
       margin-bottom: 15px;
     }
+
     .circular-image {
       width: 100%;
       max-width: 400px;
@@ -354,6 +387,7 @@
       object-fit: cover;
       box-shadow: 0 20px 35px rgba(0, 0, 0, 0.15);
     }
+
     .data-science-badge {
       position: absolute;
       top: 10px;
@@ -366,6 +400,7 @@
       font-weight: 600;
       z-index: 10;
     }
+
     .demand-badge {
       position: absolute;
       top: 10px;
@@ -379,7 +414,20 @@
       z-index: 10;
     }
 
-    /* Dark Mode */
+    .new-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: #10b981;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      z-index: 10;
+    }
+
+    /* ── Dark Mode ─────────────────────────────────── */
     body.dark-mode {
       background: #0f172a !important;
       color: #e2e8f0 !important;
@@ -415,6 +463,10 @@
     body.dark-mode .section-title h2 {
       color: #f1f5f9 !important;
     }
+    body.dark-mode .section-title p,
+    body.dark-mode .timeline-desc {
+      color: #94a3b8 !important;
+    }
     body.dark-mode .skill-name span {
       color: #e2e8f0 !important;
     }
@@ -427,6 +479,7 @@
     body.dark-mode .skill-badge {
       background: rgba(230,57,70,0.2) !important;
     }
+
     #dark-mode-toggle {
       position: fixed;
       bottom: 28px;
@@ -448,13 +501,14 @@
     }
     #dark-mode-toggle:hover {
       transform: scale(1.1);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.3);
     }
     body.dark-mode #dark-mode-toggle {
       background: #fbbf24;
       color: #1e293b;
     }
 
-    /* Tech Stack Marquee */
+    /* ── Tech Stack Marquee ────────────────────────── */
     .marquee-section {
       overflow: hidden;
       padding: 30px 0;
@@ -487,8 +541,9 @@
     .marquee-item:hover { color: #e63946; }
     .marquee-item i { font-size: 1.6rem; }
     body.dark-mode .marquee-item { color: #94a3b8; }
+    body.dark-mode .marquee-item:hover { color: #e63946; }
 
-    /* Testimonials */
+    /* ── Testimonials ─────────────────────────────── */
     .testimonial-card {
       background: #fff;
       border-radius: 20px;
@@ -501,6 +556,7 @@
     }
     .testimonial-card:hover {
       transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.1);
       border-color: #e63946;
     }
     .testimonial-card::before {
@@ -512,10 +568,18 @@
       top: 10px;
       left: 20px;
       font-family: Georgia, serif;
+      line-height: 1;
+    }
+    .testimonial-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #e63946;
     }
     .testimonial-stars { color: #fbbf24; font-size: 0.85rem; }
 
-    /* Services */
+    /* ── Services / What I Offer ──────────────────── */
     .service-offer-card {
       background: #fff;
       border-radius: 20px;
@@ -528,6 +592,7 @@
     }
     .service-offer-card:hover {
       transform: translateY(-8px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.12);
       border-color: #e63946;
     }
     .service-offer-icon {
@@ -545,7 +610,7 @@
       transform: scale(1.1) rotate(-5deg);
     }
 
-    /* Resume Banner */
+    /* ── Resume Download Banner ───────────────────── */
     .resume-banner {
       background: linear-gradient(135deg, #e63946 0%, #ff6b6b 50%, #e63946 100%);
       background-size: 200% 200%;
@@ -572,10 +637,11 @@
     }
     .resume-btn:hover {
       transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.25);
       color: #e63946;
     }
 
-    /* Fun Facts */
+    /* ── Fun Facts ────────────────────────────────── */
     .fun-fact-card {
       text-align: center;
       padding: 28px 20px;
@@ -587,13 +653,256 @@
     }
     .fun-fact-card:hover {
       transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     }
     .fun-fact-emoji {
       font-size: 2.5rem;
       margin-bottom: 12px;
     }
+    body.dark-mode .fun-fact-card {
+      background: #1e293b !important;
+    }
+    body.dark-mode .fun-fact-card h5 { color: #f1f5f9 !important; }
+    body.dark-mode .fun-fact-card p { color: #94a3b8 !important; }
 
-    /* Experience Timeline */
+    /* ── Skip to Content (Accessibility) ─────────── */
+    .skip-to-content {
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #e63946;
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 0 0 8px 8px;
+      z-index: 100000;
+      font-weight: 600;
+      text-decoration: none;
+      transition: top 0.3s;
+    }
+    .skip-to-content:focus {
+      top: 0;
+      color: #fff;
+    }
+
+    /* ── Project Filter Tabs ─────────────────────── */
+    .filter-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+    .filter-tab {
+      padding: 8px 20px;
+      border-radius: 30px;
+      border: 2px solid #e2e8f0;
+      background: #fff;
+      color: #475569;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .filter-tab:hover,
+    .filter-tab.active {
+      background: #e63946;
+      color: #fff;
+      border-color: #e63946;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(230,57,70,0.3);
+    }
+    body.dark-mode .filter-tab {
+      background: #1e293b;
+      border-color: #334155;
+      color: #94a3b8;
+    }
+    body.dark-mode .filter-tab:hover,
+    body.dark-mode .filter-tab.active {
+      background: #e63946;
+      color: #fff;
+      border-color: #e63946;
+    }
+
+    /* ── Hire Me CTA Section ──────────────────────── */
+    .hire-me-section {
+      background: linear-gradient(135deg, #0a192f 0%, #1e2a3a 50%, #0a192f 100%);
+      padding: 80px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .hire-me-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(230,57,70,0.08) 0%, transparent 60%);
+      animation: hire-pulse 8s ease-in-out infinite;
+    }
+    @keyframes hire-pulse {
+      0%,100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+    .hire-card {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 24px;
+      padding: 48px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .hire-card h2 {
+      color: #fff;
+      font-size: 2.4rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+    .hire-card p {
+      color: #94a3b8;
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto 32px;
+      line-height: 1.7;
+    }
+    .hire-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+    }
+    .hire-btn {
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hire-btn-primary {
+      background: #e63946;
+      color: #fff;
+      border: 2px solid #e63946;
+    }
+    .hire-btn-primary:hover {
+      background: #c1121f;
+      border-color: #c1121f;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(230,57,70,0.4);
+      color: #fff;
+    }
+    .hire-btn-outline {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255,255,255,0.3);
+    }
+    .hire-btn-outline:hover {
+      border-color: #e63946;
+      color: #e63946;
+      transform: translateY(-3px);
+    }
+    .hire-badges {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 32px;
+    }
+    .hire-badge-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #94a3b8;
+      font-size: 0.85rem;
+    }
+    .hire-badge-item i {
+      color: #10b981;
+    }
+
+    /* ── Floating WhatsApp Button ─────────────────── */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 90px;
+      left: 28px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #25D366;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      text-decoration: none;
+      z-index: 99997;
+      box-shadow: 0 4px 16px rgba(37,211,102,0.4);
+      transition: all 0.3s ease;
+      animation: whatsapp-bounce 3s ease-in-out infinite;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.15);
+      box-shadow: 0 6px 24px rgba(37,211,102,0.5);
+      color: #fff;
+    }
+    @keyframes whatsapp-bounce {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    /* ── Smooth Page Load ────────────────────────── */
+    .page-fade-in {
+      animation: pageFadeIn 0.6s ease-out;
+    }
+    @keyframes pageFadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Animated Gradient Text ───────────────────── */
+    .gradient-text {
+      background: linear-gradient(135deg, #e63946, #ff6b6b, #ff8c42, #e63946);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradient-shift 4s ease infinite;
+    }
+    @keyframes gradient-shift {
+      0%,100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    /* ── Tooltip ──────────────────────────────────── */
+    .tooltip-custom {
+      position: relative;
+    }
+    .tooltip-custom::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: 120%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1e293b;
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .tooltip-custom:hover::after {
+      opacity: 1;
+    }
+
+    /* ── Experience Timeline Section ──────────────── */
     .exp-timeline {
       position: relative;
       max-width: 800px;
@@ -628,6 +937,7 @@
     }
     .exp-content:hover {
       transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
       border-color: #e63946;
     }
     .exp-dot {
@@ -676,243 +986,12 @@
       .exp-content { width: 100%; }
       .exp-dot { left: 20px; }
     }
-
-    /* Roadmap (NEW) */
-    .roadmap-wrapper {
-      background: linear-gradient(120deg, #f8fafc 0%, #ffffff 100%);
-      border-radius: 48px;
-      padding: 2rem 1.5rem;
-      margin-top: 2rem;
-    }
-    body.dark-mode .roadmap-wrapper {
-      background: #1e293b;
-    }
-    .roadmap-step {
-      position: relative;
-      padding-left: 2rem;
-      margin-bottom: 2rem;
-      border-left: 3px dashed #e6394660;
-    }
-    .roadmap-icon {
-      position: absolute;
-      left: -1.2rem;
-      top: 0;
-      width: 2.4rem;
-      height: 2.4rem;
-      background: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #e63946;
-      font-size: 1.2rem;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.05);
-      border: 2px solid #e63946;
-    }
-    body.dark-mode .roadmap-icon { background: #0f172a; }
-    .roadmap-content h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem; color: #0f172a; }
-    body.dark-mode .roadmap-content h3 { color: #e2e8f0; }
-    .roadmap-tech {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 12px;
-    }
-    .tech-pill {
-      background: #e2e8f0;
-      padding: 4px 12px;
-      border-radius: 30px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: #1e293b;
-    }
-    body.dark-mode .tech-pill { background: #334155; color: #cbd5e1; }
-    .gradient-text {
-      background: linear-gradient(135deg, #e63946, #ff8c42);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    /* Highlights Container for Videos */
-    .highlights-container {
-      background: linear-gradient(145deg, #fef9f9 0%, #ffffff 100%);
-      border-radius: 48px;
-      padding: 2rem 1.5rem;
-      box-shadow: 0 20px 40px -12px rgba(0,0,0,0.1);
-      border: 1px solid rgba(230,57,70,0.2);
-    }
-    body.dark-mode .highlights-container {
-      background: #1e293b;
-      border-color: #e6394640;
-    }
-    .highlight-badge {
-      display: inline-block;
-      background: #e6394610;
-      color: #e63946;
-      border-radius: 40px;
-      padding: 0.25rem 0.9rem;
-      font-size: 0.7rem;
-      font-weight: 600;
-    }
-
-    /* Project category separation */
-    .project-category {
-      margin-bottom: 3rem;
-    }
-    .project-category h3 {
-      font-size: 1.8rem;
-      font-weight: 700;
-      position: relative;
-      display: inline-block;
-      margin-bottom: 1.8rem;
-    }
-    .project-category h3:after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 0;
-      width: 60px;
-      height: 3px;
-      background: #e63946;
-      border-radius: 4px;
-    }
-    .whatsapp-float {
-      position: fixed;
-      bottom: 90px;
-      left: 28px;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: #25D366;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      text-decoration: none;
-      z-index: 99997;
-      box-shadow: 0 4px 16px rgba(37,211,102,0.4);
-      transition: all 0.3s ease;
-      animation: whatsapp-bounce 3s ease-in-out infinite;
-    }
-    .whatsapp-float:hover {
-      transform: scale(1.15);
-      color: #fff;
-    }
-    @keyframes whatsapp-bounce {
-      0%,100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
-    }
-    .page-fade-in {
-      animation: pageFadeIn 0.6s ease-out;
-    }
-    @keyframes pageFadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .skip-to-content {
-      position: absolute;
-      top: -100px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #e63946;
-      color: #fff;
-      padding: 12px 24px;
-      border-radius: 0 0 8px 8px;
-      z-index: 100000;
-      font-weight: 600;
-      text-decoration: none;
-      transition: top 0.3s;
-    }
-    .skip-to-content:focus {
-      top: 0;
-      color: #fff;
-    }
-    .hire-me-section {
-      background: linear-gradient(135deg, #0a192f 0%, #1e2a3a 50%, #0a192f 100%);
-      padding: 80px 0;
-      position: relative;
-      overflow: hidden;
-    }
-    .hire-card {
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 24px;
-      padding: 48px;
-      text-align: center;
-      position: relative;
-      z-index: 1;
-    }
-    .hire-card h2 {
-      color: #fff;
-      font-size: 2.4rem;
-      font-weight: 800;
-    }
-    .hire-card p {
-      color: #94a3b8;
-      font-size: 1.1rem;
-    }
-    .hire-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 16px;
-    }
-    .hire-btn {
-      padding: 14px 32px;
-      border-radius: 50px;
-      font-weight: 700;
-      font-size: 1rem;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .hire-btn-primary {
-      background: #e63946;
-      color: #fff;
-      border: 2px solid #e63946;
-    }
-    .hire-btn-primary:hover {
-      background: #c1121f;
-      transform: translateY(-3px);
-      color: #fff;
-    }
-    .hire-btn-outline {
-      background: transparent;
-      color: #fff;
-      border: 2px solid rgba(255,255,255,0.3);
-    }
-    .hire-btn-outline:hover {
-      border-color: #e63946;
-      color: #e63946;
-      transform: translateY(-3px);
-    }
-    .hire-badges {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 32px;
-    }
-    .hire-badge-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      color: #94a3b8;
-      font-size: 0.85rem;
-    }
-    .hire-badge-item i {
-      color: #10b981;
-    }
   </style>
 </head>
 
 <body class="index-page page-fade-in">
 
+  <!-- Accessibility: Skip to Content -->
   <a href="#main-content" class="skip-to-content">Skip to Main Content</a>
 
   <header id="header" class="header d-flex align-items-center fixed-top">
@@ -926,14 +1005,13 @@
           <li><a href="#about">About</a></li>
           <li><a href="#skills">Skills</a></li>
           <li><a href="#projects">Projects</a></li>
-          <li class="dropdown">
+                <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Highlights <i class="bi bi-chevron-down"></i></a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#services-offer">Services</a></li>
               <li><a class="dropdown-item" href="#testimonials">Testimonials</a></li>
               <li><a class="dropdown-item" href="#experience">Experience</a></li>
               <li><a class="dropdown-item" href="#videos">Video Demos</a></li>
-              <li><a class="dropdown-item" href="#roadmap">Roadmap</a></li>
               <li><a class="dropdown-item" href="contact.html">Contact</a></li>
             </ul>
           </li>
@@ -957,6 +1035,7 @@
               <div class="typing-container" id="typing-text"></div>
             </div>
             <p data-aos="fade-up" data-aos-delay="100">I am a passionate Software Developer from South Africa, holding a Diploma in Computer Science from Tshwane University of Technology. I specialize in building innovative web applications, AI-powered tools, and data-driven solutions.</p>
+
             <div data-aos="fade-up" data-aos-delay="120" class="mb-3">
               <span class="skill-badge">Python</span>
               <span class="skill-badge">JavaScript/React</span>
@@ -964,17 +1043,41 @@
               <span class="skill-badge">NLP</span>
               <span class="skill-badge">MongoDB</span>
               <span class="skill-badge">AWS/Azure</span>
+              
             </div>
+
+            <form id="searchForm" class="form-search d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="200">
+              <input type="text" id="searchInput" class="form-control" placeholder="Search projects (AI, E-commerce, Chat, Analytics...)">
+              <button type="submit" class="btn btn-primary" style="background: #e63946; border-color: #e63946;">Search</button>
+            </form>
+
             <div class="row gy-4 mt-2" data-aos="fade-up" data-aos-delay="300">
-              <div class="col-lg-4 col-6"><div class="stats-item text-center"><h4 class="counter" data-target="13">0</h4><p>Certifications</p></div></div>
-              <div class="col-lg-4 col-6"><div class="stats-item text-center"><h4 class="counter" data-target="18">0</h4><p>Projects</p></div></div>
-              <div class="col-lg-4 col-6"><div class="stats-item text-center"><h4 class="counter" data-target="3">0</h4><p>Years Experience</p></div></div>
+              <div class="col-lg-4 col-6">
+                <div class="stats-item text-center">
+                  <h4 class="counter" data-target="8">0</h4>
+                  <p>Certifications</p>
+                </div>
+              </div>
+              <div class="col-lg-4 col-6">
+                <div class="stats-item text-center">
+                  <h4 class="counter" data-target="8">0</h4>
+                  <p>Projects</p>
+                </div>
+              </div>
+              <div class="col-lg-4 col-6">
+                <div class="stats-item text-center">
+                  <h4 class="counter" data-target="3">0</h4>
+                  <p>Years Experience</p>
+                </div>
+              </div>
             </div>
+
             <div class="mt-3" data-aos="fade-up" data-aos-delay="400">
               <a href="contact.html" class="btn btn-apply me-2">📧 Contact Me</a>
               <a href="award.html" class="btn btn-outline-custom btn-apply" style="background: transparent;">📜 View Certificates</a>
             </div>
           </div>
+
           <div class="col-lg-5 order-1 order-lg-2 hero-img text-center" data-aos="zoom-out">
             <img src="assets/img/Tiyani.jpg" class="img-fluid" alt="Tiyani Manganyi" style="border-radius: 50%; width: 320px; height: 320px; object-fit: cover; border: 5px solid rgba(230,57,70,0.3);">
           </div>
@@ -993,12 +1096,26 @@
             <h2 style="color: #1e293b; font-weight: 800; font-size: 2rem;">About Me</h2>
             <div style="width: 60px; height: 4px; background: #e63946; margin: 15px 0 25px;"></div>
             <p style="color: #334155; font-size: 1.05rem; line-height: 1.8;">I am Manganyi Tiyani, a dedicated Software Developer and Data Science Specialist based in Pretoria, South Africa. I have completed my Diploma in Computer Science at Tshwane University of Technology, developing expertise in full-stack development, machine learning, and cloud computing.</p>
-            <p style="color: #334155; font-size: 1.05rem; line-height: 1.8;">I've built 18+ projects including AI-powered tools, e-commerce platforms, real-time chat applications, and data analytics dashboards. My work focuses on creating solutions that are both technically robust and user-friendly.</p>
+            <p style="color: #334155; font-size: 1.05rem; line-height: 1.8;">I've built 9+ projects including AI-powered tools, e-commerce platforms, real-time chat applications, and data analytics dashboards. My work focuses on creating solutions that are both technically robust and user-friendly.</p>
+            
             <div class="timeline mt-4">
-              <div class="timeline-item"><div class="timeline-year">2026</div><div class="timeline-title">🎓 Diploma in Computer Science</div><div class="timeline-desc">Tshwane University of Technology</div></div>
-              <div class="timeline-item"><div class="timeline-year">2025</div><div class="timeline-title">🏆 FNB App Academy Graduate</div><div class="timeline-desc">Full Stack Development & AI Integration</div></div>
-              <div class="timeline-item"><div class="timeline-year">2024</div><div class="timeline-title">📊 Data Science (AWS)</div><div class="timeline-desc">Cloud & Machine Learning</div></div>
+              <div class="timeline-item">
+                <div class="timeline-year">2026</div>
+                <div class="timeline-title">🎓 Diploma in Computer Science</div>
+                <div class="timeline-desc">Tshwane University of Technology </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-year">2025</div>
+                <div class="timeline-title">🏆 FNB App Academy Graduate</div>
+                <div class="timeline-desc">Full Stack Development & AI Integration</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-year">2024</div>
+                <div class="timeline-title">📊 Data Science</div>
+                <div class="timeline-desc">AWS</div>
+              </div>
             </div>
+            
             <a href="contact.html" class="btn btn-apply mt-3">📩 Get In Touch</a>
           </div>
         </div>
@@ -1014,14 +1131,32 @@
       <div class="container">
         <div class="row gy-4">
           <div class="col-lg-6">
-            <div class="skill-progress" data-aos="fade-up"><div class="skill-name"><span>JavaScript / React.js</span><span>85%</span></div><div class="progress-bar-custom"><div class="progress-fill" style="width: 85%;"></div></div></div>
-            <div class="skill-progress" data-aos="fade-up" data-aos-delay="100"><div class="skill-name"><span>Python / Django</span><span>80%</span></div><div class="progress-bar-custom"><div class="progress-fill" style="width: 80%;"></div></div></div>
-            <div class="skill-progress" data-aos="fade-up" data-aos-delay="200"><div class="skill-name"><span>Node.js / Express</span><span>78%</span></div><div class="progress-bar-custom"><div class="progress-fill" style="width: 78%;"></div></div></div>
+            <div class="skill-progress" data-aos="fade-up">
+              <div class="skill-name"><span>JavaScript / React.js</span><span>85%</span></div>
+              <div class="progress-bar-custom"><div class="progress-fill" style="width: 85%;"></div></div>
+            </div>
+            <div class="skill-progress" data-aos="fade-up" data-aos-delay="100">
+              <div class="skill-name"><span>Python / Django</span><span>80%</span></div>
+              <div class="progress-bar-custom"><div class="progress-fill" style="width: 80%;"></div></div>
+            </div>
+            <div class="skill-progress" data-aos="fade-up" data-aos-delay="200">
+              <div class="skill-name"><span>Node.js / Express</span><span>78%</span></div>
+              <div class="progress-bar-custom"><div class="progress-fill" style="width: 78%;"></div></div>
+            </div>
           </div>
           <div class="col-lg-6">
-            <div class="skill-progress" data-aos="fade-up"><div class="skill-name"><span>MongoDB</span><span>82%</span></div><div class="progress-bar-custom"><div class="progress-fill" style="width: 82%;"></div></div></div>
-            <div class="skill-progress" data-aos="fade-up" data-aos-delay="100"><div class="skill-name"><span>NLP</span><span>75%</span></div><div class="progress-bar-custom"><div class="progress-fill" style="width: 75%;"></div></div></div>
-            <div class="skill-progress" data-aos="fade-up" data-aos-delay="200"><div class="skill-name"><span>AWS / Azure Cloud</span><span>70%</span></div><div class="progress-bar-custom"><div class="progress-fill" style="width: 70%;"></div></div></div>
+            <div class="skill-progress" data-aos="fade-up">
+              <div class="skill-name"><span>MongoDB</span><span>82%</span></div>
+              <div class="progress-bar-custom"><div class="progress-fill" style="width: 82%;"></div></div>
+            </div>
+            <div class="skill-progress" data-aos="fade-up" data-aos-delay="100">
+              <div class="skill-name"><span> NLP</span><span>75%</span></div>
+              <div class="progress-bar-custom"><div class="progress-fill" style="width: 75%;"></div></div>
+            </div>
+            <div class="skill-progress" data-aos="fade-up" data-aos-delay="200">
+              <div class="skill-name"><span>AWS / Azure Cloud</span><span>70%</span></div>
+              <div class="progress-bar-custom"><div class="progress-fill" style="width: 70%;"></div></div>
+            </div>
           </div>
         </div>
       </div>
@@ -1031,152 +1166,543 @@
     <section class="section dark-background" style="padding: 60px 0;">
       <div class="container">
         <div class="row gy-4 text-center">
-          <div class="col-lg-3 col-md-6" data-aos="fade-up"><div class="counter-item"><i class="bi bi-code-slash feature-icon"></i><div class="counter-number stat-counter" data-target="18">0</div><p>Total Projects</p></div></div>
-          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100"><div class="counter-item"><i class="bi bi-bar-chart-line feature-icon"></i><div class="counter-number stat-counter" data-target="8">0</div><p>AI/ML Projects</p></div></div>
-          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200"><div class="counter-item"><i class="bi bi-award feature-icon"></i><div class="counter-number stat-counter" data-target="13">0</div><p>Certifications</p></div></div>
-          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300"><div class="counter-item"><i class="bi bi-github feature-icon"></i><div class="counter-number stat-counter" data-target="30">0</div><p>GitHub Repos</p></div></div>
+          <div class="col-lg-3 col-md-6" data-aos="fade-up">
+            <div class="counter-item">
+              <i class="bi bi-code-slash feature-icon"></i>
+              <div class="counter-number stat-counter" data-target="18">0</div>
+              <p>Total Projects</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="counter-item">
+              <i class="bi bi-bar-chart-line feature-icon"></i>
+              <div class="counter-number stat-counter" data-target="8">0</div>
+              <p>AI/ML Projects</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="counter-item">
+              <i class="bi bi-award feature-icon"></i>
+              <div class="counter-number stat-counter" data-target="13">0</div>
+              <p>Certifications</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="counter-item">
+              <i class="bi bi-github feature-icon"></i>
+              <div class="counter-number stat-counter" data-target="30">0</div>
+              <p>GitHub Repos</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ========== SEPARATED PROJECTS: GRADUATE vs REAL-WORLD ========== -->
+    <!-- Projects Section with existing projects -->
     <section id="projects" class="services section" style="padding: 80px 0;">
       <div class="container section-title" data-aos="fade-up">
         <h2>My Projects</h2>
-        <p class="mt-3">Graduate work <span style="color: #e63946;">&</span> real‑world implementations</p>
+        <p class="mt-3">Software Development <span style="color: #e63946;">&</span> Data Science Projects</p>
       </div>
+
       <div class="container">
-        <!-- Graduate Projects -->
-        <div class="project-category" data-aos="fade-up">
-          <h3><i class="bi bi-mortarboard-fill me-2"></i> 🎓 Graduate Projects (Academic)</h3>
-          <div class="row gy-4">
-            <!-- House Price Prediction -->
-            <div class="col-lg-4 col-md-6">
-              <div class="card h-100 position-relative"><div class="data-science-badge">📈 Regression</div><div class="card-img"><div class="slide-wrapper"><img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80" alt="House Price" class="img-fluid"></div></div><h3 class="mt-3">House Price Prediction</h3><p>Regression model predicting real estate prices with R² score of 0.87. Used by FinTech and real estate companies.</p><div class="mt-auto"><a href="https://house-price-predictor.streamlit.app" target="_blank" class="btn btn-apply btn-deploy">🚀 Live Demo</a><a href="https://github.com/Tiyani-Manganyi/house-price-prediction" target="_blank" class="btn btn-apply">📁 View Code</a></div></div>
-            </div>
-            <!-- South African Case Law AI -->
-            <div class="col-lg-4 col-md-6">
-              <div class="card h-100 position-relative"><div class="data-science-badge">⚖️ AI & Law</div><div class="card-img"><div class="slide-wrapper"><img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80" alt="SA Case Law AI" class="img-fluid"></div></div><h3 class="mt-3">South African Case Law AI</h3><p>Semantic search + GPT over landmark SA constitutional cases. Final year thesis project.</p><div class="mt-auto"><a href="https://4ir-ai-tut.base44.app/" target="_blank" class="btn btn-apply btn-deploy">🚀 Live Demo</a><a href="https://4ir-ai-tut.base44.app/" target="_blank" class="btn btn-apply">📁 View Code</a></div></div>
-            </div>
-            <!-- 4IR Resume Website -->
-            <div class="col-lg-4 col-md-6">
-              <div class="card h-100"><div class="card-img"><div class="slide-wrapper"><img src="https://images.unsplash.com/photo-1484417894907-623942c8ee29?auto=format&fit=crop&w=800&q=80" alt="4IR Resume" class="img-fluid"></div></div><h3 class="mt-3">4IR Resume Website</h3><p>Digital CV platform using modern web technologies for the Fourth Industrial Revolution era.</p><div class="mt-auto"><a href="https://4-ir-resume-rxi9.vercel.app/" target="_blank" class="btn btn-apply btn-deploy">🚀 Live Demo</a></div></div>
-            </div>
-          </div>
+        <!-- Project Filter Tabs -->
+        <div class="filter-tabs" data-aos="fade-up" data-aos-delay="100">
+          <button class="filter-tab active" data-filter="all">All Projects</button>
+          <button class="filter-tab" data-filter="ai">AI / ML</button>
+          <button class="filter-tab" data-filter="web">Web Apps</button>
+          <button class="filter-tab" data-filter="data">Data Science</button>
+          <button class="filter-tab" data-filter="fullstack">Full-Stack</button>
         </div>
 
-        <!-- Real-World / Professional Projects -->
-        <div class="project-category mt-5" data-aos="fade-up" data-aos-delay="200">
-          <h3><i class="bi bi-briefcase-fill me-2"></i> 💼 Real‑World Projects (Client & Freelance)</h3>
-          <div class="row gy-4">
-            <!-- AI Resume Analyzer -->
-            <div class="col-lg-4 col-md-6">
-              <div class="card h-100 position-relative"><div class="demand-badge">🔥 HIGH DEMAND</div><div class="data-science-badge">🤖 AI</div><div class="card-img"><div class="slide-wrapper"><img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=800&q=80" alt="AI Resume Analyzer" class="img-fluid"></div></div><h3 class="mt-3">AI Resume Analyzer</h3><p>AI-powered tool analyzing resumes for ATS compatibility, keyword optimization, and skill gaps.</p><div class="mt-auto"><a href="https://resume-analyzer-ashen.vercel.app/" target="_blank" class="btn btn-apply btn-deploy">🚀 Live Demo</a><a href="https://github.com/Tiyani-Manganyi/resume-analyzer" target="_blank" class="btn btn-apply">📁 View Code</a></div></div>
-            </div>
-            <!-- Doctors Appointment -->
-            <div class="col-lg-4 col-md-6">
-              <div class="card h-100"><div class="card-img"><div class="slide-wrapper"><img src="assets/img/doctor.png" alt="Doctors Appointment" class="img-fluid"></div></div><h3 class="mt-3">Doctors Appointment Website</h3><p>Online platform for booking medical appointments with calendar integration and secure scheduling.</p><div class="mt-auto"><a href="https://doctors-booking.vercel.app/" target="_blank" class="btn btn-apply btn-deploy">🚀 Live Demo</a><a href="https://github.com/Tiyani-Manganyi/doctors-booking" target="_blank" class="btn btn-apply">📁 View Code</a></div></div>
-            </div>
-            <!-- Fruits & Vegetable E-commerce -->
-            <div class="col-lg-4 col-md-6">
-              <div class="card h-100"><div class="card-img"><div class="slide-wrapper"><img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=800&q=80" alt="E-commerce" class="img-fluid"></div></div><h3 class="mt-3">Fruits & Vegetable E-commerce</h3><p>Full-stack e-commerce platform with secure payments, user accounts, and admin dashboard.</p><div class="mt-auto"><a href="https://github.com/Tiyani-Manganyi/Fruits_and_vegetable_web" target="_blank" class="btn btn-apply">📁 View Code</a></div></div>
+        <div class="row gy-4" id="projects-container">
+          
+          <!-- AI Resume Analyzer -->
+          <div class="col-lg-4 col-md-6 project-card" data-category="ai,web" data-aos="fade-up" data-aos-delay="400">
+            <div class="card h-100 d-flex flex-column position-relative">
+              <div class="demand-badge">🔥 HIGH DEMAND</div>
+              <div class="data-science-badge">🤖 AI</div>
+              <div class="card-img"><div class="slide-wrapper"><img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=800&q=80" alt="AI Resume Analyzer" class="img-fluid"></div></div>
+              <h3 class="mt-3">AI Resume Analyzer</h3>
+              <p>AI-powered tool analyzing resumes for ATS compatibility, keyword optimization, and skill gaps. Helps job seekers pass automated screening systems.</p>
+              <div class="mt-auto">
+                <a href="https://resume-analyzer-ashen.vercel.app/" target="_blank" class="btn btn-apply btn-deploy">🚀 Live Demo</a>
+                <a href="https://github.com/Tiyani-Manganyi/resume-analyzer" target="_blank" class="btn btn-apply">📁 View Code</a>
+              </div>
             </div>
           </div>
+
+          <!-- House Price Prediction -->
+          <div class="col-lg-4 col-md-6 project-card" data-category="ai,data" data-aos="fade-up" data-aos-delay="600">
+            <div class="card h-100 d-flex flex-column position-relative">
+              <div class="data-science-badge">🏠 Regression</div>
+              <div class="card-img"><div class="slide-wrapper"><img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80" alt="House Price" class="img-fluid"></div></div>
+              <h3 class="mt-3">House Price Prediction</h3>
+              <p>Regression model predicting real estate prices with R² score of 0.87. Used by FinTech and real estate companies.</p>
+              <div class="mt-auto">
+                <a href="https://house-price-predictor.streamlit.app" target="_blank" class="btn btn-apply btn-deploy">🚀 Live Demo</a>
+                <a href="https://github.com/Tiyani-Manganyi/house-price-prediction" target="_blank" class="btn btn-apply">📁 View Code</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 project-card" data-category="ai,data" data-aos="fade-up" data-aos-delay="600">
+            <a href="https://your-sa-case-law-app.streamlit.app" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; display: block;">
+              <div class="card h-100 d-flex flex-column position-relative">
+                <div class="data-science-badge">⚖️ AI & Law</div>
+                <div class="card-img">
+                  <div class="slide-wrapper">
+                    <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80" alt="South African Case Law AI" class="img-fluid">
+                  </div>
+                </div>
+                <h3 class="mt-3">South African Case Law AI</h3>
+                <p>Semantic search + GPT over landmark SA constitutional cases. Ask a legal question and get cited answers grounded in actual judgments.</p>
+                <div class="mt-auto">
+                  <a href="https://4ir-ai-tut.base44.app/" target="_blank" class="btn btn-apply btn-deploy">🚀 Live Demo</a>
+                  <a href="https://4ir-ai-tut.base44.app/" target="_blank" class="btn btn-apply">📁 View Code</a>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Doctors Appointment -->
+          <div class="col-lg-4 col-md-6 project-card" data-category="web,fullstack" data-aos="fade-up" data-aos-delay="800">
+            <div class="card h-100 d-flex flex-column">
+              <div class="card-img"><div class="slide-wrapper"><img src="assets/img/doctor.png" alt="Doctors Appointment" class="img-fluid"></div></div>
+              <h3 class="mt-3">Doctors Appointment Website</h3>
+              <p>Online platform for booking medical appointments with calendar integration and secure scheduling.</p>
+              <div class="mt-auto">
+                <a href="https://doctors-booking.vercel.app/" target="_blank" class="btn btn-apply btn-deploy">🚀 Live Demo</a>
+                <a href="https://github.com/Tiyani-Manganyi/doctors-booking" target="_blank" class="btn btn-apply">📁 View Code</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fruits & Vegetable E-commerce -->
+          <div class="col-lg-4 col-md-6 project-card" data-category="web,fullstack" data-aos="fade-up" data-aos-delay="900">
+            <div class="card h-100 d-flex flex-column">
+              <div class="card-img"><div class="slide-wrapper"><img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=800&q=80" alt="E-commerce" class="img-fluid"></div></div>
+              <h3 class="mt-3">Fruits & Vegetable E-commerce</h3>
+              <p>Full-stack e-commerce platform with secure payments, user accounts, and admin dashboard.</p>
+              <div class="mt-auto">
+                <a href="https://github.com/Tiyani-Manganyi/Fruits_and_vegetable_web" target="_blank" class="btn btn-apply">📁 View Code</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4IR Resume Website -->
+          <div class="col-lg-4 col-md-6 project-card" data-category="web" data-aos="fade-up" data-aos-delay="1000">
+            <div class="card h-100 d-flex flex-column">
+              <div class="card-img"><div class="slide-wrapper"><img src="https://images.unsplash.com/photo-1484417894907-623942c8ee29?auto=format&fit=crop&w=800&q=80" alt="4IR Resume" class="img-fluid"></div></div>
+              <h3 class="mt-3">4IR Resume Website</h3>
+              <p>Digital CV platform using modern web technologies for the Fourth Industrial Revolution era.</p>
+              <div class="mt-auto">
+                <a href="https://4-ir-resume-rxi9.vercel.app/" target="_blank" class="btn btn-apply btn-deploy">🚀 Live Demo</a>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
 
-    <!-- ========== VIDEO HIGHLIGHTS CONTAINER (assets/img videos) ========== -->
+    <!-- ========== NEW: VIDEO DEMOS SECTION ========== -->
     <section id="videos" class="section" style="padding: 80px 0; background: #f8fafc;">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Project Video Demos</h2>
+        <p class="mt-3">Watch 3 short demos of my latest projects</p>
+      </div>
       <div class="container">
-        <div class="highlights-container" data-aos="fade-up">
-          <div class="d-flex align-items-center justify-content-between flex-wrap mb-3">
-            <div><h3 class="fw-bold mb-0"><i class="bi bi-camera-reels-fill me-2 text-danger"></i> 🎥 Video Demos · assets/img</h3><span class="highlight-badge mt-1">All videos stored in /assets/img/</span></div>
-          </div>
-          <div class="row gy-4">
-            <!-- Video 1: n8n AI Agent -->
-            <div class="col-lg-4 col-md-6">
-              <div class="video-card h-100 d-flex flex-column">
-                <div class="card-img"><video controls preload="metadata" poster="assets/img/service-1.jpg"><source src="assets/img/n8n_AI_AGENT_2.mp4" type="video/mp4"></video></div>
-                <h3 class="mt-3">🤖 AI Agent Automation (n8n)</h3>
-                <p>Workflow automation & AI agent demo — one of the highlight projects from assets.</p>
-                <div class="mt-auto"><a href="https://resume-analyzer-ashen.vercel.app/" target="_blank" class="btn btn-apply btn-deploy">Try the App</a></div>
+        <div class="row gy-4">
+          <!-- Video 1 -->
+          <div class="col-lg-4 col-md-6" data-aos="fade-up">
+            <div class="video-card h-100 d-flex flex-column">
+              <div class="card-img">
+                <video controls preload="metadata" poster="assets/img/service-1.jpg">
+                  <source src="assets/img/n8n_AI_AGENT_2.mp4" type="video/mp4">
+                  <p class="text-center p-3">Video coming soon. <a href="https://resume-analyzer-ashen.vercel.app/" target="_blank">Try the live demo instead!</a></p>
+                </video>
               </div>
-            </div>
-            <!-- Video 2: TUT Job Portal -->
-            <div class="col-lg-4 col-md-6">
-              <div class="video-card h-100 d-flex flex-column">
-                <div class="card-img"><video controls preload="metadata"><source src="assets/img/Record.mp4" type="video/mp4"></video></div>
-                <h3 class="mt-3">🎓 TUT Job Portal Demo</h3>
-                <p>Smart career matching platform for students & alumni — real-time vacancy alerts.</p>
-                <div class="mt-auto"><a href="https://4ir-ai-tut.base44.app/" target="_blank" class="btn btn-apply btn-deploy">Try the App</a></div>
-              </div>
-            </div>
-            <!-- Video 3: SA Case Law AI -->
-            <div class="col-lg-4 col-md-6">
-              <div class="video-card h-100 d-flex flex-column">
-                <div class="card-img"><video controls preload="metadata"><source src="assets/img/South African Case AI_.mp4" type="video/mp4"></video></div>
-                <h3 class="mt-3">⚖️ SA Case Law AI in action</h3>
-                <p>Ask legal questions, get cited answers from constitutional case law database.</p>
-                <div class="mt-auto"><a href="https://4ir-ai-tut.base44.app/" target="_blank" class="btn btn-apply btn-deploy">Try the App</a></div>
+              <h3 class="mt-3">AI Resume Analyzer Demo</h3>
+              <p>Walkthrough of the AI Resume Analyzer – see how it scans resumes, highlights keywords, and suggests improvements.</p>
+              <div class="mt-auto">
+              <a href="https://resume-analyzer-ashen.vercel.app/" target="_blank" class="btn btn-apply btn-deploy">🚀 Live Demo</a>
               </div>
             </div>
           </div>
-          <div class="alert alert-light mt-3 rounded-pill text-center small bg-white"><i class="bi bi-info-circle"></i> All video files located inside <code>assets/img/</code>: n8n_AI_AGENT_2.mp4, Record.mp4, South African Case AI_.mp4</div>
+
+          <!-- Video 2 -->
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="video-card h-100 d-flex flex-column">
+              <div class="card-img">
+                <video controls preload="metadata">
+                  <source src="assets/img/Record.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+             <h3 class="mt-3">TUT Job Portal – Smart Career Matching</h3> <p>Explore job opportunities tailored to your skills and qualifications. The TUT Job Portal uses intelligent algorithms to connect students and alumni with employers, streamlining applications and providing real‑time vacancy alerts across all faculties.</p>
+              <div class="mt-auto">
+                <a href="https://4ir-ai-tut.base44.app/" target="_blank" class="btn btn-apply btn-deploy">Try the App</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Video 3 -->
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="video-card h-100 d-flex flex-column">
+              <div class="card-img">
+                <video controls preload="metadata" poster="assets/img/service-3.jpg">
+                  <source src="assets/img/South African Case AI_.mp4" type="video/mp4">
+                  <p class="text-center p-3">Video coming soon. <a href="https://4ir-ai-tut.base44.app/" target="_blank">Try the live demo instead!</a></p>
+                </video>
+              </div>
+              <h3 class="mt-3">South African Case Law AI Demo</h3>
+              <p>See how the AI legal assistant retrieves relevant case law and answers constitutional questions in seconds.</p>
+              <div class="mt-auto">
+                <a href="https://4ir-ai-tut.base44.app/" target="_blank" class="btn btn-apply btn-deploy">Try the App</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
+    <!-- ========== END VIDEO DEMOS SECTION ========== -->
 
-    <!-- Tech Stack Marquee -->
-    <div class="marquee-section"><div class="marquee-track" id="marqueeTrack"><span class="marquee-item"><i class="bi bi-filetype-py"></i> Python</span><span class="marquee-item"><i class="bi bi-filetype-js"></i> JavaScript</span><span class="marquee-item"><i class="bi bi-bootstrap"></i> React.js</span><span class="marquee-item"><i class="bi bi-node-plus"></i> Node.js</span><span class="marquee-item"><i class="bi bi-database"></i> MongoDB</span><span class="marquee-item"><i class="bi bi-cloud"></i> AWS</span><span class="marquee-item"><i class="bi bi-microsoft"></i> Azure</span><span class="marquee-item"><i class="bi bi-braces"></i> Django</span><span class="marquee-item"><i class="bi bi-gear"></i> Express.js</span><span class="marquee-item"><i class="bi bi-robot"></i> NLP</span><span class="marquee-item"><i class="bi bi-bar-chart-line"></i> Data Science</span><span class="marquee-item"><i class="bi bi-git"></i> Git / GitHub</span><span class="marquee-item"><i class="bi bi-filetype-html"></i> HTML5 / CSS3</span><span class="marquee-item"><i class="bi bi-shield-lock"></i> Cybersecurity</span><span class="marquee-item"><i class="bi bi-cpu"></i> Machine Learning</span><span class="marquee-item"><i class="bi bi-diagram-3"></i> REST APIs</span><!-- duplicated for seamless loop --><span class="marquee-item"><i class="bi bi-filetype-py"></i> Python</span><span class="marquee-item"><i class="bi bi-filetype-js"></i> JavaScript</span><span class="marquee-item"><i class="bi bi-bootstrap"></i> React.js</span><span class="marquee-item"><i class="bi bi-node-plus"></i> Node.js</span><span class="marquee-item"><i class="bi bi-database"></i> MongoDB</span><span class="marquee-item"><i class="bi bi-cloud"></i> AWS</span><span class="marquee-item"><i class="bi bi-microsoft"></i> Azure</span><span class="marquee-item"><i class="bi bi-braces"></i> Django</span><span class="marquee-item"><i class="bi bi-gear"></i> Express.js</span><span class="marquee-item"><i class="bi bi-robot"></i> NLP</span><span class="marquee-item"><i class="bi bi-bar-chart-line"></i> Data Science</span><span class="marquee-item"><i class="bi bi-git"></i> Git / GitHub</span><span class="marquee-item"><i class="bi bi-filetype-html"></i> HTML5 / CSS3</span><span class="marquee-item"><i class="bi bi-shield-lock"></i> Cybersecurity</span><span class="marquee-item"><i class="bi bi-cpu"></i> Machine Learning</span><span class="marquee-item"><i class="bi bi-diagram-3"></i> REST APIs</span></div></div>
+    <!-- ========== TECH STACK MARQUEE ========== -->
+    <div class="marquee-section">
+      <div class="marquee-track" id="marqueeTrack">
+        <span class="marquee-item"><i class="bi bi-filetype-py"></i> Python</span>
+        <span class="marquee-item"><i class="bi bi-filetype-js"></i> JavaScript</span>
+        <span class="marquee-item"><i class="bi bi-bootstrap"></i> React.js</span>
+        <span class="marquee-item"><i class="bi bi-node-plus"></i> Node.js</span>
+        <span class="marquee-item"><i class="bi bi-database"></i> MongoDB</span>
+        <span class="marquee-item"><i class="bi bi-cloud"></i> AWS</span>
+        <span class="marquee-item"><i class="bi bi-microsoft"></i> Azure</span>
+        <span class="marquee-item"><i class="bi bi-braces"></i> Django</span>
+        <span class="marquee-item"><i class="bi bi-gear"></i> Express.js</span>
+        <span class="marquee-item"><i class="bi bi-robot"></i> NLP</span>
+        <span class="marquee-item"><i class="bi bi-bar-chart-line"></i> Data Science</span>
+        <span class="marquee-item"><i class="bi bi-git"></i> Git / GitHub</span>
+        <span class="marquee-item"><i class="bi bi-filetype-html"></i> HTML5 / CSS3</span>
+        <span class="marquee-item"><i class="bi bi-shield-lock"></i> Cybersecurity</span>
+        <span class="marquee-item"><i class="bi bi-cpu"></i> Machine Learning</span>
+        <span class="marquee-item"><i class="bi bi-diagram-3"></i> REST APIs</span>
+        <!-- Duplicated for seamless loop -->
+        <span class="marquee-item"><i class="bi bi-filetype-py"></i> Python</span>
+        <span class="marquee-item"><i class="bi bi-filetype-js"></i> JavaScript</span>
+        <span class="marquee-item"><i class="bi bi-bootstrap"></i> React.js</span>
+        <span class="marquee-item"><i class="bi bi-node-plus"></i> Node.js</span>
+        <span class="marquee-item"><i class="bi bi-database"></i> MongoDB</span>
+        <span class="marquee-item"><i class="bi bi-cloud"></i> AWS</span>
+        <span class="marquee-item"><i class="bi bi-microsoft"></i> Azure</span>
+        <span class="marquee-item"><i class="bi bi-braces"></i> Django</span>
+        <span class="marquee-item"><i class="bi bi-gear"></i> Express.js</span>
+        <span class="marquee-item"><i class="bi bi-robot"></i> NLP</span>
+        <span class="marquee-item"><i class="bi bi-bar-chart-line"></i> Data Science</span>
+        <span class="marquee-item"><i class="bi bi-git"></i> Git / GitHub</span>
+        <span class="marquee-item"><i class="bi bi-filetype-html"></i> HTML5 / CSS3</span>
+        <span class="marquee-item"><i class="bi bi-shield-lock"></i> Cybersecurity</span>
+        <span class="marquee-item"><i class="bi bi-cpu"></i> Machine Learning</span>
+        <span class="marquee-item"><i class="bi bi-diagram-3"></i> REST APIs</span>
+      </div>
+    </div>
+    <!-- ========== END TECH STACK MARQUEE ========== -->
 
-    <!-- Services / What I Offer -->
-    <section id="services-offer" class="section" style="padding: 80px 0;"><div class="container section-title" data-aos="fade-up"><h2>What I Can Do For You</h2><p class="mt-3">Professional services I offer to clients and companies</p></div><div class="container"><div class="row gy-4"><div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100"><div class="service-offer-card"><div class="service-offer-icon" style="background: rgba(230,57,70,0.1); color: #e63946;"><i class="bi bi-laptop"></i></div><h4>Full-Stack Web Development</h4><p>Custom web applications with React, Node.js, Django, and MongoDB.</p></div></div><div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200"><div class="service-offer-card"><div class="service-offer-icon" style="background: rgba(37,99,235,0.1); color: #2563eb;"><i class="bi bi-robot"></i></div><h4>AI & Machine Learning Solutions</h4><p>NLP, predictive models, RAG applications, and AI automation.</p></div></div><div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300"><div class="service-offer-card"><div class="service-offer-icon" style="background: rgba(16,185,129,0.1); color: #10b981;"><i class="bi bi-bar-chart-line"></i></div><h4>Data Analytics & Visualization</h4><p>Dashboards, reports, and data pipelines with Python & BI tools.</p></div></div><div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400"><div class="service-offer-card"><div class="service-offer-icon" style="background: rgba(139,92,246,0.1); color: #8b5cf6;"><i class="bi bi-cloud-arrow-up"></i></div><h4>Cloud Deployment & DevOps</h4><p>AWS, Azure, Vercel, CI/CD, serverless.</p></div></div><div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500"><div class="service-offer-card"><div class="service-offer-icon" style="background: rgba(245,158,11,0.1); color: #f59e0b;"><i class="bi bi-phone"></i></div><h4>Responsive UI/UX Design</h4><p>Beautiful, mobile-first, accessible interfaces.</p></div></div><div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600"><div class="service-offer-card"><div class="service-offer-icon" style="background: rgba(236,72,153,0.1); color: #ec4899;"><i class="bi bi-database-gear"></i></div><h4>API Development & Integration</h4><p>RESTful APIs, third‑party integrations, microservices.</p></div></div></div></div></section>
-
-    <!-- Testimonials -->
-    <section id="testimonials" class="section" style="padding: 80px 0; background: #f8fafc;"><div class="container section-title" data-aos="fade-up"><h2>Testimonials</h2><p class="mt-3">What people say about working with me</p></div><div class="container"><div class="row gy-4"><div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100"><div class="testimonial-card"><div class="testimonial-stars mb-2">★★★★★</div><p>"Tiyani is one of the most dedicated developers I've worked with. His AI Resume Analyzer project demonstrated exceptional skill."</p><div><div style="width:48px;height:48px;border-radius:50%;background:#e63946;display:inline-flex;align-items:center;justify-content:center;color:#fff;">FM</div><h4>FNB App Academy</h4><p>Mentor & Program Lead</p></div></div></div><div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200"><div class="testimonial-card"><div class="testimonial-stars mb-2">★★★★★</div><p>"Working with Tiyani on the TUT Job Portal was a great experience. He brought creative AI solutions and quality code."</p><div><div style="width:48px;height:48px;border-radius:50%;background:#2563eb;display:inline-flex;align-items:center;justify-content:center;color:#fff;">TU</div><h4>TUT Faculty</h4><p>Computer Science Dept.</p></div></div></div><div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300"><div class="testimonial-card"><div class="testimonial-stars mb-2">★★★★★</div><p>"Tiyani built our Doctors Appointment platform and exceeded expectations. Clean UI, calendar integration, outstanding work!"</p><div><div style="width:48px;height:48px;border-radius:50%;background:#10b981;display:inline-flex;align-items:center;justify-content:center;color:#fff;">DC</div><h4>Doctors Clinic</h4><p>Client Project</p></div></div></div></div></div></section>
-
-    <!-- Resume Download Banner -->
-    <section class="resume-banner" data-aos="fade-up"><div class="container"><h2>Want to know more?</h2><p>Download my resume to see my full experience, education, and technical skills in detail.</p><a href="assets/pdf/cv.pdf" download="Tiyani_Manganyi_Resume.pdf" class="resume-btn"><i class="bi bi-download"></i> Download My Resume</a><div>PDF · Updated April 2026</div></div></section>
-
-    <!-- Fun Facts -->
-    <section class="section" style="padding: 60px 0; background: #f8fafc;"><div class="container section-title" data-aos="fade-up"><h2>Fun Facts About Me</h2><p>Beyond the code — a little more about Tiyani</p></div><div class="container"><div class="row gy-4"><div class="col-lg-3 col-md-6"><div class="fun-fact-card"><div class="fun-fact-emoji">☕</div><h5>Coffee Powered</h5><p>500+ cups consumed while coding</p></div></div><div class="col-lg-3 col-md-6"><div class="fun-fact-card"><div class="fun-fact-emoji">💻</div><h5>Lines of Code</h5><p>50,000+ lines written</p></div></div><div class="col-lg-3 col-md-6"><div class="fun-fact-card"><div class="fun-fact-emoji">🎮</div><h5>Problem Solver</h5><p>Love debugging at midnight</p></div></div><div class="col-lg-3 col-md-6"><div class="fun-fact-card"><div class="fun-fact-emoji">🌍</div><h5>Open Source Fan</h5><p>Active contributor</p></div></div></div></div></section>
-
-    <!-- Experience Timeline -->
-    <section id="experience" class="section" style="padding: 80px 0;"><div class="container section-title" data-aos="fade-up"><h2>Experience & Education</h2><p>My professional journey in software development</p></div><div class="container"><div class="exp-timeline"><div class="exp-item" data-aos="fade-up"><div class="exp-content"><div class="exp-year">2026</div><div class="exp-title">Diploma in Computer Science</div><p class="exp-desc">Tshwane University of Technology — algorithms, data structures, software engineering, cloud.</p></div><div class="exp-dot"></div></div><div class="exp-item" data-aos="fade-up" data-aos-delay="100"><div class="exp-content"><div class="exp-year">2025</div><div class="exp-title">FNB App Academy Graduate</div><p class="exp-desc">Full-stack development, React, Node.js, AI integration, agile.</p></div><div class="exp-dot"></div></div><div class="exp-item" data-aos="fade-up" data-aos-delay="200"><div class="exp-content"><div class="exp-year">2024-2025</div><div class="exp-title">Freelance Software Developer</div><p class="exp-desc">Built 18+ projects for clients and personal portfolio.</p></div><div class="exp-dot"></div></div><div class="exp-item" data-aos="fade-up" data-aos-delay="300"><div class="exp-content"><div class="exp-year">2024</div><div class="exp-title">AWS Data Science Certification</div><p class="exp-desc">SageMaker, Lambda, cloud ML.</p></div><div class="exp-dot"></div></div><div class="exp-item" data-aos="fade-up" data-aos-delay="400"><div class="exp-content"><div class="exp-year">2024</div><div class="exp-title">Azure AZ-900 Certified</div><p class="exp-desc">Cloud concepts, security, pricing.</p></div><div class="exp-dot"></div></div><div class="exp-item" data-aos="fade-up" data-aos-delay="500"><div class="exp-content"><div class="exp-year">2023</div><div class="exp-title">Cisco Networking & Cybersecurity</div><p class="exp-desc">Network fundamentals, secure infrastructure.</p></div><div class="exp-dot"></div></div></div></div></section>
-
-    <!-- ========== SOFTWARE DEVELOPER ROADMAP ========== -->
-    <section id="roadmap" class="section py-5 bg-light">
+    <!-- ========== SERVICES / WHAT I OFFER ========== -->
+    <section id="services-offer" class="section" style="padding: 80px 0;">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>What I Can Do For You</h2>
+        <p class="mt-3">Professional services I offer to clients and companies</p>
+      </div>
       <div class="container">
-        <div class="roadmap-wrapper" data-aos="fade-up">
-          <div class="text-center mb-4"><span class="badge bg-danger px-4 py-2 fs-6">📌 My Developer Roadmap</span><h2 class="mt-3 fw-bold">The path to <span class="gradient-text">Senior Full‑Stack & AI Engineer</span></h2><p>Continuous learning & milestones I've achieved (and aiming for)</p></div>
-          <div class="row mt-4">
-            <div class="col-md-6">
-              <div class="roadmap-step"><div class="roadmap-icon"><i class="bi bi-code-slash"></i></div><div class="roadmap-content"><h3>Phase 1: Foundations</h3><p>HTML/CSS, JavaScript, Python, Git, DSA<br><span class="text-muted">✅ Completed: TUT curriculum + personal projects</span></p><div class="roadmap-tech"><span class="tech-pill">Python</span><span class="tech-pill">JavaScript</span><span class="tech-pill">Data Structures</span></div></div></div>
-              <div class="roadmap-step"><div class="roadmap-icon"><i class="bi bi-window-stack"></i></div><div class="roadmap-content"><h3>Phase 2: Frontend & Frameworks</h3><p>React, Tailwind, responsive design, state management.</p><div class="roadmap-tech"><span class="tech-pill">React.js</span><span class="tech-pill">Bootstrap</span><span class="tech-pill">Vite</span></div></div></div>
-              <div class="roadmap-step"><div class="roadmap-icon"><i class="bi bi-hdd-stack"></i></div><div class="roadmap-content"><h3>Phase 3: Backend & Databases</h3><p>Node.js/Express, Django, REST APIs, MongoDB, PostgreSQL, JWT auth.</p><div class="roadmap-tech"><span class="tech-pill">Node.js</span><span class="tech-pill">Django</span><span class="tech-pill">MongoDB</span></div></div></div>
-            </div>
-            <div class="col-md-6">
-              <div class="roadmap-step"><div class="roadmap-icon"><i class="bi bi-cloud-arrow-up"></i></div><div class="roadmap-content"><h3>Phase 4: Cloud & DevOps</h3><p>AWS (EC2, Lambda), Azure, Docker, CI/CD, Vercel/Netlify.</p><div class="roadmap-tech"><span class="tech-pill">AWS</span><span class="tech-pill">Azure</span><span class="tech-pill">Docker</span></div></div></div>
-              <div class="roadmap-step"><div class="roadmap-icon"><i class="bi bi-robot"></i></div><div class="roadmap-content"><h3>Phase 5: AI / Data Science Integration</h3><p>NLP, LLM fine-tuning, Scikit-learn, RAG apps (Case Law AI, Resume Analyzer).</p><div class="roadmap-tech"><span class="tech-pill">NLP</span><span class="tech-pill">LangChain</span><span class="tech-pill">GPT API</span><span class="tech-pill">Pandas</span></div></div></div>
-              <div class="roadmap-step"><div class="roadmap-icon"><i class="bi bi-stars"></i></div><div class="roadmap-content"><h3>Phase 6: Senior & Leadership</h3><p>System design, microservices, mentoring, open source.</p><div class="roadmap-tech"><span class="tech-pill">Next.js</span><span class="tech-pill">Microservices</span><span class="tech-pill">GraphQL</span></div></div></div>
+        <div class="row gy-4">
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-offer-card">
+              <div class="service-offer-icon" style="background: rgba(230,57,70,0.1); color: #e63946;">
+                <i class="bi bi-laptop"></i>
+              </div>
+              <h4 style="font-weight: 700; color: #1e293b;">Full-Stack Web Development</h4>
+              <p style="color: #64748b; line-height: 1.7;">Custom web applications with React, Node.js, Django, and MongoDB. From concept to deployment, I build scalable, responsive, and secure applications.</p>
             </div>
           </div>
-          <div class="text-center mt-4"><i class="bi bi-check-circle-fill text-success"></i> Currently open to junior / graduate roles & internships — ready to grow & deliver high-impact solutions.</div>
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="service-offer-card">
+              <div class="service-offer-icon" style="background: rgba(37,99,235,0.1); color: #2563eb;">
+                <i class="bi bi-robot"></i>
+              </div>
+              <h4 style="font-weight: 700; color: #1e293b;">AI &amp; Machine Learning Solutions</h4>
+              <p style="color: #64748b; line-height: 1.7;">Intelligent solutions including NLP text classification, predictive models, recommendation engines, and AI-powered automation tools.</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="service-offer-card">
+              <div class="service-offer-icon" style="background: rgba(16,185,129,0.1); color: #10b981;">
+                <i class="bi bi-bar-chart-line"></i>
+              </div>
+              <h4 style="font-weight: 700; color: #1e293b;">Data Analytics &amp; Visualization</h4>
+              <p style="color: #64748b; line-height: 1.7;">Transform raw data into actionable insights. Dashboards, reports, and data pipelines using Python, Pandas, and modern BI tools.</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="service-offer-card">
+              <div class="service-offer-icon" style="background: rgba(139,92,246,0.1); color: #8b5cf6;">
+                <i class="bi bi-cloud-arrow-up"></i>
+              </div>
+              <h4 style="font-weight: 700; color: #1e293b;">Cloud Deployment &amp; DevOps</h4>
+              <p style="color: #64748b; line-height: 1.7;">Deploy applications on AWS, Azure, or Vercel. CI/CD pipelines, serverless architectures, and cloud-native solutions.</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+            <div class="service-offer-card">
+              <div class="service-offer-icon" style="background: rgba(245,158,11,0.1); color: #f59e0b;">
+                <i class="bi bi-phone"></i>
+              </div>
+              <h4 style="font-weight: 700; color: #1e293b;">Responsive UI/UX Design</h4>
+              <p style="color: #64748b; line-height: 1.7;">Beautiful, mobile-first designs that delight users. Clean interfaces, smooth animations, and accessible web experiences.</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+            <div class="service-offer-card">
+              <div class="service-offer-icon" style="background: rgba(236,72,153,0.1); color: #ec4899;">
+                <i class="bi bi-database-gear"></i>
+              </div>
+              <h4 style="font-weight: 700; color: #1e293b;">API Development &amp; Integration</h4>
+              <p style="color: #64748b; line-height: 1.7;">RESTful APIs, third-party integrations, payment gateways, and microservice architectures for seamless data flow.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
+    <!-- ========== END SERVICES ========== -->
 
-    <!-- Hire Me CTA -->
-    <section class="hire-me-section" id="hire-me"><div class="container" data-aos="fade-up"><div class="hire-card"><div><span style="background: rgba(230,57,70,0.2); color: #e63946; padding: 6px 16px; border-radius: 20px;">OPEN TO WORK</span></div><h2>Let's Build Something <span class="gradient-text">Amazing</span> Together</h2><p>I'm currently available for full-time junior developer roles, internships, freelance projects, and remote opportunities.</p><div class="hire-buttons"><a href="contact.html" class="hire-btn hire-btn-primary"><i class="bi bi-envelope"></i> Get In Touch</a><a href="https://www.linkedin.com/in/tiyani-manganyi-137625316/" target="_blank" class="hire-btn hire-btn-outline"><i class="bi bi-linkedin"></i> Connect on LinkedIn</a><a href="assets/pdf/cv.pdf" download class="hire-btn hire-btn-outline"><i class="bi bi-download"></i> Download CV</a></div><div class="hire-badges"><div class="hire-badge-item"><i class="bi bi-check-circle-fill"></i> Available Immediately</div><div class="hire-badge-item"><i class="bi bi-check-circle-fill"></i> Remote Friendly</div><div class="hire-badge-item"><i class="bi bi-check-circle-fill"></i> South Africa Based</div><div class="hire-badge-item"><i class="bi bi-check-circle-fill"></i> 13 Certifications</div></div></div></div></section>
+    <!-- ========== TESTIMONIALS / RECOMMENDATIONS ========== -->
+    <section id="testimonials" class="section" style="padding: 80px 0; background: #f8fafc;">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Testimonials</h2>
+        <p class="mt-3">What people say about working with me</p>
+      </div>
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="testimonial-card">
+              <div class="testimonial-stars mb-2">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <p style="color: #475569; font-size: 0.95rem; line-height: 1.7; font-style: italic; margin-bottom: 20px;">"Tiyani is one of the most dedicated developers I've worked with. His AI Resume Analyzer project demonstrated exceptional skill in NLP and full-stack development. Highly recommended for any technical team."</p>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #e63946, #ff6b6b); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 1.1rem;">FM</div>
+                <div>
+                  <h4 style="font-weight: 700; font-size: 0.95rem; color: #1e293b; margin: 0;">FNB App Academy</h4>
+                  <p style="font-size: 0.8rem; color: #94a3b8; margin: 0;">Mentor &amp; Program Lead</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="testimonial-card">
+              <div class="testimonial-stars mb-2">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <p style="color: #475569; font-size: 0.95rem; line-height: 1.7; font-style: italic; margin-bottom: 20px;">"Working with Tiyani on the TUT Job Portal was a great experience. He brought creative AI solutions to the project and always delivered quality code on time. A true team player with strong technical instincts."</p>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #2563eb, #60a5fa); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 1.1rem;">TU</div>
+                <div>
+                  <h4 style="font-weight: 700; font-size: 0.95rem; color: #1e293b; margin: 0;">TUT Faculty</h4>
+                  <p style="font-size: 0.8rem; color: #94a3b8; margin: 0;">Computer Science Department</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="testimonial-card">
+              <div class="testimonial-stars mb-2">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <p style="color: #475569; font-size: 0.95rem; line-height: 1.7; font-style: italic; margin-bottom: 20px;">"Tiyani built our Doctors Appointment platform and it exceeded expectations. The booking system is seamless, the UI is clean, and he even added calendar integration we didn't originally ask for. Outstanding work!"</p>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #10b981, #34d399); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 1.1rem;">DC</div>
+                <div>
+                  <h4 style="font-weight: 700; font-size: 0.95rem; color: #1e293b; margin: 0;">Doctors Clinic</h4>
+                  <p style="font-size: 0.8rem; color: #94a3b8; margin: 0;">Client Project</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ========== END TESTIMONIALS ========== -->
+
+    <!-- ========== RESUME DOWNLOAD BANNER ========== -->
+    <section class="resume-banner" data-aos="fade-up">
+      <div class="container">
+        <h2 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 12px;">Want to know more?</h2>
+        <p style="font-size: 1.1rem; opacity: 0.9; margin-bottom: 28px; max-width: 600px; margin-left: auto; margin-right: auto;">Download my resume to see my full experience, education, and technical skills in detail.</p>
+        <a href="assets/pdf/cv.pdf" download="Tiyani_Manganyi_Resume.pdf" class="resume-btn">
+          <i class="bi bi-download" style="margin-right: 8px;"></i> Download My Resume
+        </a>
+        <div style="margin-top: 16px; font-size: 0.85rem; opacity: 0.75;">PDF &bull; Updated April 2026</div>
+      </div>
+    </section>
+    <!-- ========== END RESUME BANNER ========== -->
+
+    <!-- ========== FUN FACTS / PERSONAL TOUCH ========== -->
+    <section class="section" style="padding: 60px 0; background: #f8fafc;" id="fun-facts">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Fun Facts About Me</h2>
+        <p class="mt-3">Beyond the code &mdash; a little more about Tiyani</p>
+      </div>
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="fun-fact-card">
+              <div class="fun-fact-emoji">&#x2615;</div>
+              <h5 style="font-weight: 700; color: #1e293b;">Coffee Powered</h5>
+              <p style="color: #64748b; font-size: 0.9rem;">500+ cups of coffee consumed while coding projects</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="fun-fact-card">
+              <div class="fun-fact-emoji">&#x1F4BB;</div>
+              <h5 style="font-weight: 700; color: #1e293b;">Lines of Code</h5>
+              <p style="color: #64748b; font-size: 0.9rem;">50,000+ lines of code written across all projects</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="fun-fact-card">
+              <div class="fun-fact-emoji">&#x1F3AE;</div>
+              <h5 style="font-weight: 700; color: #1e293b;">Problem Solver</h5>
+              <p style="color: #64748b; font-size: 0.9rem;">Love debugging at midnight &mdash; it's like solving puzzles!</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="fun-fact-card">
+              <div class="fun-fact-emoji">&#x1F30D;</div>
+              <h5 style="font-weight: 700; color: #1e293b;">Open Source Fan</h5>
+              <p style="color: #64748b; font-size: 0.9rem;">Active contributor &amp; believer in community-driven development</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ========== END FUN FACTS ========== -->
+
+    <!-- ========== EXPERIENCE TIMELINE ========== -->
+    <section id="experience" class="section" style="padding: 80px 0;">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Experience & Education</h2>
+        <p class="mt-3">My professional journey in software development</p>
+      </div>
+      <div class="container">
+        <div class="exp-timeline">
+          <div class="exp-item" data-aos="fade-up">
+            <div class="exp-content">
+              <div class="exp-year">2026</div>
+              <div class="exp-title">Diploma in Computer Science</div>
+              <p class="exp-desc">Tshwane University of Technology — Completed comprehensive studies in algorithms, data structures, software engineering, databases, and cloud computing.</p>
+            </div>
+            <div class="exp-dot"></div>
+          </div>
+          <div class="exp-item" data-aos="fade-up" data-aos-delay="100">
+            <div class="exp-content">
+              <div class="exp-year">2025</div>
+              <div class="exp-title">FNB App Academy Graduate</div>
+              <p class="exp-desc">Intensive full-stack development program covering React, Node.js, AI integration, agile methodologies, and enterprise application design.</p>
+            </div>
+            <div class="exp-dot"></div>
+          </div>
+          <div class="exp-item" data-aos="fade-up" data-aos-delay="200">
+            <div class="exp-content">
+              <div class="exp-year">2024 - 2025</div>
+              <div class="exp-title">Freelance Software Developer</div>
+              <p class="exp-desc">Built 9+ projects including AI-powered tools, e-commerce platforms, booking systems, and data dashboards for clients and personal portfolio.</p>
+            </div>
+            <div class="exp-dot"></div>
+          </div>
+          <div class="exp-item" data-aos="fade-up" data-aos-delay="300">
+            <div class="exp-content">
+              <div class="exp-year">2024</div>
+              <div class="exp-title">AWS Data Science Certification</div>
+              <p class="exp-desc">Achieved AWS certification in Data Science fundamentals, cloud architecture, and machine learning services including SageMaker and Lambda.</p>
+            </div>
+            <div class="exp-dot"></div>
+          </div>
+          <div class="exp-item" data-aos="fade-up" data-aos-delay="400">
+            <div class="exp-content">
+              <div class="exp-year">2024</div>
+              <div class="exp-title">Azure AZ-900 Certified</div>
+              <p class="exp-desc">Microsoft Azure Fundamentals — cloud concepts, Azure services, security, privacy, compliance, and pricing models.</p>
+            </div>
+            <div class="exp-dot"></div>
+          </div>
+          <div class="exp-item" data-aos="fade-up" data-aos-delay="500">
+            <div class="exp-content">
+              <div class="exp-year">2023</div>
+              <div class="exp-title">Cisco Networking & Cybersecurity</div>
+              <p class="exp-desc">Cisco certified in networking fundamentals, cybersecurity principles, and secure network infrastructure design.</p>
+            </div>
+            <div class="exp-dot"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ========== END EXPERIENCE TIMELINE ========== -->
+
+    <!-- ========== HIRE ME CTA ========== -->
+    <section class="hire-me-section" id="hire-me">
+      <div class="container" data-aos="fade-up">
+        <div class="hire-card">
+          <div style="margin-bottom: 16px;">
+            <span style="background: rgba(230,57,70,0.2); color: #e63946; padding: 6px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 700;">OPEN TO WORK</span>
+          </div>
+          <h2>Let's Build Something <span class="gradient-text">Amazing</span> Together</h2>
+          <p>I'm currently available for full-time junior developer roles, internships, freelance projects, and remote opportunities. Let's connect and create impactful solutions!</p>
+          <div class="hire-buttons">
+            <a href="contact.html" class="hire-btn hire-btn-primary">
+              <i class="bi bi-envelope"></i> Get In Touch
+            </a>
+            <a href="https://www.linkedin.com/in/tiyani-manganyi-137625316/" target="_blank" class="hire-btn hire-btn-outline">
+              <i class="bi bi-linkedin"></i> Connect on LinkedIn
+            </a>
+            <a href="assets/pdf/cv.pdf" download="Tiyani_Manganyi_Resume.pdf" class="hire-btn hire-btn-outline">
+              <i class="bi bi-download"></i> Download CV
+            </a>
+          </div>
+          <div class="hire-badges">
+            <div class="hire-badge-item"><i class="bi bi-check-circle-fill"></i> Available Immediately</div>
+            <div class="hire-badge-item"><i class="bi bi-check-circle-fill"></i> Remote Friendly</div>
+            <div class="hire-badge-item"><i class="bi bi-check-circle-fill"></i> South Africa Based</div>
+            <div class="hire-badge-item"><i class="bi bi-check-circle-fill"></i> 13 Certifications</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ========== END HIRE ME CTA ========== -->
 
   </main>
 
-  <footer id="footer" class="footer dark-background"><div class="container footer-top"><div class="row gy-4"><div class="col-lg-5 col-md-12 footer-about"><a href="index.html" class="logo d-flex align-items-center"><span>#Brainsmustwork</span></a><p>Software Developer creating innovative solutions that bridge technology, AI, and human needs.</p><div class="social-links d-flex mt-4"><a href="https://github.com/Tiyani-Manganyi" target="_blank"><i class="bi bi-github"></i></a><a href="https://www.linkedin.com/in/tiyani-manganyi-137625316/" target="_blank"><i class="bi bi-linkedin"></i></a><a href="https://www.facebook.com/TmanG0g0" target="_blank"><i class="bi bi-facebook"></i></a></div></div><div class="col-lg-2 col-6 footer-links"><h4>Quick Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="#about">About</a></li><li><a href="#services-offer">Services</a></li><li><a href="#experience">Experience</a></li><li><a href="#testimonials">Testimonials</a></li><li><a href="#videos">Video Demos</a></li><li><a href="#roadmap">Roadmap</a></li><li><a href="contact.html">Contact</a></li><li><a href="award.html">Certificates</a></li></ul></div><div class="col-lg-2 col-6 footer-links"><h4>Featured Projects</h4><ul><li><a href="https://resume-analyzer-ashen.vercel.app/" target="_blank">AI Resume Analyzer</a></li><li><a href="https://doctors-booking.vercel.app/" target="_blank">Doctors Booking</a></li><li><a href="https://4ir-ai-tut.base44.app/" target="_blank">SA Case Law AI</a></li></ul></div><div class="col-lg-3 col-md-12 footer-contact"><h4>Contact Info</h4><p>180 Burgers Street, Pretoria, South Africa</p><p><strong>Phone:</strong> 060 817 5627</p><p><strong>Email:</strong> kbmagoda2024@gmail.com</p></div></div></div><div class="container copyright text-center mt-4"><p>© <span>Copyright</span> <strong>Tiyani Manganyi</strong> All Rights Reserved</p><div class="credits">Software Developer & Data Science Specialist | Open to Work</div></div></footer>
+  <footer id="footer" class="footer dark-background">
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-5 col-md-12 footer-about">
+          <a href="index.html" class="logo d-flex align-items-center"><span class="sitename">#Brainsmustwork</span></a>
+          <p class="mt-3">Software Developer creating innovative solutions that bridge technology, AI, and human needs.</p>
+          <div class="social-links d-flex mt-4">
+            <a href="https://github.com/Tiyani-Manganyi" target="_blank"><i class="bi bi-github"></i></a>
+            <a href="https://www.linkedin.com/in/tiyani-manganyi-137625316/" target="_blank"><i class="bi bi-linkedin"></i></a>
+            <a href="https://www.facebook.com/TmanG0g0" target="_blank"><i class="bi bi-facebook"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-6 footer-links"><h4>Quick Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="#about">About</a></li><li><a href="#services-offer">Services</a></li><li><a href="#experience">Experience</a></li><li><a href="#testimonials">Testimonials</a></li><li><a href="#videos">Video Demos</a></li><li><a href="contact.html">Contact</a></li><li><a href="award.html">Certificates</a></li></ul></div>
+        <div class="col-lg-2 col-6 footer-links"><h4>Featured Projects</h4><ul><li><a href="https://resume-analyzer-ashen.vercel.app/" target="_blank">AI Resume Analyzer</a></li><li><a href="https://doctors-booking.vercel.app/" target="_blank">Doctors Booking</a></li><li><a href="https://4ir-ai-tut.base44.app/" target="_blank">SA Case Law AI</a></li></ul></div>
+        <div class="col-lg-3 col-md-12 footer-contact"><h4>Contact Info</h4><p>180 Burgers Street, Pretoria, South Africa</p><p><strong>Phone:</strong> 060 817 5627</p><p><strong>Email:</strong> kbmagoda2024@gmail.com</p></div>
+      </div>
+    </div>
+    <div class="container copyright text-center mt-4"><p>© <span>Copyright</span> <strong>Tiyani Manganyi</strong> All Rights Reserved</p><div class="credits">Software Developer & Data Science Specialist | Open to Work</div></div>
+  </footer>
 
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-  <a href="https://wa.me/27608175627?text=Hi%20Tiyani!%20I%20visited%20your%20portfolio%20and%20would%20like%20to%20connect." target="_blank" class="whatsapp-float" data-tooltip="Chat on WhatsApp"><i class="bi bi-whatsapp"></i></a>
-  <button id="dark-mode-toggle">🌙</button>
+  
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/27608175627?text=Hi%20Tiyani!%20I%20visited%20your%20portfolio%20and%20would%20like%20to%20connect." target="_blank" class="whatsapp-float tooltip-custom" data-tooltip="Chat on WhatsApp" aria-label="Chat on WhatsApp">
+    <i class="bi bi-whatsapp"></i>
+  </a>
+
+  <button id="dark-mode-toggle" title="Toggle Dark Mode" aria-label="Toggle dark mode">&#x1F319;</button>
   <div id="preloader"></div>
 
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -1185,12 +1711,14 @@
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/js/main.js"></script>
+
   <script>
-    AOS.init({ duration: 800, once: true });
+    
     // Typing Animation
     const roles = ["Software Developer", "Full Stack Developer", "AI Enthusiast"];
     let roleIndex = 0, charIndex = 0, isDeleting = false;
     const typingElement = document.getElementById('typing-text');
+
     function typeEffect() {
       const currentRole = roles[roleIndex];
       if (isDeleting) {
@@ -1214,6 +1742,48 @@
       setTimeout(typeEffect, isDeleting ? 50 : 100);
     }
     typeEffect();
+
+    // Search functionality
+    const searchInput = document.getElementById('searchInput');
+    const projectCards = document.querySelectorAll('.project-card');
+    function filterProjects() {
+      const query = searchInput.value.toLowerCase().trim();
+      projectCards.forEach(card => {
+        const title = card.querySelector('h3')?.textContent.toLowerCase() || '';
+        const desc = card.querySelector('p')?.textContent.toLowerCase() || '';
+        const isVisible = title.includes(query) || desc.includes(query) || query === '';
+        card.style.display = isVisible ? 'block' : 'none';
+        // Reset filter tabs when searching
+        if (query !== '') {
+          document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+        } else {
+          document.querySelector('.filter-tab[data-filter="all"]')?.classList.add('active');
+        }
+      });
+    }
+    if (searchInput) {
+      searchInput.addEventListener('input', filterProjects);
+      document.getElementById('searchForm')?.addEventListener('submit', e => { e.preventDefault(); filterProjects(); });
+    }
+
+    // Project Filter Tabs
+    document.querySelectorAll('.filter-tab').forEach(tab => {
+      tab.addEventListener('click', function() {
+        document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+        const filter = this.getAttribute('data-filter');
+        // Clear search input when using tabs
+        if (searchInput) searchInput.value = '';
+        projectCards.forEach(card => {
+          if (filter === 'all') {
+            card.style.display = 'block';
+          } else {
+            const categories = (card.getAttribute('data-category') || '').split(',');
+            card.style.display = categories.includes(filter) ? 'block' : 'none';
+          }
+        });
+      });
+    });
 
     // Counter animation
     function animateCounter(element, target) {
@@ -1246,19 +1816,30 @@
     }, { threshold: 0.5 });
     progressBars.forEach(bar => progressObserver.observe(bar));
 
-    // Dark mode toggle
-    const toggle = document.getElementById('dark-mode-toggle');
-    const body = document.body;
-    if (localStorage.getItem('darkMode') === 'true') {
-      body.classList.add('dark-mode');
-      toggle.innerHTML = '☀️';
-    }
-    toggle.addEventListener('click', () => {
-      body.classList.toggle('dark-mode');
-      const isDark = body.classList.contains('dark-mode');
-      localStorage.setItem('darkMode', isDark);
-      toggle.innerHTML = isDark ? '☀️' : '🌙';
-    });
+    AOS.init({ duration: 800, once: true });
   </script>
+
+  <!-- Dark Mode Toggle -->
+  <script>
+    (function() {
+      var toggle = document.getElementById('dark-mode-toggle');
+      var body = document.body;
+      // Restore preference
+      if (localStorage.getItem('darkMode') === 'true') {
+        body.classList.add('dark-mode');
+        toggle.innerHTML = '&#x2600;&#xFE0F;';
+      }
+      toggle.addEventListener('click', function() {
+        body.classList.toggle('dark-mode');
+        var isDark = body.classList.contains('dark-mode');
+        localStorage.setItem('darkMode', isDark);
+        toggle.innerHTML = isDark ? '&#x2600;&#xFE0F;' : '&#x1F319;';
+      });
+    })();
+  </script>
+
+  <!-- AI Portfolio Assistant -->
+  <script src="assets/js/ai-assistant.js"></script>
 </body>
+
 </html>
