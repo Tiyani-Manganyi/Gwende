@@ -5,15 +5,15 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>Tiyani Manganyi | Junior Software Developer</title>
-  <meta name="description" content="Tiyani Manganyi - Junior Software Developer. Showcasing projects, certificates, and professional experience.">
-  <meta name="keywords" content="Tiyani Manganyi, software developer, portfolio, projects, TUT, South Africa">
+  <meta name="description" content="Tiyani Manganyi - Junior Software Developer. Showcasing projects, certificates, and Tiyani AI Assistant.">
+  <meta name="keywords" content="Tiyani Manganyi, software developer, portfolio, projects, TUT, South Africa, AI Assistant">
   <meta name="author" content="Tiyani Manganyi">
   <meta name="robots" content="index, follow">
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Tiyani Manganyi | Software Developer Portfolio">
-  <meta property="og:description" content="Passionate Software Developer from South Africa specializing in AI and Full-Stack Development. View my projects and certifications.">
+  <meta property="og:title" content="Tiyani Manganyi | Software Developer Portfolio + AI Assistant">
+  <meta property="og:description" content="Passionate Software Developer from South Africa specializing in AI and Full-Stack Development. Chat with Tiyani AI Assistant!">
   <meta property="og:image" content="assets/img/Tiyani.jpg">
   <meta property="og:url" content="https://tiyani-manganyi.github.io/Pport/">
 
@@ -74,7 +74,7 @@
   <link href="assets/css/main.css" rel="stylesheet">
 
   <style>
-    /* ========== GLOBAL STYLES ========== */
+    /* ========== GLOBAL STYLES (unchanged) ========== */
     .btn-apply {
       background-color: #e63946;
       color: white !important;
@@ -976,6 +976,124 @@
     .counter, .stat-counter {
       transition: all 0.3s;
     }
+
+    /* ========== TIYANI AI ASSISTANT WIDGET STYLES ========== */
+    .ai-chat-widget {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 10000;
+      font-family: 'Poppins', sans-serif;
+    }
+    .chat-toggle-btn {
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #e63946, #ff6b6b);
+      border: none;
+      color: white;
+      font-size: 28px;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(230,57,70,0.5);
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .chat-toggle-btn:hover { transform: scale(1.05); }
+    .chat-panel {
+      position: absolute;
+      bottom: 80px;
+      right: 0;
+      width: 360px;
+      height: 500px;
+      background: #fff;
+      border-radius: 24px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid rgba(230,57,70,0.2);
+    }
+    body.dark-mode .chat-panel { background: #1e293b; border-color: #334155; }
+    .chat-header {
+      background: #e63946;
+      color: white;
+      padding: 16px 20px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .message {
+      max-width: 85%;
+      padding: 10px 14px;
+      border-radius: 18px;
+      font-size: 0.85rem;
+      line-height: 1.4;
+    }
+    .bot-message {
+      background: #f1f5f9;
+      color: #0f172a;
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+    }
+    .user-message {
+      background: #e63946;
+      color: white;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+    }
+    body.dark-mode .bot-message { background: #334155; color: #f1f5f9; }
+    .chat-input-area {
+      display: flex;
+      padding: 12px;
+      border-top: 1px solid #e2e8f0;
+      background: inherit;
+      gap: 8px;
+    }
+    .chat-input {
+      flex: 1;
+      padding: 10px 14px;
+      border-radius: 40px;
+      border: 1px solid #cbd5e1;
+      background: white;
+    }
+    .chat-send {
+      background: #e63946;
+      border: none;
+      border-radius: 40px;
+      padding: 0 18px;
+      color: white;
+      font-weight: bold;
+    }
+    .quick-reply {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 8px 0;
+    }
+    .quick-chip {
+      background: rgba(230,57,70,0.1);
+      color: #e63946;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      cursor: pointer;
+      transition: 0.2s;
+      border: none;
+    }
+    .quick-chip:hover { background: #e63946; color: white; }
+    .typing-indicator { font-size: 0.7rem; color: #94a3b8; padding: 4px 12px; }
+    @media (max-width: 480px) { .chat-panel { width: 300px; height: 460px; right: -10px; } }
   </style>
 </head>
 
@@ -1002,6 +1120,7 @@
               <li><a class="dropdown-item" href="#videos">Video Demos</a></li>
               <li><a class="dropdown-item" href="contact.html">Contact</a></li>
               <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#" id="openAiFromMenu"><i class="bi bi-robot" style="margin-right:8px;"></i> Tiyani AI Assistant</a></li>
               <li style="padding:8px 16px;"><a class="dropdown-item whatsapp-cta" href="https://wa.me/27608175627?text=Hi%20Tiyani!%20I%20visited%20your%20portfolio%20and%20would%20like%20to%20connect." target="_blank" rel="noopener noreferrer"><i class="bi bi-whatsapp" style="color:#25D366;margin-right:8px;"></i> Chat on WhatsApp (060 817 5627)</a></li>
             </ul>
           </li>
@@ -1014,7 +1133,7 @@
 
   <main class="main" id="main-content">
 
-    <!-- Hero Section -->
+    <!-- Hero Section (unchanged) -->
     <section id="hero" class="hero section dark-background">
       <div class="container">
         <div class="row gy-4 d-flex justify-content-between align-items-center">
@@ -1061,7 +1180,7 @@
               </div>
             </div>
 
-            <!-- NEW: LinkedIn Stats Row (daily update) -->
+            <!-- LinkedIn Stats Row (daily update) -->
             <div class="row gy-4 mt-2" data-aos="fade-up" data-aos-delay="350">
               <div class="col-lg-6 col-6">
                 <div class="stats-item text-center">
@@ -1101,7 +1220,7 @@
       </div>
     </section>
 
-    <!-- About Section -->
+    <!-- About Section (unchanged) -->
     <section id="about" class="about-section section" style="padding: 80px 0;">
       <div class="container" data-aos="fade-up">
         <div class="row gy-5 align-items-center">
@@ -1138,7 +1257,7 @@
       </div>
     </section>
 
-    <!-- Skills Section -->
+    <!-- Skills Section (unchanged) -->
     <section id="skills" class="section" style="padding: 80px 0; background: #f8fafc;">
       <div class="container section-title" data-aos="fade-up">
         <h2>Technical Skills</h2>
@@ -1178,7 +1297,7 @@
       </div>
     </section>
 
-    <!-- Stats Section -->
+    <!-- Stats Section (unchanged) -->
     <section class="section dark-background" style="padding: 60px 0;">
       <div class="container">
         <div class="row gy-4 text-center">
@@ -1214,7 +1333,7 @@
       </div>
     </section>
 
-    <!-- Projects Section: 3 WIL + 4 Grad + 2 Future -->
+    <!-- Projects Section: 3 WIL + 4 Grad + 2 Future (unchanged) -->
     <section id="projects" class="services section" style="padding: 80px 0;">
       <div class="container section-title" data-aos="fade-up">
         <h2>My Projects</h2>
@@ -1233,7 +1352,6 @@
         <div class="row gy-4" id="projects-container">
           
           <!-- ========== WIL PROJECTS (3) ========== -->
-          <!-- 1. Doctors Appointment Website -->
           <div class="col-lg-4 col-md-6 project-card" data-category="wil" data-aos="fade-up">
             <div class="card h-100 d-flex flex-column">
               <div class="card-img"><div class="slide-wrapper"><img src="assets/img/doctor.png" alt="Doctors Appointment" class="img-fluid"></div></div>
@@ -1246,7 +1364,6 @@
             </div>
           </div>
 
-          <!-- 2. Fruits & Vegetable E‑commerce -->
           <div class="col-lg-4 col-md-6 project-card" data-category="wil" data-aos="fade-up" data-aos-delay="50">
             <div class="card h-100 d-flex flex-column">
               <div class="card-img"><div class="slide-wrapper"><img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=800&q=80" alt="E-commerce" class="img-fluid"></div></div>
@@ -1258,7 +1375,6 @@
             </div>
           </div>
 
-          <!-- 3. TUT Job Portal -->
           <div class="col-lg-4 col-md-6 project-card" data-category="wil" data-aos="fade-up" data-aos-delay="100">
             <div class="card h-100 d-flex flex-column position-relative">
               <div class="demand-badge">🎓 TUT Portal</div>
@@ -1273,7 +1389,6 @@
           </div>
 
           <!-- ========== GRADUATE PROGRAMME PROJECTS (4) ========== -->
-          <!-- 1. South African Case Law AI -->
           <div class="col-lg-4 col-md-6 project-card" data-category="grad" data-aos="fade-up" data-aos-delay="150">
             <div class="card h-100 d-flex flex-column position-relative">
               <div class="demand-badge">⚖️ AI & Law</div>
@@ -1288,7 +1403,6 @@
             </div>
           </div>
 
-          <!-- 2. LinkedIn Workflow Suggester -->
           <div class="col-lg-4 col-md-6 project-card" data-category="grad" data-aos="fade-up" data-aos-delay="200">
             <div class="card h-100 d-flex flex-column position-relative">
               <div class="new-badge">🔄 Workflow</div>
@@ -1302,7 +1416,6 @@
             </div>
           </div>
 
-          <!-- 3. 4IR Resume Website -->
           <div class="col-lg-4 col-md-6 project-card" data-category="grad" data-aos="fade-up" data-aos-delay="250">
             <div class="card h-100 d-flex flex-column">
               <div class="card-img"><div class="slide-wrapper"><img src="https://images.unsplash.com/photo-1484417894907-623942c8ee29?auto=format&fit=crop&w=800&q=80" alt="4IR Resume" class="img-fluid"></div></div>
@@ -1315,7 +1428,6 @@
             </div>
           </div>
 
-          <!-- 4. AI Resume Analyzer -->
           <div class="col-lg-4 col-md-6 project-card" data-category="grad" data-aos="fade-up" data-aos-delay="300">
             <div class="card h-100 d-flex flex-column position-relative">
               <div class="demand-badge">🔥 HIGH DEMAND</div>
@@ -1331,7 +1443,6 @@
           </div>
 
           <!-- ========== FUTURE PROJECTS (2) ========== -->
-          <!-- 1. House Price Prediction -->
           <div class="col-lg-4 col-md-6 project-card" data-category="future" data-aos="fade-up" data-aos-delay="350">
             <div class="card h-100 d-flex flex-column position-relative">
               <div class="future-badge">📈 Future</div>
@@ -1345,7 +1456,6 @@
             </div>
           </div>
 
-          <!-- 2. Customer Sentiment Dashboard -->
           <div class="col-lg-4 col-md-6 project-card" data-category="future" data-aos="fade-up" data-aos-delay="400">
             <div class="card h-100 d-flex flex-column position-relative">
               <div class="future-badge">📊 Future</div>
@@ -1363,7 +1473,7 @@
       </div>
     </section>
 
-    <!-- Video Demos Section -->
+    <!-- Video Demos Section (unchanged) -->
     <section id="videos" class="section" style="padding: 80px 0; background: #f8fafc;">
       <div class="container section-title" data-aos="fade-up">
         <h2>Project Video Demos</h2>
@@ -1371,7 +1481,6 @@
       </div>
       <div class="container">
         <div class="row gy-4">
-          <!-- Video 1 -->
           <div class="col-lg-4 col-md-6" data-aos="fade-up">
             <div class="video-card h-100 d-flex flex-column">
               <div class="card-img">
@@ -1388,7 +1497,6 @@
             </div>
           </div>
 
-          <!-- Video 2 -->
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
             <div class="video-card h-100 d-flex flex-column">
               <div class="card-img">
@@ -1405,7 +1513,6 @@
             </div>
           </div>
 
-          <!-- Video 3 -->
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
             <div class="video-card h-100 d-flex flex-column">
               <div class="card-img">
@@ -1425,7 +1532,7 @@
       </div>
     </section>
 
-    <!-- Tech Stack Marquee -->
+    <!-- Tech Stack Marquee (unchanged) -->
     <div class="marquee-section">
       <div class="marquee-track" id="marqueeTrack">
         <span class="marquee-item"><i class="bi bi-filetype-py"></i> Python</span>
@@ -1444,7 +1551,6 @@
         <span class="marquee-item"><i class="bi bi-shield-lock"></i> Cybersecurity</span>
         <span class="marquee-item"><i class="bi bi-cpu"></i> Machine Learning</span>
         <span class="marquee-item"><i class="bi bi-diagram-3"></i> REST APIs</span>
-        <!-- Duplicated for seamless loop -->
         <span class="marquee-item"><i class="bi bi-filetype-py"></i> Python</span>
         <span class="marquee-item"><i class="bi bi-filetype-js"></i> JavaScript</span>
         <span class="marquee-item"><i class="bi bi-bootstrap"></i> React.js</span>
@@ -1464,7 +1570,7 @@
       </div>
     </div>
 
-    <!-- Resume Download Banner -->
+    <!-- Resume Download Banner (unchanged) -->
     <section class="resume-banner" data-aos="fade-up">
       <div class="container">
         <h2 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 12px;">Want to know more?</h2>
@@ -1476,7 +1582,7 @@
       </div>
     </section>
 
-    <!-- Fun Facts Section -->
+    <!-- Fun Facts Section (unchanged) -->
     <section class="section" style="padding: 60px 0; background: #f8fafc;" id="fun-facts">
       <div class="container section-title" data-aos="fade-up">
         <h2>Fun Facts About Me</h2>
@@ -1500,7 +1606,7 @@
           </div>
           <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
             <div class="fun-fact-card">
-              <div class
+              <div class="fun-fact-emoji">🧩</div>
               <h5 style="font-weight: 700; color: #1e293b;">Problem Solver</h5>
               <p style="color: #64748b; font-size: 0.9rem;">Love debugging at midnight &mdash; it's like solving puzzles!</p>
             </div>
@@ -1516,7 +1622,7 @@
       </div>
     </section>
 
-    <!-- Roadmap / Experience Timeline -->
+    <!-- Roadmap / Experience Timeline (unchanged) -->
     <section id="experience" class="section" style="padding: 80px 0;">
       <div class="container section-title" data-aos="fade-up">
         <h2>Roadmap</h2>
@@ -1560,7 +1666,7 @@
       </div>
     </section>
 
-    <!-- Hire Me CTA Section -->
+    <!-- Hire Me CTA Section (unchanged) -->
     <section class="hire-me-section">
       <div class="container" data-aos="fade-up">
         <div class="hire-card">
@@ -1609,7 +1715,7 @@
         <div class="col-lg-3 col-md-12 footer-contact"><h4>Contact Info</h4><p>180 Burgers Street, Pretoria, South Africa</p><p><strong>Phone:</strong> 060 817 5627</p><p><strong>Email:</strong> kbmagoda2024@gmail.com</p></div>
       </div>
     </div>
-    <div class="container copyright text-center mt-4"><p>© <span>Copyright</span> <strong>Tiyani Manganyi</strong> All Rights Reserved</p><div class="credits">Software Developer | Open to Work</div></div>
+    <div class="container copyright text-center mt-4"><p>© <span>Copyright</span> <strong>Tiyani Manganyi</strong> All Rights Reserved</p><div class="credits">Software Developer | Open to Work | <i class="bi bi-robot"></i> Tiyani AI Assistant</div></div>
   </footer>
 
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
@@ -1622,6 +1728,25 @@
   <button id="dark-mode-toggle" title="Toggle Dark Mode" aria-label="Toggle dark mode">🌙</button>
   <div id="preloader"></div>
 
+  <!-- ========== TIYANI AI ASSISTANT WIDGET ========== -->
+  <div class="ai-chat-widget" id="aiChatWidget">
+    <div class="chat-toggle-btn" id="chatToggleBtn"><i class="bi bi-robot"></i></div>
+    <div class="chat-panel" id="chatPanel" style="display: none;">
+      <div class="chat-header"><i class="bi bi-robot"></i><span>Tiyani AI Assistant 🤖</span><button style="background:none; border:none; color:white; margin-left:auto; font-size:1.2rem;" id="closeChatBtn">✕</button></div>
+      <div class="chat-messages" id="chatMessages">
+        <div class="message bot-message">👋 Hi! I'm Tiyani AI, your personal assistant. Ask me about Tiyani's projects, skills, certifications, or anything portfolio-related!</div>
+        <div class="quick-reply" id="quickReplies">
+          <button class="quick-chip" data-question="What projects have you built?">Projects</button>
+          <button class="quick-chip" data-question="What are your top skills?">Skills</button>
+          <button class="quick-chip" data-question="Show me your certifications">Certifications</button>
+          <button class="quick-chip" data-question="How can I contact Tiyani?">Contact</button>
+          <button class="quick-chip" data-question="Tell me about Tiyani AI">About AI</button>
+        </div>
+      </div>
+      <div class="chat-input-area"><input type="text" class="chat-input" id="chatInput" placeholder="Ask me anything..."><button class="chat-send" id="chatSendBtn">Send</button></div>
+    </div>
+  </div>
+
   <!-- Vendor Scripts -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
@@ -1631,7 +1756,7 @@
   <script src="assets/js/main.js"></script>
 
   <script>
-    // Typing Animation
+    // ========== TYPING ANIMATION (unchanged) ==========
     const roles = ["Software Developer", "Full Stack Developer", "AI Enthusiast"];
     let roleIndex = 0, charIndex = 0, isDeleting = false;
     const typingElement = document.getElementById('typing-text');
@@ -1660,7 +1785,7 @@
     }
     typeEffect();
 
-    // LinkedIn Stats: Daily update (simulated)
+    // ========== LINKEDIN STATS ==========
     function updateLinkedInStats() {
       const baseFollowers = 1250;
       const baseImpressions = 18750;
@@ -1675,7 +1800,7 @@
     }
     updateLinkedInStats();
 
-    // Search functionality
+    // ========== SEARCH FUNCTIONALITY ==========
     const searchInput = document.getElementById('searchInput');
     const projectCards = document.querySelectorAll('.project-card');
     function filterProjects() {
@@ -1697,7 +1822,7 @@
       document.getElementById('searchForm')?.addEventListener('submit', e => { e.preventDefault(); filterProjects(); });
     }
 
-    // Project Filter Tabs
+    // ========== PROJECT FILTER TABS ==========
     document.querySelectorAll('.filter-tab').forEach(tab => {
       tab.addEventListener('click', function() {
         document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
@@ -1715,7 +1840,7 @@
       });
     });
 
-    // Counter animation
+    // ========== COUNTER ANIMATION ==========
     function animateCounter(element, target) {
       let current = 0;
       const increment = target / 50;
@@ -1748,7 +1873,7 @@
 
     AOS.init({ duration: 800, once: true });
 
-    // Fetch GitHub stats
+    // ========== GITHUB STATS ==========
     (function(){
       const user = 'Tiyani-Manganyi';
       const followersEl = document.getElementById('gh-followers');
@@ -1766,7 +1891,7 @@
         });
     })();
 
-    // Dark Mode Toggle
+    // ========== DARK MODE TOGGLE ==========
     (function() {
       var toggle = document.getElementById('dark-mode-toggle');
       var body = document.body;
@@ -1781,6 +1906,108 @@
         toggle.innerHTML = isDark ? '☀️' : '🌙';
       });
     })();
+
+    // ========== TIYANI AI ASSISTANT LOGIC ==========
+    const aiKnowledge = {
+      greetings: ["hello", "hi", "hey", "good morning", "good afternoon", "hi there", "howdy"],
+      about: ["who is tiyani", "tell me about tiyani", "about tiyani", "tiyani background", "who are you"],
+      skills: ["skills", "tech stack", "programming languages", "what technologies", "frameworks"],
+      projects: ["projects", "portfolio projects", "what projects", "show me projects", "wil projects", "graduate projects"],
+      certifications: ["certifications", "certificates", "awards", "credentials", "courses"],
+      contact: ["contact", "email", "phone", "reach out", "how to contact", "get in touch"],
+      aiAssistant: ["tiyani ai", "ai assistant", "how does the ai work", "what is this chatbot", "ai help"],
+      future: ["roadmap", "future plans", "career goals", "next steps"],
+      resume: ["resume", "cv", "download resume"],
+      demo: ["live demo", "try project", "case law", "resume analyzer"]
+    };
+    const aiResponses = {
+      default: "I'm your assistant! Ask about Tiyani's projects (AI Resume Analyzer, SA Case Law AI, Job Portal), his skills (React, Python, NLP), or certifications. 🌟",
+      about: "Tiyani Manganyi is a Junior Software Developer from Pretoria, South Africa, with a Diploma in CS from TUT. He specializes in AI, full-stack apps, and built me, the Tiyani AI Assistant!",
+      skills: "Tiyani's core skills: JavaScript/React (88%), Python/Django (85%), AI/LLM Integration (80%), Node.js/MongoDB (82%), AWS, NLP, and more. Check the skills section!",
+      projects: "Tiyani has 11+ projects: 3 WIL (Doctors booking, E-commerce, TUT Job Portal), 4 Graduate (SA Case Law AI, Resume Analyzer, LinkedIn Suggester, 4IR Resume), and Future AI tools. Also includes me – the AI Assistant!",
+      certifications: "He holds 13+ certifications including Google AI Fundamentals, IBM Full Stack, Azure AI, Meta Frontend, and NLP with Transformers. View full list in Awards page.",
+      contact: "You can email Tiyani at kbmagoda2024@gmail.com or call/WhatsApp 060 817 5627. Also connect on LinkedIn or via contact form.",
+      aiAssistant: "I'm Tiyani AI – a smart assistant built with pure JavaScript, NLP intent recognition, and integrated directly into this portfolio. I can answer questions 24/7 about his work!",
+      future: "Tiyani plans to join a graduate program in 2026, scale AI products, and become a technical lead by 2028. He's also improving me with LLM integration soon!",
+      resume: "You can download Tiyani's resume using the 'Download CV' button in the resume banner or footer.",
+    };
+    function getAIResponse(userInput) {
+      let input = userInput.toLowerCase();
+      if (aiKnowledge.greetings.some(g => input.includes(g))) return "Hello! I'm Tiyani AI. 😊 Ask me anything about this portfolio!";
+      if (aiKnowledge.about.some(a => input.includes(a))) return aiResponses.about;
+      if (aiKnowledge.skills.some(s => input.includes(s))) return aiResponses.skills;
+      if (aiKnowledge.projects.some(p => input.includes(p))) return aiResponses.projects;
+      if (aiKnowledge.certifications.some(c => input.includes(c))) return aiResponses.certifications;
+      if (aiKnowledge.contact.some(c => input.includes(c))) return aiResponses.contact;
+      if (aiKnowledge.aiAssistant.some(a => input.includes(a))) return aiResponses.aiAssistant;
+      if (aiKnowledge.future.some(f => input.includes(f))) return aiResponses.future;
+      if (aiKnowledge.resume.some(r => input.includes(r))) return aiResponses.resume;
+      if (input.includes("resume analyzer")) return "The AI Resume Analyzer checks ATS compatibility, suggests keywords, and improves your CV. You can try the demo in projects section!";
+      if (input.includes("case law")) return "South African Case Law AI uses semantic search to retrieve constitutional court judgments. Built with NLP and deployed live!";
+      return aiResponses.default;
+    }
+
+    const chatPanel = document.getElementById('chatPanel');
+    const chatToggle = document.getElementById('chatToggleBtn');
+    const closeChat = document.getElementById('closeChatBtn');
+    const chatMessagesDiv = document.getElementById('chatMessages');
+    const chatInput = document.getElementById('chatInput');
+    const sendBtn = document.getElementById('chatSendBtn');
+
+    function addMessage(text, isUser) {
+      const msgDiv = document.createElement('div');
+      msgDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+      msgDiv.innerHTML = text;
+      chatMessagesDiv.appendChild(msgDiv);
+      chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight;
+    }
+
+    function showTypingAndRespond(userMsg) {
+      const typingDiv = document.createElement('div');
+      typingDiv.className = 'typing-indicator bot-message';
+      typingDiv.innerText = 'Tiyani AI is thinking...';
+      chatMessagesDiv.appendChild(typingDiv);
+      chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight;
+      setTimeout(() => {
+        chatMessagesDiv.removeChild(typingDiv);
+        const answer = getAIResponse(userMsg);
+        addMessage(answer, false);
+        if (!document.querySelector('#quickReplies')) {
+          const qr = document.createElement('div'); qr.className = 'quick-reply'; qr.id = 'quickReplies';
+          const chips = ['Projects','Skills','Certifications','Contact','AI Assistant'];
+          chips.forEach(c => { let btn = document.createElement('button'); btn.className='quick-chip'; btn.innerText=c; btn.setAttribute('data-question',`Tell me about ${c.toLowerCase()}`); qr.appendChild(btn); });
+          chatMessagesDiv.appendChild(qr);
+          attachChipEvents();
+        }
+      }, 600);
+    }
+
+    function sendMessage() {
+      let msg = chatInput.value.trim();
+      if (!msg) return;
+      addMessage(msg, true);
+      chatInput.value = '';
+      showTypingAndRespond(msg);
+    }
+
+    function attachChipEvents() {
+      document.querySelectorAll('.quick-chip').forEach(chip => {
+        chip.removeEventListener('click', chip._listener);
+        const handler = (e) => { const question = chip.getAttribute('data-question') || chip.innerText; addMessage(question, true); showTypingAndRespond(question); };
+        chip.addEventListener('click', handler);
+        chip._listener = handler;
+      });
+    }
+
+    chatToggle.addEventListener('click', () => { chatPanel.style.display = chatPanel.style.display === 'none' ? 'flex' : 'none'; if(chatPanel.style.display === 'flex') attachChipEvents(); });
+    closeChat.addEventListener('click', () => { chatPanel.style.display = 'none'; });
+    sendBtn.addEventListener('click', sendMessage);
+    chatInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') sendMessage(); });
+
+    // Open from menu
+    function openWidget() { chatPanel.style.display = 'flex'; attachChipEvents(); }
+    document.getElementById('openAiFromMenu')?.addEventListener('click', (e) => { e.preventDefault(); openWidget(); });
+
   </script>
 
 </body>
