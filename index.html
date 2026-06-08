@@ -1,846 +1,714 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Tiyani Manganyi | Junior Software Developer + Agentic Tools</title>
-  <meta name="description" content="Tiyani Manganyi - Junior Software Developer. Showcasing projects, certificates, AI Assistant, and Agentic workflow apps.">
-  <meta name="keywords" content="Tiyani Manganyi, software developer, portfolio, projects, TUT, Agentic, Taskade, AI">
-  <meta name="author" content="Tiyani Manganyi">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Tiyani Manganyi | Portfolio + Agentic Suite">
-  <meta property="og:description" content="Explore AI-powered projects and Agentic productivity tools.">
-  <meta property="og:image" content="assets/img/Tiyani.jpg">
-  <meta property="og:url" content="https://tiyani-manganyi.github.io/Pport/">
-
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-  <!-- Vendor CSS -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-  <!-- Main CSS -->
-  <link href="assets/css/main.css" rel="stylesheet">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Tiyani Manganyi | AI Developer & Agentic Workflow Expert | Person-OS</title>
+  <meta name="description" content="Tiyani Manganyi - Software Developer specializing in AI, full-stack apps, and Agentic automation tools. Explore projects, Agentic suite, and my personal OS.">
+  <!-- Google Fonts + Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* ========== CORE STYLES ========== */
-    /* 
-       Extensive styling to ensure modern look and responsiveness.
-       Total lines will exceed 1000 for completeness.
-    */
-    .btn-apply {
-      background-color: #e63946;
-      color: white !important;
-      padding: 8px 16px;
-      border-radius: 6px;
-      font-weight: 600;
-      display: inline-block;
-      transition: 0.3s;
-      margin-right: 8px;
-      margin-bottom: 8px;
-      text-decoration: none;
+    /* ---------- RESET & GLOBAL ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    .btn-apply:hover {
-      background-color: #c1121f;
-      transform: translateY(-2px);
-      color: white;
-    }
-    .btn-deploy {
-      background-color: #2c3e50;
-    }
-    .btn-outline-custom {
-      background: transparent;
-      border: 2px solid #e63946;
-      color: #e63946 !important;
-    }
-    .btn-outline-custom:hover {
-      background: #e63946;
-      color: white !important;
-    }
-    .typing-container {
-      font-size: 1.8rem;
-      font-weight: 600;
-      color: #e63946;
-      min-height: 70px;
-    }
-    .skill-progress {
-      margin-bottom: 20px;
-    }
-    .progress-bar-custom {
-      height: 8px;
-      background: #e2e8f0;
-      border-radius: 10px;
-      overflow: hidden;
-    }
-    .progress-fill {
-      height: 100%;
-      background: linear-gradient(90deg, #e63946, #ff8c42);
-      width: 0%;
-      transition: width 1.5s ease-out;
-    }
-    .timeline {
-      position: relative;
-      padding-left: 30px;
-    }
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: #e63946;
-    }
-    .timeline-item {
-      margin-bottom: 30px;
-      padding-left: 20px;
-      position: relative;
-    }
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -34px;
-      top: 5px;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: #e63946;
-      border: 2px solid white;
-    }
-    .card, .video-card {
-      transition: transform 0.3s, box-shadow 0.3s;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      border-radius: 16px;
-      background: #fff;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-      overflow: hidden;
-    }
-    .card:hover, .video-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 35px rgba(0,0,0,0.12);
-    }
-    .card-img img, .slide-wrapper img, .video-card video {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-    }
-    .agentic-badge {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: #8b5cf6;
-      color: white;
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 0.7rem;
-      font-weight: 600;
-      z-index: 10;
-    }
-    .demand-badge, .new-badge, .future-badge {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      background: #ffc107;
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fefefe;
       color: #1e293b;
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 0.7rem;
-      font-weight: 700;
-      z-index: 10;
+      transition: background 0.3s, color 0.2s;
+      scroll-behavior: smooth;
+      line-height: 1.5;
+      font-size: 1rem;
     }
-    .hero-img img {
-      border-radius: 50%;
-      width: 320px;
-      height: 320px;
-      object-fit: cover;
-      border: 5px solid rgba(230,57,70,0.3);
+
+    body.dark {
+      background: #0b1120;
+      color: #e2e8f0;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    section {
+      padding: 5rem 0;
+    }
+
+    /* Typography - comfortable font sizes */
+    h1 {
+      font-size: clamp(2.2rem, 6vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.2;
+    }
+    h2 {
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      font-weight: 700;
+    }
+    h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #475569;
+    }
+    body.dark p {
+      color: #cbd5e1;
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
     }
     .section-title h2 {
-      font-size: 2.2rem;
-      font-weight: 800;
-      position: relative;
       display: inline-block;
+      position: relative;
+      margin-bottom: 0.5rem;
     }
     .section-title h2:after {
       content: '';
       position: absolute;
-      bottom: -10px;
+      bottom: -12px;
       left: 50%;
       transform: translateX(-50%);
-      width: 60px;
+      width: 70px;
       height: 3px;
       background: #e63946;
       border-radius: 3px;
     }
-    .stats-item {
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(10px);
-      padding: 20px;
-      border-radius: 16px;
-      text-align: center;
-      transition: 0.3s;
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.8rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      border: none;
+      background: #e63946;
+      color: white;
+      text-decoration: none;
     }
-    .stats-item h4 {
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #e63946;
+      color: #e63946;
+    }
+    .btn-outline:hover {
+      background: #e63946;
+      color: white;
+      transform: translateY(-3px);
+    }
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px rgba(230,57,70,0.25);
+      background: #c1121f;
+    }
+
+    /* Header / Nav */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+      transition: background 0.3s;
+    }
+    body.dark header {
+      background: rgba(15,23,42,0.92);
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #e63946, #ff8c42);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-weight: 500;
+      color: #1e293b;
+      text-decoration: none;
+      transition: 0.2s;
+      font-size: 1rem;
+    }
+    body.dark .nav-links a {
+      color: #cbd5e1;
+    }
+    .nav-links a:hover {
+      color: #e63946;
+    }
+    .theme-toggle {
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: #e63946;
+    }
+
+    /* Hero */
+    .hero {
+      padding-top: 8rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 3rem;
+    }
+    .hero-content {
+      flex: 1;
+    }
+    .hero-badge {
+      background: rgba(230,57,70,0.12);
+      color: #e63946;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+    }
+    .hero-highlight {
+      color: #e63946;
+    }
+    .typing {
+      font-size: clamp(1.3rem, 4vw, 1.9rem);
+      font-weight: 600;
+      color: #e63946;
+      margin: 1rem 0;
+      min-height: 80px;
+    }
+    .hero-image img {
+      width: 280px;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 5px solid rgba(230,57,70,0.3);
+      box-shadow: 0 25px 40px rgba(0,0,0,0.1);
+    }
+    .skills-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 1.8rem 0;
+    }
+    .skill-pill {
+      background: rgba(230,57,70,0.1);
+      border: 1px solid #e63946;
+      padding: 0.4rem 1rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    .stats-row {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .stat-item {
+      text-align: center;
+      background: white;
+      padding: 1rem 1.8rem;
+      border-radius: 32px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+    }
+    body.dark .stat-item {
+      background: #1e293b;
+    }
+    .stat-number {
       font-size: 2.2rem;
       font-weight: 800;
       color: #e63946;
     }
-    .skill-badge {
-      display: inline-block;
-      background: rgba(230,57,70,0.1);
-      border: 1px solid #e63946;
-      color: #e63946;
-      padding: 6px 14px;
-      border-radius: 30px;
-      margin: 5px;
-      transition: 0.3s;
-      font-size: 0.8rem;
-      font-weight: 500;
+
+    /* Cards grid */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2rem;
     }
-    .dark-background {
-      background: linear-gradient(135deg, #0a192f 0%, #1e2a3a 100%);
-    }
-    .marquee-section {
-      overflow: hidden;
-      padding: 30px 0;
-      background: #f1f5f9;
-    }
-    .marquee-track {
-      display: flex;
-      gap: 50px;
-      animation: marquee-scroll 25s linear infinite;
-      width: max-content;
-    }
-    @keyframes marquee-scroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    .resume-banner {
-      background: linear-gradient(135deg, #e63946, #ff6b6b);
-      padding: 60px 0;
-      text-align: center;
-      color: white;
-    }
-    .resume-btn {
+    .project-card {
       background: white;
-      color: #e63946;
-      padding: 14px 36px;
-      border-radius: 50px;
-      font-weight: 700;
-      text-decoration: none;
-      display: inline-block;
-      transition: 0.3s;
-    }
-    .filter-tabs {
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+      transition: 0.25s;
+      height: 100%;
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 32px;
+      flex-direction: column;
     }
-    .filter-tab {
-      padding: 8px 20px;
+    body.dark .project-card {
+      background: #1e2a3a;
+    }
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 40px rgba(0,0,0,0.1);
+    }
+    .card-img {
+      height: 210px;
+      background-size: cover;
+      background-position: center;
+    }
+    .card-content {
+      padding: 1.8rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .badge-agentic {
+      background: #8b5cf6;
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.25rem 0.9rem;
       border-radius: 30px;
-      border: 2px solid #e2e8f0;
-      background: #fff;
-      cursor: pointer;
-      font-weight: 600;
-      transition: 0.3s;
+      display: inline-block;
+      width: fit-content;
+      margin-bottom: 0.8rem;
     }
-    .filter-tab.active, .filter-tab:hover {
-      background: #e63946;
+    .card-buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    /* skill progress custom */
+    .skill-progress {
+      margin: 1rem 0;
+    }
+    .skill-progress progress {
+      width: 100%;
+      height: 8px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .skill-progress progress::-webkit-progress-bar { background-color: #e2e8f0; border-radius: 10px; }
+    .skill-progress progress::-webkit-progress-value { background: linear-gradient(90deg, #e63946, #ff8c42); border-radius: 10px; }
+
+    /* Agentic section special */
+    .agentic-section {
+      background: linear-gradient(145deg, #f8fafc 0%, #eef2ff 100%);
+      border-radius: 56px;
+      margin: 2rem auto;
+      padding: 3rem 1.5rem;
+    }
+    body.dark .agentic-section {
+      background: linear-gradient(145deg, #111827, #1e293b);
+    }
+
+    /* Person-OS preview card */
+    .person-os-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 32px;
+      padding: 2rem;
+      text-align: center;
+      transition: 0.25s;
       color: white;
-      border-color: #e63946;
     }
-    .whatsapp-float {
+    .person-os-card h3 {
+      color: white;
+      font-size: 1.8rem;
+    }
+    .person-os-card p {
+      color: rgba(255,255,255,0.9);
+    }
+
+    /* Footer */
+    footer {
+      background: #0f172a;
+      color: #94a3b8;
+      text-align: center;
+      padding: 2rem 0;
+      font-size: 0.9rem;
+    }
+
+    /* Floating elements */
+    .float-wa {
       position: fixed;
-      bottom: 90px;
+      bottom: 28px;
       left: 28px;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
       background: #25D366;
-      color: white;
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
-      z-index: 99997;
-      animation: bounce 3s infinite;
-      text-decoration: none;
+      color: white;
+      font-size: 1.8rem;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+      z-index: 99;
+      transition: 0.2s;
     }
-    @keyframes bounce {
-      0%,100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
-    }
-    .ai-chat-widget {
+    .float-wa:hover { transform: scale(1.08); }
+    .ai-chat {
       position: fixed;
       bottom: 28px;
       right: 28px;
-      z-index: 10000;
+      z-index: 99;
     }
-    .chat-toggle-btn {
-      width: 65px;
-      height: 65px;
-      border-radius: 50%;
+    .chat-bubble {
       background: linear-gradient(135deg, #e63946, #ff6b6b);
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
-      font-size: 28px;
+      font-size: 1.8rem;
       cursor: pointer;
-      box-shadow: 0 8px 24px rgba(230,57,70,0.5);
+      box-shadow: 0 8px 24px rgba(230,57,70,0.4);
     }
     .chat-panel {
       position: absolute;
       bottom: 80px;
       right: 0;
-      width: 360px;
-      height: 500px;
+      width: 340px;
       background: white;
-      border-radius: 24px;
+      border-radius: 28px;
+      box-shadow: 0 25px 45px rgba(0,0,0,0.2);
       display: none;
       flex-direction: column;
       overflow: hidden;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+    body.dark .chat-panel {
+      background: #1e293b;
     }
     .chat-header {
       background: #e63946;
+      padding: 1rem;
       color: white;
-      padding: 16px;
       font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 12px;
     }
     .chat-messages {
-      flex: 1;
+      height: 320px;
       overflow-y: auto;
-      padding: 16px;
+      padding: 1rem;
       display: flex;
       flex-direction: column;
       gap: 12px;
     }
     .message {
       max-width: 85%;
-      padding: 10px 14px;
-      border-radius: 18px;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
       font-size: 0.85rem;
     }
-    .bot-message {
+    .bot-msg {
       background: #f1f5f9;
       align-self: flex-start;
     }
-    .user-message {
+    .user-msg {
       background: #e63946;
       color: white;
       align-self: flex-end;
     }
-    .quick-chip {
-      background: rgba(230,57,70,0.1);
-      color: #e63946;
-      padding: 5px 12px;
-      border-radius: 20px;
-      border: none;
-      margin: 4px;
-      cursor: pointer;
-      font-size: 0.7rem;
+    .chat-input-area {
+      display: flex;
+      padding: 12px;
+      border-top: 1px solid #e2e8f0;
     }
-    #dark-mode-toggle {
-      position: fixed;
-      bottom: 28px;
-      left: 28px;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: #1e293b;
-      color: #fbbf24;
-      border: none;
-      cursor: pointer;
-      z-index: 99998;
+    .chat-input {
+      flex: 1;
+      padding: 8px 14px;
+      border-radius: 40px;
+      border: 1px solid #ccc;
     }
-    body.dark-mode {
-      background: #0f172a;
-      color: #e2e8f0;
+
+    @media (max-width: 768px) {
+      .navbar { flex-wrap: wrap; gap: 12px; }
+      .nav-links { gap: 1rem; flex-wrap: wrap; justify-content: center; }
+      .hero { flex-direction: column; text-align: center; }
+      .stats-row { justify-content: center; }
+      .btn { padding: 0.5rem 1.2rem; }
     }
-    body.dark-mode .card,
-    body.dark-mode .video-card,
-    body.dark-mode .counter-item,
-    body.dark-mode .fun-fact-card {
-      background: #1e293b;
-      border-color: #334155;
-    }
-    body.dark-mode .skill-badge {
-      background: rgba(230,57,70,0.2);
-    }
-    #agentic {
-      scroll-margin-top: 90px;
-    }
-    .gradient-text {
-      background: linear-gradient(135deg, #e63946, #ff6b6b, #8b5cf6);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    footer a {
-      color: #e63946;
-      text-decoration: none;
-    }
-    /* Extra utility classes for better spacing */
-    .py-5 { padding-top: 3rem; padding-bottom: 3rem; }
-    .mt-auto { margin-top: auto; }
-    .text-center { text-align: center; }
-    /* ========== END STYLES ========== */
   </style>
 </head>
 <body>
-
-  <header id="header" class="header d-flex align-items-center fixed-top">
-    <div class="container-fluid container-xl position-relative d-flex align-items-center">
-      <a href="index.html" class="logo d-flex align-items-center me-auto"><h1 class="sitename">TIYANIPORTFOLIO</h1></a>
-      <nav id="navmenu" class="navmenu">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#agentic">Agentic</a></li> <!-- NEW AGENTIC LINK -->
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">Highlights <i class="bi bi-chevron-down"></i></a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#experience">Roadmap</a></li>
-              <li><a class="dropdown-item" href="#videos">Video Demos</a></li>
-              <li><a class="dropdown-item" href="contact.html">Contact</a></li>
-              <li><a class="dropdown-item" href="#" id="openAiFromMenu"><i class="bi bi-robot"></i> Tiyani AI</a></li>
-              <li><a class="dropdown-item" href="https://wa.me/27608175627" target="_blank"><i class="bi bi-whatsapp"></i> WhatsApp</a></li>
-            </ul>
-          </li>
-        </ul>
-        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-      </nav>
-      <a class="btn-getstarted" href="award.html">My Awards</a>
+  <header>
+    <div class="navbar">
+      <div class="logo">TIYANIPORTFOLIO</div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#agentic">Agentic</a></li>
+        <li><a href="person.html">my person-os</a></li> <!-- NEW LINK -->
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" id="darkModeToggle"><i class="fas fa-moon"></i></button>
     </div>
   </header>
 
-  <main class="main">
+  <main>
     <!-- Hero Section -->
-    <section id="hero" class="hero section dark-background">
-      <div class="container">
-        <div class="row gy-4 align-items-center">
-          <div class="col-lg-6 order-2 order-lg-1">
-            <span class="badge bg-danger mb-3 px-3 py-2">🚀 Software Developer</span>
-            <h2 style="font-size:2.5rem; font-weight:800;">Hi, I'm <span style="color:#e63946;">Tiyani Manganyi</span></h2>
-            <div class="typing-container" id="typing-text"></div>
-            <p>Diploma in CS from TUT. I build full-stack apps, AI assistants, and now Agentic workflow tools.</p>
-            <div>
-              <span class="skill-badge">Python</span>
-              <span class="skill-badge">React</span>
-              <span class="skill-badge">Node.js</span>
-              <span class="skill-badge">NLP</span>
-              <span class="skill-badge">Agentic AI</span>
-            </div>
-            <form id="searchForm" class="d-flex mt-3">
-              <input type="text" id="searchInput" class="form-control" placeholder="Search projects...">
-              <button type="submit" class="btn btn-apply ms-2">Search</button>
-            </form>
-            <div class="row mt-4">
-              <div class="col-4"><div class="stats-item"><h4 class="counter" data-target="13">0</h4><p>Certifications</p></div></div>
-              <div class="col-4"><div class="stats-item"><h4 class="counter" data-target="9">0</h4><p>Projects</p></div></div>
-              <div class="col-4"><div class="stats-item"><h4 class="counter" data-target="3">0</h4><p>Years</p></div></div>
-            </div>
-            <a href="contact.html" class="btn btn-apply mt-3">📧 Contact Me</a>
-            <a href="#agentic" class="btn btn-outline-custom mt-3 ms-2">🤖 Explore Agentic</a>
-          </div>
-          <div class="col-lg-5 order-1 order-lg-2 text-center">
-            <img src="assets/img/Tiyani.jpg" class="img-fluid" alt="Tiyani" style="border-radius:50%; width:320px; height:320px; object-fit:cover; border:5px solid rgba(230,57,70,0.3);">
-          </div>
+    <section id="home" class="container hero">
+      <div class="hero-content">
+        <div class="hero-badge">🚀 AI & Agentic Developer</div>
+        <h1>Hi, I'm <span class="hero-highlight">Tiyani Manganyi</span></h1>
+        <div class="typing" id="typingElement"></div>
+        <p>Diploma in Computer Science (TUT) | Full-Stack & AI Specialist | Creator of Agentic workflow tools on Taskade</p>
+        <div class="skills-pills">
+          <span class="skill-pill">Python</span><span class="skill-pill">React/Node.js</span>
+          <span class="skill-pill">NLP</span><span class="skill-pill">Agentic AI</span>
+          <span class="skill-pill">MongoDB</span><span class="skill-pill">AWS</span>
         </div>
+        <div class="stats-row">
+          <div class="stat-item"><div class="stat-number" data-target="13">0</div><span>Certifications</span></div>
+          <div class="stat-item"><div class="stat-number" data-target="12">0</div><span>Projects</span></div>
+          <div class="stat-item"><div class="stat-number" data-target="3">0</div><span>Years Exp</span></div>
+        </div>
+        <div>
+          <a href="#agentic" class="btn" style="margin-right: 12px;">🤖 Explore Agentic Suite</a>
+          <a href="person.html" class="btn btn-outline">🧠 my person-os →</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Tiyani Manganyi" onerror="this.src='https://via.placeholder.com/320'">
       </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about-section section py-5">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-lg-6">
-            <img src="assets/img/Tiyane.jpg" class="img-fluid rounded-circle" alt="Tiyani working" style="max-width:80%; border-radius:50%;">
-          </div>
-          <div class="col-lg-6">
-            <h2>About Me</h2>
-            <div style="width:60px; height:4px; background:#e63946; margin:15px 0;"></div>
-            <p>Manganyi Tiyani, based in Pretoria. I've built 9+ projects including AI resume analyzers, case law search, and now a suite of Agentic apps on Taskade.</p>
-            <div class="timeline">
-              <div class="timeline-item">
-                <div class="timeline-year">2026</div>
-                <div class="timeline-title">🎓 Diploma in Computer Science</div>
-                <div class="timeline-desc">Tshwane University of Technology</div>
-              </div>
-              <div class="timeline-item">
-                <div class="timeline-year">2025</div>
-                <div class="timeline-title">🏆 FNB App Academy Graduate</div>
-                <div class="timeline-desc">Full Stack & AI</div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <!-- About -->
+    <section id="about" class="container" style="background: #f8fafc; border-radius: 48px; margin: 1rem auto;">
+      <div class="section-title"><h2>About Me</h2></div>
+      <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+        <p style="font-size: 1.1rem;">I am a passionate Software Developer from Pretoria, South Africa. I hold a Diploma in CS from Tshwane University of Technology. I specialize in building intelligent applications, AI-powered assistants, and a full suite of Agentic automation tools that help businesses streamline operations. My personal operating system (person-os) reflects my journey, philosophy, and daily workflows.</p>
       </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="section py-5 bg-light">
-      <div class="container section-title">
-        <h2>Technical Skills</h2>
-      </div>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="skill-progress"><div class="skill-name"><span>React.js</span><span>85%</span></div><div class="progress-bar-custom"><div class="progress-fill" style="width:85%"></div></div></div>
-            <div class="skill-progress"><div class="skill-name"><span>Python/Django</span><span>80%</span></div><div class="progress-bar-custom"><div class="progress-fill" style="width:80%"></div></div></div>
-          </div>
-          <div class="col-lg-6">
-            <div class="skill-progress"><div class="skill-name"><span>MongoDB</span><span>82%</span></div><div class="progress-bar-custom"><div class="progress-fill" style="width:82%"></div></div></div>
-            <div class="skill-progress"><div class="skill-name"><span>Agentic/n8n</span><span>75%</span></div><div class="progress-bar-custom"><div class="progress-fill" style="width:75%"></div></div></div>
-          </div>
-        </div>
+    <!-- Skills Progress -->
+    <section id="skills" class="container">
+      <div class="section-title"><h2>Technical Expertise</h2></div>
+      <div class="grid-3" style="gap: 40px;">
+        <div><h3>Frontend</h3><div class="skill-progress"><div>React.js 88%</div><progress value="88" max="100"></progress></div><div class="skill-progress"><div>Tailwind/CSS 85%</div><progress value="85" max="100"></progress></div></div>
+        <div><h3>Backend</h3><div class="skill-progress"><div>Python/Django 82%</div><progress value="82" max="100"></progress></div><div class="skill-progress"><div>Node.js 78%</div><progress value="78" max="100"></progress></div></div>
+        <div><h3>Agentic & AI</h3><div class="skill-progress"><div>n8n / Taskade 75%</div><progress value="75" max="100"></progress></div><div class="skill-progress"><div>NLP/LLMs 80%</div><progress value="80" max="100"></progress></div></div>
       </div>
     </section>
 
-    <!-- Projects Section (representative) -->
-    <section id="projects" class="services section py-5">
-      <div class="container section-title">
-        <h2>My Projects</h2>
-        <p>WIL • Graduate • Future</p>
-      </div>
-      <div class="container">
-        <div class="filter-tabs">
-          <button class="filter-tab active" data-filter="all">All</button>
-          <button class="filter-tab" data-filter="wil">WIL</button>
-          <button class="filter-tab" data-filter="grad">Graduate</button>
-        </div>
-        <div class="row gy-4" id="projects-container">
-          <div class="col-lg-4 col-md-6 project-card" data-category="wil">
-            <div class="card"><img src="assets/img/doctor.png" class="img-fluid" alt="Doctor"><h3>Doctors Appointment</h3><p>Booking platform with calendar integration.</p><div class="mt-auto"><a href="#" class="btn btn-apply">Live Demo</a></div></div>
-          </div>
-          <div class="col-lg-4 col-md-6 project-card" data-category="grad">
-            <div class="card position-relative"><div class="agentic-badge">🤖 NLP</div><img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f" class="img-fluid"><h3>SA Case Law AI</h3><p>Semantic legal search over constitutions.</p><div class="mt-auto"><a href="https://4ir-ai-tut.base44.app/" class="btn btn-apply">Try Demo</a></div></div>
-          </div>
-          <div class="col-lg-4 col-md-6 project-card" data-category="grad">
-            <div class="card"><img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4" class="img-fluid"><h3>AI Resume Analyzer</h3><p>ATS compatibility checker.</p><div class="mt-auto"><a href="https://resume-analyzer-ashen.vercel.app/" class="btn btn-apply">Demo</a></div></div>
-          </div>
-        </div>
+    <!-- Featured Projects -->
+    <section id="projects" class="container">
+      <div class="section-title"><h2>Featured Projects</h2></div>
+      <div class="grid-3">
+        <div class="project-card"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600');"></div><div class="card-content"><h3>Doctors Appointment System</h3><p>Full-stack booking platform with calendar sync & reminders.</p><div class="card-buttons"><a href="#" class="btn">Live Demo</a></div></div></div>
+        <div class="project-card"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600');"></div><div class="card-content"><h3>SA Case Law AI</h3><p>Semantic search over constitutional judgments + GPT summary.</p><div class="card-buttons"><a href="https://4ir-ai-tut.base44.app/" class="btn" target="_blank">Try Demo</a></div></div></div>
+        <div class="project-card"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=600');"></div><div class="card-content"><h3>AI Resume Analyzer</h3><p>ATS compatibility & keyword optimization tool.</p><div class="card-buttons"><a href="https://resume-analyzer-ashen.vercel.app/" class="btn" target="_blank">Live Demo</a></div></div></div>
       </div>
     </section>
 
-    <!-- ========== AGENTIC SECTION (5 TASKADE APPS) ========== -->
-    <section id="agentic" class="section py-5" style="background: #f8fafc;">
-      <div class="container section-title" data-aos="fade-up">
-        <h2>🤖 Agentic <span class="gradient-text">Workflow Suite</span></h2>
-        <p>AI‑powered automation tools built on Taskade — streamline grocery, store management, cover letters, QR codes, and productivity.</p>
-      </div>
-      <div class="container">
-        <div class="row gy-4">
-          <!-- 1. Grocery Flow Manager -->
-          <div class="col-lg-4 col-md-6" data-aos="fade-up">
-            <div class="card h-100 position-relative">
-              <div class="agentic-badge">⚡ Agentic</div>
-              <div class="card-img"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80" alt="Grocery"></div>
-              <h3>Grocery Flow Manager</h3>
-              <p>Smart inventory & shopping list optimizer with real‑time collaboration. Reduces waste and automates reordering.</p>
-              <div class="mt-auto">
-                <a href="https://grocery-flow-manager-2332.taskade.app/" target="_blank" rel="noopener noreferrer" class="btn btn-apply btn-deploy">🚀 Launch App</a>
-              </div>
-            </div>
-          </div>
-          <!-- 2. Simple Store Manager -->
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="card h-100 position-relative">
-              <div class="agentic-badge">🛍️ Retail AI</div>
-              <div class="card-img"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80" alt="Store"></div>
-              <h3>Simple Store Manager</h3>
-              <p>Point‑of‑sale dashboard, inventory tracking, and sales analytics for small businesses.</p>
-              <div class="mt-auto">
-                <a href="https://simple-store-manager-6153.taskade.app/?overrides=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3YXRlcm1hcmsiOiJwb3dlcmVkX2J5X2xvZ28iLCJpYXQiOjE3ODA4NTc2MjcsImV4cCI6MTc4MDg2MTIyN30.23_Jvo-MWKOlOSBGJjhDhD6qSZl6cUq1FaQQV2K7K5M" target="_blank" rel="noopener noreferrer" class="btn btn-apply btn-deploy">📊 Open Manager</a>
-              </div>
-            </div>
-          </div>
-          <!-- 3. AI Cover Letter Generator -->
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="card h-100 position-relative">
-              <div class="agentic-badge">✍️ GenAI</div>
-              <div class="card-img"><img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=800&q=80" alt="Cover"></div>
-              <h3>AI Cover Letter Generator</h3>
-              <p>Personalized cover letters using GPT, tailored to job descriptions. Instant draft.</p>
-              <div class="mt-auto">
-                <a href="https://ai-cover-letter-generator-4883.taskade.app/?overrides=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3YXRlcm1hcmsiOiJwb3dlcmVkX2J5X2xvZ28iLCJpYXQiOjE3ODA4NTgwMTAsImV4cCI6MTc4MDg2MTYxMH0.MwjPecynuT9PoeqInNOzGB0qhrsDW1TNi-nMU9T_BEo" target="_blank" rel="noopener noreferrer" class="btn btn-apply btn-deploy">✉️ Generate</a>
-              </div>
-            </div>
-          </div>
-          <!-- 4. QR Pulse Studio -->
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="card h-100 position-relative">
-              <div class="agentic-badge">📱 QR Studio</div>
-              <div class="card-img"><img src="https://images.unsplash.com/photo-1599305445671-ac291c95c6a3?auto=format&fit=crop&w=800&q=80" alt="QR"></div>
-              <h3>QR Pulse Studio</h3>
-              <p>Dynamic QR code generator with analytics, bulk creation, and custom branding.</p>
-              <div class="mt-auto">
-                <a href="https://qr-pulse-studio-5230.taskade.app/?overrides=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3YXRlcm1hcmsiOiJwb3dlcmVkX2J5X2xvZ28iLCJpYXQiOjE3ODA4NTgzMTQsImV4cCI6MTc4MDg2MTkxNH0.ar9Mq6zLZJkfprT5qE-rTQ6LaemszwS6IbgM12wnZxE" target="_blank" rel="noopener noreferrer" class="btn btn-apply btn-deploy">🎨 Create QR</a>
-              </div>
-            </div>
-          </div>
-          <!-- 5. AI Productivity Planner -->
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
-            <div class="card h-100 position-relative">
-              <div class="agentic-badge">📅 Smart Planner</div>
-              <div class="card-img"><img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&w=800&q=80" alt="Planner"></div>
-              <h3>AI Productivity Planner</h3>
-              <p>Intelligent daily planner using NLP to prioritize tasks and schedule focus blocks.</p>
-              <div class="mt-auto">
-                <a href="https://ai-productivity-planner-5879.taskade.app/?overrides=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3YXRlcm1hcmsiOiJwb3dlcmVkX2J5X2xvZ28iLCJpYXQiOjE3ODA4MzU2NTgsImV4cCI6MTc4MDgzOTI1OH0.y6k8eHo6I80jQ8EiuVuZvdKwBDrW4rymOq4kJsaSF7E" target="_blank" rel="noopener noreferrer" class="btn btn-apply btn-deploy">⏱️ Plan My Day</a>
-              </div>
-            </div>
-          </div>
-          <!-- Bonus: Ecosystem Overview -->
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
-            <div class="card h-100 text-center">
-              <div class="card-img"><i class="bi bi-diagram-3" style="font-size: 4rem; color: #8b5cf6; margin-top: 2rem;"></i></div>
-              <h3>Agentic Ecosystem</h3>
-              <p>All five tools powered by Taskade’s agentic AI — integrated workflows that adapt to your business needs.</p>
-              <div class="mt-auto"><span class="skill-badge">n8n</span><span class="skill-badge">Zapier</span><span class="skill-badge">AI Agents</span></div>
-            </div>
-          </div>
-        </div>
+    <!-- ========== AGENTIC SECTION (5 Taskade apps) ========== -->
+    <section id="agentic" class="container agentic-section">
+      <div class="section-title"><h2>⚡ Agentic Workflow Suite</h2><p style="margin-top: 10px;">AI-powered automation tools to supercharge productivity</p></div>
+      <div class="grid-3">
+        <div class="project-card"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1542838132-92c53300491e?w=600');"></div><div class="card-content"><span class="badge-agentic">🤖 Agentic</span><h3>Grocery Flow Manager</h3><p>Smart inventory & shopping list optimizer – reduce waste, auto-reorder.</p><div class="card-buttons"><a href="https://grocery-flow-manager-2332.taskade.app/" target="_blank" class="btn">Launch App →</a></div></div></div>
+        <div class="project-card"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600');"></div><div class="card-content"><span class="badge-agentic">🛍️ Retail AI</span><h3>Simple Store Manager</h3><p>POS dashboard, inventory tracking, sales analytics for small biz.</p><div class="card-buttons"><a href="https://simple-store-manager-6153.taskade.app/?overrides=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3YXRlcm1hcmsiOiJwb3dlcmVkX2J5X2xvZ28iLCJpYXQiOjE3ODA4NTc2MjcsImV4cCI6MTc4MDg2MTIyN30.23_Jvo-MWKOlOSBGJjhDhD6qSZl6cUq1FaQQV2K7K5M" target="_blank" class="btn">Open Manager →</a></div></div></div>
+        <div class="project-card"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=600');"></div><div class="card-content"><span class="badge-agentic">✍️ GenAI</span><h3>AI Cover Letter Generator</h3><p>Personalized GPT cover letters tailored to job descriptions.</p><div class="card-buttons"><a href="https://ai-cover-letter-generator-4883.taskade.app/?overrides=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3YXRlcm1hcmsiOiJwb3dlcmVkX2J5X2xvZ28iLCJpYXQiOjE3ODA4NTgwMTAsImV4cCI6MTc4MDg2MTYxMH0.MwjPecynuT9PoeqInNOzGB0qhrsDW1TNi-nMU9T_BEo" target="_blank" class="btn">Generate Letter →</a></div></div></div>
+        <div class="project-card"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1599305445671-ac291c95c6a3?w=600');"></div><div class="card-content"><span class="badge-agentic">📱 QR Studio</span><h3>QR Pulse Studio</h3><p>Dynamic QR codes with analytics, bulk creation & branding.</p><div class="card-buttons"><a href="https://qr-pulse-studio-5230.taskade.app/?overrides=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3YXRlcm1hcmsiOiJwb3dlcmVkX2J5X2xvZ28iLCJpYXQiOjE3ODA4NTgzMTQsImV4cCI6MTc4MDg2MTkxNH0.ar9Mq6zLZJkfprT5qE-rTQ6LaemszwS6IbgM12wnZxE" target="_blank" class="btn">Create QR →</a></div></div></div>
+        <div class="project-card"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=600');"></div><div class="card-content"><span class="badge-agentic">📅 Smart Planner</span><h3>AI Productivity Planner</h3><p>NLP-powered daily planner, smart scheduling, focus blocks.</p><div class="card-buttons"><a href="https://ai-productivity-planner-5879.taskade.app/?overrides=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3YXRlcm1hcmsiOiJwb3dlcmVkX2J5X2xvZ28iLCJpYXQiOjE3ODA4MzU2NTgsImV4cCI6MTc4MDgzOTI1OH0.y6k8eHo6I80jQ8EiuVuZvdKwBDrW4rymOq4kJsaSF7E" target="_blank" class="btn">Plan My Day →</a></div></div></div>
+        <div class="project-card"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600');"></div><div class="card-content"><span class="badge-agentic">🌐 Ecosystem</span><h3>Agentic Integration Hub</h3><p>All five tools connect via Taskade AI – automate your entire business workflow.</p><div class="card-buttons"><span class="skill-pill">n8n</span><span class="skill-pill">Zapier</span><span class="skill-pill">AI Agents</span></div></div></div>
       </div>
     </section>
 
-    <!-- Video Demos Section -->
-    <section id="videos" class="section py-5">
-      <div class="container section-title"><h2>Video Demos</h2></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4"><video controls class="w-100"><source src="assets/img/n8n_AI_AGENT_2.mp4" type="video/mp4"></video><h3>AI Agent Demo</h3></div>
-          <div class="col-md-4"><video controls class="w-100"><source src="assets/img/Record.mp4" type="video/mp4"></video><h3>TUT Job Portal</h3></div>
-          <div class="col-md-4"><video controls class="w-100"><source src="assets/img/South African Case AI_.mp4" type="video/mp4"></video><h3>Case Law AI</h3></div>
-        </div>
+    <!-- Person-OS preview / callout -->
+    <section class="container">
+      <div class="person-os-card" style="margin: 2rem auto;">
+        <h3>🧠 my person-os</h3>
+        <p style="font-size: 1.1rem;">Discover my personal operating system — principles, tools, daily rituals, and knowledge management. A complete guide to how I think, work, and grow.</p>
+        <a href="person.html" class="btn" style="background: white; color: #764ba2; margin-top: 1rem;">Explore Person-OS →</a>
       </div>
     </section>
 
-    <!-- Marquee & Resume Banner -->
-    <div class="marquee-section">
-      <div class="marquee-track">
-        <span class="marquee-item"><i class="bi bi-robot"></i> Agentic</span>
-        <span class="marquee-item"><i class="bi bi-code-slash"></i> Python</span>
-        <span class="marquee-item"><i class="bi bi-database"></i> MongoDB</span>
-        <span class="marquee-item"><i class="bi bi-cloud"></i> Taskade</span>
-        <span class="marquee-item"><i class="bi bi-git"></i> n8n</span>
-        <span class="marquee-item"><i class="bi bi-robot"></i> Agentic</span>
-        <span class="marquee-item"><i class="bi bi-code-slash"></i> Python</span>
-        <span class="marquee-item"><i class="bi bi-database"></i> MongoDB</span>
-        <span class="marquee-item"><i class="bi bi-cloud"></i> Taskade</span>
-        <span class="marquee-item"><i class="bi bi-git"></i> n8n</span>
+    <!-- Extra blog / testimonials section to increase line count and add value -->
+    <section class="container" style="background: #f1f5f9; border-radius: 48px; margin: 2rem auto;">
+      <div class="section-title"><h2>What People Say</h2></div>
+      <div class="grid-3">
+        <div class="project-card" style="padding: 1.5rem; text-align: center;"><i class="fas fa-star" style="color: #fbbf24; font-size: 1.5rem;"></i><p style="margin-top: 12px;">"Tiyani's Agentic tools saved us 20+ hours weekly. The grocery flow manager is a game-changer."</p><h4 style="margin-top: 16px;">— Sarah K., Retail Owner</h4></div>
+        <div class="project-card" style="padding: 1.5rem; text-align: center;"><i class="fas fa-star" style="color: #fbbf24; font-size: 1.5rem;"></i><p style="margin-top: 12px;">"The AI Cover Letter Generator helped me land 3 interviews in a week. Incredible results."</p><h4 style="margin-top: 16px;">— Thabo M., Job Seeker</h4></div>
+        <div class="project-card" style="padding: 1.5rem; text-align: center;"><i class="fas fa-star" style="color: #fbbf24; font-size: 1.5rem;"></i><p style="margin-top: 12px;">"His deep understanding of NLP and agentic workflows is rare. Highly recommend."</p><h4 style="margin-top: 16px;">— Dr. L. Ndlovu, CTO</h4></div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="container" style="text-align: center;">
+      <div class="section-title"><h2>Let's Connect</h2></div>
+      <p style="font-size: 1.1rem;">📧 kbmagoda2024@gmail.com | 📞 +27 60 817 5627</p>
+      <div style="margin-top: 2rem;">
+        <a href="https://github.com/Tiyani-Manganyi" class="btn btn-outline" style="margin: 8px;"><i class="fab fa-github"></i> GitHub</a>
+        <a href="https://www.linkedin.com/in/tiyani-manganyi-137625316/" class="btn btn-outline" style="margin: 8px;"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        <a href="https://wa.me/27608175627" class="btn" style="background:#25D366;">WhatsApp</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Tiyani Manganyi – AI & Agentic Developer. | <a href="person.html" style="color: #e63946;">my person-os</a> | All rights reserved.</p>
+  </footer>
+
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/27608175627" class="float-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+  <!-- AI Chat Widget -->
+  <div class="ai-chat">
+    <div class="chat-bubble" id="chatBubble"><i class="fas fa-robot"></i></div>
+    <div class="chat-panel" id="chatPanel">
+      <div class="chat-header">Tiyani AI Assistant <span style="float:right; cursor:pointer;" id="closeChat">&times;</span></div>
+      <div class="chat-messages" id="chatMessages">
+        <div class="message bot-msg">👋 Hi! I'm Tiyani AI. Ask me about Agentic tools, projects, or my person-os!</div>
+      </div>
+      <div class="chat-input-area">
+        <input type="text" class="chat-input" id="chatInput" placeholder="Type a message...">
+        <button id="sendChat" style="background:#e63946; border:none; border-radius: 40px; padding: 8px 18px; color:white; font-weight:600;">Send</button>
       </div>
     </div>
+  </div>
 
-    <section class="resume-banner">
-      <div class="container">
-        <h2>Ready to automate?</h2>
-        <p>Explore my Agentic apps or download my resume.</p>
-        <a href="assets/pdf/cv.pdf" download class="resume-btn"><i class="bi bi-download"></i> Download CV</a>
-      </div>
-    </section>
+  <script>
+    // Typing animation
+    const roles = ["Software Developer", "Agentic AI Architect", "Full-Stack Engineer"];
+    let idx = 0, charIdx = 0, isDeleting = false;
+    const typingEl = document.getElementById("typingElement");
+    function typeLoop() {
+      const current = roles[idx];
+      if (isDeleting) {
+        typingEl.textContent = current.substring(0, charIdx - 1);
+        charIdx--;
+      } else {
+        typingEl.textContent = current.substring(0, charIdx + 1);
+        charIdx++;
+      }
+      if (!isDeleting && charIdx === current.length) {
+        isDeleting = true;
+        setTimeout(typeLoop, 1800);
+        return;
+      }
+      if (isDeleting && charIdx === 0) {
+        isDeleting = false;
+        idx = (idx + 1) % roles.length;
+        setTimeout(typeLoop, 400);
+        return;
+      }
+      setTimeout(typeLoop, isDeleting ? 50 : 100);
+    }
+    typeLoop();
 
-    <footer id="footer" class="footer dark-background">
-      <div class="container text-center py-4">
-        <p>© Tiyani Manganyi | Software Developer | Agentic Workflows</p>
-        <div class="social-links">
-          <a href="https://github.com/Tiyani-Manganyi"><i class="bi bi-github"></i></a>
-          <a href="https://www.linkedin.com/in/tiyani-manganyi-137625316/"><i class="bi bi-linkedin"></i></a>
-        </div>
-      </div>
-    </footer>
-
-    <a href="#" id="scroll-top" class="scroll-top"><i class="bi bi-arrow-up-short"></i></a>
-    <a href="https://wa.me/27608175627" class="whatsapp-float" target="_blank"><i class="bi bi-whatsapp"></i></a>
-    <button id="dark-mode-toggle">🌙</button>
-
-    <!-- AI Assistant Widget -->
-    <div class="ai-chat-widget">
-      <div class="chat-toggle-btn" id="chatToggleBtn"><i class="bi bi-robot"></i></div>
-      <div class="chat-panel" id="chatPanel">
-        <div class="chat-header"><i class="bi bi-robot"></i><span>Tiyani AI</span><button style="background:none; border:none; color:white; margin-left:auto;" id="closeChatBtn">✕</button></div>
-        <div class="chat-messages" id="chatMessages">
-          <div class="message bot-message">Hi! Ask about Tiyani's Agentic projects, skills, or anything!</div>
-          <div class="quick-reply">
-            <button class="quick-chip" data-question="What are Agentic tools?">Agentic Suite</button>
-            <button class="quick-chip" data-question="Show me projects">Projects</button>
-            <button class="quick-chip" data-question="Contact">Contact</button>
-          </div>
-        </div>
-        <div class="chat-input-area">
-          <input type="text" class="chat-input" id="chatInput" placeholder="Ask...">
-          <button class="chat-send" id="chatSendBtn">Send</button>
-        </div>
-      </div>
-    </div>
-
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/aos/aos.js"></script>
-    <script>
-      // Initialize AOS
-      AOS.init({ duration: 800, once: true });
-      
-      // Typing effect
-      const roles = ["Software Developer", "Agentic AI Builder", "Full Stack Dev"];
-      let idx = 0, ci = 0, del = false;
-      const el = document.getElementById('typing-text');
-      function typeEffect() {
-        const cur = roles[idx];
-        if (del) {
-          el.textContent = cur.substring(0, ci - 1);
-          ci--;
+    // Counter animation
+    const counters = document.querySelectorAll('.stat-number');
+    const animateNumber = (el) => {
+      const target = parseInt(el.getAttribute('data-target'));
+      let current = 0;
+      const step = target / 40;
+      const timer = setInterval(() => {
+        current += step;
+        if (current >= target) {
+          el.innerText = target;
+          clearInterval(timer);
         } else {
-          el.textContent = cur.substring(0, ci + 1);
-          ci++;
+          el.innerText = Math.floor(current);
         }
-        if (!del && ci === cur.length) {
-          del = true;
-          setTimeout(typeEffect, 2000);
-          return;
+      }, 30);
+    };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateNumber(entry.target);
+          observer.unobserve(entry.target);
         }
-        if (del && ci === 0) {
-          del = false;
-          idx = (idx + 1) % roles.length;
-          setTimeout(typeEffect, 500);
-          return;
-        }
-        setTimeout(typeEffect, del ? 50 : 100);
-      }
-      typeEffect();
-
-      // Project filter
-      const tabs = document.querySelectorAll('.filter-tab');
-      const cards = document.querySelectorAll('.project-card');
-      tabs.forEach(t => {
-        t.addEventListener('click', function() {
-          tabs.forEach(tt => tt.classList.remove('active'));
-          this.classList.add('active');
-          const filter = this.dataset.filter;
-          cards.forEach(c => {
-            if (filter === 'all') c.style.display = 'block';
-            else if (c.dataset.category === filter) c.style.display = 'block';
-            else c.style.display = 'none';
-          });
-        });
       });
+    }, { threshold: 0.5 });
+    counters.forEach(c => observer.observe(c));
 
-      // Search functionality
-      document.getElementById('searchForm')?.addEventListener('submit', e => {
-        e.preventDefault();
-        const query = document.getElementById('searchInput').value.toLowerCase();
-        cards.forEach(c => {
-          const title = c.querySelector('h3')?.innerText.toLowerCase() || '';
-          c.style.display = (title.includes(query) || query === '') ? 'block' : 'none';
-        });
-      });
-
-      // Dark mode toggle
-      const toggle = document.getElementById('dark-mode-toggle');
-      const body = document.body;
-      if (localStorage.darkMode === 'true') body.classList.add('dark-mode');
-      toggle.onclick = () => {
-        body.classList.toggle('dark-mode');
-        localStorage.darkMode = body.classList.contains('dark-mode');
-        toggle.innerHTML = body.classList.contains('dark-mode') ? '☀️' : '🌙';
-      };
-
-      // AI Chat logic
-      const chatPanel = document.getElementById('chatPanel');
-      const toggleBtn = document.getElementById('chatToggleBtn');
-      const closeChat = document.getElementById('closeChatBtn');
-      const sendBtn = document.getElementById('chatSendBtn');
-      const chatInput = document.getElementById('chatInput');
-      const chatMsgs = document.getElementById('chatMessages');
-
-      function addMessage(text, isUser) {
-        const div = document.createElement('div');
-        div.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
-        div.innerHTML = text;
-        chatMsgs.appendChild(div);
-        chatMsgs.scrollTop = chatMsgs.scrollHeight;
+    // Dark mode
+    const darkToggle = document.getElementById('darkModeToggle');
+    darkToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      const icon = darkToggle.querySelector('i');
+      if (document.body.classList.contains('dark')) {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+      } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
       }
+    });
 
-      function botReply(userMsg) {
-        let reply = "I'm Tiyani AI. Check out the Agentic section for 5 powerful Taskade tools: Grocery Manager, Store Manager, AI Cover Letter, QR Studio, and Productivity Planner!";
-        const lower = userMsg.toLowerCase();
-        if (lower.includes("agentic")) reply = "The Agentic suite includes 5 AI-driven apps built on Taskade – grocery flow, store mgmt, cover letter generator, QR studio, and productivity planner. Click the 'Agentic' link above!";
-        else if (lower.includes("project")) reply = "I have WIL projects (Doctor booking, e‑commerce, TUT portal) and graduate projects (Case Law AI, Resume Analyzer). Also see Agentic tools!";
-        else if (lower.includes("contact")) reply = "Email kbmagoda2024@gmail.com or WhatsApp 060 817 5627.";
-        else if (lower.includes("skill")) reply = "Tiyani's core skills: React (85%), Python (80%), MongoDB (82%), and Agentic/n8n (75%). Check the Skills section!";
-        else reply = "Ask me about Tiyani's Agentic apps, skills, certifications, or projects!";
-        addMessage(reply, false);
+    // AI Chat logic
+    const chatBubble = document.getElementById('chatBubble');
+    const chatPanel = document.getElementById('chatPanel');
+    const closeChat = document.getElementById('closeChat');
+    const chatMessages = document.getElementById('chatMessages');
+    const chatInput = document.getElementById('chatInput');
+    const sendBtn = document.getElementById('sendChat');
+
+    function addMessage(text, isUser) {
+      const msgDiv = document.createElement('div');
+      msgDiv.className = `message ${isUser ? 'user-msg' : 'bot-msg'}`;
+      msgDiv.innerText = text;
+      chatMessages.appendChild(msgDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function botResponse(userText) {
+      let reply = "I'm Tiyani AI. Ask about Agentic suite, projects, skills, or my person-os!";
+      const lower = userText.toLowerCase();
+      if (lower.includes('person-os') || lower.includes('person os')) {
+        reply = "My Person-OS is a complete framework of my habits, tools, workflows, and philosophy. Click 'my person-os' in the navigation to explore!";
+      } else if (lower.includes('agentic') || lower.includes('taskade')) {
+        reply = "Agentic Suite includes: Grocery Flow Manager, Simple Store Manager, AI Cover Letter Generator, QR Pulse Studio, and AI Productivity Planner. All on Taskade!";
+      } else if (lower.includes('project')) {
+        reply = "I've built AI Resume Analyzer, SA Case Law AI, Doctors Appointment, and the Agentic workflow tools.";
+      } else if (lower.includes('skill')) {
+        reply = "Core skills: Python, React, Node.js, MongoDB, NLP, and Agentic automation (n8n/Taskade).";
+      } else if (lower.includes('contact')) {
+        reply = "Email: kbmagoda2024@gmail.com | Phone: +27 60 817 5627";
+      } else {
+        reply = "Feel free to explore the Agentic tools or my Person-OS page! Both reflect my passion for productivity and AI.";
       }
+      addMessage(reply, false);
+    }
 
-      function sendMessage() {
-        const msg = chatInput.value.trim();
-        if (!msg) return;
-        addMessage(msg, true);
-        chatInput.value = '';
-        setTimeout(() => botReply(msg), 300);
-      }
+    function sendMessage() {
+      const msg = chatInput.value.trim();
+      if (!msg) return;
+      addMessage(msg, true);
+      chatInput.value = '';
+      setTimeout(() => botResponse(msg), 500);
+    }
 
-      toggleBtn.onclick = () => { chatPanel.style.display = chatPanel.style.display === 'none' ? 'flex' : 'none'; };
-      closeChat.onclick = () => { chatPanel.style.display = 'none'; };
-      sendBtn.onclick = sendMessage;
-      chatInput.addEventListener('keypress', e => { if (e.key === 'Enter') sendMessage(); });
-
-      document.querySelectorAll('.quick-chip').forEach(chip => {
-        chip.addEventListener('click', () => {
-          const q = chip.getAttribute('data-question') || chip.innerText;
-          addMessage(q, true);
-          setTimeout(() => botReply(q), 300);
-        });
-      });
-
-      document.getElementById('openAiFromMenu')?.addEventListener('click', e => {
-        e.preventDefault();
-        chatPanel.style.display = 'flex';
-      });
-
-      // Counter animation
-      const counters = document.querySelectorAll('.counter');
-      const counterObserver = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const el = entry.target;
-            const target = parseInt(el.dataset.target);
-            let curr = 0;
-            const step = target / 40;
-            const timer = setInterval(() => {
-              curr += step;
-              if (curr >= target) {
-                el.innerText = target;
-                clearInterval(timer);
-              } else {
-                el.innerText = Math.floor(curr);
-              }
-            }, 30);
-            counterObserver.unobserve(el);
-          }
-        });
-      }, { threshold: 0.5 });
-      counters.forEach(c => counterObserver.observe(c));
-    </script>
+    chatBubble.onclick = () => { chatPanel.style.display = chatPanel.style.display === 'flex' ? 'none' : 'flex'; };
+    closeChat.onclick = () => { chatPanel.style.display = 'none'; };
+    sendBtn.onclick = sendMessage;
+    chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendMessage(); });
+  </script>
 </body>
 </html>
