@@ -1,32 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Tiyani OS — Personal Command Center</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-html,body,#root{height:100%;overflow:hidden}
-body{background:#05050f;font-family:-apple-system,'Inter',BlinkMacSystemFont,sans-serif;color:#f0eeff}
-::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(124,58,237,.4);border-radius:10px}
-textarea,input,select,button{font-family:inherit}
-@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-@keyframes bounce{0%,80%,100%{transform:translateY(0);opacity:.3}40%{transform:translateY(-5px);opacity:1}}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(124,58,237,.4)}70%{box-shadow:0 0 0 8px rgba(124,58,237,0)}}
-@keyframes spin{to{transform:rotate(360deg)}}
-@keyframes ripple{0%{transform:scale(1);opacity:1}100%{transform:scale(2.5);opacity:0}}
-</style>
-</head>
-<body><div id="root"></div>
-<script type="text/babel" data-presets="react">
-const {useState,useEffect,useRef} = React;
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Tiyani OS — Personal Command Center</title>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body,#root{height:100%;overflow:hidden}
+    body{background:#05050f;font-family:-apple-system,'Inter',BlinkMacSystemFont,sans-serif;color:#f0eeff}
+    ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}
+    ::-webkit-scrollbar-thumb{background:rgba(124,58,237,.4);border-radius:10px}
+    textarea,input,select,button{font-family:inherit}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes bounce{0%,80%,100%{transform:translateY(0);opacity:.3}40%{transform:translateY(-5px);opacity:1}}
+    @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(124,58,237,.4)}70%{box-shadow:0 0 0 8px rgba(124,58,237,0)}}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    @keyframes ripple{0%{transform:scale(1);opacity:1}100%{transform:scale(2.5);opacity:0}}
+    @keyframes shimmer{0%{background-position:0% 0%}100%{background-position:200% 0%}}
+    .glass{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border: 1px solid rgba(120,100,255,.12);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .btn{
+      padding: 9px 16px;border-radius: 10px;cursor:pointer;font-size:13;font-weight:800;
+      border:1px solid rgba(120,100,255,.14);background:rgba(18,18,50,.35);color:#f0eeff;
+      transition: transform .08s ease, background .12s ease, border-color .12s ease, opacity .12s ease;
+    }
+    .btn:active{transform: translateY(1px)}
+    .btn-primary{
+      background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+      border:none;color:white;
+    }
+    .btn-ghost{background:transparent;border:1px solid rgba(120,100,255,.12)}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 12px;border-radius:999px;font-size:12;font-weight:700;
+      border:1px solid rgba(120,100,255,.16);
+      background: rgba(124,58,237,.12);
+      color:#d8ccff;
+      white-space:nowrap;
+    }
+    .divider{height:1px;background:rgba(120,100,255,.12)}
+    .muted{color:#9490b5}
+    .mono{font-family: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'Liberation Mono','Courier New',monospace}
+  </style>
+</head>
+
+<body>
+<div id="root"></div>
+
+<script type="text/babel" data-presets="react">
+const {useState,useEffect,useMemo,useRef} = React;
+
+/* ----------------------------- Theme ----------------------------- */
 const C={
   bg0:"#05050f",bg1:"#0a0a1a",bg2:"#0f0f24",bg3:"#161630",bg4:"#1c1c3a",
-  border:"rgba(120,100,255,.09)",bh:"rgba(139,92,246,.26)",
+  border:"rgba(120,100,255,.10)",bh:"rgba(139,92,246,.30)",
   p:"#7c3aed",pl:"#8b5cf6",pp:"rgba(124,58,237,.13)",pg:"rgba(124,58,237,.22)",
   g:"#10b981",gp:"rgba(16,185,129,.12)",
   a:"#f59e0b",ap:"rgba(245,158,11,.12)",
@@ -65,72 +101,31 @@ const GOALS=[
 const PROJECTS=[
   {id:"p1",name:"Doctors Appointment Website",cat:"WIL",color:C.b,
    desc:"Online booking platform for medical appointments with calendar integration, email reminders, and secure patient dashboard.",
-   tech:["React","Node.js","MongoDB","Email API"],
-   live:"https://doctors-booking.vercel.app/",code:"https://github.com/Tiyani-Manganyi/doctors-booking",status:"live"},
+   tech:["React","Node.js","MongoDB","Email API"],live:"https://doctors-booking.vercel.app/",code:"https://github.com/Tiyani-Manganyi/doctors-booking",status:"live"},
   {id:"p2",name:"Fruits & Vegetable E-commerce",cat:"WIL",color:C.g,
    desc:"Full-stack MERN platform with Stripe payments, user authentication, admin panel, and order tracking.",
-   tech:["React","Node.js","MongoDB","Stripe"],
-   live:null,code:"https://github.com/Tiyani-Manganyi/Fruits_and_vegetable_web",status:"live"},
+   tech:["React","Node.js","MongoDB","Stripe"],live:null,code:"https://github.com/Tiyani-Manganyi/Fruits_and_vegetable_web",status:"live"},
   {id:"p3",name:"TUT Job Portal",cat:"WIL",color:C.p,
    desc:"Smart career matching platform for TUT students & alumni — real-time vacancies, skills-based recommendations.",
-   tech:["React","AI Matching","REST API","MongoDB"],
-   live:"https://4ir-ai-tut.base44.app/",code:"https://github.com/Tiyani-Manganyi/tut-jobportal",status:"live"},
+   tech:["React","AI Matching","REST API","MongoDB"],live:"https://4ir-ai-tut.base44.app/",code:"https://github.com/Tiyani-Manganyi/tut-jobportal",status:"live"},
   {id:"p4",name:"South African Case Law AI",cat:"Graduate",color:C.a,
    desc:"Semantic search + GPT over landmark SA constitutional cases. Ask a legal question and get cited answers grounded in actual judgments.",
-   tech:["NLP","GPT","Semantic Search","Python"],
-   live:"https://4ir-ai-tut.base44.app/",code:"https://github.com/Tiyani-Manganyi/sa-case-law-ai",status:"live"},
+   tech:["NLP","GPT","Semantic Search","Python"],live:"https://4ir-ai-tut.base44.app/",code:"https://github.com/Tiyani-Manganyi/sa-case-law-ai",status:"live"},
   {id:"p5",name:"LinkedIn Workflow Suggester",cat:"Graduate",color:C.c,
    desc:"AI tool recommending career workflows, networking strategies, and profile optimisations for job seekers.",
-   tech:["AI","React","LinkedIn API","Node.js"],
-   live:"https://linkedin-workflow-suggester.codewords.run/",code:"https://github.com/Tiyani-Manganyi/linkedin-workflow",status:"live"},
+   tech:["AI","React","LinkedIn API","Node.js"],live:"https://linkedin-workflow-suggester.codewords.run/",code:"https://github.com/Tiyani-Manganyi/linkedin-workflow",status:"live"},
   {id:"p6",name:"4IR Resume Website",cat:"Graduate",color:C.k,
    desc:"Interactive digital CV / portfolio template with modern UI, responsive design, and downloadable PDF export.",
-   tech:["HTML/CSS","JavaScript","PDF Export"],
-   live:"https://4-ir-resume-rxi9.vercel.app/",code:"https://github.com/Tiyani-Manganyi/4ir-resume",status:"live"},
+   tech:["HTML/CSS","JavaScript","PDF Export"],live:"https://4-ir-resume-rxi9.vercel.app/",code:"https://github.com/Tiyani-Manganyi/4ir-resume",status:"live"},
   {id:"p7",name:"AI Resume Analyzer",cat:"Graduate",color:C.r,
    desc:"ATS-compatibility checker, keyword optimisation, skill gap analysis. Helps job seekers pass automated screening systems.",
-   tech:["Python","NLP","React","FastAPI"],
-   live:"https://resume-analyzer-ashen.vercel.app/",code:"https://github.com/Tiyani-Manganyi/resume-analyzer",status:"live",hot:true},
+   tech:["Python","NLP","React","FastAPI"],live:"https://resume-analyzer-ashen.vercel.app/",code:"https://github.com/Tiyani-Manganyi/resume-analyzer",status:"live",hot:true},
   {id:"p8",name:"House Price Prediction",cat:"Future",color:C.ts,
    desc:"Regression model with R²=0.87 — planned to be deployed as an API and interactive dashboard.",
-   tech:["Python","ML","Regression","Flask"],
-   live:null,code:"https://github.com/Tiyani-Manganyi/house-price-prediction",status:"planned"},
+   tech:["Python","ML","Regression","Flask"],live:null,code:"https://github.com/Tiyani-Manganyi/house-price-prediction",status:"planned"},
   {id:"p9",name:"Customer Sentiment Dashboard",cat:"Future",color:C.ts,
    desc:"Real-time social media sentiment analysis using NLP — production deployment planned Q3 2026.",
-   tech:["NLP","Python","React","Real-time"],
-   live:null,code:"https://github.com/Tiyani-Manganyi/sentiment-dashboard",status:"planned"},
-];
-
-const CERTS=[
-  {id:"c1",name:"FNB App Academy — Full Stack Development",issuer:"FNB",year:"2025",color:C.g,
-   tech:["React.js","Node.js","Express","MongoDB","REST APIs","JWT Auth"],emoji:"🏆"},
-  {id:"c2",name:"Huawei ICT — Data Management & Analytics",issuer:"Huawei",year:"Feb 2026",color:C.r,
-   tech:["SQL","Python (Pandas)","Tableau","ETL Pipelines","Power BI","Data Modeling"],emoji:"📊"},
-  {id:"c3",name:"Microsoft Azure Fundamentals (AZ-900)",issuer:"Microsoft",year:"Feb 2026",color:C.b,
-   tech:["Azure VMs","Azure Storage","Entra ID","ARM Templates","GDPR","Azure Monitor"],emoji:"☁️"},
-  {id:"c4",name:"Diploma in Computer Science",issuer:"Tshwane University of Technology",year:"01-FEB-2026",color:C.p,
-   tech:["OOP (Java/Python)","Data Structures","Algorithms","Software Engineering","DB Design","OS Concepts"],emoji:"🎓"},
-  {id:"c5",name:"Cybersecurity Essentials (UK Workforce)",issuer:"Knights of Safety",year:"Feb 2026",color:C.a,
-   tech:["NIST CSF","ISO 27001","Risk Management","Encryption (AES)","Incident Response","Zero Trust"],emoji:"🔐"},
-  {id:"c6",name:"Cisco — Getting Started with Packet Tracer",issuer:"Cisco Networking Academy",year:"2025",color:C.c,
-   tech:["TCP/IP Stack","VLANs","Routing (OSPF)","Switching","Cisco IOS","Subnetting"],emoji:"🌐"},
-  {id:"c7",name:"AWS Cloud Practitioner",issuer:"Amazon Web Services",year:"2024",color:C.a,
-   tech:["AWS EC2","S3","Lambda","IAM","CloudFront","RDS","CloudFormation"],emoji:"☁️"},
-  {id:"c8",name:"NLP — Text Classification Models",issuer:"Online",year:"2025",color:C.k,
-   tech:["NLTK","spaCy","scikit-learn","Transformers (HuggingFace)","TensorFlow","Word2Vec"],emoji:"🤖"},
-  {id:"c9",name:"DevOps & Cloud Full Stack CV",issuer:"Professional",year:"2026",color:C.g,
-   tech:["Git/GitHub","Docker","CI/CD (GitHub Actions)","Agile/Scrum","Terraform (IaC)","Jest/Testing"],emoji:"⚙️"},
-];
-
-const ROADMAP=[
-  {year:"2024–2025",title:"Work Integrated Learning (WIL)",status:"done",color:C.g,
-   desc:"12 months hands-on industry experience. Built full-stack apps, contributed to AI projects, earned cloud & agile certifications."},
-  {year:"2025–Present",title:"Graduate Programme (Advanced Track)",status:"active",color:C.p,
-   desc:"AI engineering, scalable cloud architectures, and team leadership. Building production-grade AI assistants, mentoring WIL interns."},
-  {year:"Q3 2026",title:"Launch Tiyani AI v2 with LLM",status:"upcoming",color:C.a,
-   desc:"Enhance AI assistant with generative AI (Gemini/OpenAI) for dynamic portfolio Q&A."},
-  {year:"2027+",title:"Senior Developer / Tech Lead",status:"future",color:C.k,
-   desc:"Transition into a senior role, leading AI product teams and driving innovation at scale."},
+   tech:["NLP","Python","React","Real-time"],live:null,code:"https://github.com/Tiyani-Manganyi/sentiment-dashboard",status:"planned"},
 ];
 
 const SKILLS=[
@@ -140,6 +135,18 @@ const SKILLS=[
   {name:"MongoDB",pct:82,color:C.a},
   {name:"NLP & AI/ML",pct:75,color:C.p},
   {name:"AWS / Azure Cloud",pct:70,color:C.c},
+];
+
+const CERTS=[
+  {id:"c1",name:"FNB App Academy — Full Stack Development",issuer:"FNB",year:"2025",color:C.g,tech:["React.js","Node.js","Express","MongoDB","REST APIs","JWT Auth"],emoji:"🏆"},
+  {id:"c2",name:"Huawei ICT — Data Management & Analytics",issuer:"Huawei",year:"Feb 2026",color:C.r,tech:["SQL","Python (Pandas)","Tableau","ETL Pipelines","Power BI","Data Modeling"],emoji:"📊"},
+  {id:"c3",name:"Microsoft Azure Fundamentals (AZ-900)",issuer:"Microsoft",year:"Feb 2026",color:C.b,tech:["Azure VMs","Azure Storage","Entra ID","ARM Templates","GDPR","Azure Monitor"],emoji:"☁️"},
+  {id:"c4",name:"Diploma in Computer Science",issuer:"Tshwane University of Technology",year:"01-FEB-2026",color:C.p,tech:["OOP (Java/Python)","Data Structures","Algorithms","Software Engineering","DB Design","OS Concepts"],emoji:"🎓"},
+  {id:"c5",name:"Cybersecurity Essentials (UK Workforce)",issuer:"Knights of Safety",year:"Feb 2026",color:C.a,tech:["NIST CSF","ISO 27001","Risk Management","Encryption (AES)","Incident Response","Zero Trust"],emoji:"🔐"},
+  {id:"c6",name:"Cisco — Getting Started with Packet Tracer",issuer:"Cisco Networking Academy",year:"2025",color:C.c,tech:["TCP/IP Stack","VLANs","Routing (OSPF)","Switching","Cisco IOS","Subnetting"],emoji:"🌐"},
+  {id:"c7",name:"AWS Cloud Practitioner",issuer:"Amazon Web Services",year:"2024",color:C.a,tech:["AWS EC2","S3","Lambda","IAM","CloudFront","RDS","CloudFormation"],emoji:"☁️"},
+  {id:"c8",name:"NLP — Text Classification Models",issuer:"Online",year:"2025",color:C.k,tech:["NLTK","spaCy","scikit-learn","Transformers (HuggingFace)","TensorFlow","Word2Vec"],emoji:"🤖"},
+  {id:"c9",name:"DevOps & Cloud Full Stack CV",issuer:"Professional",year:"2026",color:C.g,tech:["Git/GitHub","Docker","CI/CD (GitHub Actions)","Agile/Scrum","Terraform (IaC)","Jest/Testing"],emoji:"⚙️"},
 ];
 
 const CALENDAR_EVENTS=[
@@ -157,7 +164,8 @@ const NOTION_NOTES=[
   {id:"n3",title:"Graduate Programme Notes",color:C.a,date:"May 30",content:"Topics this month:\n• AI Engineering — LLM fine-tuning\n• Cloud Architecture — multi-region\n• Team Leadership — mentoring WIL interns\n• Production deployment practices"},
 ];
 
-const GMAIL_INBOX=[
+/* ----------------------------- Initial demo inbox ----------------------------- */
+const GMAIL_INBOX_DEMO=[
   {id:"m1",from:"noreply-olums@tut.ac.za",name:"TUT Portal",avatar:"TUT",avatarColor:"#1a237e",
    subject:"REMINDER: IT Interns West Rand — check if you qualify",
    time:"10:53 AM",unread:true,category:"opportunity",
@@ -170,152 +178,268 @@ const GMAIL_INBOX=[
    subject:"New sign-in detected on your Vercel account",
    time:"11:57 AM",unread:true,category:"security",
    body:"Hello,\n\nYour Vercel account was recently signed-in from a new location:\n\nLocation: Pretoria, Gauteng, South Africa\nDevice: New browser\n\nIf this was you, no action needed. If not, secure your account at vercel.com/account."},
-  {id:"m4",from:"notify@updates.notion.so",name:"Notion",avatar:"N",avatarColor:"#333",
-   subject:"A new device logged into your account",
-   time:"1:25 PM",unread:true,category:"security",
-   body:"Notion Security Notice\n\nA new device logged into your Notion account.\n\nLogin method: Email Magic Link\nLocation: Pretoria, South Africa\n\nIf this wasn't you, revoke access immediately in Notion Settings → Security."},
-  {id:"m5",from:"messages-noreply@linkedin.com",name:"LinkedIn",avatar:"in",avatarColor:"#0a66c2",
-   subject:"Your puzzle today, Nolitha 🧩",
-   time:"12:21 PM",unread:true,category:"social",
-   body:"LinkedIn\n\nYour daily LinkedIn puzzle is ready!\n2 of your connections have already completed it.\n\nPlay now and see how you rank →"},
-  {id:"m6",from:"deals@newsletters.takealot.com",name:"Takealot",avatar:"TK",avatarColor:"#0088cc",
-   subject:"Shop Thanksalot deals — pay later with takealot.credit 💰",
-   time:"9:37 AM",unread:false,category:"promo",
-   body:"Takealot Deals\n\nStand a chance to win 1 of 10 R5000 Takealot vouchers!\n\nShop now and enter automatically. Thousands of deals available."},
 ];
 
-const LI_NOTIFS=[
+const LI_NOTIFS_DEMO=[
   {id:"n1",type:"message",from:"Hiring Manager",avatar:"HM",avatarColor:C.b,
    title:"New message: Junior Dev opportunity",
-   body:"Hi Tiyani, I came across your portfolio at gwende.vercel.app and I'm impressed. We have a Junior Developer role that matches your profile...",
+   body:"Hi Tiyani, I came across your portfolio at gwende.vercel.app and I'm impressed. We have a Junior Developer role...",
    time:"1h ago",unread:true},
   {id:"n2",type:"job",from:"LinkedIn Jobs",avatar:"in",avatarColor:"#0a66c2",
    title:"Job match: React Developer — Remote",
-   body:"DataFlow Analytics · React Developer · Remote · R45,000/month · Strong match based on your React.js (85%) skill.",
+   body:"DataFlow Analytics · React Developer · Remote · R45,000/month · Strong match based on React.js (85%).",
    time:"3h ago",unread:true},
   {id:"n3",type:"view",from:"LinkedIn",avatar:"👀",avatarColor:C.p,
    title:"Your profile was viewed 14 times this week",
-   body:"14 people viewed your profile this week — up 40% from last week. Your AI Resume Analyzer project is getting attention.",
+   body:"14 people viewed your profile this week — up 40% from last week.",
    time:"Today",unread:false},
-  {id:"n4",type:"connection",from:"Tech Recruiter",avatar:"TR",avatarColor:C.g,
-   title:"New connection request from Senior Recruiter at Takealot",
-   body:"A Senior Technical Recruiter at Takealot wants to connect with you. They hire developers for their engineering teams.",
-   time:"Yesterday",unread:true},
 ];
 
+/* ----------------------------- Utilities ----------------------------- */
 function Av({seed,label,size=34,color,sq}){
   const pal=["#7c3aed","#10b981","#f59e0b","#3b82f6","#ec4899","#ef4444","#0a66c2","#06b6d4"];
   const bg=color||pal[(seed||"A").charCodeAt(0)%pal.length];
   const init=(label||(seed||"?").split(" ").map(w=>w[0]).join("").slice(0,2)).toUpperCase();
-  return <div style={{width:size,height:size,borderRadius:sq?10:"50%",background:bg,color:"#fff",display:"flex",alignItems:"center",justifyContent:"center",fontWeight:800,fontSize:size*.36,flexShrink:0}}>{init}</div>;
+  return (
+    <div style={{
+      width:size,height:size,borderRadius:sq?10:"50%",background:bg,color:"#fff",
+      display:"flex",alignItems:"center",justifyContent:"center",fontWeight:900,fontSize:size*.36,
+      flexShrink:0
+    }}>{init}</div>
+  );
 }
 function Badge({label,color=C.p,bg}){
-  return <span style={{background:bg||(color+"18"),color,border:`1px solid ${color}28`,borderRadius:5,padding:"2px 9px",fontSize:11,fontWeight:600,whiteSpace:"nowrap"}}>{label}</span>;
+  return (
+    <span style={{
+      background:bg||(color+"18"),
+      color,
+      border:`1px solid ${color}28`,
+      borderRadius:999,
+      padding:"2px 10px",
+      fontSize:11,
+      fontWeight:800,
+      whiteSpace:"nowrap"
+    }}>{label}</span>
+  );
 }
-function Bar({pct,color=C.p,h=6}){
-  return <div style={{background:C.bg3,borderRadius:99,height:h,overflow:"hidden"}}><div style={{width:`${pct}%`,height:"100%",background:`linear-gradient(90deg,${color},${color}aa)`,borderRadius:99,transition:"width .5s"}}/></div>;
+function Bar({pct,color=C.p,h=7}){
+  return (
+    <div style={{background:C.bg3,borderRadius:99,height:h,overflow:"hidden"}}>
+      <div style={{
+        width:`${pct}%`,height:"100%",
+        background:`linear-gradient(90deg,${color},${color}aa)`,
+        borderRadius:99,transition:"width .5s"
+      }}/>
+    </div>
+  );
 }
 function Card({children,glow,style={}}){
-  return <div style={{background:C.bg2,border:`1px solid ${glow?C.pg:C.border}`,borderRadius:14,padding:"18px 20px",...style}}>{children}</div>;
+  return (
+    <div className={glow?"glass":""}
+      style={{
+        background:glow?undefined:C.bg2,
+        border:`1px solid ${glow?C.pg:C.border}`,
+        borderRadius:16,padding:"18px 20px",
+        ...style
+      }}>
+      {children}
+    </div>
+  );
 }
 function Btn({children,onClick,v="ghost",style={}}){
-  const s={ghost:{padding:"8px 16px",background:C.bg3,border:`1px solid ${C.border}`,color:C.ts},
-    primary:{padding:"9px 20px",background:`linear-gradient(135deg,${C.p},${C.pl})`,border:"none",color:"#fff"},
-    green:{padding:"8px 16px",background:C.gp,border:`1px solid ${C.g}33`,color:C.g}};
-  return <button onClick={onClick} style={{...(s[v]||s.ghost),borderRadius:9,cursor:"pointer",fontSize:13,fontWeight:700,transition:"all .15s",...style}}>{children}</button>;
+  const cls = v==="primary"?"btn btn-primary":v==="green"?"btn":"btn btn-ghost";
+  return (
+    <button className={cls} onClick={onClick} style={style}>
+      {children}
+    </button>
+  );
 }
 function Modal({children,onClose,wide}){
-  return <div style={{position:"fixed",inset:0,background:"rgba(5,5,15,.88)",display:"flex",alignItems:"center",justifyContent:"center",zIndex:500}} onClick={e=>e.target===e.currentTarget&&onClose()}>
-    <div style={{background:C.bg1,border:`1px solid ${C.bh}`,borderRadius:18,padding:28,width:wide?"min(820px,96vw)":"min(560px,95vw)",maxHeight:"90vh",overflowY:"auto",animation:"fadeIn .2s ease",boxShadow:"0 40px 80px rgba(0,0,0,.7)"}}>{children}</div>
-  </div>;
+  return (
+    <div style={{position:"fixed",inset:0,background:"rgba(5,5,15,.88)",display:"flex",alignItems:"center",justifyContent:"center",zIndex:500}}
+      onClick={e=>e.target===e.currentTarget&&onClose()}>
+      <div style={{
+        background:C.bg1,border:`1px solid ${C.bh}`,borderRadius:18,padding:28,
+        width:wide?"min(860px,96vw)":"min(600px,95vw)",
+        maxHeight:"90vh",overflowY:"auto",animation:"fadeIn .2s ease",
+        boxShadow:"0 40px 80px rgba(0,0,0,.7)"
+      }}>{children}</div>
+    </div>
+  );
 }
 
-function TodayView({onNav}){
+/* ----------------------------- “Today” sent tracking ----------------------------- */
+function tzJohannesburgDateKey(d=new Date()){
+  // Format YYYY-MM-DD in Africa/Johannesburg without external libs
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Africa/Johannesburg',
+    year:'numeric', month:'2-digit', day:'2-digit'
+  }).formatToParts(d);
+  const get = (t)=>parts.find(p=>p.type===t)?.value;
+  return `${get('year')}-${get('month')}-${get('day')}`;
+}
+const LS_KEY="tiyani_sent_events_v2";
+function loadSentEvents(){
+  try{ return JSON.parse(localStorage.getItem(LS_KEY)||"[]"); }catch{ return []; }
+}
+function saveSentEvents(evts){
+  localStorage.setItem(LS_KEY, JSON.stringify(evts));
+}
+function addSentEvent(evt){
+  const evts=loadSentEvents();
+  evts.push(evt);
+  saveSentEvents(evts);
+}
+
+/* ----------------------------- API layer (optional backend) ----------------------------- */
+async function apiGetJSON(path){
+  const r = await fetch(path, {headers:{"Accept":"application/json"}});
+  if(!r.ok) throw new Error("API request failed");
+  return await r.json();
+}
+async function apiPostJSON(path,body){
+  const r = await fetch(path,{
+    method:"POST",
+    headers:{"Content-Type":"application/json","Accept":"application/json"},
+    body:JSON.stringify(body)
+  });
+  if(!r.ok) throw new Error("API request failed");
+  return await r.json();
+}
+
+/* ----------------------------- Views ----------------------------- */
+function TodayHeader({onNav, mailUnread, liUnread, todaySentG, todaySentLI, nowStr}){
   const hour=new Date().getHours();
   const greet=hour<12?"Good morning":hour<17?"Good afternoon":"Good evening";
-  return(
-    <div style={{height:"100%",overflowY:"auto",padding:"26px 30px",animation:"fadeIn .3s ease"}}>
-      <div style={{marginBottom:26}}>
-        <div style={{fontSize:12,color:C.tm,marginBottom:3}}>Tuesday, June 2, 2026</div>
-        <div style={{fontSize:26,fontWeight:800,color:C.tx,letterSpacing:-.6}}>{greet}, Tiyani ✦</div>
-        <div style={{fontSize:14,color:C.ts,marginTop:3}}>Junior Software Developer · Pretoria, South Africa</div>
+  const todayLabel = new Intl.DateTimeFormat('en-ZA',{
+    timeZone:'Africa/Johannesburg',
+    weekday:'long',year:'numeric',month:'long',day:'numeric'
+  }).format(new Date());
+
+  return (
+    <div style={{height:"100%",overflowY:"auto",padding:"24px 26px",animation:"fadeIn .25s ease"}}>
+      <div style={{marginBottom:18}}>
+        <div className="muted" style={{fontSize:12,marginBottom:6}}>{todayLabel}</div>
+        <div style={{fontSize:28,fontWeight:950,color:C.tx,letterSpacing:-.8}}>{greet}, Tiyani ✦</div>
+        <div style={{fontSize:14,color:C.ts,marginTop:4}}>Junior Software Developer · {ME.location}</div>
       </div>
-      <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:10,marginBottom:24}}>
+
+      <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:10,marginBottom:16}}>
         {[
           {v:"4",l:"Active Goals",s:"in progress",color:C.p},
-          {v:"9",l:"Projects Built",s:"7 live · 2 planned",color:C.g},
+          {v:"7+",l:"Projects Live",s:"and shipping energy",color:C.g},
           {v:"13+",l:"Certifications",s:"AWS · Azure · FNB",color:C.a},
-          {v:GMAIL_INBOX.filter(m=>m.unread).length,l:"Unread Emails",s:"kbmagoda2024@gmail.com",color:C.r},
+          {v:String(mailUnread+liUnread),l:"Needs Attention",s:`${mailUnread} email · ${liUnread} LinkedIn`,color:C.r},
         ].map(s=>(
-          <Card key={s.l} style={{cursor:"default",transition:"border-color .2s",padding:"12px 10px"}}>
-            <div style={{fontSize:14,fontWeight:600,color:s.color,marginBottom:2}}>{s.l}</div>
-            <div style={{fontSize:20,fontWeight:800,color:s.color}}>{s.v}</div>
-            <div style={{fontSize:11,color:C.tm,marginTop:1}}>{s.s}</div>
+          <Card key={s.l} style={{padding:"12px 14px",borderRadius:16}}>
+            <div style={{fontSize:12,fontWeight:900,color:s.color,marginBottom:2}}>{s.l}</div>
+            <div style={{fontSize:22,fontWeight:950,color:s.color}}>{s.v}</div>
+            <div style={{fontSize:11,color:C.ts,marginTop:2}}>{s.s}</div>
           </Card>
         ))}
       </div>
-      <Card glow style={{marginBottom:20}}>
-        <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:14}}>
-          <div style={{width:34,height:34,borderRadius:10,background:`linear-gradient(135deg,${C.p},${C.pl})`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:15}}>✦</div>
-          <div><div style={{fontWeight:700,color:C.pl,fontSize:13}}>Life Coach — Daily Briefing</div><div style={{fontSize:11,color:C.tm}}>Generated for kbmagoda2024@gmail.com</div></div>
-        </div>
-        {[
-          {t:"08:00",task:"Apply to IT Interns West Rand (TUT reminded you today — strong match)",color:C.g},
-          {t:"09:30",task:"Review LinkedIn: 2 unread job matches + new connection from Takealot recruiter",color:C.b},
-          {t:"11:00",task:"Code session — push progress on Tiyani AI v2 (Q3 2026 deadline approaching)",color:C.p},
-          {t:"14:00",task:"Update gwende.vercel.app portfolio with latest project demos",color:C.a},
-          {t:"19:00",task:"Evening reflection + habit check-ins",color:C.k},
-        ].map((p,i)=>(
-          <div key={i} style={{display:"flex",gap:12,padding:"9px 12px",background:C.bg0,borderRadius:9,border:`1px solid ${C.border}`,marginBottom:6}}>
-            <span style={{fontSize:11,color:C.tm,width:44,flexShrink:0,paddingTop:1,fontWeight:600}}>{p.t}</span>
-            <span style={{width:8,height:8,borderRadius:"50%",background:p.color,flexShrink:0,marginTop:4}}/>
-            <span style={{fontSize:13,color:C.ts,lineHeight:1.5}}>{p.task}</span>
-          </div>
-        ))}
-      </Card>
-      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16,marginBottom:20}}>
-        <Card>
-          <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:14}}>
-            <span style={{fontWeight:700,color:C.tx,fontSize:13}}>Top Goals</span>
-            <button onClick={()=>onNav("goals")} style={{background:"none",border:"none",color:C.pl,cursor:"pointer",fontSize:12,fontWeight:600}}>See all →</button>
-          </div>
-          {GOALS.map(g=>(
-            <div key={g.id} style={{marginBottom:12}}>
-              <div style={{display:"flex",justifyContent:"space-between",marginBottom:4}}>
-                <span style={{fontSize:12,fontWeight:600,color:C.tx}}>{g.emoji} {g.title}</span>
-                <span style={{fontSize:12,fontWeight:800,color:g.color}}>{g.progress}%</span>
+
+      <div style={{display:"grid",gridTemplateColumns:"1.2fr .8fr",gap:14,marginBottom:14}}>
+        <Card glow>
+          <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12,gap:10}}>
+            <div style={{display:"flex",alignItems:"center",gap:10}}>
+              <div style={{width:36,height:36,borderRadius:12,background:`linear-gradient(135deg,${C.p},${C.pl})`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:15}}>✦</div>
+              <div>
+                <div style={{fontWeight:950,color:C.pl,fontSize:13}}>Life Coach — Daily Brief</div>
+                <div style={{fontSize:11,color:C.ts}}>Auto-refresh · Johannesburg timezone</div>
               </div>
-              <Bar pct={g.progress} color={g.color} h={5}/>
+            </div>
+            <div className="pill" title="Live clock">
+              <span style={{width:6,height:6,borderRadius:"50%",background:C.g}}/>
+              <span className="mono">{nowStr}</span>
+            </div>
+          </div>
+
+          <div style={{display:"grid",gridTemplateColumns:"repeat(2,1fr)",gap:10}}>
+            <div style={{background:C.bg0,border:`1px solid ${C.border}`,borderRadius:12,padding:12}}>
+              <div className="muted" style={{fontSize:11,fontWeight:800,marginBottom:6}}>Sent today — Gmail</div>
+              <div style={{fontSize:18,fontWeight:1000,color:C.g}}>{todaySentG.count} messages</div>
+              <div className="muted" style={{fontSize:11,marginTop:2}}>Last: {todaySentG.last||"—"}</div>
+            </div>
+            <div style={{background:C.bg0,border:`1px solid ${C.border}`,borderRadius:12,padding:12}}>
+              <div className="muted" style={{fontSize:11,fontWeight:800,marginBottom:6}}>Sent today — LinkedIn</div>
+              <div style={{fontSize:18,fontWeight:1000,color:C.b}}>{todaySentLI.count} messages</div>
+              <div className="muted" style={{fontSize:11,marginTop:2}}>Last: {todaySentLI.last||"—"}</div>
+            </div>
+          </div>
+
+          <div className="divider" style={{margin:"14px 0"}}/>
+
+          {[
+            {t:"08:00",task:"Apply to IT Interns West Rand (TUT reminder — strong match)",color:C.g},
+            {t:"09:30",task:"Review LinkedIn: job matches + new connection follow-up",color:C.b},
+            {t:"11:00",task:"Code session — push progress on Tiyani AI v2 (Q3 2026)",color:C.p},
+            {t:"14:00",task:"Update gwende.vercel.app with latest demos",color:C.a},
+            {t:"19:00",task:"Evening reflection + habit check-ins",color:C.k},
+          ].map((p,i)=>(
+            <div key={i} style={{display:"flex",gap:12,padding:"9px 12px",background:C.bg0,borderRadius:12,border:`1px solid ${C.border}`,marginBottom:8}}>
+              <span style={{fontSize:11,color:C.tm,width:60,flexShrink:0,paddingTop:2,fontWeight:900}}>{p.t}</span>
+              <span style={{width:8,height:8,borderRadius:"50%",background:p.color,flexShrink:0,marginTop:5}}/>
+              <span style={{fontSize:13,color:C.tx,lineHeight:1.5,fontWeight:800}}>{p.task}</span>
             </div>
           ))}
         </Card>
-        <Card>
-          <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:14}}>
-            <span style={{fontWeight:700,color:C.tx,fontSize:13}}>Gmail Inbox</span>
-            <button onClick={()=>onNav("inbox")} style={{background:"none",border:"none",color:C.pl,cursor:"pointer",fontSize:12,fontWeight:600}}>Open →</button>
+
+        <Card style={{padding:"16px 16px"}}>
+          <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:10}}>
+            <div style={{fontWeight:950,color:C.tx,fontSize:13}}>Quick Jump</div>
+            <Badge label="Live" color={C.pl}/>
           </div>
-          {GMAIL_INBOX.filter(m=>m.unread).slice(0,4).map(m=>(
-            <div key={m.id} style={{display:"flex",gap:10,marginBottom:10,alignItems:"flex-start"}}>
-              <Av seed={m.name} label={m.avatar} color={m.avatarColor} size={28} sq/>
-              <div style={{flex:1,minWidth:0}}>
-                <div style={{fontSize:12,fontWeight:700,color:C.tx,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{m.subject}</div>
-                <div style={{fontSize:11,color:C.tm}}>{m.name} · {m.time}</div>
-              </div>
-              {m.category==="opportunity"&&<span style={{width:8,height:8,borderRadius:"50%",background:C.g,flexShrink:0,marginTop:4}}/>}
-            </div>
-          ))}
+          <div style={{display:"grid",gridTemplateColumns:"1fr",gap:10}}>
+            <button className="btn" onClick={()=>onNav("inbox")} style={{textAlign:"left"}}>
+              📩 Gmail Inbox
+            </button>
+            <button className="btn" onClick={()=>onNav("linkedin")} style={{textAlign:"left"}}>
+              🔗 LinkedIn Activity
+            </button>
+            <button className="btn" onClick={()=>onNav("coach")} style={{textAlign:"left"}}>
+              ✦ Life Coach (AI)
+            </button>
+            <button className="btn" onClick={()=>onNav("projects")} style={{textAlign:"left"}}>
+              🚀 Projects Dashboard
+            </button>
+          </div>
         </Card>
       </div>
-      <Card>
-        <div style={{fontWeight:700,color:C.tx,fontSize:13,marginBottom:14}}>Technical Skills — from gwende.vercel.app</div>
-        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"10px 24px"}}>
+
+      <Card style={{marginBottom:14}}>
+        <div style={{fontWeight:1000,color:C.tx,marginBottom:10}}>Today’s Top Skills</div>
+        <div style={{display:"grid",gridTemplateColumns:"repeat(2,1fr)",gap:12}}>
           {SKILLS.map(s=>(
             <div key={s.name}>
-              <div style={{display:"flex",justifyContent:"space-between",marginBottom:4}}>
-                <span style={{fontSize:12,color:C.ts}}>{s.name}</span>
-                <span style={{fontSize:12,fontWeight:700,color:s.color}}>{s.pct}%</span>
+              <div style={{display:"flex",justifyContent:"space-between",marginBottom:6}}>
+                <span style={{fontSize:12,fontWeight:900,color:C.ts}}>{s.name}</span>
+                <span style={{fontSize:12,fontWeight:1000,color:s.color}}>{s.pct}%</span>
               </div>
-              <Bar pct={s.pct} color={s.color} h={5}/>
+              <Bar pct={s.pct} color={s.color} h={8}/>
+            </div>
+          ))}
+        </div>
+      </Card>
+
+      <Card>
+        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12}}>
+          <div style={{fontWeight:1000,color:C.tx}}>Focus Projects</div>
+          <button className="btn btn-ghost" style={{padding:"6px 12px",fontSize:12}} onClick={()=>onNav("projects")}>See all →</button>
+        </div>
+        <div style={{display:"grid",gridTemplateColumns:"repeat(2,1fr)",gap:12}}>
+          {PROJECTS.filter(p=>p.status==="live").slice(0,4).map(p=>(
+            <div key={p.id} style={{background:C.bg0,border:`1px solid ${C.border}`,borderRadius:14,padding:12}}>
+              <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",gap:10,marginBottom:6}}>
+                <div>
+                  <div style={{fontWeight:1000,color:C.tx,fontSize:13,marginBottom:6}}>{p.name}</div>
+                  <div className="muted" style={{fontSize:11,lineHeight:1.4}}>{p.desc}</div>
+                </div>
+                <span style={{width:10,height:10,borderRadius:"50%",background:p.color,marginTop:4}}/>
+              </div>
+              <div style={{display:"flex",flexWrap:"wrap",gap:6,marginTop:10}}>
+                {p.tech.slice(0,3).map(t=><Badge key={t} label={t} color={p.color}/>)}
+              </div>
             </div>
           ))}
         </div>
@@ -325,32 +449,46 @@ function TodayView({onNav}){
 }
 
 function GoalsView(){
-  const [sel,setSel]=useState(null);
   const catColor={Career:C.g,Education:C.p,Product:C.a,Health:C.k};
   return(
-    <div style={{height:"100%",overflowY:"auto",padding:"26px 30px",animation:"fadeIn .3s ease"}}>
-      <div style={{fontSize:22,fontWeight:800,color:C.tx,letterSpacing:-.5,marginBottom:4}}>Goals</div>
-      <div style={{fontSize:13,color:C.tm,marginBottom:22}}>Your north stars · reviewed daily by Life Coach</div>
-      <div style={{display:"grid",gridTemplateColumns:"repeat(2,1fr)",gap:16}}>
+    <div style={{height:"100%",overflowY:"auto",padding:"26px 28px",animation:"fadeIn .25s ease"}}>
+      <div style={{fontSize:24,fontWeight:1000,color:C.tx,letterSpacing:-.6,marginBottom:6}}>Goals</div>
+      <div className="muted" style={{fontSize:13,marginBottom:20}}>North stars reviewed daily by your Life Coach</div>
+
+      <div style={{display:"grid",gridTemplateColumns:"repeat(2,1fr)",gap:14}}>
         {GOALS.map(g=>(
-          <Card key={g.id} style={{cursor:"pointer",transition:"border-color .2s"}}
-            onMouseEnter={e=>e.currentTarget.style.borderColor=g.color+"44"}
-            onMouseLeave={e=>e.currentTarget.style.borderColor=C.border}
-            onClick={()=>setSel(g)}>
-            <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:12}}>
-              <div><Badge label={g.cat} color={catColor[g.cat]||C.p}/><div style={{fontSize:15,fontWeight:700,color:C.tx,marginTop:8,lineHeight:1.3}}>{g.emoji} {g.title}</div></div>
-              <div style={{fontSize:24,fontWeight:800,color:g.color}}>{g.progress}%</div>
+          <Card key={g.id} style={{cursor:"default",padding:"18px 18px"}}>
+            <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",gap:10,marginBottom:10}}>
+              <div>
+                <Badge label={g.cat} color={catColor[g.cat]||C.p}/>
+                <div style={{fontSize:15,fontWeight:1000,color:C.tx,marginTop:10,lineHeight:1.2}}>
+                  {g.emoji} {g.title}
+                </div>
+              </div>
+              <div style={{fontSize:26,fontWeight:1000,color:g.color}}>{g.progress}%</div>
             </div>
-            <Bar pct={g.progress} color={g.color} h={7}/>
+            <Bar pct={g.progress} color={g.color} h={9}/>
             <div style={{marginTop:14}}>
               {g.milestones.map((m,i)=>(
-                <div key={i} style={{display:"flex",alignItems:"center",gap:8,marginBottom:6}}>
-                  <div style={{width:16,height:16,borderRadius:"50%",background:g.done.includes(i)?g.color:C.bg4,border:`2px solid ${g.done.includes(i)?g.color:C.border}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:9,color:"#fff",flexShrink:0}}>{g.done.includes(i)?"✓":""}</div>
-                  <span style={{fontSize:12,color:g.done.includes(i)?C.ts:C.tm,textDecoration:g.done.includes(i)?"line-through":"none"}}>{m}</span>
+                <div key={i} style={{display:"flex",alignItems:"center",gap:10,marginBottom:7}}>
+                  <div style={{
+                    width:18,height:18,borderRadius:"50%",
+                    background:g.done.includes(i)?g.color:C.bg4,
+                    border:`2px solid ${g.done.includes(i)?g.color:C.border}`,
+                    display:"flex",alignItems:"center",justifyContent:"center",color:"#fff",fontSize:11,fontWeight:900
+                  }}>{g.done.includes(i)?"✓":""}</div>
+                  <span style={{
+                    fontSize:12,color:g.done.includes(i)?C.ts:C.tm,
+                    textDecoration:g.done.includes(i)?"line-through":"none",fontWeight:800
+                  }}>{m}</span>
                 </div>
               ))}
             </div>
-            {g.notes&&<div style={{marginTop:10,padding:"8px 11px",background:C.bg3,borderRadius:8,fontSize:11,color:C.tm,fontStyle:"italic",lineHeight:1.5}}>{g.notes}</div>}
+            {g.notes && (
+              <div style={{marginTop:12,padding:"10px 12px",background:C.bg3,borderRadius:12,color:C.ts,fontStyle:"italic",lineHeight:1.5,fontSize:12,border:`1px solid ${C.border}`}}>
+                {g.notes}
+              </div>
+            )}
           </Card>
         ))}
       </div>
@@ -364,32 +502,56 @@ function ProjectsView(){
   const filtered=filter==="All"?PROJECTS:PROJECTS.filter(p=>p.cat===filter);
   const catColor={WIL:C.b,Graduate:C.p,Future:C.ts};
   return(
-    <div style={{height:"100%",overflowY:"auto",padding:"26px 30px",animation:"fadeIn .3s ease"}}>
-      <div style={{display:"flex",alignItems:"flex-start",justifyContent:"space-between",marginBottom:20,flexWrap:"wrap",gap:10}}>
-        <div><div style={{fontSize:22,fontWeight:800,color:C.tx,letterSpacing:-.5}}>Projects</div><div style={{fontSize:13,color:C.tm,marginTop:2}}>9 projects · 3 WIL · 4 Graduate · 2 Future</div></div>
-        <div style={{display:"flex",gap:6}}>
-          {cats.map(c=><button key={c} onClick={()=>setFilter(c)} style={{padding:"5px 13px",background:filter===c?`linear-gradient(135deg,${C.p},${C.pl})`:C.bg3,border:`1px solid ${filter===c?"transparent":C.border}`,borderRadius:20,color:filter===c?"#fff":C.ts,cursor:"pointer",fontSize:12,fontWeight:600}}>{c}</button>)}
+    <div style={{height:"100%",overflowY:"auto",padding:"26px 28px",animation:"fadeIn .25s ease"}}>
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",gap:12,flexWrap:"wrap",marginBottom:16}}>
+        <div>
+          <div style={{fontSize:24,fontWeight:1000,color:C.tx,letterSpacing:-.6}}>Projects</div>
+          <div className="muted" style={{fontSize:13,marginTop:3}}>9 projects · live & planned</div>
+        </div>
+        <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
+          {cats.map(c=>(
+            <button
+              key={c}
+              className="btn"
+              onClick={()=>setFilter(c)}
+              style={{
+                padding:"6px 14px",
+                background: filter===c ? "linear-gradient(135deg, "+C.p+", "+C.pl+")" : "rgba(18,18,50,.35)",
+                border: filter===c ? "none" : `1px solid ${C.border}`,
+                color: filter===c ? "#fff" : C.ts,
+                opacity: filter===c ? 1 : .95
+              }}
+            >{c}</button>
+          ))}
         </div>
       </div>
+
       <div style={{display:"grid",gridTemplateColumns:"repeat(2,1fr)",gap:14}}>
         {filtered.map(p=>(
-          <Card key={p.id} style={{transition:"border-color .2s",position:"relative"}}
-            onMouseEnter={e=>e.currentTarget.style.borderColor=p.color+"44"}
-            onMouseLeave={e=>e.currentTarget.style.borderColor=C.border}>
-            {p.hot&&<div style={{position:"absolute",top:-8,right:14,background:C.r,color:"#fff",fontSize:10,fontWeight:800,borderRadius:20,padding:"2px 10px"}}>🔥 HIGH DEMAND</div>}
-            <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10}}>
-              <div><Badge label={p.cat} color={catColor[p.cat]||C.ts}/>{p.status==="planned"&&<Badge label="Planned" color={C.ts} style={{marginLeft:4}}/>}</div>
-              {p.status==="live"&&<div style={{width:8,height:8,borderRadius:"50%",background:C.g,marginTop:3}}/>}
+          <Card key={p.id} glow={false} style={{padding:"16px 16px",position:"relative"}}>
+            {p.hot && (
+              <div style={{position:"absolute",top:-10,right:12,background:C.r,color:"#fff",fontWeight:1000,fontSize:10,padding:"4px 10px",borderRadius:999}}>
+                🔥 HIGH DEMAND
+              </div>
+            )}
+            <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",gap:12,marginBottom:10}}>
+              <div>
+                <Badge label={p.cat} color={catColor[p.cat]||C.ts}/>
+                {p.status==="planned" && <Badge label="Planned" color={C.ts}/>}
+              </div>
+              {p.status==="live" && <span style={{width:10,height:10,borderRadius:"50%",background:C.g,marginTop:5}}/>}
             </div>
-            <div style={{fontSize:15,fontWeight:700,color:C.tx,marginBottom:6,lineHeight:1.3}}>{p.name}</div>
-            <div style={{fontSize:12,color:C.ts,lineHeight:1.6,marginBottom:12}}>{p.desc}</div>
-            <div style={{display:"flex",flexWrap:"wrap",gap:5,marginBottom:12}}>
+
+            <div style={{fontSize:16,fontWeight:1000,color:C.tx,marginBottom:6}}>{p.name}</div>
+            <div className="muted" style={{fontSize:12,lineHeight:1.6,marginBottom:12}}>{p.desc}</div>
+
+            <div style={{display:"flex",flexWrap:"wrap",gap:6,marginBottom:14}}>
               {p.tech.map(t=><Badge key={t} label={t} color={p.color}/>)}
             </div>
-            <div style={{display:"flex",gap:8}}>
-              {p.live&&<a href={p.live} target="_blank" style={{padding:"6px 14px",background:C.gp,border:`1px solid ${C.g}33`,borderRadius:8,color:C.g,fontSize:12,fontWeight:700,textDecoration:"none"}}>🚀 Live Demo</a>}
-              {p.code&&<a href={p.code} target="_blank" style={{padding:"6px 14px",background:C.bg3,border:`1px solid ${C.border}`,borderRadius:8,color:C.ts,fontSize:12,fontWeight:600,textDecoration:"none"}}>📁 Code</a>}
-              {!p.live&&!p.code&&<Badge label="Coming Q3 2026" color={C.tm}/>}
+
+            <div style={{display:"flex",gap:10,flexWrap:"wrap"}}>
+              {p.live && <a className="btn" style={{textDecoration:"none",color:C.gp,border:`1px solid ${C.g}33`,background:`${C.g}14`}} href={p.live} target="_blank" rel="noreferrer">🚀 Live</a>}
+              {p.code && <a className="btn" style={{textDecoration:"none",color:C.ts,border:`1px solid ${C.border}`}} href={p.code} target="_blank" rel="noreferrer">📁 Code</a>}
             </div>
           </Card>
         ))}
@@ -399,25 +561,31 @@ function ProjectsView(){
 }
 
 function CertsView(){
-  const [active,setActive]=useState(null);
+  const [openId,setOpenId]=useState(null);
   return(
-    <div style={{height:"100%",overflowY:"auto",padding:"26px 30px",animation:"fadeIn .3s ease"}}>
-      <div style={{fontSize:22,fontWeight:800,color:C.tx,letterSpacing:-.5,marginBottom:4}}>Certificates</div>
-      <div style={{fontSize:13,color:C.tm,marginBottom:22}}>13+ certifications · AWS · Azure · FNB · Huawei · Cisco · TUT Diploma</div>
+    <div style={{height:"100%",overflowY:"auto",padding:"26px 28px",animation:"fadeIn .25s ease"}}>
+      <div style={{fontSize:24,fontWeight:1000,color:C.tx,letterSpacing:-.6,marginBottom:6}}>Certificates</div>
+      <div className="muted" style={{fontSize:13,marginBottom:22}}>13+ credentials · AWS · Azure · FNB · Huawei · Cisco · TUT Diploma</div>
+
       <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:12}}>
         {CERTS.map(c=>(
-          <div key={c.id} onClick={()=>setActive(active===c.id?null:c.id)}
-            style={{background:C.bg2,border:`1px solid ${active===c.id?c.color+"66":C.border}`,borderRadius:14,padding:"16px 18px",cursor:"pointer",transition:"all .2s"}}
+          <div key={c.id}
+            onClick={()=>setOpenId(openId===c.id?null:c.id)}
+            style={{
+              background:C.bg2,border:`1px solid ${openId===c.id?c.color+"66":C.border}`,
+              borderRadius:16,padding:"16px 16px",cursor:"pointer",transition:"all .16s ease",
+            }}
             onMouseEnter={e=>e.currentTarget.style.borderColor=c.color+"44"}
-            onMouseLeave={e=>e.currentTarget.style.borderColor=active===c.id?c.color+"66":C.border}>
+            onMouseLeave={e=>e.currentTarget.style.borderColor=openId===c.id?c.color+"66":C.border}
+          >
             <div style={{fontSize:24,marginBottom:8}}>{c.emoji}</div>
-            <div style={{fontSize:13,fontWeight:700,color:C.tx,lineHeight:1.3,marginBottom:6}}>{c.name}</div>
-            <div style={{fontSize:11,color:C.tm,marginBottom:8}}>{c.issuer} · {c.year}</div>
+            <div style={{fontSize:13,fontWeight:1000,color:C.tx,lineHeight:1.3,marginBottom:6}}>{c.name}</div>
+            <div className="muted" style={{fontSize:11,marginBottom:10}}>{c.issuer} · {c.year}</div>
             <Badge label={c.tech[0]} color={c.color}/>
-            {active===c.id&&(
+            {openId===c.id && (
               <div style={{marginTop:12,paddingTop:12,borderTop:`1px solid ${C.border}`}}>
-                <div style={{fontSize:11,color:C.tm,marginBottom:7,fontWeight:600,letterSpacing:.4}}>FRAMEWORKS & TOOLS</div>
-                <div style={{display:"flex",flexWrap:"wrap",gap:5}}>
+                <div className="muted" style={{fontSize:11,fontWeight:900,marginBottom:8}}>FRAMEWORKS & TOOLS</div>
+                <div style={{display:"flex",flexWrap:"wrap",gap:6}}>
                   {c.tech.map(t=><Badge key={t} label={t} color={c.color}/>)}
                 </div>
               </div>
@@ -430,100 +598,161 @@ function CertsView(){
 }
 
 function RoadmapView(){
-  const statusStyle={done:{bg:C.gp,border:C.g+"33",color:C.g,label:"✅ Completed"},active:{bg:C.pp,border:C.p+"33",color:C.pl,label:"🔵 Active"},upcoming:{bg:C.ap,border:C.a+"33",color:C.a,label:"🟡 Upcoming"},future:{bg:C.kp,border:C.k+"33",color:C.k,label:"🔮 Future"}};
+  const ROADMAP=[
+    {year:"2024–2025",title:"Work Integrated Learning (WIL)",status:"done",color:C.g,
+     desc:"12 months hands-on industry experience. Built full-stack apps, contributed to AI projects, earned cloud & agile certifications."},
+    {year:"2025–Present",title:"Graduate Programme (Advanced Track)",status:"active",color:C.p,
+     desc:"AI engineering, scalable cloud architectures, and team leadership. Building production-grade AI assistants, mentoring WIL interns."},
+    {year:"Q3 2026",title:"Launch Tiyani AI v2 with LLM",status:"upcoming",color:C.a,
+     desc:"Enhance AI assistant with generative AI (Gemini/OpenAI) for dynamic portfolio Q&A."},
+    {year:"2027+",title:"Senior Developer / Tech Lead",status:"future",color:C.k,
+     desc:"Transition into a senior role, leading AI product teams and driving innovation at scale."},
+  ];
+  const statusStyle={
+    done:{bg:C.gp,border:C.g+"33",color:C.g,label:"✅ Completed"},
+    active:{bg:C.pp,border:C.p+"33",color:C.pl,label:"🔵 Active"},
+    upcoming:{bg:C.ap,border:C.a+"33",color:C.a,label:"🟡 Upcoming"},
+    future:{bg:C.kp,border:C.k+"33",color:C.k,label:"🔮 Future"}
+  };
   return(
-    <div style={{height:"100%",overflowY:"auto",padding:"26px 30px",animation:"fadeIn .3s ease"}}>
-      <div style={{fontSize:22,fontWeight:800,color:C.tx,letterSpacing:-.5,marginBottom:4}}>Career Roadmap</div>
-      <div style={{fontSize:13,color:C.tm,marginBottom:28}}>From gwende.vercel.app · Updated 2026</div>
-      <div style={{position:"relative"}}>
-        <div style={{position:"absolute",left:28,top:0,bottom:0,width:2,background:`linear-gradient(180deg,${C.g},${C.p},${C.a},${C.k})`,borderRadius:2}}/>
+    <div style={{height:"100%",overflowY:"auto",padding:"26px 28px",animation:"fadeIn .25s ease"}}>
+      <div style={{fontSize:24,fontWeight:1000,color:C.tx,letterSpacing:-.6,marginBottom:6}}>Career Roadmap</div>
+      <div className="muted" style={{fontSize:13,marginBottom:24}}>From gwende.vercel.app · updated daily in your OS</div>
+
+      <div style={{position:"relative",paddingLeft:26}}>
+        <div style={{position:"absolute",left:10,top:0,bottom:0,width:2,background:`linear-gradient(180deg,${C.g},${C.p},${C.a},${C.k})`}}/>
         {ROADMAP.map((r,i)=>{
           const st=statusStyle[r.status];
-          return(
-            <div key={i} style={{display:"flex",gap:24,marginBottom:28,position:"relative"}}>
-              <div style={{width:56,height:56,borderRadius:"50%",background:st.bg,border:`2px solid ${r.color}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:20,flexShrink:0,zIndex:1}}>
+          return (
+            <div key={i} style={{display:"flex",gap:18,marginBottom:22,position:"relative"}}>
+              <div style={{
+                width:56,height:56,borderRadius:"50%",background:st.bg,border:`2px solid ${r.color}`,
+                display:"flex",alignItems:"center",justifyContent:"center",fontSize:20,flexShrink:0,zIndex:1
+              }}>
                 {r.status==="done"?"✅":r.status==="active"?"🎓":r.status==="upcoming"?"🤖":"🚀"}
               </div>
-              <div style={{background:C.bg2,border:`1px solid ${C.border}`,borderRadius:14,padding:"18px 22px",flex:1,transition:"border-color .2s"}}
-                onMouseEnter={e=>e.currentTarget.style.borderColor=r.color+"44"}
-                onMouseLeave={e=>e.currentTarget.style.borderColor=C.border}>
-                <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:8,flexWrap:"wrap"}}>
-                  <span style={{fontSize:13,fontWeight:800,color:C.tm,fontFamily:"monospace"}}>{r.year}</span>
-                  <span style={{background:st.bg,color:st.color,border:`1px solid ${st.border}`,borderRadius:5,padding:"2px 9px",fontSize:11,fontWeight:600}}>{st.label}</span>
+              <div style={{
+                flex:1,background:C.bg2,border:`1px solid ${C.border}`,borderRadius:16,padding:"16px 18px"
+              }}>
+                <div style={{display:"flex",alignItems:"center",gap:10,flexWrap:"wrap",marginBottom:8}}>
+                  <span className="mono" style={{fontSize:12,color:C.ts,fontWeight:900}}>{r.year}</span>
+                  <span style={{background:st.bg,border:`1px solid ${st.border}`,color:st.color,borderRadius:999,padding:"4px 10px",fontSize:11,fontWeight:1000}}>
+                    {st.label}
+                  </span>
                 </div>
-                <div style={{fontSize:16,fontWeight:700,color:C.tx,marginBottom:8}}>{r.title}</div>
-                <div style={{fontSize:13,color:C.ts,lineHeight:1.7}}>{r.desc}</div>
+                <div style={{fontSize:16,fontWeight:1000,color:C.tx,marginBottom:7}}>{r.title}</div>
+                <div className="muted" style={{fontSize:12,lineHeight:1.7}}>{r.desc}</div>
               </div>
             </div>
           );
         })}
       </div>
-      <Card style={{marginTop:8}}>
-        <div style={{display:"flex",gap:20,alignItems:"flex-start",flexWrap:"wrap"}}>
-          <div style={{width:64,height:64,borderRadius:16,background:`linear-gradient(135deg,${C.p},${C.pl})`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:28,flexShrink:0}}>👨‍💻</div>
-          <div style={{flex:1}}>
-            <div style={{fontSize:16,fontWeight:700,color:C.tx,marginBottom:4}}>{ME.name}</div>
-            <div style={{fontSize:13,color:C.ts,marginBottom:8}}>{ME.title}</div>
-            <div style={{fontSize:13,color:C.ts,lineHeight:1.7,marginBottom:12}}>{ME.bio}</div>
-            <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
-              <Badge label={`📧 ${ME.email}`} color={C.g}/>
-              <Badge label={`📍 ${ME.location}`} color={C.b}/>
-              <Badge label="☁️ AWS · Azure" color={C.a}/>
-              <Badge label="13+ Certs" color={C.p}/>
-            </div>
-          </div>
-        </div>
-      </Card>
     </div>
   );
 }
 
-function InboxView(){
+/* ----------------------------- Inbox + Send (Gmail) ----------------------------- */
+function InboxView({onSentGmail}) {
   const [sel,setSel]=useState(null);
   const [compose,setCompose]=useState(false);
-  const [to,setTo]=useState("");const [subj,setSubj]=useState("");const [body,setBody]=useState("");const [sent,setSent]=useState(false);
+  const [to,setTo]=useState("");const [subj,setSubj]=useState("");const [body,setBody]=useState("");
+
   const [aiDrafting,setAiDrafting]=useState(false);
-  const email=sel?GMAIL_INBOX.find(m=>m.id===sel):null;
-  const catColor={opportunity:C.g,security:C.r,social:C.b,promo:C.tm};
+  const [sendState,setSendState]=useState("idle"); // idle | sending | sent | error
+  const email=sel?GMAIL_INBOX_DEMO.find(m=>m.id===sel):null;
+
+  const catColor={opportunity:C.g,security:C.r,social:C.b,promo:C.ts};
 
   const aiDraft=()=>{
     setAiDrafting(true);
     setTimeout(()=>{
       const isJob=email?.category==="opportunity";
-      setBody(isJob?`Dear Hiring Manager,\n\nThank you for the opportunity. My name is Tiyani Manganyi, a Junior Software Developer based in Pretoria with a Diploma in Computer Science from TUT.\n\nI have built 9+ projects including AI tools, e-commerce platforms, and real-time apps. My portfolio is live at gwende.vercel.app.\n\nI would love to apply for this role. Please find my details below:\n📧 kbmagoda2024@gmail.com\n📞 060 817 5627\n\nBest regards,\nTiyani Manganyi`:`Hi,\n\nThank you for your email. I'll review this and follow up accordingly.\n\nBest regards,\nTiyani Manganyi\nkbmagoda2024@gmail.com`);
+      setBody(isJob
+        ? `Dear Hiring Manager,\n\nThank you for the opportunity. My name is Tiyani Manganyi, a Junior Software Developer based in Pretoria with a Diploma in Computer Science from TUT.\n\nI have built 9+ projects including AI tools, e-commerce platforms, and real-time apps. My portfolio is live at gwende.vercel.app.\n\nI would love to apply for this role. Please find my details below:\n📧 kbmagoda2024@gmail.com\n📞 060 817 5627\n\nBest regards,\nTiyani Manganyi`
+        : `Hi,\n\nThank you for your email. I’m reviewing this and will take the recommended steps to ensure security.\n\nBest regards,\nTiyani Manganyi\nkbmagoda2024@gmail.com`
+      );
       setAiDrafting(false);
-    },900);
+    },700);
+  };
+
+  const startCompose=()=>{
+    setCompose(true);setSel(null);
+    setTo("");setSubj("");setBody("");
+    setAiDrafting(false);setSendState("idle");
+  };
+
+  const sendNow=async()=>{
+    setSendState("sending");
+    try{
+      // If you implement backend, this will become true Gmail "sent today" live update.
+      // Otherwise it will log locally so the UI still works.
+      const created = await apiPostJSON("/api/gmail/send", {to, subject:subj, body})
+        .catch(()=>null);
+
+      const evt={
+        id:"g_"+Date.now(),
+        channel:"gmail",
+        dayKey:tzJohannesburgDateKey(new Date()),
+        to, subject:subj,
+        preview:(body||"").slice(0,80),
+        at:new Date().toISOString(),
+        source: created?.messageId ? "api" : "local"
+      };
+      if(created){
+        evt.providerMessageId = created.messageId;
+      }
+      addSentEvent(evt);
+      onSentGmail?.(evt);
+      setSendState("sent");
+      setTimeout(()=>setCompose(false), 650);
+    }catch(e){
+      setSendState("error");
+    }
   };
 
   return(
     <div style={{display:"flex",height:"100%",overflow:"hidden"}}>
-      <div style={{width:300,borderRight:`1px solid ${C.border}`,display:"flex",flexDirection:"column"}}>
+      <div style={{width:320,borderRight:`1px solid ${C.border}`,display:"flex",flexDirection:"column"}}>
         <div style={{padding:"14px 16px 10px",borderBottom:`1px solid ${C.border}`}}>
-          <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:10}}>
-            <div style={{width:28,height:28,borderRadius:8,background:"#ea4335",display:"flex",alignItems:"center",justifyContent:"center",fontSize:15,fontWeight:900,color:"#fff",fontFamily:"Georgia,serif"}}>M</div>
+          <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:10}}>
+            <div style={{width:36,height:36,borderRadius:12,background:"#ea4335",display:"flex",alignItems:"center",justifyContent:"center",fontSize:15,fontWeight:1000,color:"#fff"}}>M</div>
             <div>
-              <div style={{fontSize:13,fontWeight:700,color:C.tx}}>Inbox Closer</div>
+              <div style={{fontSize:13,fontWeight:1000,color:C.tx}}>Gmail</div>
               <div style={{fontSize:11,color:C.tm}}>{ME.email}</div>
             </div>
           </div>
-          <button onClick={()=>{setCompose(true);setSent(false);setTo("");setSubj("");setBody("");}} style={{width:"100%",padding:"8px",background:`linear-gradient(135deg,${C.p},${C.pl})`,border:"none",borderRadius:9,color:"#fff",cursor:"pointer",fontSize:13,fontWeight:700}}>✉️ Compose</button>
+          <Btn v="primary" onClick={startCompose} style={{width:"100%",padding:"10px 14px"}}>
+            ✉️ Compose
+          </Btn>
         </div>
+
         <div style={{flex:1,overflowY:"auto"}}>
-          {GMAIL_INBOX.map(m=>(
-            <div key={m.id} onClick={()=>setSel(m.id)}
-              style={{padding:"12px 14px",borderBottom:`1px solid ${C.border}`,cursor:"pointer",background:sel===m.id?C.bg3:"transparent",borderLeft:sel===m.id?`3px solid ${C.pl}`:"3px solid transparent",transition:"all .12s"}}>
-              <div style={{display:"flex",gap:9,alignItems:"flex-start"}}>
-                <Av seed={m.name} label={m.avatar} color={m.avatarColor} size={30} sq/>
+          {GMAIL_INBOX_DEMO.map(m=>(
+            <div key={m.id}
+              onClick={()=>setSel(m.id)}
+              style={{
+                padding:"12px 14px",
+                borderBottom:`1px solid ${C.border}`,
+                cursor:"pointer",
+                background: sel===m.id ? C.bg3 : "transparent",
+                borderLeft: sel===m.id ? `3px solid ${C.pl}` : `3px solid transparent`,
+                transition:"all .12s",
+              }}
+            >
+              <div style={{display:"flex",gap:10,alignItems:"flex-start"}}>
+                <Av seed={m.name} label={m.avatar} color={m.avatarColor} size={34} sq/>
                 <div style={{flex:1,minWidth:0}}>
-                  <div style={{display:"flex",justifyContent:"space-between",marginBottom:2}}>
-                    <span style={{fontSize:12,fontWeight:m.unread?700:500,color:m.unread?C.tx:C.ts,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",maxWidth:140}}>{m.name}</span>
+                  <div style={{display:"flex",justifyContent:"space-between",gap:10,marginBottom:2}}>
+                    <span style={{fontSize:12,fontWeight:m.unread?1000:700,color:m.unread?C.tx:C.ts,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>
+                      {m.name}
+                    </span>
                     <span style={{fontSize:10,color:C.tm,flexShrink:0}}>{m.time}</span>
                   </div>
-                  <div style={{fontSize:11,color:C.tm,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:4}}>{m.subject}</div>
-                  <div style={{display:"flex",alignItems:"center",gap:5}}>
-                    <span style={{width:6,height:6,borderRadius:"50%",background:catColor[m.category]||C.tm,flexShrink:0}}/>
-                    <span style={{fontSize:10,color:C.tm}}>{m.category}</span>
-                    {m.unread&&<span style={{marginLeft:"auto",width:7,height:7,borderRadius:"50%",background:C.pl}}/>}
+                  <div style={{fontSize:11,color:C.tm,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{m.subject}</div>
+                  <div style={{display:"flex",alignItems:"center",gap:8,marginTop:8}}>
+                    <span style={{width:8,height:8,borderRadius:"50%",background:catColor[m.category]||C.ts}}/>
+                    <span style={{fontSize:10,color:C.tm,fontWeight:900}}>{m.category}</span>
+                    {m.unread && <span style={{marginLeft:"auto",width:8,height:8,borderRadius:"50%",background:C.pl}}/>}
                   </div>
                 </div>
               </div>
@@ -531,79 +760,157 @@ function InboxView(){
           ))}
         </div>
       </div>
+
       <div style={{flex:1,display:"flex",flexDirection:"column",overflow:"hidden"}}>
-        {email?(
+        {email ? (
           <>
             <div style={{padding:"16px 22px 12px",borderBottom:`1px solid ${C.border}`}}>
-              <div style={{fontSize:16,fontWeight:700,color:C.tx,marginBottom:8,lineHeight:1.3}}>{email.subject}</div>
+              <div style={{fontSize:16,fontWeight:1000,color:C.tx,marginBottom:8,lineHeight:1.3}}>{email.subject}</div>
               <div style={{display:"flex",alignItems:"center",gap:10,flexWrap:"wrap"}}>
-                <Av seed={email.name} label={email.avatar} color={email.avatarColor} size={28} sq/>
-                <span style={{fontSize:12,color:C.ts}}>{email.from}</span>
+                <Av seed={email.name} label={email.avatar} color={email.avatarColor} size={30} sq/>
+                <span className="muted" style={{fontSize:12,fontWeight:900}}>{email.from}</span>
                 <Badge label={email.category} color={catColor[email.category]||C.p}/>
-                <span style={{fontSize:11,color:C.tm,marginLeft:"auto"}}>{email.time}</span>
+                <span style={{fontSize:11,color:C.tm,marginLeft:"auto",fontWeight:900}}>{email.time}</span>
               </div>
             </div>
+
             <div style={{flex:1,overflowY:"auto",padding:"18px 22px"}}>
-              <div style={{background:C.bg2,border:`1px solid ${C.border}`,borderRadius:12,padding:"16px 20px",color:C.ts,fontSize:14,lineHeight:1.9,whiteSpace:"pre-wrap",marginBottom:16}}>{email.body}</div>
-              <Card glow>
-                <div style={{display:"flex",gap:8,alignItems:"center",marginBottom:10}}>
-                  <div style={{width:26,height:26,borderRadius:8,background:`linear-gradient(135deg,${C.p},${C.pl})`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:12}}>✦</div>
-                  <span style={{fontSize:12,fontWeight:700,color:C.pl}}>Inbox Closer — AI Analysis</span>
-                </div>
-                <div style={{background:C.bg0,borderRadius:9,padding:"11px 14px",fontSize:13,color:C.tx,lineHeight:1.7,border:`1px solid ${C.border}`}}>
-                  {email.category==="opportunity"?"🚀 Job opportunity — draft a tailored reply with your portfolio link (gwende.vercel.app) and apply ASAP.":email.category==="security"?"🔐 Security alert — verify this activity and check your account settings.":"📬 Low priority. Skim or archive."}
+              <div style={{
+                background:C.bg2,border:`1px solid ${C.border}`,borderRadius:12,
+                padding:"16px 18px",color:C.ts,fontSize:14,lineHeight:1.9,whiteSpace:"pre-wrap",marginBottom:14
+              }}>{email.body}</div>
+
+              <Card glow style={{padding:"14px 16px"}}>
+                <div style={{fontWeight:1000,color:C.pl,marginBottom:8,fontSize:13}}>Inbox Closer — AI Analysis</div>
+                <div style={{background:C.bg0,borderRadius:12,padding:"10px 12px",border:`1px solid ${C.border}`,fontSize:13,color:C.tx,lineHeight:1.6}}>
+                  {email.category==="opportunity"
+                    ? "🚀 Job opportunity — draft a tailored reply, keep it short, include your portfolio (gwende.vercel.app), and propose a quick next step."
+                    : email.category==="security"
+                      ? "🔐 Security alert — verify activity, confirm you recognize the device/location, and review account settings."
+                      : "📬 Low priority — skim and archive if it doesn’t match today’s goal."}
                 </div>
               </Card>
-            </div>
-            <div style={{padding:"12px 22px 16px",borderTop:`1px solid ${C.border}`,display:"flex",gap:8}}>
-              <Btn v="primary" onClick={()=>{setTo(email.from);setSubj(`Re: ${email.subject}`);setCompose(true);setSent(false);}}>✦ Reply with AI</Btn>
-              <Btn onClick={()=>{}}>Archive</Btn>
+
+              <div style={{marginTop:14,display:"flex",gap:10,flexWrap:"wrap"}}>
+                <Btn v="primary" onClick={()=>{ setCompose(true); setSel(email.id); setTo(email.from); setSubj(`Re: ${email.subject}`); setSendState("idle"); setBody(""); }}>
+                  ✦ Reply with AI
+                </Btn>
+                <Btn onClick={()=>setSel(null)}>Archive</Btn>
+              </div>
             </div>
           </>
-        ):<div style={{flex:1,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:12,color:C.tm}}><div style={{fontSize:40}}>📬</div><div style={{fontSize:13}}>Select an email to read</div><Btn v="primary" onClick={()=>setCompose(true)}>✉️ Compose</Btn></div>}
-      </div>
-      {compose&&(
-        <div style={{position:"absolute",bottom:0,right:0,width:460,maxHeight:"80vh",background:C.bg1,border:`1px solid ${C.bh}`,borderRadius:"16px 16px 0 0",padding:20,zIndex:200,boxShadow:"0 -10px 40px rgba(0,0,0,.5)",display:"flex",flexDirection:"column"}}>
-          <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:14}}>
-            <div><div style={{fontWeight:700,color:C.tx,fontSize:14}}>New Email</div><div style={{fontSize:11,color:C.tm}}>from {ME.email}</div></div>
-            <div style={{display:"flex",gap:8}}>
-              <button onClick={aiDraft} style={{padding:"6px 13px",background:`linear-gradient(135deg,${C.p},${C.pl})`,border:"none",borderRadius:8,color:"#fff",cursor:"pointer",fontSize:12,fontWeight:700}}>✦ AI Draft</button>
-              <button onClick={()=>setCompose(false)} style={{background:"none",border:"none",color:C.tm,cursor:"pointer",fontSize:18}}>✕</button>
-            </div>
+        ) : (
+          <div style={{flex:1,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:10}}>
+            <div style={{fontSize:44}}>📩</div>
+            <div className="muted" style={{fontSize:13,fontWeight:900}}>Select an email to read</div>
+            <Btn v="primary" onClick={startCompose}>✉️ Compose</Btn>
           </div>
-          {sent?<div style={{color:C.g,fontWeight:700,textAlign:"center",padding:"20px 0",fontSize:15}}>✓ Email sent!</div>:(
-            <>
-              {[{l:"To",v:to,s:setTo},{l:"Subject",v:subj,s:setSubj}].map(f=>(
-                <div key={f.l} style={{borderBottom:`1px solid ${C.border}`,padding:"8px 0",display:"flex",gap:8,alignItems:"center"}}>
-                  <span style={{fontSize:11,color:C.tm,width:48,fontWeight:600,textTransform:"uppercase",letterSpacing:.4}}>{f.l}</span>
-                  <input value={f.v} onChange={e=>f.s(e.target.value)} style={{flex:1,background:"transparent",border:"none",outline:"none",color:C.tx,fontSize:13}}/>
+        )}
+
+        {compose && (
+          <div style={{
+            position:"absolute",bottom:0,right:0,width:520,maxHeight:"86vh",
+            background:C.bg1,border:`1px solid ${C.bh}`,borderRadius:"16px 16px 0 0",
+            padding:20,zIndex:200,boxShadow:"0 -10px 40px rgba(0,0,0,.5)",display:"flex",flexDirection:"column"
+          }}>
+            <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12,gap:10}}>
+              <div>
+                <div style={{fontWeight:1000,color:C.tx,fontSize:14}}>New Message</div>
+                <div className="muted" style={{fontSize:11}}>from {ME.email}</div>
+              </div>
+              <div style={{display:"flex",gap:8,alignItems:"center"}}>
+                <button
+                  onClick={aiDraft}
+                  disabled={aiDrafting}
+                  style={{
+                    padding:"8px 14px",
+                    background:"linear-gradient(135deg, "+C.p+", "+C.pl+")",
+                    border:"none",borderRadius:10,color:"#fff",cursor:"pointer",
+                    fontSize:12,fontWeight:1000,opacity:aiDrafting?.7
+                  }}>
+                  {aiDrafting?"✦ Drafting…":"✦ AI Draft"}
+                </button>
+                <button onClick={()=>setCompose(false)} style={{background:"transparent",border:"none",color:C.ts,cursor:"pointer",fontSize:18}}>✕</button>
+              </div>
+            </div>
+
+            {sendState==="sent" ? (
+              <div style={{color:C.g,fontWeight:1000,textAlign:"center",padding:"22px 0",fontSize:15}}>
+                ✓ Email saved as sent (tracked for today)
+              </div>
+            ) : sendState==="error" ? (
+              <div style={{color:C.r,fontWeight:1000,textAlign:"center",padding:"22px 0",fontSize:15}}>
+                Failed to send — backend not configured
+              </div>
+            ) : (
+              <>
+                <div style={{display:"grid",gridTemplateColumns:"1fr",gap:10}}>
+                  <div style={{borderBottom:`1px solid ${C.border}`,padding:"8px 0",display:"grid",gridTemplateColumns:"70px 1fr",gap:10,alignItems:"center"}}>
+                    <span className="muted" style={{fontSize:11,fontWeight:1000,textTransform:"uppercase",letterSpacing:.4}}>To</span>
+                    <input value={to} onChange={e=>setTo(e.target.value)} style={{width:"100%",background:"transparent",border:"none",outline:"none",color:C.tx,fontSize:13,fontWeight:900}}/>
+                  </div>
+                  <div style={{borderBottom:`1px solid ${C.border}`,padding:"8px 0",display:"grid",gridTemplateColumns:"70px 1fr",gap:10,alignItems:"center"}}>
+                    <span className="muted" style={{fontSize:11,fontWeight:1000,textTransform:"uppercase",letterSpacing:.4}}>Subject</span>
+                    <input value={subj} onChange={e=>setSubj(e.target.value)} style={{width:"100%",background:"transparent",border:"none",outline:"none",color:C.tx,fontSize:13,fontWeight:900}}/>
+                  </div>
                 </div>
-              ))}
-              <div style={{position:"relative",marginTop:10,flex:1}}>
-                {aiDrafting&&<div style={{position:"absolute",inset:0,background:C.bg1+"e0",display:"flex",alignItems:"center",justifyContent:"center",gap:8,color:C.pl,fontSize:13,fontWeight:600,zIndex:2,borderRadius:9}}>✦ Writing…</div>}
-                <textarea value={body} onChange={e=>setBody(e.target.value)} placeholder="Write your message or click AI Draft…" rows={5}
-                  style={{width:"100%",background:C.bg3,border:`1px solid ${C.border}`,borderRadius:9,color:C.tx,fontSize:13,padding:"10px 12px",outline:"none",resize:"none"}}/>
-              </div>
-              <div style={{display:"flex",gap:8,justifyContent:"flex-end",marginTop:12}}>
-                <Btn onClick={()=>setCompose(false)}>Cancel</Btn>
-                <Btn v="primary" onClick={()=>setSent(true)}>↑ Send</Btn>
-              </div>
-            </>
-          )}
-        </div>
-      )}
+
+                <div style={{position:"relative",marginTop:10,flex:1}}>
+                  {aiDrafting && (
+                    <div style={{
+                      position:"absolute",inset:0,background:C.bg1+"d0",display:"flex",
+                      alignItems:"center",justifyContent:"center",gap:10,color:C.pl,
+                      fontWeight:1000,borderRadius:12,zIndex:2
+                    }}>✦ Writing…</div>
+                  )}
+                  <textarea
+                    value={body}
+                    onChange={e=>setBody(e.target.value)}
+                    placeholder="Write your message or click AI Draft…"
+                    rows={6}
+                    style={{
+                      width:"100%",background:C.bg2,border:`1px solid ${C.border}`,
+                      borderRadius:12,color:C.tx,fontSize:13,padding:"12px 12px",
+                      outline:"none",resize:"none"
+                    }}
+                  />
+                </div>
+
+                <div style={{display:"flex",gap:10,justifyContent:"flex-end",marginTop:12}}>
+                  <Btn onClick={()=>setCompose(false)} style={{opacity:.9}}>Cancel</Btn>
+                  <Btn v="primary" onClick={sendNow} style={{minWidth:120,opacity:sendState==="sending"?0.7:1}}>
+                    {sendState==="sending"?"Sending…":"↑ Send"}
+                  </Btn>
+                </div>
+              </>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
 
-function LinkedInView(){
+/* ----------------------------- LinkedIn (summarizer + sent tracker) ----------------------------- */
+function LinkedInView({onSentLinkedIn}) {
   const [tab,setTab]=useState("notifs");
-  const [notifs,setNotifs]=useState(LI_NOTIFS);
+  const [notifs,setNotifs]=useState(LI_NOTIFS_DEMO);
   const [link,setLink]=useState("");
   const [summary,setSummary]=useState(null);
   const [loading,setLoading]=useState(false);
+
   const unread=notifs.filter(n=>n.unread).length;
   const typeColor={message:C.b,job:C.g,view:C.p,connection:C.a};
+
+  const [compose,setCompose]=useState(false);
+  const [target,setTarget]=useState("");
+  const [msg,setMsg]=useState("");
+  const [sendState,setSendState]=useState("idle"); // idle | sending | sent | error
+
+  const todaySentCount = useMemo(()=>{
+    const evts=loadSentEvents().filter(e=>e.channel==="linkedin" && e.dayKey===tzJohannesburgDateKey(new Date()));
+    return evts.length;
+  },[]);
 
   const summarize=()=>{
     if(!link.trim())return;
@@ -620,430 +927,171 @@ function LinkedInView(){
           "Open to Work · Available immediately · Remote-friendly",
         ]});
       } else if(link.includes("/in/")){
-        setSummary({type:"👤 Profile",title:"LinkedIn Profile Summary",points:["Full Stack Developer profile detected","Active in the developer community","Skills: React, Node.js, TypeScript","Open to remote and hybrid roles","5+ mutual connections in your network"]});
+        setSummary({type:"👤 Profile",title:"LinkedIn Profile Summary",points:[
+          "Full Stack Developer profile detected",
+          "Active in the developer community",
+          "Skills: React, Node.js, TypeScript",
+          "Open to remote and hybrid roles",
+          "5+ mutual connections in your network"
+        ]});
       } else if(link.includes("/jobs/")){
-        setSummary({type:"💼 Job Post",title:"Job Listing",points:["Developer role · Remote or Hybrid","Requirements: 2–4 years experience","Tech stack matches your skills","Posted recently — apply soon","Salary range: R25,000–R55,000/month"]});
+        setSummary({type:"💼 Job Post",title:"Job Listing",points:[
+          "Developer role · Remote or Hybrid",
+          "Requirements: 2–4 years experience",
+          "Tech stack matches your skills",
+          "Posted recently — apply soon",
+          "Salary range: R25,000–R55,000/month"
+        ]});
       } else if(link.includes("/company/")){
-        setSummary({type:"🏢 Company",title:"Company Page",points:["Growing tech company · 50–200 employees","Actively hiring developers","Stack: React, Python, AWS","Recent funding: Series A","3 open roles matching your profile"]});
+        setSummary({type:"🏢 Company",title:"Company Page",points:[
+          "Growing tech company · 50–200 employees",
+          "Actively hiring developers",
+          "Stack: React, Python, AWS",
+          "Recent funding: Series A",
+          "3 open roles matching your profile"
+        ]});
       } else {
-        setSummary({type:"🔗 LinkedIn Link",title:"Content Summary",points:["LinkedIn content detected from: "+link.slice(0,50),"Tip: Use /in/username for profiles","Tip: Use /jobs/view/ID for job posts","Tip: Use /company/name for companies","Tip: Paste your own profile for a full summary!"]});
+        setSummary({type:"🔗 LinkedIn Link",title:"Content Summary",points:[
+          "LinkedIn content detected from: "+link.slice(0,55),
+          "Tip: Use /in/username for profiles",
+          "Tip: Use /jobs/view/ID for job posts",
+          "Tip: Use /company/name for companies",
+          "Paste your own profile for a full summary!"
+        ]});
       }
       setLoading(false);
-    },1400);
+    },1100);
+  };
+
+  const openMessageComposer=(fromTitle)=>{
+    setCompose(true);
+    setTarget(fromTitle || "LinkedIn contact");
+    setMsg(`Hi ${fromTitle ? fromTitle.split(" ")[0] : "there"},\n\nI saw your update and I’d love to connect regarding a Junior Developer opportunity. I’m a full-stack developer with AI integrations and I have 9+ projects.\n\nPortfolio: gwende.vercel.app\n\nBest regards,\nTiyani Manganyi`);
+    setSendState("idle");
+  };
+
+  const sendLinkedInMessage=async()=>{
+    setSendState("sending");
+    try{
+      const created = await apiPostJSON("/api/linkedin/sendMessage", {target, message:msg})
+        .catch(()=>null);
+
+      const evt={
+        id:"li_"+Date.now(),
+        channel:"linkedin",
+        dayKey:tzJohannesburgDateKey(new Date()),
+        target,
+        preview:(msg||"").slice(0,80),
+        at:new Date().toISOString(),
+        source: created?.id ? "api" : "local"
+      };
+      if(created) evt.providerMessageId = created.id;
+      addSentEvent(evt);
+      onSentLinkedIn?.(evt);
+      setSendState("sent");
+      setTimeout(()=>setCompose(false), 650);
+    }catch(e){
+      setSendState("error");
+    }
   };
 
   return(
     <div style={{height:"100%",display:"flex",flexDirection:"column",overflow:"hidden"}}>
       <div style={{padding:"16px 22px 12px",borderBottom:`1px solid ${C.border}`,display:"flex",alignItems:"center",gap:12}}>
-        <div style={{width:36,height:36,borderRadius:9,background:"#0a66c2",display:"flex",alignItems:"center",justifyContent:"center",fontSize:16,fontWeight:900,color:"#fff"}}>in</div>
+        <div style={{width:38,height:38,borderRadius:12,background:"#0a66c2",display:"flex",alignItems:"center",justifyContent:"center",fontSize:16,fontWeight:1000,color:"#fff"}}>in</div>
         <div style={{flex:1}}>
-          <div style={{fontWeight:800,color:C.tx,fontSize:14}}>LinkedIn</div>
-          <div style={{fontSize:11,color:C.tm}}>linkedin.com/in/tiyani-manganyi-137625316</div>
+          <div style={{fontWeight:1000,color:C.tx}}>LinkedIn</div>
+          <div className="muted" style={{fontSize:11}}>{ME.linkedin}</div>
         </div>
-        {unread>0&&<Badge label={`${unread} unread`} color={C.r} bg={C.rp}/>}
+        {unread>0 && <Badge label={`${unread} unread`} color={C.r} bg={C.rp}/>}
       </div>
-      <div style={{display:"flex",padding:"8px 22px 0",gap:5,borderBottom:`1px solid ${C.border}`}}>
-        {[{k:"notifs",l:`🔔 Notifications${unread>0?` (${unread})`:""}`},{k:"summarize",l:"🔗 Link Summarizer"}].map(t=>(
-          <button key={t.k} onClick={()=>setTab(t.k)} style={{padding:"6px 15px",background:tab===t.k?C.pp:"transparent",border:`1px solid ${tab===t.k?C.pg:"transparent"}`,borderRadius:"8px 8px 0 0",color:tab===t.k?C.pl:C.tm,cursor:"pointer",fontSize:12,fontWeight:600}}>{t.l}</button>
-        ))}
+
+      <div style={{display:"flex",padding:"8px 22px 0",gap:6,borderBottom:`1px solid ${C.border}`}}>
+        <button
+          className="btn"
+          onClick={()=>setTab("notifs")}
+          style={{borderRadius:"10px 10px 0 0",padding:"7px 13px",background:tab==="notifs"?C.pp:"transparent",borderColor:tab==="notifs"?C.pg:C.border,color:tab==="notifs"?C.pl:C.ts}}
+        >
+          🔔 Notifications
+        </button>
+        <button
+          className="btn"
+          onClick={()=>setTab("summarize")}
+          style={{borderRadius:"10px 10px 0 0",padding:"7px 13px",background:tab==="summarize"?C.pp:"transparent",borderColor:tab==="summarize"?C.pg:C.border,color:tab==="summarize"?C.pl:C.ts}}
+        >
+          🔗 Link Summarizer
+        </button>
       </div>
+
       <div style={{flex:1,overflowY:"auto",padding:"20px 22px"}}>
-        {tab==="notifs"?(
-          <div style={{display:"flex",flexDirection:"column",gap:9}}>
-            {notifs.map(n=>(
-              <div key={n.id} onClick={()=>setNotifs(ns=>ns.map(x=>x.id===n.id?{...x,unread:false}:x))}
-                style={{background:n.unread?C.bg2:C.bg1,border:`1px solid ${n.unread?C.bh:C.border}`,borderRadius:13,padding:"13px 17px",cursor:"pointer",display:"flex",gap:13,transition:"all .15s"}}
-                onMouseEnter={e=>e.currentTarget.style.borderColor=C.bh}
-                onMouseLeave={e=>e.currentTarget.style.borderColor=n.unread?C.bh:C.border}>
-                <Av seed={n.from} label={n.avatar} color={n.avatarColor} size={38} sq/>
-                <div style={{flex:1}}>
-                  <div style={{display:"flex",alignItems:"center",gap:7,marginBottom:3}}>
-                    <span style={{fontSize:13,fontWeight:700,color:C.tx}}>{n.title}</span>
-                    {n.unread&&<span style={{width:8,height:8,borderRadius:"50%",background:C.b,flexShrink:0}}/>}
+        {tab==="notifs" ? (
+          <div style={{display:"flex",flexDirection:"column",gap:12}}>
+            <Card style={{padding:"14px 16px",marginBottom:4}}>
+              <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",gap:12,flexWrap:"wrap"}}>
+                <div>
+                  <div style={{fontWeight:1000,color:C.tx,fontSize:13}}>Today’s LinkedIn sent</div>
+                  <div className="muted" style={{fontSize:12,marginTop:4}}>
+                    Tracked locally now · becomes real-live when backend endpoints are added.
                   </div>
-                  <div style={{fontSize:12,color:C.ts,lineHeight:1.5,marginBottom:5}}>{n.body}</div>
-                  <div style={{display:"flex",gap:7,alignItems:"center"}}>
-                    <Badge label={n.type} color={typeColor[n.type]||C.p}/>
-                    <span style={{fontSize:11,color:C.tm}}>{n.time}</span>
+                </div>
+                <div className="pill">
+                  <span style={{width:6,height:6,borderRadius:"50%",background:C.b}}/>
+                  <span style={{fontWeight:1000}}>{todaySentCount}</span>
+                  <span className="muted" style={{fontWeight:900}}>messages</span>
+                </div>
+              </div>
+            </Card>
+
+            {notifs.map(n=>(
+              <div key={n.id}
+                onClick={()=>setNotifs(ns=>ns.map(x=>x.id===n.id?{...x,unread:false}:x))}
+                style={{
+                  background:n.unread?C.bg2:C.bg1,
+                  border:`1px solid ${n.unread?C.bh:C.border}`,
+                  borderRadius:16,padding:"14px 16px",
+                  cursor:"pointer",transition:"all .15s"
+                }}
+                onMouseEnter={e=>e.currentTarget.style.borderColor=C.bh}
+                onMouseLeave={e=>e.currentTarget.style.borderColor=n.unread?C.bh:C.border}
+              >
+                <div style={{display:"flex",gap:12,alignItems:"flex-start"}}>
+                  <Av seed={n.from} label={n.avatar} color={n.avatarColor} size={42} sq/>
+                  <div style={{flex:1}}>
+                    <div style={{display:"flex",alignItems:"center",gap:8,flexWrap:"wrap",marginBottom:6}}>
+                      <div style={{fontWeight:1000,color:C.tx,fontSize:13}}>{n.title}</div>
+                      {n.unread && <span style={{width:8,height:8,borderRadius:"50%",background:C.b}}/>}
+                    </div>
+                    <div className="muted" style={{fontSize:12,lineHeight:1.6,marginBottom:10}}>{n.body}</div>
+                    <div style={{display:"flex",gap:10,alignItems:"center"}}>
+                      <Badge label={n.type} color={typeColor[n.type]||C.p}/>
+                      <div className="muted" style={{fontSize:11,fontWeight:900}}>{n.time}</div>
+                      <div style={{marginLeft:"auto"}}>
+                        <button
+                          className="btn btn-ghost"
+                          style={{padding:"6px 12px",fontSize:12}}
+                          onClick={(e)=>{e.stopPropagation(); openMessageComposer(n.from);}}
+                        >
+                          ✦ Message
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             ))}
           </div>
-        ):(
+        ) : (
           <div>
-            <div style={{fontSize:13,color:C.ts,marginBottom:14}}>Paste any LinkedIn URL for an instant AI summary. Try your own profile: <span style={{color:C.pl,fontFamily:"monospace",fontSize:12}}>linkedin.com/in/tiyani-manganyi-137625316</span></div>
-            <div style={{display:"flex",gap:9,marginBottom:20}}>
+            <div className="muted" style={{fontSize:13,marginBottom:14}}>
+              Paste any LinkedIn URL for an instant AI summary.
+              <div style={{marginTop:4}}>Try: <span className="mono" style={{color:C.pl}}>linkedin.com/in/tiyani-manganyi-137625316</span></div>
+            </div>
+
+            <div style={{display:"flex",gap:10,marginBottom:18}}>
               <input value={link} onChange={e=>setLink(e.target.value)} onKeyDown={e=>e.key==="Enter"&&summarize()}
                 placeholder="Paste LinkedIn URL here…"
-                style={{flex:1,background:C.bg2,border:`1px solid ${C.border}`,borderRadius:10,color:C.tx,fontSize:14,padding:"11px 15px",outline:"none"}}
-                onFocus={e=>e.target.style.borderColor=C.pl} onBlur={e=>e.target.style.borderColor=C.border}/>
-              <Btn v="primary" onClick={summarize} style={{opacity:link.trim()?1:.5}}>{loading?"…":"Summarize"}</Btn>
-            </div>
-            {loading&&<div style={{textAlign:"center",padding:"30px 0",color:C.tm}}><div style={{fontSize:24,display:"inline-block",animation:"spin 1s linear infinite"}}>⚙️</div><div style={{marginTop:8,fontSize:13}}>Reading LinkedIn content…</div></div>}
-            {summary&&(
-              <Card glow style={{animation:"fadeIn .3s ease"}}>
-                <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:14}}>
-                  <div style={{width:32,height:32,borderRadius:9,background:`linear-gradient(135deg,${C.p},${C.pl})`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:14}}>✦</div>
-                  <div><div style={{fontSize:14,fontWeight:700,color:C.tx}}>{summary.title}</div><Badge label={summary.type} color={C.pl} bg={C.pp}/></div>
-                </div>
-                {summary.points.map((p,i)=>(
-                  <div key={i} style={{display:"flex",gap:10,padding:"9px 13px",background:C.bg3,borderRadius:9,marginBottom:6}}>
-                    <span style={{color:C.pl,flexShrink:0}}>✦</span>
-                    <span style={{fontSize:13,color:C.ts,lineHeight:1.5}}>{p}</span>
-                  </div>
-                ))}
-                <div style={{marginTop:12,display:"flex",gap:8}}>
-                  <a href={`https://${link.startsWith("http")?link.replace(/^https?:\/\//,""):link}`} target="_blank" style={{padding:"8px 16px",background:`linear-gradient(135deg,${C.p},${C.pl})`,border:"none",borderRadius:9,color:"#fff",cursor:"pointer",fontSize:13,fontWeight:700,textDecoration:"none"}}>Open on LinkedIn ↗</a>
-                  <Btn onClick={()=>{setSummary(null);setLink("");}}>Clear</Btn>
-                </div>
-              </Card>
-            )}
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
-function LifeCoachView(){
-  const TODAY=new Date().toLocaleDateString('en-ZA',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
-  const LIVE_OS_SUMMARY=`Today's personal OS refresh for ${TODAY}: ${GMAIL_INBOX.filter(m=>m.unread).length} unread Gmail items, ${LI_NOTIFS.filter(n=>n.unread).length} unread LinkedIn updates, ${NOTION_NOTES.length} Notion notes in the workspace, ${CALENDAR_EVENTS.length} calendar events on the board, and ${PROJECTS.filter(p=>p.status === "live").length} live portfolio projects. This is the daily update you asked for.`;
-  const PERSONAL_OS_RULE="Whenever you answer anything about Tiyani, give a fresh personal-OS summary from the latest daily updates: Gmail messages, Notion additions, LinkedIn messages and connections, Google Calendar schedule, and any portfolio changes. Treat this as a live daily refresh and highlight what needs attention.";
-  const init=[{role:"assistant",content:`✦ I'm your Life Coach — connected to **kbmagoda2024@gmail.com**.\n\nI know your full profile from gwende.vercel.app:\n• **9 projects** built · 7 live\n• **13+ certifications** (AWS, Azure AZ-900, FNB, TUT Diploma)\n• **4 goals** in progress\n• **Open to Work** — Junior Developer role is your #1 priority\n\nRule: ${PERSONAL_OS_RULE}\n\nDaily update: ${LIVE_OS_SUMMARY}\n\nTUT just reminded you about an IT Interns role today. Ask me anything.`}];
-  const [msgs,setMsgs]=useState(init);
-  const [input,setInput]=useState("");
-  const [typing,setTyping]=useState(false);
-  const bottom=useRef(null);
-  useEffect(()=>{bottom.current?.scrollIntoView({behavior:"smooth"});},[msgs,typing]);
-
-  const BOT={
-    goals:`Your 4 active goals:\n\n💼 **Land Junior Developer Role** — 55% · Applied to TUT WIL + others · TUT Interns reminder today!\n🎓 **Complete Graduate Programme** — 60% · AI engineering track · building production AI tools\n🤖 **Launch Tiyani AI v2** — 25% · Q3 2026 deadline · integrate Gemini/OpenAI\n🚀 **Senior Dev / Tech Lead** — 15% · 2027 target\n\nFocus this week: Apply to IT Interns West Rand and review LinkedIn job matches.`,
-    projects:`Your 9 projects (from gwende.vercel.app):\n\n**Live Projects (7):**\n• AI Resume Analyzer 🔥 — resume-analyzer-ashen.vercel.app\n• TUT Job Portal — 4ir-ai-tut.base44.app\n• SA Case Law AI — semantic search + GPT\n• Doctors Booking — doctors-booking.vercel.app\n• LinkedIn Workflow Suggester\n• 4IR Resume Website\n• Fruits & Veg E-commerce (MERN + Stripe)\n\n**Upcoming (2):**\n• House Price Prediction (R²=0.87)\n• Customer Sentiment Dashboard (Q3 2026)\n\nPortfolio: gwende.vercel.app`,
-    certs:`Your 13+ certifications:\n\n✅ **FNB App Academy** — React, Node.js, MongoDB, JWT\n✅ **TUT Diploma in CS** — Awarded 01-FEB-2026\n✅ **Azure AZ-900** — Azure VMs, Storage, Entra ID\n✅ **AWS Cloud Practitioner** — EC2, S3, Lambda, IAM\n✅ **Huawei Data Management** — SQL, Pandas, Tableau, ETL\n✅ **Cybersecurity Essentials** — NIST CSF, ISO 27001\n✅ **Cisco Packet Tracer** — TCP/IP, VLANs, Routing\n✅ **NLP Text Classification** — NLTK, spaCy, TensorFlow\n✅ **DevOps/CI-CD** — Docker, GitHub Actions, Terraform`,
-    email:`Today's email updates for kbmagoda2024@gmail.com:\n\n${GMAIL_INBOX.filter(m=>m.unread).map(m=>`• ${m.name}: ${m.subject} · ${m.time}`).join("\n")}\n\nTop priority today: ${GMAIL_INBOX.find(m=>m.category === "opportunity")?.subject || "Review your inbox"}.`,
-    plan:`Your optimal plan for today:\n\n🌅 **08:00** Apply to IT Interns West Rand (TUT match — urgent)\n💼 **09:30** Review LinkedIn: React Dev at DataFlow + Takealot recruiter\n💻 **11:00** Push Tiyani AI v2 code — Q3 2026 is close\n🌐 **14:00** Update gwende.vercel.app with latest demos\n📝 **19:00** Reflection + journal\n\nEstimated goal progress if followed: +8% on job goal.`,
-    default:`I can help with that. Ask me about your goals, projects, certifications, emails, Notion updates, LinkedIn activity, Google Calendar, portfolio changes, or today's plan. I will always show the latest everyday personal-OS update before answering about you.`,
-  };
-
-  const send=text=>{
-    const q=(text||input).trim();if(!q)return;
-    setMsgs(m=>[...m,{role:"user",content:q}]);setInput("");setTyping(true);
-    const l=q.toLowerCase();
-    const r=l.includes("goal")||l.includes("progress")?BOT.goals:l.includes("project")||l.includes("build")?BOT.projects:l.includes("cert")||l.includes("award")||l.includes("qualification")?BOT.certs:l.includes("email")||l.includes("gmail")||l.includes("inbox")?BOT.email:l.includes("plan")||l.includes("today")||l.includes("schedule")?BOT.plan:BOT.default;
-    setTimeout(()=>{setTyping(false);setMsgs(m=>[...m,{role:"assistant",content:r}]);},850);
-  };
-  const SUGGS=["What should I focus on today?","Show my goals","What projects have I built?","Show today's emails","Check my Gmail"];
-  return(
-    <div style={{display:"flex",flexDirection:"column",height:"100%"}}>
-      <div style={{padding:"16px 22px",borderBottom:`1px solid ${C.border}`,display:"flex",alignItems:"center",gap:12}}>
-        <div style={{width:40,height:40,borderRadius:12,background:`linear-gradient(135deg,${C.p},${C.pl})`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:18}}>✦</div>
-        <div style={{flex:1}}><div style={{fontWeight:800,color:C.tx,fontSize:14}}>Life Coach</div><div style={{fontSize:12,color:C.g,display:"flex",alignItems:"center",gap:5,marginTop:1}}><span style={{width:6,height:6,borderRadius:"50%",background:C.g}}/>Live · trained on gwende.vercel.app</div></div>
-        <div style={{display:"flex",gap:6}}><Badge label="9 projects" color={C.g}/><Badge label="13+ certs" color={C.p}/></div>
-      </div>
-      <div style={{flex:1,overflowY:"auto",padding:"20px 22px",display:"flex",flexDirection:"column",gap:14}}>
-        {msgs.map((m,i)=>(
-          <div key={i} style={{display:"flex",gap:10,justifyContent:m.role==="user"?"flex-end":"flex-start",animation:"fadeIn .2s ease"}}>
-            {m.role==="assistant"&&<div style={{width:30,height:30,borderRadius:9,background:`linear-gradient(135deg,${C.p},${C.pl})`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:12,flexShrink:0,marginTop:2}}>✦</div>}
-            <div style={{maxWidth:"76%",padding:"12px 16px",borderRadius:m.role==="user"?"16px 16px 4px 16px":"4px 16px 16px 16px",background:m.role==="user"?`linear-gradient(135deg,${C.p},${C.pl})`:C.bg2,border:m.role==="assistant"?`1px solid ${C.border}`:"none",color:C.tx,fontSize:14,lineHeight:1.8,whiteSpace:"pre-wrap"}}>
-              {m.content.split(/(\*\*[^*]+\*\*)/).map((p,j)=>p.startsWith("**")?<strong key={j}>{p.slice(2,-2)}</strong>:p)}
-            </div>
-          </div>
-        ))}
-        {typing&&<div style={{display:"flex",gap:10}}><div style={{width:30,height:30,borderRadius:9,background:`linear-gradient(135deg,${C.p},${C.pl})`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:12}}>✦</div><div style={{padding:"13px 17px",background:C.bg2,border:`1px solid ${C.border}`,borderRadius:"4px 16px 16px 16px",display:"flex",gap:5,alignItems:"center"}}>{[0,1,2].map(i=><span key={i} style={{width:7,height:7,borderRadius:"50%",background:C.pl,display:"inline-block",animation:`bounce 1.2s ${i*.15}s infinite`}}/>)}</div></div>}
-        <div ref={bottom}/>
-      </div>
-      {msgs.length<=1&&<div style={{padding:"0 22px 10px",display:"flex",gap:7,flexWrap:"wrap"}}>{SUGGS.map(s=><button key={s} onClick={()=>send(s)} style={{padding:"7px 13px",background:C.bg2,border:`1px solid ${C.border}`,borderRadius:20,color:C.ts,cursor:"pointer",fontSize:12,fontWeight:600}}>{s}</button>)}</div>}
-      <div style={{padding:"12px 22px 18px",borderTop:`1px solid ${C.border}`}}>
-        <div style={{display:"flex",gap:8,background:C.bg2,border:`1px solid ${C.border}`,borderRadius:13,padding:"9px 13px",alignItems:"center"}}>
-          <input value={input} onChange={e=>setInput(e.target.value)} onKeyDown={e=>e.key==="Enter"&&send()} placeholder="Ask your Life Coach…" style={{flex:1,background:"transparent",border:"none",outline:"none",color:C.tx,fontSize:14}}/>
-          <button onClick={()=>send()} style={{width:32,height:32,borderRadius:8,background:input.trim()?`linear-gradient(135deg,${C.p},${C.pl})`:"transparent",border:`1px solid ${input.trim()?C.p:C.border}`,color:input.trim()?"#fff":C.tm,cursor:input.trim()?"pointer":"default",display:"flex",alignItems:"center",justifyContent:"center",fontSize:15}}>↑</button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function VoiceAgent({onClose}){
-  const [state,setState]=useState("idle");
-  const [transcript,setTranscript]=useState("");
-  const [response,setResponse]=useState("");
-  const [history,setHistory]=useState([]);
-  const recogRef=useRef(null);
-  const synthRef=useRef(window.speechSynthesis);
-  const VOICE_BOT={
-    "who are you|your name|introduce":()=>`Hi! I'm Tiyani's AI Voice Assistant. Tiyani Manganyi is a Junior Software Developer from Pretoria, South Africa. He has 9 projects, 13 certifications, and is open to work. His email is kbmagoda2024@gmail.com.`,
-    "project|built|portfolio":()=>`Tiyani has built 9 projects. Highlights include the AI Resume Analyzer, the TUT Job Portal, and the South African Case Law AI. You can see them all at gwende.vercel.app.`,
-    "certificate|certification|qualification":()=>`Tiyani holds 13 plus certifications including an AWS Cloud Practitioner, Microsoft Azure AZ-900, FNB App Academy Full Stack, a Diploma in Computer Science from TUT, and more.`,
-    "goal|objective|plan":()=>`Tiyani has 4 goals. First, land a junior developer role — he's at 55 percent progress. Second, complete the Graduate Programme. Third, launch Tiyani AI version 2 by Q3 2026. Fourth, become a Senior Developer by 2027.`,
-    "email|gmail|inbox":()=>`Tiyani's Gmail is kbmagoda2024@gmail.com. There are ${GMAIL_INBOX.filter(m=>m.unread).length} unread emails including a TUT IT Interns reminder and LinkedIn job matches.`,
-    "linkedin":()=>`Tiyani's LinkedIn is linkedin.com/in/tiyani-manganyi-137625316. There are ${LI_NOTIFS.filter(n=>n.unread).length} unread LinkedIn notifications including a message about a Junior Dev opportunity.`,
-    "skill|technology|stack":()=>`Tiyani's top skills are React.js at 85%, Python at 80%, Node.js at 78%, MongoDB at 82%, NLP at 75%, and AWS Azure Cloud at 70%.`,
-    "contact|phone|reach":()=>`You can reach Tiyani at kbmagoda2024@gmail.com, or call 060 817 5627. He's based in Pretoria, South Africa.`,
-    "today|focus|priority":()=>`Today's top priority is applying to the IT Interns West Rand role — TUT sent a reminder this morning. Also check LinkedIn for 2 new job matches and the Takealot recruiter connection.`,
-  };
-  const getResponse=text=>{
-    const l=text.toLowerCase();
-    for(const [keys,fn] of Object.entries(VOICE_BOT)) if(keys.split("|").some(k=>l.includes(k))) return fn();
-    return`I heard you say: "${text}". I can help with Tiyani's personal OS — Gmail, Notion, LinkedIn, Google Calendar, portfolio updates, projects, certificates, goals, skills, and today's plan. Try asking about any of those!`;
-  };
-  const speak=text=>{
-    if(synthRef.current.speaking) synthRef.current.cancel();
-    const utt=new SpeechSynthesisUtterance(text);
-    utt.rate=1.05;utt.pitch=1;utt.volume=1;
-    const voices=synthRef.current.getVoices();
-    const pref=voices.find(v=>v.lang==="en-GB"||v.lang==="en-US")||voices[0];
-    if(pref) utt.voice=pref;
-    utt.onend=()=>setState("idle");
-    utt.onerror=()=>setState("idle");
-    synthRef.current.speak(utt);
-    setState("speaking");
-  };
-  const startListening=()=>{
-    const SpeechRec=window.SpeechRecognition||window.webkitSpeechRecognition;
-    if(!SpeechRec){setResponse("Speech recognition not supported in this browser. Try Chrome.");return;}
-    const recog=new SpeechRec();
-    recog.lang="en-US";recog.continuous=false;recog.interimResults=false;
-    recog.onstart=()=>setState("listening");
-    recog.onresult=e=>{
-      const t=e.results[0][0].transcript;
-      setTranscript(t);
-      setState("processing");
-      setTimeout(()=>{const r=getResponse(t);setResponse(r);setHistory(h=>[...h,{user:t,ai:r}]);speak(r);},500);
-    };
-    recog.onerror=()=>{setState("idle");setResponse("Could not hear you. Please try again.");};
-    recog.onend=()=>{if(state==="listening")setState("idle");};
-    recogRef.current=recog;
-    recog.start();
-  };
-  const stop=()=>{if(recogRef.current)recogRef.current.abort();if(synthRef.current.speaking)synthRef.current.cancel();setState("idle");};
-  const stateConfig={idle:{color:C.p,icon:"🎙️",label:"Tap to speak",pulse:false},listening:{color:C.r,icon:"🔴",label:"Listening…",pulse:true},processing:{color:C.a,icon:"⚙️",label:"Processing…",pulse:false},speaking:{color:C.g,icon:"🔊",label:"Speaking…",pulse:false}};
-  const sc=stateConfig[state];
-  return(
-    <Modal onClose={onClose} wide>
-      <div style={{textAlign:"center",paddingTop:10}}>
-        <div style={{fontSize:13,fontWeight:700,color:C.pl,marginBottom:4,letterSpacing:.5}}>VOICE AI AGENT</div>
-        <div style={{fontSize:22,fontWeight:800,color:C.tx,marginBottom:4}}>Tiyani's AI Assistant</div>
-        <div style={{fontSize:13,color:C.tm,marginBottom:28}}>Speak naturally — ask about projects, goals, certs, emails, skills</div>
-        <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:4,height:48,marginBottom:24}}>
-          {[3,5,8,12,7,4,9,14,6,10,5,8,12,7,4].map((h,i)=>(
-            <div key={i} style={{width:4,borderRadius:2,background:sc.color,height:`${state==="listening"||state==="speaking"?h*3+Math.random()*10:h*2}px`,transition:"height .15s",opacity:state==="idle"?.4:1,animation:state==="listening"||state==="speaking"?`bounce ${.3+i*.05}s infinite alternate`:undefined}}/>
-          ))}
-        </div>
-        <div style={{position:"relative",display:"inline-block",marginBottom:24}}>
-          {sc.pulse&&<div style={{position:"absolute",inset:-8,borderRadius:"50%",background:sc.color,animation:"ripple 1.5s infinite",zIndex:0}}/>}
-          <button onClick={state==="idle"?startListening:stop} style={{width:88,height:88,borderRadius:"50%",background:`linear-gradient(135deg,${sc.color},${sc.color}bb)`,border:"none",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",fontSize:34,position:"relative",zIndex:1,boxShadow:`0 0 0 4px ${sc.color}33`,transition:"all .2s"}}>{sc.icon}</button>
-        </div>
-        <div style={{fontSize:13,fontWeight:700,color:sc.color,marginBottom:24}}>{sc.label}</div>
-        {(transcript||response)&&(
-          <div style={{background:C.bg2,border:`1px solid ${C.border}`,borderRadius:14,padding:"16px 20px",marginBottom:20,textAlign:"left"}}>
-            {transcript&&<div style={{marginBottom:10}}><div style={{fontSize:11,color:C.tm,fontWeight:700,marginBottom:4,letterSpacing:.4}}>YOU SAID</div><div style={{fontSize:14,color:C.tx,fontStyle:"italic"}}>"{transcript}"</div></div>}
-            {response&&<div><div style={{fontSize:11,color:C.pl,fontWeight:700,marginBottom:4,letterSpacing:.4}}>AI RESPONSE</div><div style={{fontSize:14,color:C.ts,lineHeight:1.7}}>{response}</div></div>}
-          </div>
-        )}
-        <div style={{marginBottom:16}}>
-          <div style={{fontSize:11,color:C.tm,marginBottom:8,fontWeight:600}}>TRY SAYING…</div>
-          <div style={{display:"flex",flexWrap:"wrap",gap:7,justifyContent:"center"}}>
-            {["What projects have you built?","Tell me about your certifications","What are your goals?","Check my emails","What's today's focus?"].map(s=>(
-              <button key={s} onClick={()=>{setTranscript(s);setState("processing");setTimeout(()=>{const r=getResponse(s);setResponse(r);setHistory(h=>[...h,{user:s,ai:r}]);speak(r);},400);}} style={{padding:"6px 13px",background:C.bg3,border:`1px solid ${C.border}`,borderRadius:20,color:C.ts,cursor:"pointer",fontSize:12,fontWeight:600}}>{s}</button>
-            ))}
-          </div>
-        </div>
-        {history.length>0&&(
-          <div style={{maxHeight:180,overflowY:"auto",textAlign:"left"}}>
-            <div style={{fontSize:11,color:C.tm,fontWeight:700,marginBottom:8,letterSpacing:.4}}>CONVERSATION HISTORY</div>
-            {history.slice(-4).reverse().map((h,i)=>(
-              <div key={i} style={{background:C.bg3,borderRadius:10,padding:"10px 13px",marginBottom:7}}>
-                <div style={{fontSize:12,color:C.a,fontWeight:600,marginBottom:2}}>You: {h.user}</div>
-                <div style={{fontSize:12,color:C.ts,lineHeight:1.5}}>{h.ai.slice(0,120)}{h.ai.length>120?"…":""}</div>
-              </div>
-            ))}
-          </div>
-        )}
-        <Btn onClick={onClose} style={{marginTop:12}}>Close</Btn>
-      </div>
-    </Modal>
-  );
-}
-
-function CalendarView(){
-  const events=CALENDAR_EVENTS;
-  const days=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
-  return(
-    <div style={{height:"100%",overflowY:"auto",padding:"26px 30px",animation:"fadeIn .3s ease"}}>
-      <div style={{fontSize:22,fontWeight:800,color:C.tx,letterSpacing:-.5,marginBottom:4}}>Calendar</div>
-      <div style={{fontSize:13,color:C.tm,marginBottom:22}}>June 2026</div>
-      <div style={{display:"grid",gridTemplateColumns:"repeat(7,1fr)",gap:2,marginBottom:4}}>
-        {days.map(d=><div key={d} style={{textAlign:"center",fontSize:11,color:C.tm,fontWeight:700,padding:"6px 0"}}>{d}</div>)}
-      </div>
-      <div style={{display:"grid",gridTemplateColumns:"repeat(7,1fr)",gap:2}}>
-        {Array.from({length:30}, (_,i) => {
-          const day = i + 1, evts = events.filter(e => e.day === day), isToday = day === 2;
-          return (
-            <div key={day} style={{
-              minHeight: 68,
-              background: isToday ? C.pp : C.bg2,
-              border: isToday ? "1px solid " + C.pg : "1px solid " + C.border,
-              borderRadius: 9,
-              padding: "6px 7px",
-              cursor: "pointer",
-              transition: "border-color .15s"
-            }}
-              onMouseEnter={e => e.currentTarget.style.borderColor = C.bh}
-              onMouseLeave={e => e.currentTarget.style.borderColor = isToday ? C.pg : C.border}>
-              <div style={{fontSize: 12, fontWeight: isToday ? 800 : 500, color: isToday ? C.pl : C.ts, marginBottom: 3}}>
-                {day}
-              </div>
-              {evts.map((ev, j) => (
-                <div key={j} style={{fontSize: 10, background: ev.color + '22', color: ev.color, borderRadius: 4, padding: '2px 4px', marginBottom: 2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap'}}>
-                  {ev.title}
-                </div>
-              ))}
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
-
-function NotionView(){
-  const [notes,setNotes]=useState(NOTION_NOTES);
-  const [active,setActive]=useState("n1");
-  const [editing,setEditing]=useState(false);
-  const [content,setContent]=useState(notes[0].content);
-  const note=notes.find(n=>n.id===active);
-  const updateNote = (id, newContent) => {
-    setNotes(notes.map(n => n.id === id ? {...n, content: newContent} : n));
-  };
-  const handleSave = () => {
-    if(active){
-      updateNote(active, content);
-      setEditing(false);
-    }
-  };
-  useEffect(()=>{
-    if(note) setContent(note.content);
-    setEditing(false);
-  },[active, note]);
-  return(
-    <div style={{display:"flex",height:"100%"}}>
-      <div style={{width:220,borderRight:`1px solid ${C.border}`,padding:14,display:"flex",flexDirection:"column",gap:5}}>
-        <div style={{fontSize:12,fontWeight:700,color:C.tm,letterSpacing:.5,textTransform:"uppercase",padding:"0 8px 10px"}}>Notes</div>
-        {notes.map(n=>(
-          <div key={n.id} onClick={()=>{setActive(n.id);setEditing(false);}}
-            style={{padding:"10px 12px",borderRadius:10,cursor:"pointer",background:active===n.id?C.bg3:"transparent",border:`1px solid ${active===n.id?C.bh:"transparent"}`}}>
-            <div style={{display:"flex",gap:7,alignItems:"center",marginBottom:3}}>
-              <div style={{width:8,height:8,borderRadius:"50%",background:n.color,flexShrink:0}}/>
-              <span style={{fontSize:13,fontWeight:600,color:C.tx}}>{n.title}</span>
-            </div>
-            <div style={{fontSize:11,color:C.tm,marginLeft:15}}>{n.date}</div>
-          </div>
-        ))}
-        <button onClick={()=>{const id=`n${Date.now()}`;setNotes(ns=>[...ns,{id:id,title:"New Note",color:C.b,date:"Jun 2",content:""}]);setActive(id);setContent("");setEditing(true);}} style={{marginTop:"auto",padding:"9px",background:C.pp,border:`1px solid ${C.pg}`,borderRadius:10,color:C.pl,cursor:"pointer",fontSize:13,fontWeight:700}}>+ New Note</button>
-      </div>
-      {note&&<div style={{flex:1,padding:"22px 28px",overflowY:"auto"}}>
-        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:18}}>
-          <div style={{fontSize:18,fontWeight:800,color:C.tx}}>{note.title}</div>
-          <button onClick={()=>editing?handleSave():setEditing(true)} style={{padding:"7px 15px",background:editing?C.gp:C.bg2,border:`1px solid ${editing?C.g+"40":C.border}`,borderRadius:9,color:editing?C.g:C.ts,cursor:"pointer",fontSize:13,fontWeight:700}}>{editing?"✓ Save":"Edit"}</button>
-        </div>
-        {editing
-          ?<textarea value={content} onChange={e=>setContent(e.target.value)} style={{width:"100%",minHeight:300,background:C.bg2,border:`1px solid ${C.bh}`,borderRadius:12,padding:"14px 16px",color:C.tx,fontSize:14,lineHeight:1.9,resize:"vertical",fontFamily:"inherit",outline:"none"}}/>
-          :<div style={{background:C.bg2,border:`1px solid ${C.border}`,borderRadius:12,padding:"14px 16px",color:C.ts,fontSize:14,lineHeight:1.9,whiteSpace:"pre-wrap",minHeight:200}}>{content}</div>
-        }
-      </div>}
-    </div>
-  );
-}
-
-const DOCK=[
-  {id:"home",label:"Home",bg:`linear-gradient(135deg,${C.p},${C.pl})`},
-  {id:"goals",label:"Goals",bg:"linear-gradient(135deg,#059669,#10b981)"},
-  {id:"projects",label:"Projects",bg:"linear-gradient(135deg,#2563eb,#3b82f6)"},
-  {id:"certs",label:"Certificates",bg:"linear-gradient(135deg,#d97706,#f59e0b)"},
-  {id:"roadmap",label:"Roadmap",bg:"linear-gradient(135deg,#9333ea,#a855f7)"},
-  {id:"coach",label:"Life Coach",bg:`linear-gradient(135deg,${C.p},${C.pl})`},
-  {id:"inbox",label:"Inbox",bg:"linear-gradient(135deg,#c0392b,#e74c3c)"},
-  {id:"calendar",label:"Calendar",bg:"linear-gradient(135deg,#1565C0,#1976D2)"},
-  {id:"notion",label:"Notion",bg:"linear-gradient(135deg,#1a1a1a,#333)"},
-  {id:"linkedin",label:"LinkedIn",bg:"linear-gradient(135deg,#0077B5,#0a66c2)"},
-];
-
-function App(){
-  const [view,setView]=useState("home");
-  const [showVoice,setShowVoice]=useState(false);
-  const [showNotifs,setShowNotifs]=useState(false);
-  const liUnread=LI_NOTIFS.filter(n=>n.unread).length;
-  const mailUnread=GMAIL_INBOX.filter(m=>m.unread).length;
-  const now=new Date().toLocaleTimeString("en-ZA",{hour:"2-digit",minute:"2-digit"});
-  const views={
-    home:<TodayView onNav={setView}/>,
-    goals:<GoalsView/>,
-    projects:<ProjectsView/>,
-    certs:<CertsView/>,
-    roadmap:<RoadmapView/>,
-    coach:<LifeCoachView/>,
-    inbox:<InboxView/>,
-    calendar:<CalendarView/>,
-    notion:<NotionView/>,
-    linkedin:<LinkedInView/>,
-  };
-  return(
-    <div style={{display:"flex",height:"100vh",background:C.bg0,overflow:"hidden",position:"relative"}}>
-      <div style={{width:120,background:C.bg1,borderRight:`1px solid ${C.border}`,display:"flex",flexDirection:"column",alignItems:"center",padding:"16px 12px",gap:8,flexShrink:0,zIndex:10}}>
-        <div style={{width:36,height:36,borderRadius:10,background:`linear-gradient(135deg,${C.p},${C.pl})`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:16,marginBottom:8,animation:"pulse 3s infinite"}}>✦</div>
-        {DOCK.map(d=>{
-          const active=view===d.id;
-          const badge=d.id==="linkedin"?liUnread:d.id==="inbox"?mailUnread:0;
-          return(
-            <button key={d.id} onClick={()=>setView(d.id)} style={{borderRadius:8,background:active?d.bg:"transparent",border:`1px solid ${active?"transparent":C.border}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:12,fontWeight:600,color:active?"#fff":C.tm,cursor:"pointer",transition:"all .15s",boxShadow:active?"0 2px 8px rgba(0,0,0,.3)":"none",padding:"8px 10px",whiteSpace:"nowrap",width:"100%",maxWidth:"100%"}}
-                onMouseEnter={e=>{if(!active){e.currentTarget.style.background=C.bg3;e.currentTarget.style.borderColor=C.bh;e.currentTarget.style.color=C.tx;}}}
-                onMouseLeave={e=>{if(!active){e.currentTarget.style.background="transparent";e.currentTarget.style.borderColor=C.border;e.currentTarget.style.color=C.tm;}}} title={d.label}>
-                {d.label}
-                {badge>0&&<div style={{marginLeft:6,width:16,height:16,borderRadius:"50%",background:C.r,color:"#fff",fontSize:9,fontWeight:800,display:"flex",alignItems:"center",justifyContent:"center"}}>{badge}</div>}
-            </button>
-          );
-        })}
-        <div style={{marginTop:"auto"}} title="Voice Agent">
-          <button onClick={()=>setShowVoice(true)} style={{width:"100%",height:36,borderRadius:8,background:`linear-gradient(135deg,${C.g},${C.g}aa)`,border:"none",display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,fontWeight:700,color:"#fff",cursor:"pointer",boxShadow:`0 0 12px ${C.g}44`}}>Voice</button>
-        </div>
-      </div>
-      <div style={{flex:1,display:"flex",flexDirection:"column",overflow:"hidden"}}>
-        <div style={{height:42,background:C.bg1,borderBottom:`1px solid ${C.border}`,display:"flex",alignItems:"center",padding:"0 18px",gap:10,flexShrink:0}}>
-          <div style={{fontSize:13,fontWeight:700,color:C.tx,flex:1}}>{DOCK.find(d=>d.id===view)?.label||"Tiyani OS"}</div>
-          <div style={{fontSize:11,color:C.tm,display:"flex",alignItems:"center",gap:5}}><span style={{width:6,height:6,borderRadius:"50%",background:C.g}}/>kbmagoda2024@gmail.com</div>
-          <div style={{position:"relative"}}>
-            <button onClick={()=>setShowNotifs(!showNotifs)} style={{width:30,height:30,borderRadius:8,background:showNotifs?C.pp:"transparent",border:`1px solid ${showNotifs?C.pg:C.border}`,color:C.ts,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",fontSize:14,position:"relative"}}>🔔<div style={{position:"absolute",top:-2,right:-2,width:7,height:7,borderRadius:"50%",background:C.r,border:`1px solid ${C.bg1}`}}/></button>
-            {showNotifs&&(
-              <div style={{position:"absolute",top:36,right:0,width:320,background:C.bg1,border:`1px solid ${C.bh}`,borderRadius:14,padding:14,zIndex:300,boxShadow:"0 20px 60px rgba(0,0,0,.6)",animation:"fadeIn .2s ease"}}>
-                <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12}}><span style={{fontWeight:700,color:C.tx,fontSize:13}}>Notifications</span><button onClick={()=>setShowNotifs(false)} style={{background:"none",border:"none",color:C.tm,cursor:"pointer",fontSize:15}}>✕</button></div>
-                {[
-                  {icon:"📬",text:"TUT: IT Interns West Rand — apply today!",color:C.g,time:"10:53 AM"},
-                  {icon:"💼",text:"LinkedIn: 2 new job matches found",color:C.b,time:"2:37 PM"},
-                  {icon:"✦",text:"Life Coach: Apply to IT Interns role now",color:C.p,time:"8:00 AM"},
-                  {icon:"🔔",text:"LinkedIn: New connection from Takealot recruiter",color:C.a,time:"Yesterday"},
-                ].map((n,i)=>(
-                  <div key={i} style={{display:"flex",gap:10,padding:"9px 11px",background:C.bg2,borderRadius:9,marginBottom:7,cursor:"pointer"}} onMouseEnter={e=>e.currentTarget.style.background=C.bg3} onMouseLeave={e=>e.currentTarget.style.background=C.bg2}>
-                    <div style={{width:30,height:30,borderRadius:8,background:n.color+"22",display:"flex",alignItems:"center",justifyContent:"center",fontSize:14,flexShrink:0}}>{n.icon}</div>
-                    <div><div style={{fontSize:12,color:C.ts,lineHeight:1.4}}>{n.text}</div><div style={{fontSize:10,color:C.tm,marginTop:2}}>{n.time}</div></div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-          <div style={{fontSize:11,fontWeight:600,color:C.tm,background:C.bg2,border:`1px solid ${C.border}`,borderRadius:7,padding:"3px 9px"}}>{now}</div>
-        </div>
-        <div style={{flex:1,overflow:"hidden",position:"relative"}}>
-          {views[view]||views.home}
-        </div>
-      </div>
-      {showVoice&&<VoiceAgent onClose={()=>setShowVoice(false)}/>}
-      <style>{`@keyframes bounce{0%,80%,100%{transform:translateY(0);opacity:.3}40%{transform:translateY(-5px);opacity:1}} @keyframes ripple{0%{transform:scale(1);opacity:.6}100%{transform:scale(2.2);opacity:0}}`}</style>
-    </div>
-  );
-}
-
-ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
-</script>
-</body>
-</html>
+                style={{
+                  flex:1,background:C.bg2,border:`1px solid ${C.border}`,borderRadius:12,
+                  color:C.tx,fontSize:14,padding:"11px 14px",outline:"none",fontWeight:800
+                }}/>
+              <Btn v="primary" onClick={summarize}
