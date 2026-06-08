@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Tiyani Manganyi | AI Developer · Agentic Workflows · Personal OS</title>
+  <title>Tiyani Manganyi | AI Developer · Agentic Workflows · Voice AI</title>
   <meta name="description" content="Tiyani Manganyi - AI & Software Developer. Agentic Taskade apps, voice‑enabled AI assistant, awards, and personal OS.">
   <meta name="keywords" content="Tiyani Manganyi, software developer, portfolio, AI, Agentic, Taskade, voice AI, awards">
   <meta name="author" content="Tiyani Manganyi">
-  <meta property="og:title" content="Tiyani Manganyi | AI Developer + Agentic Workflows + Personal OS">
+  <meta property="og:title" content="Tiyani Manganyi | AI Developer + Agentic Workflows + Voice AI">
   <meta property="og:image" content="assets/img/Tiyani.jpg">
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -20,12 +20,14 @@
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="assets/css/main.css" rel="stylesheet">
   <style>
-    /* ========== ENHANCED STYLES ========== */
+    /* ========== ENHANCED GLOBAL STYLES ========== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Inter', sans-serif;
       background: #f0f4f8;
       color: #1e293b;
       transition: background 0.3s, color 0.2s;
+      line-height: 1.5;
     }
     body.dark-mode {
       background: #0b1120;
@@ -34,55 +36,256 @@
     .dark-background {
       background: linear-gradient(135deg, #0a192f 0%, #1e2a3a 100%);
     }
-    .agentic-section, .awards-section {
-      background: linear-gradient(145deg, #eef2ff 0%, #e0e7ff 100%);
-      border-radius: 56px;
-      padding: 60px 0;
-      margin: 40px auto;
+    .section {
+      padding: 80px 0;
     }
-    body.dark-mode .agentic-section, body.dark-mode .awards-section {
-      background: linear-gradient(145deg, #111827, #1e293b);
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .section-title h2 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      position: relative;
+      display: inline-block;
+    }
+    .section-title h2:after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70px;
+      height: 3px;
+      background: #e63946;
+      border-radius: 3px;
+    }
+    .btn-apply {
+      background-color: #e63946;
+      color: white !important;
+      padding: 8px 20px;
+      border-radius: 40px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-apply:hover {
+      background-color: #c1121f;
+      transform: translateY(-2px);
+    }
+    .btn-outline-custom {
+      background: transparent;
+      border: 2px solid #e63946;
+      color: #e63946 !important;
+    }
+    .btn-outline-custom:hover {
+      background: #e63946;
+      color: white !important;
+    }
+    .typing-container {
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: #e63946;
+      min-height: 80px;
+    }
+    .skill-badge {
+      display: inline-block;
+      background: rgba(230,57,70,0.1);
+      border: 1px solid #e63946;
+      color: #e63946;
+      padding: 6px 16px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin: 5px;
+    }
+    .stats-item {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      border-radius: 20px;
+      text-align: center;
+    }
+    .stats-item h4 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #e63946;
+    }
+    .card, .video-card {
+      transition: transform 0.3s, box-shadow 0.3s;
+      background: white;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+      height: 100%;
+    }
+    body.dark-mode .card, body.dark-mode .video-card {
+      background: #1e293b;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 32px rgba(0,0,0,0.1);
+    }
+    .card-img-top {
+      height: 200px;
+      object-fit: cover;
+      width: 100%;
     }
     .badge-agentic {
       background: #8b5cf6;
       color: white;
       font-size: 0.7rem;
       font-weight: 700;
-      padding: 0.25rem 0.9rem;
+      padding: 4px 12px;
       border-radius: 30px;
       display: inline-block;
-      margin-bottom: 0.8rem;
+      margin-bottom: 12px;
     }
-    .btn-apply {
-      background-color: #e63946;
-      transition: 0.2s;
+    .progress-bar-custom {
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 10px;
+      overflow: hidden;
     }
-    .btn-apply:hover {
-      background-color: #c1121f;
-      transform: translateY(-2px);
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #e63946, #ff8c42);
+      width: 0%;
+      transition: width 1.5s ease;
     }
-    .typing-container {
-      font-size: 1.9rem;
-      font-weight: 700;
+    .timeline {
+      position: relative;
+      padding-left: 30px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #e63946;
+    }
+    .timeline-item {
+      margin-bottom: 30px;
+      padding-left: 20px;
+      position: relative;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -34px;
+      top: 5px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #e63946;
+      border: 2px solid white;
+    }
+    .exp-timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .exp-timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, #e63946, #ff8c42);
+    }
+    .exp-item {
+      display: flex;
+      margin-bottom: 40px;
+      position: relative;
+    }
+    .exp-item:nth-child(odd) { flex-direction: row; }
+    .exp-item:nth-child(even) { flex-direction: row-reverse; }
+    .exp-content {
+      width: 45%;
+      background: white;
+      padding: 24px;
+      border-radius: 20px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+    }
+    body.dark-mode .exp-content { background: #1e293b; }
+    .exp-dot {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 16px;
+      height: 16px;
+      background: #e63946;
+      border-radius: 50%;
+      border: 3px solid white;
+      z-index: 2;
+    }
+    .agentic-section, .awards-section {
+      background: linear-gradient(145deg, #eef2ff 0%, #e0e7ff 100%);
+      border-radius: 56px;
+      margin: 40px auto;
+      padding: 60px 0;
+    }
+    body.dark-mode .agentic-section, body.dark-mode .awards-section {
+      background: linear-gradient(145deg, #111827, #1e293b);
+    }
+    .resume-banner {
+      background: linear-gradient(135deg, #e63946, #ff6b6b);
+      padding: 60px 0;
+      text-align: center;
+      color: white;
+    }
+    .resume-btn {
+      background: white;
       color: #e63946;
+      padding: 14px 36px;
+      border-radius: 50px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .hire-me-section {
+      background: linear-gradient(135deg, #0a192f, #1e2a3a);
+      padding: 80px 0;
+      text-align: center;
+    }
+    .hire-card {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 32px;
+      padding: 48px;
     }
     .whatsapp-float {
       position: fixed;
-      bottom: 90px;
+      bottom: 28px;
       left: 28px;
       background: #25D366;
-      width: 50px;
-      height: 50px;
+      width: 54px;
+      height: 54px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
-      font-size: 1.5rem;
-      z-index: 99997;
-      animation: bounce 3s infinite;
+      font-size: 1.8rem;
+      z-index: 9999;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: 0.2s;
     }
-    @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+    .whatsapp-float:hover { transform: scale(1.08); }
+    /* AI Chat Widget */
     .ai-chat-widget {
       position: fixed;
       bottom: 28px;
@@ -108,8 +311,8 @@
       right: 0;
       width: 360px;
       height: 500px;
-      background: #fff;
-      border-radius: 24px;
+      background: white;
+      border-radius: 28px;
       box-shadow: 0 20px 40px rgba(0,0,0,0.2);
       display: none;
       flex-direction: column;
@@ -167,15 +370,6 @@
       color: white;
       font-weight: bold;
     }
-    .quick-chip {
-      background: rgba(230,57,70,0.1);
-      color: #e63946;
-      padding: 5px 12px;
-      border-radius: 20px;
-      font-size: 0.7rem;
-      cursor: pointer;
-      border: none;
-    }
     .voice-btn {
       background: #8b5cf6;
       border: none;
@@ -191,12 +385,75 @@
     }
     @keyframes pulse {
       0% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.1); opacity: 0.8; }
+      50% { transform: scale(1.1); opacity: 0.7; }
       100% { transform: scale(1); opacity: 1; }
+    }
+    .quick-chip {
+      background: rgba(230,57,70,0.1);
+      color: #e63946;
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      border: none;
+      margin: 4px;
     }
     @media (max-width: 768px) {
       .chat-panel { width: 300px; right: -10px; }
+      .exp-item { flex-direction: column !important; padding-left: 40px; }
+      .exp-content { width: 100%; }
+      .exp-dot { left: 20px; }
+      .exp-timeline::before { left: 20px; transform: none; }
     }
+    #dark-mode-toggle {
+      position: fixed;
+      bottom: 28px;
+      left: 28px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #1e293b;
+      color: #fbbf24;
+      border: none;
+      cursor: pointer;
+      z-index: 9998;
+      font-size: 1.4rem;
+      margin-left: 70px;
+    }
+    body.dark-mode #dark-mode-toggle {
+      background: #fbbf24;
+      color: #1e293b;
+    }
+    .marquee-section {
+      overflow: hidden;
+      padding: 30px 0;
+      background: #f1f5f9;
+    }
+    .marquee-track {
+      display: flex;
+      gap: 50px;
+      animation: marquee 25s linear infinite;
+      width: max-content;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .marquee-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .footer {
+      background: #0a192f;
+      color: #94a3b8;
+      text-align: center;
+      padding: 40px 0;
+    }
+    a { text-decoration: none; }
   </style>
 </head>
 <body class="index-page page-fade-in">
@@ -210,8 +467,8 @@
           <li><a href="#about">About</a></li>
           <li><a href="#skills">Skills</a></li>
           <li><a href="#projects">Projects</a></li>
-          <li><a href="#agentic">Agentic</a></li>                     <!-- NEW AGENTIC LINK -->
-          <li><a href="personal.html">my person-os</a></li>          <!-- NEW PERSONAL LINK -->
+          <li><a href="#agentic">Agentic</a></li>
+          <li><a href="personal.html">my person-os</a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">Highlights <i class="bi bi-chevron-down"></i></a>
             <ul class="dropdown-menu">
@@ -232,7 +489,7 @@
   </header>
 
   <main class="main" id="main-content">
-    <!-- Hero Section (same as original) -->
+    <!-- Hero Section -->
     <section id="hero" class="hero section dark-background">
       <div class="container">
         <div class="row gy-4 align-items-center">
@@ -251,44 +508,71 @@
       </div>
     </section>
 
-    <!-- About Section (simplified but visible) -->
-    <section id="about" class="about-section section py-5"><div class="container" data-aos="fade-up"><div class="row gy-5 align-items-center"><div class="col-lg-6"><img src="assets/img/Tiyane.jpg" class="circular-image" style="width:90%; border-radius:50%; border:5px solid #e63946;"></div><div class="col-lg-6"><h2>About Me</h2><div style="width:60px; height:4px; background:#e63946; margin:1rem 0;"></div><p>Manganyi Tiyani – passionate Software Developer from Pretoria. I've built 14+ projects including AI tools and 5 Agentic Taskade apps (Grocery Flow, Store Manager, Cover Letter Generator, QR Studio, Productivity Planner).</p><p>I hold 15+ certifications from Google, AWS, IBM, Meta. My mission: human‑centric AI that automates workflows.</p><div class="timeline mt-4"><div class="timeline-item"><div class="timeline-year">2026</div><div class="timeline-title">🎓 Diploma in CS</div></div><div class="timeline-item"><div class="timeline-year">2025</div><div class="timeline-title">🏆 FNB App Academy Graduate</div></div></div><a href="#awards" class="btn btn-apply mt-3">🏆 View Awards</a></div></div></div></section>
+    <!-- About Section -->
+    <section id="about" class="about-section section py-5">
+      <div class="container" data-aos="fade-up">
+        <div class="row gy-5 align-items-center">
+          <div class="col-lg-6"><img src="assets/img/Tiyane.jpg" class="img-fluid rounded-circle shadow" style="width:90%; border-radius:50%; border:5px solid #e63946;"></div>
+          <div class="col-lg-6"><h2>About Me</h2><div style="width:60px; height:4px; background:#e63946; margin:1rem 0;"></div>
+            <p class="lead">Manganyi Tiyani – passionate Software Developer from Pretoria. I hold a Diploma in CS from TUT. I've built 14+ projects including AI tools, e‑commerce, and 5 Agentic Taskade apps (Grocery Flow, Store Manager, Cover Letter Generator, QR Studio, Productivity Planner).</p>
+            <p>I've earned 15+ certifications from Google, AWS, IBM, Meta. My mission: human‑centric AI that automates workflows and enhances productivity.</p>
+            <div class="timeline mt-4"><div class="timeline-item"><div class="timeline-year">2026</div><div class="timeline-title">🎓 Diploma in Computer Science</div><div class="timeline-desc">Tshwane University of Technology</div></div><div class="timeline-item"><div class="timeline-year">2025</div><div class="timeline-title">🏆 FNB App Academy Graduate</div><div class="timeline-desc">Full Stack & AI Integration</div></div><div class="timeline-item"><div class="timeline-year">2024</div><div class="timeline-title">☁️ AWS Certified Practitioner</div></div></div>
+            <a href="#awards" class="btn btn-apply mt-3">🏆 See All Awards</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <!-- Skills Section (condensed) -->
-    <section id="skills" class="section py-5" style="background:#f8fafc;"><div class="container section-title"><h2>Technical Skills</h2></div><div class="container"><div class="row"><div class="col-lg-6"><div class="skill-progress"><div class="skill-name"><span>React.js</span><span>88%</span></div><div class="progress-bar-custom"><div class="progress-fill" style="width:88%"></div></div></div><div class="skill-progress"><div class="skill-name"><span>Python/Django</span><span>85%</span></div><div class="progress-bar-custom"><div class="progress-fill" style="width:85%"></div></div></div></div><div class="col-lg-6"><div class="skill-progress"><div class="skill-name"><span>Agentic/n8n</span><span>78%</span></div><div class="progress-bar-custom"><div class="progress-fill" style="width:78%"></div></div></div><div class="skill-progress"><div class="skill-name"><span>Voice AI</span><span>80%</span></div><div class="progress-bar-custom"><div class="progress-fill" style="width:80%"></div></div></div></div></div></div></section>
+    <!-- Skills Section -->
+    <section id="skills" class="section py-5" style="background:#f8fafc;"><div class="container section-title"><h2>Technical Skills</h2></div><div class="container"><div class="row"><div class="col-lg-6"><div class="skill-progress"><div class="skill-name"><span>React.js</span><span>88%</span></div><div class="progress-bar-custom"><div class="progress-fill" style="width:88%"></div></div></div><div class="skill-progress"><div class="skill-name"><span>Python/Django</span><span>85%</span></div><div class="progress-bar-custom"><div class="progress-fill" style="width:85%"></div></div></div></div><div class="col-lg-6"><div class="skill-progress"><div class="skill-name"><span>Agentic/n8n</span><span>78%</span></div><div class="progress-bar-custom"><div class="progress-fill" style="width:78%"></div></div></div><div class="skill-progress"><div class="skill-name"><span>Voice AI / Web Speech</span><span>80%</span></div><div class="progress-bar-custom"><div class="progress-fill" style="width:80%"></div></div></div></div></div></div></section>
 
-    <!-- Projects Section (original structure preserved but shortened for brevity) -->
-    <section id="projects" class="services section py-5"><div class="container section-title"><h2>My Projects</h2><p>WIL | Graduate | Agentic</p></div><div class="container"><div class="filter-tabs"><button class="filter-tab active" data-filter="all">All</button><button class="filter-tab" data-filter="wil">WIL</button><button class="filter-tab" data-filter="grad">Graduate</button></div><div class="row gy-4" id="projects-container"><div class="col-lg-4 col-md-6 project-card" data-category="wil"><div class="card"><img src="assets/img/doctor.png" class="img-fluid"><h3>Doctors Appointment</h3><p>Booking platform.</p><div class="mt-auto"><a href="#" class="btn btn-apply">Demo</a></div></div></div><div class="col-lg-4 col-md-6 project-card" data-category="grad"><div class="card"><img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600" class="img-fluid"><h3>SA Case Law AI</h3><p>Legal search.</p><div class="mt-auto"><a href="https://4ir-ai-tut.base44.app/" class="btn btn-apply">Demo</a></div></div></div><div class="col-lg-4 col-md-6 project-card" data-category="grad"><div class="card"><img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=600" class="img-fluid"><h3>AI Resume Analyzer</h3><p>ATS checker.</p><div class="mt-auto"><a href="https://resume-analyzer-ashen.vercel.app/" class="btn btn-apply">Demo</a></div></div></div></div></div></section>
+    <!-- Projects Section -->
+    <section id="projects" class="services section py-5"><div class="container section-title"><h2>Featured Projects</h2><p>WIL | Graduate | Agentic</p></div><div class="container"><div class="filter-tabs"><button class="filter-tab active" data-filter="all">All</button><button class="filter-tab" data-filter="wil">WIL</button><button class="filter-tab" data-filter="grad">Graduate</button></div><div class="row gy-4" id="projects-container"><div class="col-lg-4 col-md-6 project-card" data-category="wil"><div class="card"><img src="assets/img/doctor.png" class="card-img-top" alt="doctor"><div class="card-body"><h3>Doctors Appointment</h3><p>Full-stack booking system.</p><a href="#" class="btn btn-apply">Live Demo</a></div></div></div><div class="col-lg-4 col-md-6 project-card" data-category="grad"><div class="card"><img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600" class="card-img-top"><div class="card-body"><h3>SA Case Law AI</h3><p>Semantic legal search + GPT.</p><a href="https://4ir-ai-tut.base44.app/" class="btn btn-apply">Try Demo</a></div></div></div><div class="col-lg-4 col-md-6 project-card" data-category="grad"><div class="card"><img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=600" class="card-img-top"><div class="card-body"><h3>AI Resume Analyzer</h3><p>ATS compatibility checker.</p><a href="https://resume-analyzer-ashen.vercel.app/" class="btn btn-apply">Demo</a></div></div></div></div></div></section>
 
-    <!-- ========== AGENTIC SECTION (5 Taskade Apps) ========== -->
-    <section id="agentic" class="agentic-section"><div class="container"><div class="section-title"><h2>⚡ Agentic Workflow Suite</h2><p>AI‑powered automation tools live on Taskade</p></div><div class="row gy-4"><div class="col-md-6 col-lg-4"><div class="card h-100"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=600" class="card-img-top"><div class="card-body"><span class="badge-agentic">🥦 Inventory AI</span><h3>Grocery Flow Manager</h3><p>Smart shopping lists, waste reduction.</p><a href="https://grocery-flow-manager-2332.taskade.app/" target="_blank" class="btn btn-apply">Launch →</a></div></div></div><div class="col-md-6 col-lg-4"><div class="card h-100"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600" class="card-img-top"><div class="card-body"><span class="badge-agentic">🛍️ Retail AI</span><h3>Simple Store Manager</h3><p>POS, inventory, sales analytics.</p><a href="https://simple-store-manager-6153.taskade.app/" target="_blank" class="btn btn-apply">Open →</a></div></div></div><div class="col-md-6 col-lg-4"><div class="card h-100"><img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=600" class="card-img-top"><div class="card-body"><span class="badge-agentic">✍️ GenAI</span><h3>AI Cover Letter Generator</h3><p>Personalized GPT letters.</p><a href="https://ai-cover-letter-generator-4883.taskade.app/" target="_blank" class="btn btn-apply">Generate →</a></div></div></div><div class="col-md-6 col-lg-4"><div class="card h-100"><img src="https://images.unsplash.com/photo-1599305445671-ac291c95c6a3?w=600" class="card-img-top"><div class="card-body"><span class="badge-agentic">📱 QR Studio</span><h3>QR Pulse Studio</h3><p>Dynamic QR codes with analytics.</p><a href="https://qr-pulse-studio-5230.taskade.app/" target="_blank" class="btn btn-apply">Create →</a></div></div></div><div class="col-md-6 col-lg-4"><div class="card h-100"><img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=600" class="card-img-top"><div class="card-body"><span class="badge-agentic">📅 Smart AI</span><h3>AI Productivity Planner</h3><p>NLP daily planner.</p><a href="https://ai-productivity-planner-5879.taskade.app/" target="_blank" class="btn btn-apply">Plan →</a></div></div></div><div class="col-md-6 col-lg-4"><div class="card h-100 text-center"><div class="card-body"><i class="bi bi-diagram-3" style="font-size: 4rem; color:#8b5cf6;"></i><h3>Agentic Ecosystem</h3><p>All tools integrated via Taskade.</p><span class="skill-pill">n8n</span><span class="skill-pill">Zapier</span></div></div></div></div></div></section>
+    <!-- AGENTIC SECTION -->
+    <section id="agentic" class="agentic-section"><div class="container"><div class="section-title"><h2>⚡ Agentic Workflow Suite</h2><p>5 AI‑powered Taskade apps</p></div><div class="row gy-4"><div class="col-md-6 col-lg-4"><div class="card h-100"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=600" class="card-img-top"><div class="card-body"><span class="badge-agentic">🥦 Inventory AI</span><h3>Grocery Flow Manager</h3><p>Smart shopping lists, waste reduction.</p><a href="https://grocery-flow-manager-2332.taskade.app/" target="_blank" class="btn btn-apply">Launch →</a></div></div></div><div class="col-md-6 col-lg-4"><div class="card h-100"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600" class="card-img-top"><div class="card-body"><span class="badge-agentic">🛍️ Retail AI</span><h3>Simple Store Manager</h3><p>POS, inventory, sales analytics.</p><a href="https://simple-store-manager-6153.taskade.app/" target="_blank" class="btn btn-apply">Open →</a></div></div></div><div class="col-md-6 col-lg-4"><div class="card h-100"><img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=600" class="card-img-top"><div class="card-body"><span class="badge-agentic">✍️ GenAI</span><h3>AI Cover Letter Generator</h3><p>Personalized GPT letters.</p><a href="https://ai-cover-letter-generator-4883.taskade.app/" target="_blank" class="btn btn-apply">Generate →</a></div></div></div><div class="col-md-6 col-lg-4"><div class="card h-100"><img src="https://images.unsplash.com/photo-1599305445671-ac291c95c6a3?w=600" class="card-img-top"><div class="card-body"><span class="badge-agentic">📱 QR Studio</span><h3>QR Pulse Studio</h3><p>Dynamic QR codes with analytics.</p><a href="https://qr-pulse-studio-5230.taskade.app/" target="_blank" class="btn btn-apply">Create →</a></div></div></div><div class="col-md-6 col-lg-4"><div class="card h-100"><img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=600" class="card-img-top"><div class="card-body"><span class="badge-agentic">📅 Smart AI</span><h3>AI Productivity Planner</h3><p>NLP daily planner.</p><a href="https://ai-productivity-planner-5879.taskade.app/" target="_blank" class="btn btn-apply">Plan →</a></div></div></div><div class="col-md-6 col-lg-4"><div class="card h-100 text-center"><div class="card-body"><i class="bi bi-diagram-3" style="font-size: 4rem; color:#8b5cf6;"></i><h3>Agentic Ecosystem</h3><p>All tools integrated via Taskade.</p><span class="skill-pill">n8n</span><span class="skill-pill">Zapier</span></div></div></div></div></div></section>
 
-    <!-- ========== AWARDS SECTION (inline) ========== -->
-    <section id="awards" class="awards-section"><div class="container"><div class="section-title"><h2>🏆 My Awards & Certifications</h2><p>Recognitions that validate my expertise</p></div><div class="row gy-4"><div class="col-md-6 col-lg-4"><div class="card text-center p-4"><i class="bi bi-google" style="font-size:2.5rem; color:#e63946;"></i><h4>Google AI Fundamentals</h4><p>2025</p></div></div><div class="col-md-6 col-lg-4"><div class="card text-center p-4"><i class="bi bi-microsoft" style="font-size:2.5rem; color:#e63946;"></i><h4>Azure AI Engineer Associate</h4><p>Microsoft – 2025</p></div></div><div class="col-md-6 col-lg-4"><div class="card text-center p-4"><i class="bi bi-robot" style="font-size:2.5rem; color:#e63946;"></i><h4>IBM Full Stack Developer</h4><p>IBM – 2024</p></div></div><div class="col-md-6 col-lg-4"><div class="card text-center p-4"><i class="bi bi-cloud-upload" style="font-size:2.5rem; color:#e63946;"></i><h4>AWS Cloud Practitioner</h4><p>Amazon – 2024</p></div></div><div class="col-md-6 col-lg-4"><div class="card text-center p-4"><i class="bi bi-meta" style="font-size:2.5rem; color:#e63946;"></i><h4>Meta Frontend Developer</h4><p>Meta – 2025</p></div></div><div class="col-md-6 col-lg-4"><div class="card text-center p-4"><i class="bi bi-stars" style="font-size:2.5rem; color:#e63946;"></i><h4>FNB App Academy Top Performer</h4><p>2025</p></div></div></div></div></section>
+    <!-- AWARDS SECTION -->
+    <section id="awards" class="awards-section"><div class="container"><div class="section-title"><h2>🏆 Awards & Certifications</h2><p>Recognitions that validate my expertise</p></div><div class="row gy-4"><div class="col-md-6 col-lg-4"><div class="card text-center p-4"><i class="bi bi-google" style="font-size:2.5rem; color:#e63946;"></i><h4>Google AI Fundamentals</h4><p>2025</p></div></div><div class="col-md-6 col-lg-4"><div class="card text-center p-4"><i class="bi bi-microsoft" style="font-size:2.5rem; color:#e63946;"></i><h4>Azure AI Engineer Associate</h4><p>Microsoft – 2025</p></div></div><div class="col-md-6 col-lg-4"><div class="card text-center p-4"><i class="bi bi-robot" style="font-size:2.5rem; color:#e63946;"></i><h4>IBM Full Stack Developer</h4><p>IBM – 2024</p></div></div><div class="col-md-6 col-lg-4"><div class="card text-center p-4"><i class="bi bi-cloud-upload" style="font-size:2.5rem; color:#e63946;"></i><h4>AWS Cloud Practitioner</h4><p>Amazon – 2024</p></div></div><div class="col-md-6 col-lg-4"><div class="card text-center p-4"><i class="bi bi-meta" style="font-size:2.5rem; color:#e63946;"></i><h4>Meta Frontend Developer</h4><p>Meta – 2025</p></div></div><div class="col-md-6 col-lg-4"><div class="card text-center p-4"><i class="bi bi-stars" style="font-size:2.5rem; color:#e63946;"></i><h4>FNB App Academy Top Performer</h4><p>2025</p></div></div></div></div></section>
 
-    <!-- Roadmap / Experience -->
-    <section id="experience" class="section py-5"><div class="container section-title"><h2>My Roadmap & Achievements</h2><p>✅ WIL completed 2024-2025 | 🎓 Graduate Program 2025–present</p></div><div class="container"><div class="exp-timeline"><div class="exp-item"><div class="exp-content"><div class="exp-year">2024 – 2025</div><div class="exp-title">✔ Work Integrated Learning</div><p>Built full-stack apps, AI projects, earned cloud certs.</p></div><div class="exp-dot"></div></div><div class="exp-item"><div class="exp-content"><div class="exp-year">2025 – Present</div><div class="exp-title">🎓 Graduate Program (Advanced Track)</div><p>AI engineering, scalable architectures.</p></div><div class="exp-dot"></div></div><div class="exp-item"><div class="exp-content"><div class="exp-year">Q3 2026</div><div class="exp-title">Launch Tiyani AI v2 with LLM</div><p>Generative AI for portfolio Q&A.</p></div><div class="exp-dot"></div></div><div class="exp-item"><div class="exp-content"><div class="exp-year">2027+</div><div class="exp-title">Senior Developer / Tech Lead</div><p>Leading AI product teams.</p></div><div class="exp-dot"></div></div></div></div></section>
+    <!-- Roadmap / Experience Timeline -->
+    <section id="experience" class="section py-5"><div class="container section-title"><h2>My Roadmap & Achievements</h2><p>✅ WIL completed 2024-2025 | 🎓 Graduate Program 2025–present</p></div><div class="container"><div class="exp-timeline"><div class="exp-item"><div class="exp-content"><div class="exp-year">2024 – 2025</div><div class="exp-title">✔ Work Integrated Learning (WIL) - Completed</div><p>Built full-stack apps, AI projects, earned cloud certs.</p></div><div class="exp-dot"></div></div><div class="exp-item"><div class="exp-content"><div class="exp-year">2025 – Present</div><div class="exp-title">🎓 Graduate Program (Advanced Track)</div><p>AI engineering, scalable architectures, mentoring.</p></div><div class="exp-dot"></div></div><div class="exp-item"><div class="exp-content"><div class="exp-year">Q3 2026</div><div class="exp-title">Launch Tiyani AI v2 with LLM</div><p>Generative AI for portfolio Q&A.</p></div><div class="exp-dot"></div></div><div class="exp-item"><div class="exp-content"><div class="exp-year">2027+</div><div class="exp-title">Senior Developer / Tech Lead</div><p>Leading AI product teams.</p></div><div class="exp-dot"></div></div></div></div></section>
 
-    <!-- Video Demos & Marquee -->
+    <!-- Video Demos -->
     <section id="videos" class="section py-5" style="background:#f1f5f9;"><div class="container section-title"><h2>Video Demos</h2></div><div class="container"><div class="row"><div class="col-md-4"><video controls class="w-100"><source src="assets/img/n8n_AI_AGENT_2.mp4" type="video/mp4"></video><h3>AI Agent</h3></div><div class="col-md-4"><video controls class="w-100"><source src="assets/img/Record.mp4" type="video/mp4"></video><h3>TUT Portal</h3></div><div class="col-md-4"><video controls class="w-100"><source src="assets/img/South African Case AI_.mp4" type="video/mp4"></video><h3>Case Law AI</h3></div></div></div></section>
 
-    <div class="marquee-section"><div class="marquee-track"><span class="marquee-item"><i class="bi bi-robot"></i> Agentic</span><span class="marquee-item"><i class="bi bi-award"></i> Award Winner</span><span class="marquee-item"><i class="bi bi-mic"></i> Voice AI</span><span class="marquee-item"><i class="bi bi-cloud"></i> Taskade</span></div></div>
+    <!-- Marquee -->
+    <div class="marquee-section"><div class="marquee-track"><span class="marquee-item"><i class="bi bi-robot"></i> Agentic</span><span class="marquee-item"><i class="bi bi-award"></i> Award Winner</span><span class="marquee-item"><i class="bi bi-mic"></i> Voice AI</span><span class="marquee-item"><i class="bi bi-cloud"></i> Taskade</span><span class="marquee-item"><i class="bi bi-diagram-3"></i> n8n</span><span class="marquee-item"><i class="bi bi-robot"></i> Agentic</span></div></div>
 
     <!-- Resume Banner -->
     <section class="resume-banner"><div class="container"><h2>Ready to automate?</h2><p>Download my resume or explore my Person-OS.</p><a href="assets/pdf/cv.pdf" download class="resume-btn"><i class="bi bi-download"></i> Download CV</a><a href="personal.html" class="btn btn-outline-custom ms-3" style="background:white;">🧠 my person-os</a></div></section>
 
     <!-- Hire Me CTA -->
-    <section class="hire-me-section"><div class="container"><div class="hire-card"><h2>Let's Build Something Amazing</h2><p>Open for full‑time, freelance, and Agentic AI consulting.</p><div class="hire-buttons"><a href="contact.html" class="hire-btn hire-btn-primary">Contact Me</a><a href="https://linkedin.com/in/tiyani-manganyi-137625316/" class="hire-btn hire-btn-outline">LinkedIn</a></div></div></div></section>
+    <section class="hire-me-section"><div class="container"><div class="hire-card"><h2>Let's Build Something Amazing</h2><p>Open for full‑time, freelance, and Agentic AI consulting.</p><div class="hire-buttons mt-4"><a href="contact.html" class="btn btn-apply me-3">Contact Me</a><a href="https://linkedin.com/in/tiyani-manganyi-137625316/" class="btn btn-outline-custom" style="background:white;">LinkedIn</a></div></div></div></section>
   </main>
 
-  <footer id="footer" class="footer dark-background"><div class="container text-center py-4"><p>© 2026 Tiyani Manganyi – AI & Agentic Developer | <i class="bi bi-award"></i> Award Winner | <a href="personal.html" style="color:#e63946;">my person-os</a></p></div></footer>
+  <footer id="footer" class="footer"><div class="container text-center"><p>© 2026 Tiyani Manganyi – AI & Agentic Developer | <i class="bi bi-award"></i> Award Winner | <a href="personal.html" style="color:#e63946;">my person-os</a></p></div></footer>
 
   <a href="#" id="scroll-top" class="scroll-top"><i class="bi bi-arrow-up-short"></i></a>
-  <a href="https://wa.me/27608175627" class="whatsapp-float" target="_blank"><i class="bi bi-whatsapp"></i></a>
+  <a href="https://wa.me/27608175627" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
   <button id="dark-mode-toggle">🌙</button>
 
   <!-- AI Assistant Widget with Voice -->
-  <div class="ai-chat-widget"><div class="chat-toggle-btn" id="chatToggleBtn"><i class="bi bi-robot"></i></div><div class="chat-panel" id="chatPanel"><div class="chat-header">Tiyani AI (Voice) <span id="closeChatBtn" style="cursor:pointer;">✕</span></div><div class="chat-messages" id="chatMessages"><div class="message bot-message">🎤 Hi! Ask me about Agentic apps, awards, skills, or my Person-OS. Click mic 🎙️ to speak!</div><div class="quick-reply"><button class="quick-chip" data-question="What Agentic apps?">Agentic Apps</button><button class="quick-chip" data-question="Show me awards">Awards</button><button class="quick-chip" data-question="Skills">Skills</button><button class="quick-chip" data-question="Contact">Contact</button></div></div><div class="chat-input-area"><input type="text" class="chat-input" id="chatInput" placeholder="Ask..."><button class="voice-btn" id="voiceBtn"><i class="bi bi-mic"></i></button><button class="chat-send" id="chatSendBtn">Send</button></div></div></div>
+  <div class="ai-chat-widget">
+    <div class="chat-toggle-btn" id="chatToggleBtn"><i class="bi bi-robot"></i></div>
+    <div class="chat-panel" id="chatPanel">
+      <div class="chat-header">Tiyani AI (Voice) <span id="closeChatBtn" style="cursor:pointer;">✕</span></div>
+      <div class="chat-messages" id="chatMessages">
+        <div class="message bot-message">🎤 Hi! I'm Tiyani AI. Ask me about Agentic apps, awards, skills, or my Person-OS. Click mic 🎙️ to speak!</div>
+        <div class="quick-reply"><button class="quick-chip" data-question="What Agentic apps have you built?">Agentic Apps</button><button class="quick-chip" data-question="Show me your awards">Awards</button><button class="quick-chip" data-question="What are your skills?">Skills</button><button class="quick-chip" data-question="How can I contact Tiyani?">Contact</button></div>
+      </div>
+      <div class="chat-input-area">
+        <input type="text" class="chat-input" id="chatInput" placeholder="Ask me...">
+        <button class="voice-btn" id="voiceBtn"><i class="bi bi-mic"></i></button>
+        <button class="chat-send" id="chatSendBtn">Send</button>
+      </div>
+    </div>
+  </div>
 
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
@@ -297,36 +581,166 @@
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/js/main.js"></script>
   <script>
-    // Typing
+    // Typing animation
     const roles = ["AI & Agentic Developer", "Voice AI Engineer", "Award‑Winning Innovator"];
     let ri=0, ci=0, del=false; const te=document.getElementById('typing-text');
-    function typeEffect(){ const cur=roles[ri]; if(del) te.textContent=cur.substring(0,ci-1), ci--; else te.textContent=cur.substring(0,ci+1), ci++; if(!del && ci===cur.length){ del=true; setTimeout(typeEffect,2000); return; } if(del && ci===0){ del=false; ri=(ri+1)%roles.length; setTimeout(typeEffect,500); return; } setTimeout(typeEffect, del?50:100); } typeEffect();
-    // Counters
-    const counters=document.querySelectorAll('.counter'); const obs=new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting){ const el=e.target, target=parseInt(el.dataset.target); let curr=0, step=target/40; const timer=setInterval(()=>{ curr+=step; if(curr>=target){ el.innerText=target; clearInterval(timer); } else el.innerText=Math.floor(curr); },30); obs.unobserve(el); } }); },{threshold:0.5}); counters.forEach(c=>obs.observe(c));
-    AOS.init({duration:800, once:true});
-    // Dark mode
-    const darkToggle=document.getElementById('dark-mode-toggle'); const body=document.body; if(localStorage.darkMode==='true') body.classList.add('dark-mode'); darkToggle.onclick=()=>{ body.classList.toggle('dark-mode'); localStorage.darkMode=body.classList.contains('dark-mode'); darkToggle.innerHTML=body.classList.contains('dark-mode')?'☀️':'🌙'; };
-    // AI Assistant with Voice
-    const chatPanel=document.getElementById('chatPanel'), chatToggle=document.getElementById('chatToggleBtn'), closeChat=document.getElementById('closeChatBtn'), chatMsgs=document.getElementById('chatMessages'), chatInput=document.getElementById('chatInput'), sendBtn=document.getElementById('chatSendBtn'), voiceBtn=document.getElementById('voiceBtn');
-    let recognition=null;
-    if('webkitSpeechRecognition' in window||'SpeechRecognition' in window){ const SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition; recognition=new SpeechRecognition(); recognition.continuous=false; recognition.interimResults=false; recognition.lang='en-US'; }
-    function addMsg(t,isUser){ const d=document.createElement('div'); d.className=`message ${isUser?'user-message':'bot-message'}`; d.innerHTML=t; chatMsgs.appendChild(d); chatMsgs.scrollTop=chatMsgs.scrollHeight; }
-    function getAIResponse(userMsg){ const l=userMsg.toLowerCase();
-      if(l.includes('agentic')||l.includes('taskade')||l.includes('grocery')||l.includes('store')||l.includes('cover letter')) return "Agentic Suite: Grocery Flow Manager, Simple Store Manager, AI Cover Letter Generator, QR Pulse Studio, AI Productivity Planner – all live on Taskade!";
-      if(l.includes('award')||l.includes('certification')) return "Tiyani has 15+ awards: Google AI, Azure AI Engineer, IBM Full Stack, AWS Cloud Practitioner, Meta Frontend, FNB Top Performer, and more.";
-      if(l.includes('person-os')||l.includes('personal os')) return "My Person-OS is a complete framework of my habits, tools, and workflows. Click 'my person-os' in the navigation to explore!";
-      if(l.includes('skill')) return "Core skills: React, Python, Node.js, Agentic automation (n8n/Taskade), Voice AI, and full‑stack dev.";
-      if(l.includes('contact')) return "Email: kbmagoda2024@gmail.com | Phone: +27 60 817 5627 | WhatsApp via floating button.";
-      return "Ask me about Agentic apps, awards, Person-OS, skills, or contact info.";
+    function typeEffect(){
+      const cur=roles[ri];
+      if(del) te.textContent=cur.substring(0,ci-1), ci--;
+      else te.textContent=cur.substring(0,ci+1), ci++;
+      if(!del && ci===cur.length){ del=true; setTimeout(typeEffect,2000); return; }
+      if(del && ci===0){ del=false; ri=(ri+1)%roles.length; setTimeout(typeEffect,500); return; }
+      setTimeout(typeEffect, del?50:100);
     }
-    function sendMessage(){ const msg=chatInput.value.trim(); if(!msg)return; addMsg(msg,true); chatInput.value=''; setTimeout(()=>addMsg(getAIResponse(msg),false),100); }
-    if(recognition){ voiceBtn.addEventListener('click',()=>{ voiceBtn.classList.add('listening'); recognition.start(); }); recognition.onresult=(e)=>{ const transcript=e.results[0][0].transcript; chatInput.value=transcript; voiceBtn.classList.remove('listening'); addMsg(transcript,true); chatInput.value=''; setTimeout(()=>addMsg(getAIResponse(transcript),false),100); }; recognition.onerror=()=>voiceBtn.classList.remove('listening'); recognition.onend=()=>voiceBtn.classList.remove('listening'); } else { voiceBtn.disabled=true; voiceBtn.style.opacity=0.5; }
-    chatToggle.onclick=()=>{ chatPanel.style.display=chatPanel.style.display==='none'?'flex':'none'; }; closeChat.onclick=()=>{ chatPanel.style.display='none'; }; sendBtn.onclick=sendMessage; chatInput.addEventListener('keypress',e=>{if(e.key==='Enter')sendMessage();});
-    document.getElementById('openAiFromMenu')?.addEventListener('click',e=>{ e.preventDefault(); chatPanel.style.display='flex'; });
-    document.querySelectorAll('.quick-chip').forEach(chip=>{ chip.addEventListener('click',()=>{ const q=chip.getAttribute('data-question'); if(q){ addMsg(q,true); setTimeout(()=>addMsg(getAIResponse(q),false),100); } }); });
-    // Filter tabs (simple)
-    const tabs=document.querySelectorAll('.filter-tab'); const cards=document.querySelectorAll('.project-card');
-    tabs.forEach(t=>{ t.addEventListener('click',function(){ tabs.forEach(tt=>tt.classList.remove('active')); this.classList.add('active'); const filter=this.dataset.filter; cards.forEach(c=>{ if(filter==='all') c.style.display='block'; else if(c.dataset.category===filter) c.style.display='block'; else c.style.display='none'; }); }); });
+    typeEffect();
+
+    // Counters animation
+    const counters=document.querySelectorAll('.counter');
+    const observer=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          const el=entry.target;
+          const target=parseInt(el.dataset.target);
+          let curr=0;
+          const step=target/40;
+          const timer=setInterval(()=>{
+            curr+=step;
+            if(curr>=target){ el.innerText=target; clearInterval(timer); }
+            else el.innerText=Math.floor(curr);
+          },30);
+          observer.unobserve(el);
+        }
+      });
+    },{threshold:0.5});
+    counters.forEach(c=>observer.observe(c));
+
+    AOS.init({duration:800, once:true});
+
+    // Dark mode
+    const darkToggle=document.getElementById('dark-mode-toggle');
+    const body=document.body;
+    if(localStorage.darkMode==='true') body.classList.add('dark-mode');
+    darkToggle.onclick=()=>{
+      body.classList.toggle('dark-mode');
+      localStorage.darkMode=body.classList.contains('dark-mode');
+      darkToggle.innerHTML=body.classList.contains('dark-mode')?'☀️':'🌙';
+    };
+
+    // ========== ENHANCED AI ASSISTANT WITH VOICE ==========
+    const chatPanel=document.getElementById('chatPanel');
+    const chatToggle=document.getElementById('chatToggleBtn');
+    const closeChat=document.getElementById('closeChatBtn');
+    const chatMsgs=document.getElementById('chatMessages');
+    const chatInput=document.getElementById('chatInput');
+    const sendBtn=document.getElementById('chatSendBtn');
+    const voiceBtn=document.getElementById('voiceBtn');
+
+    let recognition=null;
+    if('webkitSpeechRecognition' in window || 'SpeechRecognition' in window){
+      const SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition;
+      recognition=new SpeechRecognition();
+      recognition.continuous=false;
+      recognition.interimResults=false;
+      recognition.lang='en-US';
+    }
+
+    function addMessage(text, isUser){
+      const div=document.createElement('div');
+      div.className=`message ${isUser?'user-message':'bot-message'}`;
+      div.innerHTML=text;
+      chatMsgs.appendChild(div);
+      chatMsgs.scrollTop=chatMsgs.scrollHeight;
+    }
+
+    function getAIResponse(userMsg){
+      const lower=userMsg.toLowerCase();
+      if(lower.includes('agentic')||lower.includes('taskade')||lower.includes('grocery')||lower.includes('store')||lower.includes('cover letter')||lower.includes('qr')||lower.includes('planner'))
+        return "🤖 Agentic Suite includes: Grocery Flow Manager, Simple Store Manager, AI Cover Letter Generator, QR Pulse Studio, and AI Productivity Planner – all live on Taskade!";
+      if(lower.includes('award')||lower.includes('certification'))
+        return "🏆 Tiyani has 15+ awards: Google AI, Azure AI Engineer, IBM Full Stack, AWS Cloud Practitioner, Meta Frontend, FNB Top Performer, and Agentic AI Champion.";
+      if(lower.includes('person-os')||lower.includes('personal os'))
+        return "🧠 My Person-OS is a complete framework of my habits, tools, and workflows. Click 'my person-os' in the navigation to explore!";
+      if(lower.includes('skill'))
+        return "💻 Core skills: React, Python, Node.js, MongoDB, Agentic automation (n8n/Taskade), Voice AI, and full‑stack development.";
+      if(lower.includes('project'))
+        return "📁 Featured projects: Doctors Appointment, SA Case Law AI, AI Resume Analyzer, and the 5 Agentic Taskade apps.";
+      if(lower.includes('contact'))
+        return "📧 Email: kbmagoda2024@gmail.com | 📞 Phone: +27 60 817 5627 | WhatsApp via floating button.";
+      return "I'm Tiyani AI. Ask me about Agentic apps, awards, Person-OS, skills, or contact info. Try 'What Agentic apps?' or 'Show me awards'.";
+    }
+
+    function sendMessage(){
+      const msg=chatInput.value.trim();
+      if(!msg) return;
+      addMessage(msg,true);
+      chatInput.value='';
+      setTimeout(()=>{
+        const reply=getAIResponse(msg);
+        addMessage(reply,false);
+      },100);
+    }
+
+    if(recognition){
+      voiceBtn.addEventListener('click',()=>{
+        voiceBtn.classList.add('listening');
+        recognition.start();
+      });
+      recognition.onresult=(event)=>{
+        const transcript=event.results[0][0].transcript;
+        chatInput.value=transcript;
+        voiceBtn.classList.remove('listening');
+        addMessage(transcript,true);
+        chatInput.value='';
+        setTimeout(()=>{
+          const reply=getAIResponse(transcript);
+          addMessage(reply,false);
+        },100);
+      };
+      recognition.onerror=()=>voiceBtn.classList.remove('listening');
+      recognition.onend=()=>voiceBtn.classList.remove('listening');
+    } else {
+      voiceBtn.disabled=true;
+      voiceBtn.style.opacity=0.5;
+    }
+
+    chatToggle.onclick=()=>{ chatPanel.style.display=chatPanel.style.display==='none'?'flex':'none'; };
+    closeChat.onclick=()=>{ chatPanel.style.display='none'; };
+    sendBtn.onclick=sendMessage;
+    chatInput.addEventListener('keypress',(e)=>{ if(e.key==='Enter') sendMessage(); });
+
+    document.getElementById('openAiFromMenu')?.addEventListener('click',(e)=>{
+      e.preventDefault();
+      chatPanel.style.display='flex';
+    });
+
+    document.querySelectorAll('.quick-chip').forEach(chip=>{
+      chip.addEventListener('click',()=>{
+        const q=chip.getAttribute('data-question');
+        if(q){
+          addMessage(q,true);
+          setTimeout(()=>{
+            const reply=getAIResponse(q);
+            addMessage(reply,false);
+          },100);
+        }
+      });
+    });
+
+    // Project filter (simple)
+    const tabs=document.querySelectorAll('.filter-tab');
+    const projectCards=document.querySelectorAll('.project-card');
+    tabs.forEach(tab=>{
+      tab.addEventListener('click',function(){
+        tabs.forEach(t=>t.classList.remove('active'));
+        this.classList.add('active');
+        const filter=this.getAttribute('data-filter');
+        projectCards.forEach(card=>{
+          if(filter==='all') card.style.display='block';
+          else if(card.getAttribute('data-category')===filter) card.style.display='block';
+          else card.style.display='none';
+        });
+      });
+    });
   </script>
 </body>
 </html>
