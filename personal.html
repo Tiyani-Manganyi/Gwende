@@ -12,24 +12,32 @@
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
     html,body,#root{height:100%;overflow:hidden}
-    body{background:#05050f;font-family:-apple-system,'Inter',BlinkMacSystemFont,sans-serif;color:#f0eeff}
-    ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}
+    body{
+      background:#05050f;
+      font-family:-apple-system,'Inter',BlinkMacSystemFont,sans-serif;
+      color:#f0eeff;
+    }
+
+    ::-webkit-scrollbar{width:4px}
+    ::-webkit-scrollbar-track{background:transparent}
     ::-webkit-scrollbar-thumb{background:rgba(124,58,237,.4);border-radius:10px}
+
     textarea,input,select,button{font-family:inherit}
+
     @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
     @keyframes bounce{0%,80%,100%{transform:translateY(0);opacity:.3}40%{transform:translateY(-5px);opacity:1}}
-    @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(124,58,237,.4)}70%{box-shadow:0 0 0 8px rgba(124,58,237,0)}}
-    @keyframes spin{to{transform:rotate(360deg)}}
     @keyframes ripple{0%{transform:scale(1);opacity:1}100%{transform:scale(2.5);opacity:0}}
-    @keyframes shimmer{0%{background-position:0% 0%}100%{background-position:200% 0%}}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
     .glass{
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.02));
       border: 1px solid rgba(120,100,255,.12);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
+
     .btn{
-      padding: 9px 16px;border-radius: 10px;cursor:pointer;font-size:13;font-weight:800;
+      padding: 9px 16px;border-radius: 12px;cursor:pointer;font-size:13;font-weight:900;
       border:1px solid rgba(120,100,255,.14);background:rgba(18,18,50,.35);color:#f0eeff;
       transition: transform .08s ease, background .12s ease, border-color .12s ease, opacity .12s ease;
     }
@@ -38,1060 +46,364 @@
       background: linear-gradient(135deg, #7c3aed, #8b5cf6);
       border:none;color:white;
     }
-    .btn-ghost{background:transparent;border:1px solid rgba(120,100,255,.12)}
+    .btn-ghost{background:transparent;border:1px solid rgba(120,100,255,.14)}
     .pill{
       display:inline-flex;align-items:center;gap:8px;
-      padding:6px 12px;border-radius:999px;font-size:12;font-weight:700;
+      padding:6px 12px;border-radius:999px;font-size:12;font-weight:800;
       border:1px solid rgba(120,100,255,.16);
       background: rgba(124,58,237,.12);
-      color:#d8ccff;
-      white-space:nowrap;
+      color:#d8ccff;white-space:nowrap
     }
-    .divider{height:1px;background:rgba(120,100,255,.12)}
     .muted{color:#9490b5}
     .mono{font-family: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'Liberation Mono','Courier New',monospace}
+    .divider{height:1px;background:rgba(120,100,255,.12)}
   </style>
 </head>
 
 <body>
-<div id="root"></div>
+  <div id="root"></div>
 
-<script type="text/babel" data-presets="react">
-const {useState,useEffect,useMemo,useRef} = React;
+  <script type="text/babel">
+    const {useState,useEffect,useMemo,useRef} = React;
 
-/* ----------------------------- Theme ----------------------------- */
-const C={
-  bg0:"#05050f",bg1:"#0a0a1a",bg2:"#0f0f24",bg3:"#161630",bg4:"#1c1c3a",
-  border:"rgba(120,100,255,.10)",bh:"rgba(139,92,246,.30)",
-  p:"#7c3aed",pl:"#8b5cf6",pp:"rgba(124,58,237,.13)",pg:"rgba(124,58,237,.22)",
-  g:"#10b981",gp:"rgba(16,185,129,.12)",
-  a:"#f59e0b",ap:"rgba(245,158,11,.12)",
-  r:"#ef4444",rp:"rgba(239,68,68,.12)",
-  b:"#3b82f6",bp:"rgba(59,130,246,.12)",
-  k:"#ec4899",kp:"rgba(236,72,153,.12)",
-  c:"#06b6d4",cp:"rgba(6,182,212,.12)",
-  tx:"#f0eeff",ts:"#9490b5",tm:"#4a4770",
-};
+    /* ----------------------------- Theme + Data ----------------------------- */
+    const C={
+      bg0:"#05050f",bg1:"#0a0a1a",bg2:"#0f0f24",bg3:"#161630",
+      border:"rgba(120,100,255,.10)",bh:"rgba(139,92,246,.30)",
+      p:"#7c3aed",pl:"#8b5cf6",pp:"rgba(124,58,237,.13)",pg:"rgba(124,58,237,.22)",
+      g:"#10b981",gp:"rgba(16,185,129,.12)",
+      a:"#f59e0b",ap:"rgba(245,158,11,.12)",
+      r:"#ef4444",rp:"rgba(239,68,68,.12)",
+      b:"#3b82f6",bp:"rgba(59,130,246,.12)",
+      k:"#ec4899",kp:"rgba(236,72,153,.12)",
+      c:"#06b6d4",cp:"rgba(6,182,212,.12)",
+      tx:"#f0eeff",ts:"#9490b5",tm:"#4a4770",
+    };
 
-const ME={
-  name:"Tiyani Manganyi",email:"kbmagoda2024@gmail.com",
-  phone:"060 817 5627",location:"Pretoria, South Africa",
-  linkedin:"linkedin.com/in/tiyani-manganyi-137625316",
-  github:"github.com/Tiyani-Manganyi",
-  portfolio:"gwende.vercel.app",
-  title:"Junior Software Developer · Open to Work",
-  bio:"Passionate Software Developer from South Africa, holding a Diploma in Computer Science from TUT. Specialising in full-stack development, AI integrations, and cloud engineering. 9+ projects built."
-};
+    const ME={
+      name:"Tiyani Manganyi",email:"kbmagoda2024@gmail.com",
+      phone:"060 817 5627",location:"Pretoria, South Africa",
+      linkedin:"linkedin.com/in/tiyani-manganyi-137625316",
+      github:"github.com/Tiyani-Manganyi",
+      portfolio:"gwende.vercel.app",
+      title:"Junior Software Developer · Open to Work",
+      bio:"Passionate Software Developer from South Africa, holding a Diploma in Computer Science from TUT. Specialising in full-stack development, AI integrations, and cloud engineering. 9+ projects built."
+    };
 
-const GOALS=[
-  {id:"g1",title:"Land a Junior Developer Role",cat:"Career",color:C.g,progress:55,emoji:"💼",
-   milestones:["Update portfolio ✓","Apply to 10 roles ✓","Build AI Resume Analyzer ✓","Land 3 interviews","Get offer"],done:[0,1,2],
-   notes:"Portfolio live at gwende.vercel.app · TUT sent IT Interns reminder today."},
-  {id:"g2",title:"Complete Graduate Programme",cat:"Education",color:C.p,progress:60,emoji:"🎓",
-   milestones:["Enroll in Graduate Track ✓","Complete AI engineering module ✓","Build production AI assistant","Mentor WIL interns","Graduate"],done:[0,1],
-   notes:"Currently enrolled — Advanced AI + Cloud Architecture track."},
-  {id:"g3",title:"Launch Tiyani AI v2 with LLM",cat:"Product",color:C.a,progress:25,emoji:"🤖",
-   milestones:["Define v2 feature set","Integrate Gemini/OpenAI","Deploy dynamic portfolio Q&A","Beta launch Q3 2026"],done:[0],
-   notes:"Target: Q3 2026. Enhance current AI assistant with generative AI."},
-  {id:"g4",title:"Become Senior Developer / Tech Lead",cat:"Career",color:C.k,progress:15,emoji:"🚀",
-   milestones:["Senior role applications (2027)","Lead a project team","Publish open-source tool","Tech conference talk"],done:[],
-   notes:"2027+ roadmap. Build toward team leadership and innovation."},
-];
+    const GOALS=[
+      {id:"g1",title:"Land a Junior Developer Role",cat:"Career",color:C.g,progress:55,emoji:"💼",
+       milestones:["Update portfolio ✓","Apply to 10 roles ✓","Build AI Resume Analyzer ✓","Land 3 interviews","Get offer"],done:[0,1,2],
+       notes:"Portfolio live at gwende.vercel.app · TUT sent IT Interns reminder today."},
+      {id:"g2",title:"Complete Graduate Programme",cat:"Education",color:C.p,progress:60,emoji:"🎓",
+       milestones:["Enroll in Graduate Track ✓","Complete AI engineering module ✓","Build production AI assistant","Mentor WIL interns","Graduate"],done:[0,1],
+       notes:"Currently enrolled — Advanced AI + Cloud Architecture track."},
+      {id:"g3",title:"Launch Tiyani AI v2 with LLM",cat:"Product",color:C.a,progress:25,emoji:"🤖",
+       milestones:["Define v2 feature set","Integrate Gemini/OpenAI","Deploy dynamic portfolio Q&A","Beta launch Q3 2026"],done:[0],
+       notes:"Target: Q3 2026. Enhance current AI assistant with generative AI."},
+      {id:"g4",title:"Become Senior Developer / Tech Lead",cat:"Career",color:C.k,progress:15,emoji:"🚀",
+       milestones:["Senior role applications (2027)","Lead a project team","Publish open-source tool","Tech conference talk"],done:[],
+       notes:"2027+ roadmap. Build toward team leadership and innovation."},
+    ];
 
-const PROJECTS=[
-  {id:"p1",name:"Doctors Appointment Website",cat:"WIL",color:C.b,
-   desc:"Online booking platform for medical appointments with calendar integration, email reminders, and secure patient dashboard.",
-   tech:["React","Node.js","MongoDB","Email API"],live:"https://doctors-booking.vercel.app/",code:"https://github.com/Tiyani-Manganyi/doctors-booking",status:"live"},
-  {id:"p2",name:"Fruits & Vegetable E-commerce",cat:"WIL",color:C.g,
-   desc:"Full-stack MERN platform with Stripe payments, user authentication, admin panel, and order tracking.",
-   tech:["React","Node.js","MongoDB","Stripe"],live:null,code:"https://github.com/Tiyani-Manganyi/Fruits_and_vegetable_web",status:"live"},
-  {id:"p3",name:"TUT Job Portal",cat:"WIL",color:C.p,
-   desc:"Smart career matching platform for TUT students & alumni — real-time vacancies, skills-based recommendations.",
-   tech:["React","AI Matching","REST API","MongoDB"],live:"https://4ir-ai-tut.base44.app/",code:"https://github.com/Tiyani-Manganyi/tut-jobportal",status:"live"},
-  {id:"p4",name:"South African Case Law AI",cat:"Graduate",color:C.a,
-   desc:"Semantic search + GPT over landmark SA constitutional cases. Ask a legal question and get cited answers grounded in actual judgments.",
-   tech:["NLP","GPT","Semantic Search","Python"],live:"https://4ir-ai-tut.base44.app/",code:"https://github.com/Tiyani-Manganyi/sa-case-law-ai",status:"live"},
-  {id:"p5",name:"LinkedIn Workflow Suggester",cat:"Graduate",color:C.c,
-   desc:"AI tool recommending career workflows, networking strategies, and profile optimisations for job seekers.",
-   tech:["AI","React","LinkedIn API","Node.js"],live:"https://linkedin-workflow-suggester.codewords.run/",code:"https://github.com/Tiyani-Manganyi/linkedin-workflow",status:"live"},
-  {id:"p6",name:"4IR Resume Website",cat:"Graduate",color:C.k,
-   desc:"Interactive digital CV / portfolio template with modern UI, responsive design, and downloadable PDF export.",
-   tech:["HTML/CSS","JavaScript","PDF Export"],live:"https://4-ir-resume-rxi9.vercel.app/",code:"https://github.com/Tiyani-Manganyi/4ir-resume",status:"live"},
-  {id:"p7",name:"AI Resume Analyzer",cat:"Graduate",color:C.r,
-   desc:"ATS-compatibility checker, keyword optimisation, skill gap analysis. Helps job seekers pass automated screening systems.",
-   tech:["Python","NLP","React","FastAPI"],live:"https://resume-analyzer-ashen.vercel.app/",code:"https://github.com/Tiyani-Manganyi/resume-analyzer",status:"live",hot:true},
-  {id:"p8",name:"House Price Prediction",cat:"Future",color:C.ts,
-   desc:"Regression model with R²=0.87 — planned to be deployed as an API and interactive dashboard.",
-   tech:["Python","ML","Regression","Flask"],live:null,code:"https://github.com/Tiyani-Manganyi/house-price-prediction",status:"planned"},
-  {id:"p9",name:"Customer Sentiment Dashboard",cat:"Future",color:C.ts,
-   desc:"Real-time social media sentiment analysis using NLP — production deployment planned Q3 2026.",
-   tech:["NLP","Python","React","Real-time"],live:null,code:"https://github.com/Tiyani-Manganyi/sentiment-dashboard",status:"planned"},
-];
+    const PROJECTS=[
+      {id:"p1",name:"Doctors Appointment Website",cat:"WIL",color:C.b,
+       desc:"Online booking platform for medical appointments with calendar integration, email reminders, and secure patient dashboard.",
+       tech:["React","Node.js","MongoDB","Email API"],
+       live:"https://doctors-booking.vercel.app/",code:"https://github.com/Tiyani-Manganyi/doctors-booking",status:"live"},
+      {id:"p2",name:"Fruits & Vegetable E-commerce",cat:"WIL",color:C.g,
+       desc:"Full-stack MERN platform with Stripe payments, user authentication, admin panel, and order tracking.",
+       tech:["React","Node.js","MongoDB","Stripe"],
+       live:null,code:"https://github.com/Tiyani-Manganyi/Fruits_and_vegetable_web",status:"live"},
+      {id:"p3",name:"TUT Job Portal",cat:"WIL",color:C.p,
+       desc:"Smart career matching platform for TUT students & alumni — real-time vacancies, skills-based recommendations.",
+       tech:["React","AI Matching","REST API","MongoDB"],
+       live:"https://4ir-ai-tut.base44.app/",code:"https://github.com/Tiyani-Manganyi/tut-jobportal",status:"live"},
+      {id:"p4",name:"South African Case Law AI",cat:"Graduate",color:C.a,
+       desc:"Semantic search + GPT over landmark SA constitutional cases. Ask a legal question and get cited answers grounded in actual judgments.",
+       tech:["NLP","GPT","Semantic Search","Python"],
+       live:"https://4ir-ai-tut.base44.app/",code:"https://github.com/Tiyani-Manganyi/sa-case-law-ai",status:"live"},
+      {id:"p5",name:"LinkedIn Workflow Suggester",cat:"Graduate",color:C.c,
+       desc:"AI tool recommending career workflows, networking strategies, and profile optimisations for job seekers.",
+       tech:["AI","React","LinkedIn API","Node.js"],
+       live:"https://linkedin-workflow-suggester.codewords.run/",code:"https://github.com/Tiyani-Manganyi/linkedin-workflow",status:"live"},
+      {id:"p6",name:"4IR Resume Website",cat:"Graduate",color:C.k,
+       desc:"Interactive digital CV / portfolio template with modern UI, responsive design, and downloadable PDF export.",
+       tech:["HTML/CSS","JavaScript","PDF Export"],
+       live:"https://4-ir-resume-rxi9.vercel.app/",code:"https://github.com/Tiyani-Manganyi/4ir-resume",status:"live"},
+      {id:"p7",name:"AI Resume Analyzer",cat:"Graduate",color:C.r,
+       desc:"ATS-compatibility checker, keyword optimisation, skill gap analysis. Helps job seekers pass automated screening systems.",
+       tech:["Python","NLP","React","FastAPI"],
+       live:"https://resume-analyzer-ashen.vercel.app/",code:"https://github.com/Tiyani-Manganyi/resume-analyzer",status:"live",hot:true},
+      {id:"p8",name:"House Price Prediction",cat:"Future",color:C.ts,
+       desc:"Regression model with R²=0.87 — planned to be deployed as an API and interactive dashboard.",
+       tech:["Python","ML","Regression","Flask"],
+       live:null,code:"https://github.com/Tiyani-Manganyi/house-price-prediction",status:"planned"},
+      {id:"p9",name:"Customer Sentiment Dashboard",cat:"Future",color:C.ts,
+       desc:"Real-time social media sentiment analysis using NLP — production deployment planned Q3 2026.",
+       tech:["NLP","Python","React","Real-time"],
+       live:null,code:"https://github.com/Tiyani-Manganyi/sentiment-dashboard",status:"planned"},
+    ];
 
-const SKILLS=[
-  {name:"JavaScript / React.js",pct:85,color:C.b},
-  {name:"Python / Django",pct:80,color:C.g},
-  {name:"Node.js / Express",pct:78,color:C.g},
-  {name:"MongoDB",pct:82,color:C.a},
-  {name:"NLP & AI/ML",pct:75,color:C.p},
-  {name:"AWS / Azure Cloud",pct:70,color:C.c},
-];
+    const SKILLS=[
+      {name:"JavaScript / React.js",pct:85,color:C.b},
+      {name:"Python / Django",pct:80,color:C.g},
+      {name:"Node.js / Express",pct:78,color:C.g},
+      {name:"MongoDB",pct:82,color:C.a},
+      {name:"NLP & AI/ML",pct:75,color:C.p},
+      {name:"AWS / Azure Cloud",pct:70,color:C.c},
+    ];
 
-const CERTS=[
-  {id:"c1",name:"FNB App Academy — Full Stack Development",issuer:"FNB",year:"2025",color:C.g,tech:["React.js","Node.js","Express","MongoDB","REST APIs","JWT Auth"],emoji:"🏆"},
-  {id:"c2",name:"Huawei ICT — Data Management & Analytics",issuer:"Huawei",year:"Feb 2026",color:C.r,tech:["SQL","Python (Pandas)","Tableau","ETL Pipelines","Power BI","Data Modeling"],emoji:"📊"},
-  {id:"c3",name:"Microsoft Azure Fundamentals (AZ-900)",issuer:"Microsoft",year:"Feb 2026",color:C.b,tech:["Azure VMs","Azure Storage","Entra ID","ARM Templates","GDPR","Azure Monitor"],emoji:"☁️"},
-  {id:"c4",name:"Diploma in Computer Science",issuer:"Tshwane University of Technology",year:"01-FEB-2026",color:C.p,tech:["OOP (Java/Python)","Data Structures","Algorithms","Software Engineering","DB Design","OS Concepts"],emoji:"🎓"},
-  {id:"c5",name:"Cybersecurity Essentials (UK Workforce)",issuer:"Knights of Safety",year:"Feb 2026",color:C.a,tech:["NIST CSF","ISO 27001","Risk Management","Encryption (AES)","Incident Response","Zero Trust"],emoji:"🔐"},
-  {id:"c6",name:"Cisco — Getting Started with Packet Tracer",issuer:"Cisco Networking Academy",year:"2025",color:C.c,tech:["TCP/IP Stack","VLANs","Routing (OSPF)","Switching","Cisco IOS","Subnetting"],emoji:"🌐"},
-  {id:"c7",name:"AWS Cloud Practitioner",issuer:"Amazon Web Services",year:"2024",color:C.a,tech:["AWS EC2","S3","Lambda","IAM","CloudFront","RDS","CloudFormation"],emoji:"☁️"},
-  {id:"c8",name:"NLP — Text Classification Models",issuer:"Online",year:"2025",color:C.k,tech:["NLTK","spaCy","scikit-learn","Transformers (HuggingFace)","TensorFlow","Word2Vec"],emoji:"🤖"},
-  {id:"c9",name:"DevOps & Cloud Full Stack CV",issuer:"Professional",year:"2026",color:C.g,tech:["Git/GitHub","Docker","CI/CD (GitHub Actions)","Agile/Scrum","Terraform (IaC)","Jest/Testing"],emoji:"⚙️"},
-];
+    const CERTS=[
+      {id:"c1",name:"FNB App Academy — Full Stack Development",issuer:"FNB",year:"2025",color:C.g,
+       tech:["React.js","Node.js","Express","MongoDB","REST APIs","JWT Auth"],emoji:"🏆"},
+      {id:"c2",name:"Huawei ICT — Data Management & Analytics",issuer:"Huawei",year:"Feb 2026",color:C.r,
+       tech:["SQL","Python (Pandas)","Tableau","ETL Pipelines","Power BI","Data Modeling"],emoji:"📊"},
+      {id:"c3",name:"Microsoft Azure Fundamentals (AZ-900)",issuer:"Microsoft",year:"Feb 2026",color:C.b,
+       tech:["Azure VMs","Azure Storage","Entra ID","ARM Templates","GDPR","Azure Monitor"],emoji:"☁️"},
+      {id:"c4",name:"Diploma in Computer Science",issuer:"Tshwane University of Technology",year:"01-FEB-2026",color:C.p,
+       tech:["OOP (Java/Python)","Data Structures","Algorithms","Software Engineering","DB Design","OS Concepts"],emoji:"🎓"},
+      {id:"c5",name:"Cybersecurity Essentials (UK Workforce)",issuer:"Knights of Safety",year:"Feb 2026",color:C.a,
+       tech:["NIST CSF","ISO 27001","Risk Management","Encryption (AES)","Incident Response","Zero Trust"],emoji:"🔐"},
+      {id:"c6",name:"Cisco — Getting Started with Packet Tracer",issuer:"Cisco Networking Academy",year:"2025",color:C.c,
+       tech:["TCP/IP Stack","VLANs","Routing (OSPF)","Switching","Cisco IOS","Subnetting"],emoji:"🌐"},
+      {id:"c7",name:"AWS Cloud Practitioner",issuer:"Amazon Web Services",year:"2024",color:C.a,
+       tech:["AWS EC2","S3","Lambda","IAM","CloudFront","RDS","CloudFormation"],emoji:"☁️"},
+      {id:"c8",name:"NLP — Text Classification Models",issuer:"Online",year:"2025",color:C.k,
+       tech:["NLTK","spaCy","scikit-learn","Transformers (HuggingFace)","TensorFlow","Word2Vec"],emoji:"🤖"},
+      {id:"c9",name:"DevOps & Cloud Full Stack CV",issuer:"Professional",year:"2026",color:C.g,
+       tech:["Git/GitHub","Docker","CI/CD (GitHub Actions)","Agile/Scrum","Terraform (IaC)","Jest/Testing"],emoji:"⚙️"},
+    ];
 
-const CALENDAR_EVENTS=[
-  {day:2,time:"08:00",title:"Apply — IT Interns West Rand",color:C.g},
-  {day:3,time:"10:00",title:"Review LinkedIn matches",color:C.b},
-  {day:4,time:"09:00",title:"Code — Tiyani AI v2",color:C.p},
-  {day:5,time:"11:00",title:"Update gwende.vercel.app",color:C.a},
-  {day:7,time:"19:00",title:"Weekly reflection",color:C.k},
-  {day:10,time:"09:00",title:"Graduate Programme session",color:C.p},
-];
+    const CALENDAR_EVENTS=[
+      {day:2,time:"08:00",title:"Apply — IT Interns West Rand",color:C.g},
+      {day:3,time:"10:00",title:"Review LinkedIn matches",color:C.b},
+      {day:4,time:"09:00",title:"Code — Tiyani AI v2",color:C.p},
+      {day:5,time:"11:00",title:"Update gwende.vercel.app",color:C.a},
+      {day:7,time:"19:00",title:"Weekly reflection",color:C.k},
+      {day:10,time:"09:00",title:"Graduate Programme session",color:C.p},
+    ];
 
-const NOTION_NOTES=[
-  {id:"n1",title:"Job Search Strategy",color:C.g,date:"Jun 2",content:"1. Apply to 2 roles daily\n2. Prioritize remote roles paying R20k+\n3. Follow up after 5 days\n4. Use AI Resume Analyzer before submitting\n5. Keep gwende.vercel.app updated"},
-  {id:"n2",title:"Tiyani AI v2 — Feature Plan",color:C.p,date:"Jun 1",content:"Features for v2:\n• Gemini/OpenAI integration\n• Dynamic portfolio Q&A\n• Live GitHub project stats\n• Voice interface (done!)\n• Deploy Q3 2026"},
-  {id:"n3",title:"Graduate Programme Notes",color:C.a,date:"May 30",content:"Topics this month:\n• AI Engineering — LLM fine-tuning\n• Cloud Architecture — multi-region\n• Team Leadership — mentoring WIL interns\n• Production deployment practices"},
-];
+    const NOTION_NOTES=[
+      {id:"n1",title:"Job Search Strategy",color:C.g,date:"Jun 2",content:"1. Apply to 2 roles daily\n2. Prioritize remote roles paying R20k+\n3. Follow up after 5 days\n4. Use AI Resume Analyzer before submitting\n5. Keep gwende.vercel.app updated"},
+      {id:"n2",title:"Tiyani AI v2 — Feature Plan",color:C.p,date:"Jun 1",content:"Features for v2:\n• Gemini/OpenAI integration\n• Dynamic portfolio Q&A\n• Live GitHub project stats\n• Voice interface (done!)\n• Deploy Q3 2026"},
+      {id:"n3",title:"Graduate Programme Notes",color:C.a,date:"May 30",content:"Topics this month:\n• AI Engineering — LLM fine-tuning\n• Cloud Architecture — multi-region\n• Team Leadership — mentoring WIL interns\n• Production deployment practices"},
+    ];
 
-/* ----------------------------- Initial demo inbox ----------------------------- */
-const GMAIL_INBOX_DEMO=[
-  {id:"m1",from:"noreply-olums@tut.ac.za",name:"TUT Portal",avatar:"TUT",avatarColor:"#1a237e",
-   subject:"REMINDER: IT Interns West Rand — check if you qualify",
-   time:"10:53 AM",unread:true,category:"opportunity",
-   body:"Dear MISS. FLORAH SIBIYA,\n\nPLEASE CHECK THIS JOB IS MATCHED WITH YOUR FOS (QUALIFICATION)\n\nJOB: IT INTERNS WEST RAND\n\nPlease submit your application if you meet the requirements.\n\nRegards,\nTUT WIL Portal"},
-  {id:"m2",from:"messages-noreply@linkedin.com",name:"LinkedIn",avatar:"in",avatarColor:"#0a66c2",
-   subject:"Student Intern job openings in the past week",
-   time:"2:37 PM",unread:true,category:"opportunity",
-   body:"LinkedIn Job Alerts\n\nNew Student Intern & Graduate Developer openings matching your profile:\n\n• Software Developer Intern — Johannesburg\n• Junior React Developer — Remote (R15k-R20k)\n• IT Graduate Trainee — Pretoria\n\nView all opportunities on LinkedIn →"},
-  {id:"m3",from:"notifications@vercel.com",name:"Vercel",avatar:"▲",avatarColor:"#000",
-   subject:"New sign-in detected on your Vercel account",
-   time:"11:57 AM",unread:true,category:"security",
-   body:"Hello,\n\nYour Vercel account was recently signed-in from a new location:\n\nLocation: Pretoria, Gauteng, South Africa\nDevice: New browser\n\nIf this was you, no action needed. If not, secure your account at vercel.com/account."},
-];
+    const GMAIL_INBOX_DEMO=[
+      {id:"m1",from:"noreply-olums@tut.ac.za",name:"TUT Portal",avatar:"TUT",avatarColor:"#1a237e",
+       subject:"REMINDER: IT Interns West Rand — check if you qualify",
+       time:"10:53 AM",unread:true,category:"opportunity",
+       body:"Dear MISS. FLORAH SIBIYA,\n\nPLEASE CHECK THIS JOB IS MATCHED WITH YOUR FOS (QUALIFICATION)\n\nJOB: IT INTERNS WEST RAND\n\nPlease submit your application if you meet the requirements.\n\nRegards,\nTUT WIL Portal"},
+      {id:"m2",from:"messages-noreply@linkedin.com",name:"LinkedIn",avatar:"in",avatarColor:"#0a66c2",
+       subject:"Student Intern job openings in the past week",
+       time:"2:37 PM",unread:true,category:"opportunity",
+       body:"LinkedIn Job Alerts\n\nNew Student Intern & Graduate Developer openings matching your profile:\n\n• Software Developer Intern — Johannesburg\n• Junior React Developer — Remote (R15k-R20k)\n• IT Graduate Trainee — Pretoria\n\nView all opportunities on LinkedIn →"},
+      {id:"m3",from:"notifications@vercel.com",name:"Vercel",avatar:"▲",avatarColor:"#000",
+       subject:"New sign-in detected on your Vercel account",
+       time:"11:57 AM",unread:true,category:"security",
+       body:"Hello,\n\nYour Vercel account was recently signed-in from a new location:\n\nLocation: Pretoria, Gauteng, South Africa\nDevice: New browser\n\nIf this was you, no action needed. If not, secure your account at vercel.com/account."},
+    ];
 
-const LI_NOTIFS_DEMO=[
-  {id:"n1",type:"message",from:"Hiring Manager",avatar:"HM",avatarColor:C.b,
-   title:"New message: Junior Dev opportunity",
-   body:"Hi Tiyani, I came across your portfolio at gwende.vercel.app and I'm impressed. We have a Junior Developer role...",
-   time:"1h ago",unread:true},
-  {id:"n2",type:"job",from:"LinkedIn Jobs",avatar:"in",avatarColor:"#0a66c2",
-   title:"Job match: React Developer — Remote",
-   body:"DataFlow Analytics · React Developer · Remote · R45,000/month · Strong match based on React.js (85%).",
-   time:"3h ago",unread:true},
-  {id:"n3",type:"view",from:"LinkedIn",avatar:"👀",avatarColor:C.p,
-   title:"Your profile was viewed 14 times this week",
-   body:"14 people viewed your profile this week — up 40% from last week.",
-   time:"Today",unread:false},
-];
+    const LI_NOTIFS_DEMO=[
+      {id:"n1",type:"message",from:"Hiring Manager",avatar:"HM",avatarColor:C.b,
+       title:"New message: Junior Dev opportunity",
+       body:"Hi Tiyani, I came across your portfolio at gwende.vercel.app and I'm impressed. We have a Junior Developer role that matches your profile...",
+       time:"1h ago",unread:true},
+      {id:"n2",type:"job",from:"LinkedIn Jobs",avatar:"in",avatarColor:"#0a66c2",
+       title:"Job match: React Developer — Remote",
+       body:"DataFlow Analytics · React Developer · Remote · R45,000/month · Strong match based on your React.js (85%).",
+       time:"3h ago",unread:true},
+      {id:"n3",type:"view",from:"LinkedIn",avatar:"👀",avatarColor:C.p,
+       title:"Your profile was viewed 14 times this week",
+       body:"14 people viewed your profile this week — up 40% from last week.",
+       time:"Today",unread:false},
+    ];
 
-/* ----------------------------- Utilities ----------------------------- */
-function Av({seed,label,size=34,color,sq}){
-  const pal=["#7c3aed","#10b981","#f59e0b","#3b82f6","#ec4899","#ef4444","#0a66c2","#06b6d4"];
-  const bg=color||pal[(seed||"A").charCodeAt(0)%pal.length];
-  const init=(label||(seed||"?").split(" ").map(w=>w[0]).join("").slice(0,2)).toUpperCase();
-  return (
-    <div style={{
-      width:size,height:size,borderRadius:sq?10:"50%",background:bg,color:"#fff",
-      display:"flex",alignItems:"center",justifyContent:"center",fontWeight:900,fontSize:size*.36,
-      flexShrink:0
-    }}>{init}</div>
-  );
-}
-function Badge({label,color=C.p,bg}){
-  return (
-    <span style={{
-      background:bg||(color+"18"),
-      color,
-      border:`1px solid ${color}28`,
-      borderRadius:999,
-      padding:"2px 10px",
-      fontSize:11,
-      fontWeight:800,
-      whiteSpace:"nowrap"
-    }}>{label}</span>
-  );
-}
-function Bar({pct,color=C.p,h=7}){
-  return (
-    <div style={{background:C.bg3,borderRadius:99,height:h,overflow:"hidden"}}>
-      <div style={{
-        width:`${pct}%`,height:"100%",
-        background:`linear-gradient(90deg,${color},${color}aa)`,
-        borderRadius:99,transition:"width .5s"
-      }}/>
-    </div>
-  );
-}
-function Card({children,glow,style={}}){
-  return (
-    <div className={glow?"glass":""}
-      style={{
-        background:glow?undefined:C.bg2,
-        border:`1px solid ${glow?C.pg:C.border}`,
-        borderRadius:16,padding:"18px 20px",
-        ...style
-      }}>
-      {children}
-    </div>
-  );
-}
-function Btn({children,onClick,v="ghost",style={}}){
-  const cls = v==="primary"?"btn btn-primary":v==="green"?"btn":"btn btn-ghost";
-  return (
-    <button className={cls} onClick={onClick} style={style}>
-      {children}
-    </button>
-  );
-}
-function Modal({children,onClose,wide}){
-  return (
-    <div style={{position:"fixed",inset:0,background:"rgba(5,5,15,.88)",display:"flex",alignItems:"center",justifyContent:"center",zIndex:500}}
-      onClick={e=>e.target===e.currentTarget&&onClose()}>
-      <div style={{
-        background:C.bg1,border:`1px solid ${C.bh}`,borderRadius:18,padding:28,
-        width:wide?"min(860px,96vw)":"min(600px,95vw)",
-        maxHeight:"90vh",overflowY:"auto",animation:"fadeIn .2s ease",
-        boxShadow:"0 40px 80px rgba(0,0,0,.7)"
-      }}>{children}</div>
-    </div>
-  );
-}
+    /* ----------------------------- Date key for “today” tracking ----------------------------- */
+    function dayKeyJohannesburg(d=new Date()){
+      const parts = new Intl.DateTimeFormat('en-CA',{
+        timeZone:'Africa/Johannesburg',year:'numeric',month:'2-digit',day:'2-digit'
+      }).formatToParts(d);
+      const get=t=>parts.find(p=>p.type===t)?.value;
+      return `${get('year')}-${get('month')}-${get('day')}`;
+    }
 
-/* ----------------------------- “Today” sent tracking ----------------------------- */
-function tzJohannesburgDateKey(d=new Date()){
-  // Format YYYY-MM-DD in Africa/Johannesburg without external libs
-  const parts = new Intl.DateTimeFormat('en-CA', {
-    timeZone: 'Africa/Johannesburg',
-    year:'numeric', month:'2-digit', day:'2-digit'
-  }).formatToParts(d);
-  const get = (t)=>parts.find(p=>p.type===t)?.value;
-  return `${get('year')}-${get('month')}-${get('day')}`;
-}
-const LS_KEY="tiyani_sent_events_v2";
-function loadSentEvents(){
-  try{ return JSON.parse(localStorage.getItem(LS_KEY)||"[]"); }catch{ return []; }
-}
-function saveSentEvents(evts){
-  localStorage.setItem(LS_KEY, JSON.stringify(evts));
-}
-function addSentEvent(evt){
-  const evts=loadSentEvents();
-  evts.push(evt);
-  saveSentEvents(evts);
-}
+    const LS_KEY="tiyani_sent_events_onefile_v1";
+    function loadSentEvents(){
+      try{ return JSON.parse(localStorage.getItem(LS_KEY)||"[]"); }catch{ return []; }
+    }
+    function saveSentEvents(evts){
+      localStorage.setItem(LS_KEY, JSON.stringify(evts));
+    }
+    function addSentEvent(evt){
+      const evts=loadSentEvents();
+      evts.push(evt);
+      saveSentEvents(evts);
+    }
+    function clearSentEvents(){
+      localStorage.removeItem(LS_KEY);
+    }
 
-/* ----------------------------- API layer (optional backend) ----------------------------- */
-async function apiGetJSON(path){
-  const r = await fetch(path, {headers:{"Accept":"application/json"}});
-  if(!r.ok) throw new Error("API request failed");
-  return await r.json();
-}
-async function apiPostJSON(path,body){
-  const r = await fetch(path,{
-    method:"POST",
-    headers:{"Content-Type":"application/json","Accept":"application/json"},
-    body:JSON.stringify(body)
-  });
-  if(!r.ok) throw new Error("API request failed");
-  return await r.json();
-}
-
-/* ----------------------------- Views ----------------------------- */
-function TodayHeader({onNav, mailUnread, liUnread, todaySentG, todaySentLI, nowStr}){
-  const hour=new Date().getHours();
-  const greet=hour<12?"Good morning":hour<17?"Good afternoon":"Good evening";
-  const todayLabel = new Intl.DateTimeFormat('en-ZA',{
-    timeZone:'Africa/Johannesburg',
-    weekday:'long',year:'numeric',month:'long',day:'numeric'
-  }).format(new Date());
-
-  return (
-    <div style={{height:"100%",overflowY:"auto",padding:"24px 26px",animation:"fadeIn .25s ease"}}>
-      <div style={{marginBottom:18}}>
-        <div className="muted" style={{fontSize:12,marginBottom:6}}>{todayLabel}</div>
-        <div style={{fontSize:28,fontWeight:950,color:C.tx,letterSpacing:-.8}}>{greet}, Tiyani ✦</div>
-        <div style={{fontSize:14,color:C.ts,marginTop:4}}>Junior Software Developer · {ME.location}</div>
-      </div>
-
-      <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:10,marginBottom:16}}>
-        {[
-          {v:"4",l:"Active Goals",s:"in progress",color:C.p},
-          {v:"7+",l:"Projects Live",s:"and shipping energy",color:C.g},
-          {v:"13+",l:"Certifications",s:"AWS · Azure · FNB",color:C.a},
-          {v:String(mailUnread+liUnread),l:"Needs Attention",s:`${mailUnread} email · ${liUnread} LinkedIn`,color:C.r},
-        ].map(s=>(
-          <Card key={s.l} style={{padding:"12px 14px",borderRadius:16}}>
-            <div style={{fontSize:12,fontWeight:900,color:s.color,marginBottom:2}}>{s.l}</div>
-            <div style={{fontSize:22,fontWeight:950,color:s.color}}>{s.v}</div>
-            <div style={{fontSize:11,color:C.ts,marginTop:2}}>{s.s}</div>
-          </Card>
-        ))}
-      </div>
-
-      <div style={{display:"grid",gridTemplateColumns:"1.2fr .8fr",gap:14,marginBottom:14}}>
-        <Card glow>
-          <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12,gap:10}}>
-            <div style={{display:"flex",alignItems:"center",gap:10}}>
-              <div style={{width:36,height:36,borderRadius:12,background:`linear-gradient(135deg,${C.p},${C.pl})`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:15}}>✦</div>
-              <div>
-                <div style={{fontWeight:950,color:C.pl,fontSize:13}}>Life Coach — Daily Brief</div>
-                <div style={{fontSize:11,color:C.ts}}>Auto-refresh · Johannesburg timezone</div>
-              </div>
-            </div>
-            <div className="pill" title="Live clock">
-              <span style={{width:6,height:6,borderRadius:"50%",background:C.g}}/>
-              <span className="mono">{nowStr}</span>
-            </div>
-          </div>
-
-          <div style={{display:"grid",gridTemplateColumns:"repeat(2,1fr)",gap:10}}>
-            <div style={{background:C.bg0,border:`1px solid ${C.border}`,borderRadius:12,padding:12}}>
-              <div className="muted" style={{fontSize:11,fontWeight:800,marginBottom:6}}>Sent today — Gmail</div>
-              <div style={{fontSize:18,fontWeight:1000,color:C.g}}>{todaySentG.count} messages</div>
-              <div className="muted" style={{fontSize:11,marginTop:2}}>Last: {todaySentG.last||"—"}</div>
-            </div>
-            <div style={{background:C.bg0,border:`1px solid ${C.border}`,borderRadius:12,padding:12}}>
-              <div className="muted" style={{fontSize:11,fontWeight:800,marginBottom:6}}>Sent today — LinkedIn</div>
-              <div style={{fontSize:18,fontWeight:1000,color:C.b}}>{todaySentLI.count} messages</div>
-              <div className="muted" style={{fontSize:11,marginTop:2}}>Last: {todaySentLI.last||"—"}</div>
-            </div>
-          </div>
-
-          <div className="divider" style={{margin:"14px 0"}}/>
-
-          {[
-            {t:"08:00",task:"Apply to IT Interns West Rand (TUT reminder — strong match)",color:C.g},
-            {t:"09:30",task:"Review LinkedIn: job matches + new connection follow-up",color:C.b},
-            {t:"11:00",task:"Code session — push progress on Tiyani AI v2 (Q3 2026)",color:C.p},
-            {t:"14:00",task:"Update gwende.vercel.app with latest demos",color:C.a},
-            {t:"19:00",task:"Evening reflection + habit check-ins",color:C.k},
-          ].map((p,i)=>(
-            <div key={i} style={{display:"flex",gap:12,padding:"9px 12px",background:C.bg0,borderRadius:12,border:`1px solid ${C.border}`,marginBottom:8}}>
-              <span style={{fontSize:11,color:C.tm,width:60,flexShrink:0,paddingTop:2,fontWeight:900}}>{p.t}</span>
-              <span style={{width:8,height:8,borderRadius:"50%",background:p.color,flexShrink:0,marginTop:5}}/>
-              <span style={{fontSize:13,color:C.tx,lineHeight:1.5,fontWeight:800}}>{p.task}</span>
-            </div>
-          ))}
-        </Card>
-
-        <Card style={{padding:"16px 16px"}}>
-          <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:10}}>
-            <div style={{fontWeight:950,color:C.tx,fontSize:13}}>Quick Jump</div>
-            <Badge label="Live" color={C.pl}/>
-          </div>
-          <div style={{display:"grid",gridTemplateColumns:"1fr",gap:10}}>
-            <button className="btn" onClick={()=>onNav("inbox")} style={{textAlign:"left"}}>
-              📩 Gmail Inbox
-            </button>
-            <button className="btn" onClick={()=>onNav("linkedin")} style={{textAlign:"left"}}>
-              🔗 LinkedIn Activity
-            </button>
-            <button className="btn" onClick={()=>onNav("coach")} style={{textAlign:"left"}}>
-              ✦ Life Coach (AI)
-            </button>
-            <button className="btn" onClick={()=>onNav("projects")} style={{textAlign:"left"}}>
-              🚀 Projects Dashboard
-            </button>
-          </div>
-        </Card>
-      </div>
-
-      <Card style={{marginBottom:14}}>
-        <div style={{fontWeight:1000,color:C.tx,marginBottom:10}}>Today’s Top Skills</div>
-        <div style={{display:"grid",gridTemplateColumns:"repeat(2,1fr)",gap:12}}>
-          {SKILLS.map(s=>(
-            <div key={s.name}>
-              <div style={{display:"flex",justifyContent:"space-between",marginBottom:6}}>
-                <span style={{fontSize:12,fontWeight:900,color:C.ts}}>{s.name}</span>
-                <span style={{fontSize:12,fontWeight:1000,color:s.color}}>{s.pct}%</span>
-              </div>
-              <Bar pct={s.pct} color={s.color} h={8}/>
-            </div>
-          ))}
-        </div>
-      </Card>
-
-      <Card>
-        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12}}>
-          <div style={{fontWeight:1000,color:C.tx}}>Focus Projects</div>
-          <button className="btn btn-ghost" style={{padding:"6px 12px",fontSize:12}} onClick={()=>onNav("projects")}>See all →</button>
-        </div>
-        <div style={{display:"grid",gridTemplateColumns:"repeat(2,1fr)",gap:12}}>
-          {PROJECTS.filter(p=>p.status==="live").slice(0,4).map(p=>(
-            <div key={p.id} style={{background:C.bg0,border:`1px solid ${C.border}`,borderRadius:14,padding:12}}>
-              <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",gap:10,marginBottom:6}}>
-                <div>
-                  <div style={{fontWeight:1000,color:C.tx,fontSize:13,marginBottom:6}}>{p.name}</div>
-                  <div className="muted" style={{fontSize:11,lineHeight:1.4}}>{p.desc}</div>
-                </div>
-                <span style={{width:10,height:10,borderRadius:"50%",background:p.color,marginTop:4}}/>
-              </div>
-              <div style={{display:"flex",flexWrap:"wrap",gap:6,marginTop:10}}>
-                {p.tech.slice(0,3).map(t=><Badge key={t} label={t} color={p.color}/>)}
-              </div>
-            </div>
-          ))}
-        </div>
-      </Card>
-    </div>
-  );
-}
-
-function GoalsView(){
-  const catColor={Career:C.g,Education:C.p,Product:C.a,Health:C.k};
-  return(
-    <div style={{height:"100%",overflowY:"auto",padding:"26px 28px",animation:"fadeIn .25s ease"}}>
-      <div style={{fontSize:24,fontWeight:1000,color:C.tx,letterSpacing:-.6,marginBottom:6}}>Goals</div>
-      <div className="muted" style={{fontSize:13,marginBottom:20}}>North stars reviewed daily by your Life Coach</div>
-
-      <div style={{display:"grid",gridTemplateColumns:"repeat(2,1fr)",gap:14}}>
-        {GOALS.map(g=>(
-          <Card key={g.id} style={{cursor:"default",padding:"18px 18px"}}>
-            <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",gap:10,marginBottom:10}}>
-              <div>
-                <Badge label={g.cat} color={catColor[g.cat]||C.p}/>
-                <div style={{fontSize:15,fontWeight:1000,color:C.tx,marginTop:10,lineHeight:1.2}}>
-                  {g.emoji} {g.title}
-                </div>
-              </div>
-              <div style={{fontSize:26,fontWeight:1000,color:g.color}}>{g.progress}%</div>
-            </div>
-            <Bar pct={g.progress} color={g.color} h={9}/>
-            <div style={{marginTop:14}}>
-              {g.milestones.map((m,i)=>(
-                <div key={i} style={{display:"flex",alignItems:"center",gap:10,marginBottom:7}}>
-                  <div style={{
-                    width:18,height:18,borderRadius:"50%",
-                    background:g.done.includes(i)?g.color:C.bg4,
-                    border:`2px solid ${g.done.includes(i)?g.color:C.border}`,
-                    display:"flex",alignItems:"center",justifyContent:"center",color:"#fff",fontSize:11,fontWeight:900
-                  }}>{g.done.includes(i)?"✓":""}</div>
-                  <span style={{
-                    fontSize:12,color:g.done.includes(i)?C.ts:C.tm,
-                    textDecoration:g.done.includes(i)?"line-through":"none",fontWeight:800
-                  }}>{m}</span>
-                </div>
-              ))}
-            </div>
-            {g.notes && (
-              <div style={{marginTop:12,padding:"10px 12px",background:C.bg3,borderRadius:12,color:C.ts,fontStyle:"italic",lineHeight:1.5,fontSize:12,border:`1px solid ${C.border}`}}>
-                {g.notes}
-              </div>
-            )}
-          </Card>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function ProjectsView(){
-  const [filter,setFilter]=useState("All");
-  const cats=["All","WIL","Graduate","Future"];
-  const filtered=filter==="All"?PROJECTS:PROJECTS.filter(p=>p.cat===filter);
-  const catColor={WIL:C.b,Graduate:C.p,Future:C.ts};
-  return(
-    <div style={{height:"100%",overflowY:"auto",padding:"26px 28px",animation:"fadeIn .25s ease"}}>
-      <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",gap:12,flexWrap:"wrap",marginBottom:16}}>
-        <div>
-          <div style={{fontSize:24,fontWeight:1000,color:C.tx,letterSpacing:-.6}}>Projects</div>
-          <div className="muted" style={{fontSize:13,marginTop:3}}>9 projects · live & planned</div>
-        </div>
-        <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
-          {cats.map(c=>(
-            <button
-              key={c}
-              className="btn"
-              onClick={()=>setFilter(c)}
-              style={{
-                padding:"6px 14px",
-                background: filter===c ? "linear-gradient(135deg, "+C.p+", "+C.pl+")" : "rgba(18,18,50,.35)",
-                border: filter===c ? "none" : `1px solid ${C.border}`,
-                color: filter===c ? "#fff" : C.ts,
-                opacity: filter===c ? 1 : .95
-              }}
-            >{c}</button>
-          ))}
-        </div>
-      </div>
-
-      <div style={{display:"grid",gridTemplateColumns:"repeat(2,1fr)",gap:14}}>
-        {filtered.map(p=>(
-          <Card key={p.id} glow={false} style={{padding:"16px 16px",position:"relative"}}>
-            {p.hot && (
-              <div style={{position:"absolute",top:-10,right:12,background:C.r,color:"#fff",fontWeight:1000,fontSize:10,padding:"4px 10px",borderRadius:999}}>
-                🔥 HIGH DEMAND
-              </div>
-            )}
-            <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",gap:12,marginBottom:10}}>
-              <div>
-                <Badge label={p.cat} color={catColor[p.cat]||C.ts}/>
-                {p.status==="planned" && <Badge label="Planned" color={C.ts}/>}
-              </div>
-              {p.status==="live" && <span style={{width:10,height:10,borderRadius:"50%",background:C.g,marginTop:5}}/>}
-            </div>
-
-            <div style={{fontSize:16,fontWeight:1000,color:C.tx,marginBottom:6}}>{p.name}</div>
-            <div className="muted" style={{fontSize:12,lineHeight:1.6,marginBottom:12}}>{p.desc}</div>
-
-            <div style={{display:"flex",flexWrap:"wrap",gap:6,marginBottom:14}}>
-              {p.tech.map(t=><Badge key={t} label={t} color={p.color}/>)}
-            </div>
-
-            <div style={{display:"flex",gap:10,flexWrap:"wrap"}}>
-              {p.live && <a className="btn" style={{textDecoration:"none",color:C.gp,border:`1px solid ${C.g}33`,background:`${C.g}14`}} href={p.live} target="_blank" rel="noreferrer">🚀 Live</a>}
-              {p.code && <a className="btn" style={{textDecoration:"none",color:C.ts,border:`1px solid ${C.border}`}} href={p.code} target="_blank" rel="noreferrer">📁 Code</a>}
-            </div>
-          </Card>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function CertsView(){
-  const [openId,setOpenId]=useState(null);
-  return(
-    <div style={{height:"100%",overflowY:"auto",padding:"26px 28px",animation:"fadeIn .25s ease"}}>
-      <div style={{fontSize:24,fontWeight:1000,color:C.tx,letterSpacing:-.6,marginBottom:6}}>Certificates</div>
-      <div className="muted" style={{fontSize:13,marginBottom:22}}>13+ credentials · AWS · Azure · FNB · Huawei · Cisco · TUT Diploma</div>
-
-      <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:12}}>
-        {CERTS.map(c=>(
-          <div key={c.id}
-            onClick={()=>setOpenId(openId===c.id?null:c.id)}
-            style={{
-              background:C.bg2,border:`1px solid ${openId===c.id?c.color+"66":C.border}`,
-              borderRadius:16,padding:"16px 16px",cursor:"pointer",transition:"all .16s ease",
-            }}
-            onMouseEnter={e=>e.currentTarget.style.borderColor=c.color+"44"}
-            onMouseLeave={e=>e.currentTarget.style.borderColor=openId===c.id?c.color+"66":C.border}
-          >
-            <div style={{fontSize:24,marginBottom:8}}>{c.emoji}</div>
-            <div style={{fontSize:13,fontWeight:1000,color:C.tx,lineHeight:1.3,marginBottom:6}}>{c.name}</div>
-            <div className="muted" style={{fontSize:11,marginBottom:10}}>{c.issuer} · {c.year}</div>
-            <Badge label={c.tech[0]} color={c.color}/>
-            {openId===c.id && (
-              <div style={{marginTop:12,paddingTop:12,borderTop:`1px solid ${C.border}`}}>
-                <div className="muted" style={{fontSize:11,fontWeight:900,marginBottom:8}}>FRAMEWORKS & TOOLS</div>
-                <div style={{display:"flex",flexWrap:"wrap",gap:6}}>
-                  {c.tech.map(t=><Badge key={t} label={t} color={c.color}/>)}
-                </div>
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function RoadmapView(){
-  const ROADMAP=[
-    {year:"2024–2025",title:"Work Integrated Learning (WIL)",status:"done",color:C.g,
-     desc:"12 months hands-on industry experience. Built full-stack apps, contributed to AI projects, earned cloud & agile certifications."},
-    {year:"2025–Present",title:"Graduate Programme (Advanced Track)",status:"active",color:C.p,
-     desc:"AI engineering, scalable cloud architectures, and team leadership. Building production-grade AI assistants, mentoring WIL interns."},
-    {year:"Q3 2026",title:"Launch Tiyani AI v2 with LLM",status:"upcoming",color:C.a,
-     desc:"Enhance AI assistant with generative AI (Gemini/OpenAI) for dynamic portfolio Q&A."},
-    {year:"2027+",title:"Senior Developer / Tech Lead",status:"future",color:C.k,
-     desc:"Transition into a senior role, leading AI product teams and driving innovation at scale."},
-  ];
-  const statusStyle={
-    done:{bg:C.gp,border:C.g+"33",color:C.g,label:"✅ Completed"},
-    active:{bg:C.pp,border:C.p+"33",color:C.pl,label:"🔵 Active"},
-    upcoming:{bg:C.ap,border:C.a+"33",color:C.a,label:"🟡 Upcoming"},
-    future:{bg:C.kp,border:C.k+"33",color:C.k,label:"🔮 Future"}
-  };
-  return(
-    <div style={{height:"100%",overflowY:"auto",padding:"26px 28px",animation:"fadeIn .25s ease"}}>
-      <div style={{fontSize:24,fontWeight:1000,color:C.tx,letterSpacing:-.6,marginBottom:6}}>Career Roadmap</div>
-      <div className="muted" style={{fontSize:13,marginBottom:24}}>From gwende.vercel.app · updated daily in your OS</div>
-
-      <div style={{position:"relative",paddingLeft:26}}>
-        <div style={{position:"absolute",left:10,top:0,bottom:0,width:2,background:`linear-gradient(180deg,${C.g},${C.p},${C.a},${C.k})`}}/>
-        {ROADMAP.map((r,i)=>{
-          const st=statusStyle[r.status];
-          return (
-            <div key={i} style={{display:"flex",gap:18,marginBottom:22,position:"relative"}}>
-              <div style={{
-                width:56,height:56,borderRadius:"50%",background:st.bg,border:`2px solid ${r.color}`,
-                display:"flex",alignItems:"center",justifyContent:"center",fontSize:20,flexShrink:0,zIndex:1
-              }}>
-                {r.status==="done"?"✅":r.status==="active"?"🎓":r.status==="upcoming"?"🤖":"🚀"}
-              </div>
-              <div style={{
-                flex:1,background:C.bg2,border:`1px solid ${C.border}`,borderRadius:16,padding:"16px 18px"
-              }}>
-                <div style={{display:"flex",alignItems:"center",gap:10,flexWrap:"wrap",marginBottom:8}}>
-                  <span className="mono" style={{fontSize:12,color:C.ts,fontWeight:900}}>{r.year}</span>
-                  <span style={{background:st.bg,border:`1px solid ${st.border}`,color:st.color,borderRadius:999,padding:"4px 10px",fontSize:11,fontWeight:1000}}>
-                    {st.label}
-                  </span>
-                </div>
-                <div style={{fontSize:16,fontWeight:1000,color:C.tx,marginBottom:7}}>{r.title}</div>
-                <div className="muted" style={{fontSize:12,lineHeight:1.7}}>{r.desc}</div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
-
-/* ----------------------------- Inbox + Send (Gmail) ----------------------------- */
-function InboxView({onSentGmail}) {
-  const [sel,setSel]=useState(null);
-  const [compose,setCompose]=useState(false);
-  const [to,setTo]=useState("");const [subj,setSubj]=useState("");const [body,setBody]=useState("");
-
-  const [aiDrafting,setAiDrafting]=useState(false);
-  const [sendState,setSendState]=useState("idle"); // idle | sending | sent | error
-  const email=sel?GMAIL_INBOX_DEMO.find(m=>m.id===sel):null;
-
-  const catColor={opportunity:C.g,security:C.r,social:C.b,promo:C.ts};
-
-  const aiDraft=()=>{
-    setAiDrafting(true);
-    setTimeout(()=>{
-      const isJob=email?.category==="opportunity";
-      setBody(isJob
-        ? `Dear Hiring Manager,\n\nThank you for the opportunity. My name is Tiyani Manganyi, a Junior Software Developer based in Pretoria with a Diploma in Computer Science from TUT.\n\nI have built 9+ projects including AI tools, e-commerce platforms, and real-time apps. My portfolio is live at gwende.vercel.app.\n\nI would love to apply for this role. Please find my details below:\n📧 kbmagoda2024@gmail.com\n📞 060 817 5627\n\nBest regards,\nTiyani Manganyi`
-        : `Hi,\n\nThank you for your email. I’m reviewing this and will take the recommended steps to ensure security.\n\nBest regards,\nTiyani Manganyi\nkbmagoda2024@gmail.com`
+    /* ----------------------------- Small UI Components ----------------------------- */
+    function Av({seed,label,size=34,color,sq=false}){
+      const pal=["#7c3aed","#10b981","#f59e0b","#3b82f6","#ec4899","#ef4444","#0a66c2","#06b6d4"];
+      const bg=color||pal[(seed||"A").charCodeAt(0)%pal.length];
+      const init=(label||(seed||"?")).split(" ").map(w=>w[0]).join("").slice(0,2).toUpperCase();
+      return (
+        <div style={{
+          width:size,height:size,borderRadius:sq?10:"50%",background:bg,color:"#fff",
+          display:"flex",alignItems:"center",justifyContent:"center",fontWeight:1000,fontSize:size*.36,
+          flexShrink:0
+        }}>{init}</div>
       );
-      setAiDrafting(false);
-    },700);
-  };
-
-  const startCompose=()=>{
-    setCompose(true);setSel(null);
-    setTo("");setSubj("");setBody("");
-    setAiDrafting(false);setSendState("idle");
-  };
-
-  const sendNow=async()=>{
-    setSendState("sending");
-    try{
-      // If you implement backend, this will become true Gmail "sent today" live update.
-      // Otherwise it will log locally so the UI still works.
-      const created = await apiPostJSON("/api/gmail/send", {to, subject:subj, body})
-        .catch(()=>null);
-
-      const evt={
-        id:"g_"+Date.now(),
-        channel:"gmail",
-        dayKey:tzJohannesburgDateKey(new Date()),
-        to, subject:subj,
-        preview:(body||"").slice(0,80),
-        at:new Date().toISOString(),
-        source: created?.messageId ? "api" : "local"
-      };
-      if(created){
-        evt.providerMessageId = created.messageId;
-      }
-      addSentEvent(evt);
-      onSentGmail?.(evt);
-      setSendState("sent");
-      setTimeout(()=>setCompose(false), 650);
-    }catch(e){
-      setSendState("error");
     }
-  };
 
-  return(
-    <div style={{display:"flex",height:"100%",overflow:"hidden"}}>
-      <div style={{width:320,borderRight:`1px solid ${C.border}`,display:"flex",flexDirection:"column"}}>
-        <div style={{padding:"14px 16px 10px",borderBottom:`1px solid ${C.border}`}}>
-          <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:10}}>
-            <div style={{width:36,height:36,borderRadius:12,background:"#ea4335",display:"flex",alignItems:"center",justifyContent:"center",fontSize:15,fontWeight:1000,color:"#fff"}}>M</div>
-            <div>
-              <div style={{fontSize:13,fontWeight:1000,color:C.tx}}>Gmail</div>
-              <div style={{fontSize:11,color:C.tm}}>{ME.email}</div>
-            </div>
-          </div>
-          <Btn v="primary" onClick={startCompose} style={{width:"100%",padding:"10px 14px"}}>
-            ✉️ Compose
-          </Btn>
-        </div>
+    function Badge({label,color=C.p,bg}){
+      return (
+        <span style={{
+          background:bg||(color+"18"),color,border:`1px solid ${color}28`,borderRadius:999,
+          padding:"2px 10px",fontSize:11,fontWeight:950,whiteSpace:"nowrap"
+        }}>{label}</span>
+      );
+    }
 
-        <div style={{flex:1,overflowY:"auto"}}>
-          {GMAIL_INBOX_DEMO.map(m=>(
-            <div key={m.id}
-              onClick={()=>setSel(m.id)}
-              style={{
-                padding:"12px 14px",
-                borderBottom:`1px solid ${C.border}`,
-                cursor:"pointer",
-                background: sel===m.id ? C.bg3 : "transparent",
-                borderLeft: sel===m.id ? `3px solid ${C.pl}` : `3px solid transparent`,
-                transition:"all .12s",
-              }}
-            >
-              <div style={{display:"flex",gap:10,alignItems:"flex-start"}}>
-                <Av seed={m.name} label={m.avatar} color={m.avatarColor} size={34} sq/>
-                <div style={{flex:1,minWidth:0}}>
-                  <div style={{display:"flex",justifyContent:"space-between",gap:10,marginBottom:2}}>
-                    <span style={{fontSize:12,fontWeight:m.unread?1000:700,color:m.unread?C.tx:C.ts,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>
-                      {m.name}
-                    </span>
-                    <span style={{fontSize:10,color:C.tm,flexShrink:0}}>{m.time}</span>
-                  </div>
-                  <div style={{fontSize:11,color:C.tm,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{m.subject}</div>
-                  <div style={{display:"flex",alignItems:"center",gap:8,marginTop:8}}>
-                    <span style={{width:8,height:8,borderRadius:"50%",background:catColor[m.category]||C.ts}}/>
-                    <span style={{fontSize:10,color:C.tm,fontWeight:900}}>{m.category}</span>
-                    {m.unread && <span style={{marginLeft:"auto",width:8,height:8,borderRadius:"50%",background:C.pl}}/>}
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div style={{flex:1,display:"flex",flexDirection:"column",overflow:"hidden"}}>
-        {email ? (
-          <>
-            <div style={{padding:"16px 22px 12px",borderBottom:`1px solid ${C.border}`}}>
-              <div style={{fontSize:16,fontWeight:1000,color:C.tx,marginBottom:8,lineHeight:1.3}}>{email.subject}</div>
-              <div style={{display:"flex",alignItems:"center",gap:10,flexWrap:"wrap"}}>
-                <Av seed={email.name} label={email.avatar} color={email.avatarColor} size={30} sq/>
-                <span className="muted" style={{fontSize:12,fontWeight:900}}>{email.from}</span>
-                <Badge label={email.category} color={catColor[email.category]||C.p}/>
-                <span style={{fontSize:11,color:C.tm,marginLeft:"auto",fontWeight:900}}>{email.time}</span>
-              </div>
-            </div>
-
-            <div style={{flex:1,overflowY:"auto",padding:"18px 22px"}}>
-              <div style={{
-                background:C.bg2,border:`1px solid ${C.border}`,borderRadius:12,
-                padding:"16px 18px",color:C.ts,fontSize:14,lineHeight:1.9,whiteSpace:"pre-wrap",marginBottom:14
-              }}>{email.body}</div>
-
-              <Card glow style={{padding:"14px 16px"}}>
-                <div style={{fontWeight:1000,color:C.pl,marginBottom:8,fontSize:13}}>Inbox Closer — AI Analysis</div>
-                <div style={{background:C.bg0,borderRadius:12,padding:"10px 12px",border:`1px solid ${C.border}`,fontSize:13,color:C.tx,lineHeight:1.6}}>
-                  {email.category==="opportunity"
-                    ? "🚀 Job opportunity — draft a tailored reply, keep it short, include your portfolio (gwende.vercel.app), and propose a quick next step."
-                    : email.category==="security"
-                      ? "🔐 Security alert — verify activity, confirm you recognize the device/location, and review account settings."
-                      : "📬 Low priority — skim and archive if it doesn’t match today’s goal."}
-                </div>
-              </Card>
-
-              <div style={{marginTop:14,display:"flex",gap:10,flexWrap:"wrap"}}>
-                <Btn v="primary" onClick={()=>{ setCompose(true); setSel(email.id); setTo(email.from); setSubj(`Re: ${email.subject}`); setSendState("idle"); setBody(""); }}>
-                  ✦ Reply with AI
-                </Btn>
-                <Btn onClick={()=>setSel(null)}>Archive</Btn>
-              </div>
-            </div>
-          </>
-        ) : (
-          <div style={{flex:1,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:10}}>
-            <div style={{fontSize:44}}>📩</div>
-            <div className="muted" style={{fontSize:13,fontWeight:900}}>Select an email to read</div>
-            <Btn v="primary" onClick={startCompose}>✉️ Compose</Btn>
-          </div>
-        )}
-
-        {compose && (
+    function Bar({pct,color=C.p,h=8}){
+      return (
+        <div style={{background:C.bg3,borderRadius:999,height:h,overflow:"hidden"}}>
           <div style={{
-            position:"absolute",bottom:0,right:0,width:520,maxHeight:"86vh",
-            background:C.bg1,border:`1px solid ${C.bh}`,borderRadius:"16px 16px 0 0",
-            padding:20,zIndex:200,boxShadow:"0 -10px 40px rgba(0,0,0,.5)",display:"flex",flexDirection:"column"
-          }}>
-            <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12,gap:10}}>
-              <div>
-                <div style={{fontWeight:1000,color:C.tx,fontSize:14}}>New Message</div>
-                <div className="muted" style={{fontSize:11}}>from {ME.email}</div>
-              </div>
-              <div style={{display:"flex",gap:8,alignItems:"center"}}>
-                <button
-                  onClick={aiDraft}
-                  disabled={aiDrafting}
-                  style={{
-                    padding:"8px 14px",
-                    background:"linear-gradient(135deg, "+C.p+", "+C.pl+")",
-                    border:"none",borderRadius:10,color:"#fff",cursor:"pointer",
-                    fontSize:12,fontWeight:1000,opacity:aiDrafting?.7
-                  }}>
-                  {aiDrafting?"✦ Drafting…":"✦ AI Draft"}
-                </button>
-                <button onClick={()=>setCompose(false)} style={{background:"transparent",border:"none",color:C.ts,cursor:"pointer",fontSize:18}}>✕</button>
-              </div>
-            </div>
-
-            {sendState==="sent" ? (
-              <div style={{color:C.g,fontWeight:1000,textAlign:"center",padding:"22px 0",fontSize:15}}>
-                ✓ Email saved as sent (tracked for today)
-              </div>
-            ) : sendState==="error" ? (
-              <div style={{color:C.r,fontWeight:1000,textAlign:"center",padding:"22px 0",fontSize:15}}>
-                Failed to send — backend not configured
-              </div>
-            ) : (
-              <>
-                <div style={{display:"grid",gridTemplateColumns:"1fr",gap:10}}>
-                  <div style={{borderBottom:`1px solid ${C.border}`,padding:"8px 0",display:"grid",gridTemplateColumns:"70px 1fr",gap:10,alignItems:"center"}}>
-                    <span className="muted" style={{fontSize:11,fontWeight:1000,textTransform:"uppercase",letterSpacing:.4}}>To</span>
-                    <input value={to} onChange={e=>setTo(e.target.value)} style={{width:"100%",background:"transparent",border:"none",outline:"none",color:C.tx,fontSize:13,fontWeight:900}}/>
-                  </div>
-                  <div style={{borderBottom:`1px solid ${C.border}`,padding:"8px 0",display:"grid",gridTemplateColumns:"70px 1fr",gap:10,alignItems:"center"}}>
-                    <span className="muted" style={{fontSize:11,fontWeight:1000,textTransform:"uppercase",letterSpacing:.4}}>Subject</span>
-                    <input value={subj} onChange={e=>setSubj(e.target.value)} style={{width:"100%",background:"transparent",border:"none",outline:"none",color:C.tx,fontSize:13,fontWeight:900}}/>
-                  </div>
-                </div>
-
-                <div style={{position:"relative",marginTop:10,flex:1}}>
-                  {aiDrafting && (
-                    <div style={{
-                      position:"absolute",inset:0,background:C.bg1+"d0",display:"flex",
-                      alignItems:"center",justifyContent:"center",gap:10,color:C.pl,
-                      fontWeight:1000,borderRadius:12,zIndex:2
-                    }}>✦ Writing…</div>
-                  )}
-                  <textarea
-                    value={body}
-                    onChange={e=>setBody(e.target.value)}
-                    placeholder="Write your message or click AI Draft…"
-                    rows={6}
-                    style={{
-                      width:"100%",background:C.bg2,border:`1px solid ${C.border}`,
-                      borderRadius:12,color:C.tx,fontSize:13,padding:"12px 12px",
-                      outline:"none",resize:"none"
-                    }}
-                  />
-                </div>
-
-                <div style={{display:"flex",gap:10,justifyContent:"flex-end",marginTop:12}}>
-                  <Btn onClick={()=>setCompose(false)} style={{opacity:.9}}>Cancel</Btn>
-                  <Btn v="primary" onClick={sendNow} style={{minWidth:120,opacity:sendState==="sending"?0.7:1}}>
-                    {sendState==="sending"?"Sending…":"↑ Send"}
-                  </Btn>
-                </div>
-              </>
-            )}
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
-/* ----------------------------- LinkedIn (summarizer + sent tracker) ----------------------------- */
-function LinkedInView({onSentLinkedIn}) {
-  const [tab,setTab]=useState("notifs");
-  const [notifs,setNotifs]=useState(LI_NOTIFS_DEMO);
-  const [link,setLink]=useState("");
-  const [summary,setSummary]=useState(null);
-  const [loading,setLoading]=useState(false);
-
-  const unread=notifs.filter(n=>n.unread).length;
-  const typeColor={message:C.b,job:C.g,view:C.p,connection:C.a};
-
-  const [compose,setCompose]=useState(false);
-  const [target,setTarget]=useState("");
-  const [msg,setMsg]=useState("");
-  const [sendState,setSendState]=useState("idle"); // idle | sending | sent | error
-
-  const todaySentCount = useMemo(()=>{
-    const evts=loadSentEvents().filter(e=>e.channel==="linkedin" && e.dayKey===tzJohannesburgDateKey(new Date()));
-    return evts.length;
-  },[]);
-
-  const summarize=()=>{
-    if(!link.trim())return;
-    setLoading(true);setSummary(null);
-    setTimeout(()=>{
-      if(link.includes("tiyani-manganyi")){
-        setSummary({type:"👤 Your Profile",title:"Tiyani Manganyi",points:[
-          "Junior Software Developer · Pretoria, South Africa",
-          "Diploma in Computer Science · Tshwane University of Technology (2026)",
-          "FNB App Academy Graduate · Full Stack Dev & AI Integration (2025)",
-          "9 projects built · AI Resume Analyzer, TUT Job Portal, SA Case Law AI, and more",
-          "Skills: React.js 85% · Python 80% · Node.js 78% · MongoDB 82% · NLP 75% · AWS/Azure 70%",
-          "13+ Certifications: AWS, Azure AZ-900, Huawei, Cisco, FNB, TUT Diploma",
-          "Open to Work · Available immediately · Remote-friendly",
-        ]});
-      } else if(link.includes("/in/")){
-        setSummary({type:"👤 Profile",title:"LinkedIn Profile Summary",points:[
-          "Full Stack Developer profile detected",
-          "Active in the developer community",
-          "Skills: React, Node.js, TypeScript",
-          "Open to remote and hybrid roles",
-          "5+ mutual connections in your network"
-        ]});
-      } else if(link.includes("/jobs/")){
-        setSummary({type:"💼 Job Post",title:"Job Listing",points:[
-          "Developer role · Remote or Hybrid",
-          "Requirements: 2–4 years experience",
-          "Tech stack matches your skills",
-          "Posted recently — apply soon",
-          "Salary range: R25,000–R55,000/month"
-        ]});
-      } else if(link.includes("/company/")){
-        setSummary({type:"🏢 Company",title:"Company Page",points:[
-          "Growing tech company · 50–200 employees",
-          "Actively hiring developers",
-          "Stack: React, Python, AWS",
-          "Recent funding: Series A",
-          "3 open roles matching your profile"
-        ]});
-      } else {
-        setSummary({type:"🔗 LinkedIn Link",title:"Content Summary",points:[
-          "LinkedIn content detected from: "+link.slice(0,55),
-          "Tip: Use /in/username for profiles",
-          "Tip: Use /jobs/view/ID for job posts",
-          "Tip: Use /company/name for companies",
-          "Paste your own profile for a full summary!"
-        ]});
-      }
-      setLoading(false);
-    },1100);
-  };
-
-  const openMessageComposer=(fromTitle)=>{
-    setCompose(true);
-    setTarget(fromTitle || "LinkedIn contact");
-    setMsg(`Hi ${fromTitle ? fromTitle.split(" ")[0] : "there"},\n\nI saw your update and I’d love to connect regarding a Junior Developer opportunity. I’m a full-stack developer with AI integrations and I have 9+ projects.\n\nPortfolio: gwende.vercel.app\n\nBest regards,\nTiyani Manganyi`);
-    setSendState("idle");
-  };
-
-  const sendLinkedInMessage=async()=>{
-    setSendState("sending");
-    try{
-      const created = await apiPostJSON("/api/linkedin/sendMessage", {target, message:msg})
-        .catch(()=>null);
-
-      const evt={
-        id:"li_"+Date.now(),
-        channel:"linkedin",
-        dayKey:tzJohannesburgDateKey(new Date()),
-        target,
-        preview:(msg||"").slice(0,80),
-        at:new Date().toISOString(),
-        source: created?.id ? "api" : "local"
-      };
-      if(created) evt.providerMessageId = created.id;
-      addSentEvent(evt);
-      onSentLinkedIn?.(evt);
-      setSendState("sent");
-      setTimeout(()=>setCompose(false), 650);
-    }catch(e){
-      setSendState("error");
-    }
-  };
-
-  return(
-    <div style={{height:"100%",display:"flex",flexDirection:"column",overflow:"hidden"}}>
-      <div style={{padding:"16px 22px 12px",borderBottom:`1px solid ${C.border}`,display:"flex",alignItems:"center",gap:12}}>
-        <div style={{width:38,height:38,borderRadius:12,background:"#0a66c2",display:"flex",alignItems:"center",justifyContent:"center",fontSize:16,fontWeight:1000,color:"#fff"}}>in</div>
-        <div style={{flex:1}}>
-          <div style={{fontWeight:1000,color:C.tx}}>LinkedIn</div>
-          <div className="muted" style={{fontSize:11}}>{ME.linkedin}</div>
+            width:`${pct}%`,height:"100%",
+            background:`linear-gradient(90deg,${color},${color}aa)`,
+            borderRadius:999,transition:"width .5s"
+          }}/>
         </div>
-        {unread>0 && <Badge label={`${unread} unread`} color={C.r} bg={C.rp}/>}
-      </div>
+      );
+    }
 
-      <div style={{display:"flex",padding:"8px 22px 0",gap:6,borderBottom:`1px solid ${C.border}`}}>
-        <button
-          className="btn"
-          onClick={()=>setTab("notifs")}
-          style={{borderRadius:"10px 10px 0 0",padding:"7px 13px",background:tab==="notifs"?C.pp:"transparent",borderColor:tab==="notifs"?C.pg:C.border,color:tab==="notifs"?C.pl:C.ts}}
-        >
-          🔔 Notifications
-        </button>
-        <button
-          className="btn"
-          onClick={()=>setTab("summarize")}
-          style={{borderRadius:"10px 10px 0 0",padding:"7px 13px",background:tab==="summarize"?C.pp:"transparent",borderColor:tab==="summarize"?C.pg:C.border,color:tab==="summarize"?C.pl:C.ts}}
-        >
-          🔗 Link Summarizer
-        </button>
-      </div>
+    function Card({children,glow=false,style={}}){
+      return (
+        <div className="glass" style={{
+          borderRadius:16,padding:"18px 20px",border:`1px solid ${glow?C.pg:C.border}`,...style
+        }}>{children}</div>
+      );
+    }
 
-      <div style={{flex:1,overflowY:"auto",padding:"20px 22px"}}>
-        {tab==="notifs" ? (
-          <div style={{display:"flex",flexDirection:"column",gap:12}}>
-            <Card style={{padding:"14px 16px",marginBottom:4}}>
-              <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",gap:12,flexWrap:"wrap"}}>
-                <div>
-                  <div style={{fontWeight:1000,color:C.tx,fontSize:13}}>Today’s LinkedIn sent</div>
-                  <div className="muted" style={{fontSize:12,marginTop:4}}>
-                    Tracked locally now · becomes real-live when backend endpoints are added.
-                  </div>
-                </div>
-                <div className="pill">
-                  <span style={{width:6,height:6,borderRadius:"50%",background:C.b}}/>
-                  <span style={{fontWeight:1000}}>{todaySentCount}</span>
-                  <span className="muted" style={{fontWeight:900}}>messages</span>
-                </div>
-              </div>
-            </Card>
+    function Btn({children,onClick,v="ghost",style={}}){
+      const cls = v==="primary" ? "btn btn-primary" : v==="ghost" ? "btn btn-ghost" : "btn";
+      return <button className={cls} style={style} onClick={onClick}>{children}</button>;
+    }
 
-            {notifs.map(n=>(
-              <div key={n.id}
-                onClick={()=>setNotifs(ns=>ns.map(x=>x.id===n.id?{...x,unread:false}:x))}
-                style={{
-                  background:n.unread?C.bg2:C.bg1,
-                  border:`1px solid ${n.unread?C.bh:C.border}`,
-                  borderRadius:16,padding:"14px 16px",
-                  cursor:"pointer",transition:"all .15s"
-                }}
-                onMouseEnter={e=>e.currentTarget.style.borderColor=C.bh}
-                onMouseLeave={e=>e.currentTarget.style.borderColor=n.unread?C.bh:C.border}
-              >
-                <div style={{display:"flex",gap:12,alignItems:"flex-start"}}>
-                  <Av seed={n.from} label={n.avatar} color={n.avatarColor} size={42} sq/>
-                  <div style={{flex:1}}>
-                    <div style={{display:"flex",alignItems:"center",gap:8,flexWrap:"wrap",marginBottom:6}}>
-                      <div style={{fontWeight:1000,color:C.tx,fontSize:13}}>{n.title}</div>
-                      {n.unread && <span style={{width:8,height:8,borderRadius:"50%",background:C.b}}/>}
-                    </div>
-                    <div className="muted" style={{fontSize:12,lineHeight:1.6,marginBottom:10}}>{n.body}</div>
-                    <div style={{display:"flex",gap:10,alignItems:"center"}}>
-                      <Badge label={n.type} color={typeColor[n.type]||C.p}/>
-                      <div className="muted" style={{fontSize:11,fontWeight:900}}>{n.time}</div>
-                      <div style={{marginLeft:"auto"}}>
-                        <button
-                          className="btn btn-ghost"
-                          style={{padding:"6px 12px",fontSize:12}}
-                          onClick={(e)=>{e.stopPropagation(); openMessageComposer(n.from);}}
-                        >
-                          ✦ Message
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
+    function Modal({children,onClose,wide}){
+      return (
+        <div style={{
+          position:"fixed",inset:0,background:"rgba(5,5,15,.88)",display:"flex",
+          alignItems:"center",justifyContent:"center",zIndex:500
+        }} onClick={e=>e.target===e.currentTarget&&onClose()}>
+          <div className="glass" style={{
+            borderRadius:18,padding:28,width:wide?"min(920px,96vw)":"min(620px,95vw)",
+            maxHeight:"90vh",overflowY:"auto",animation:"fadeIn .2s ease",
+            boxShadow:"0 40px 80px rgba(0,0,0,.7)"
+          }}>{children}</div>
+        </div>
+      );
+    }
+
+    /* ----------------------------- Mock API + Sync ----------------------------- */
+    async function apiGetJSON(path){
+      // mock fallback: simulate live sync endpoint (in real world would fetch)
+      if(path === "/api/sync/today"){
+        const key = dayKeyJohannesburg(new Date());
+        const evts = loadSentEvents().filter(x=>x.dayKey===key);
+        const gmail = evts.filter(x=>x.channel==="gmail");
+        const linkedin = evts.filter(x=>x.channel==="linkedin");
+        return {
+          gmail:{count:gmail.length, last:gmail.length?new Date(gmail[gmail.length-1].at).toLocaleTimeString():null, unreadCount:GMAIL_INBOX_DEMO.filter(m=>m.unread).length},
+          linkedin:{count:linkedin.length, last:linkedin.length?new Date(linkedin[linkedin.length-1].at).toLocaleTimeString():null, unreadCount:LI_NOTIFS_DEMO.filter(n=>n.unread).length}
+        };
+      }
+      throw new Error("mock only");
+    }
+    async function apiPostJSON(path,body){
+      if(path === "/api/gmail/send" || path === "/api/linkedin/sendMessage"){
+        return { messageId:"mock_"+Date.now(), id:"mock_"+Date.now() };
+      }
+      throw new Error("mock only");
+    }
+
+    function useTodaySync(){
+      const [sync,setSync] = useState({status:"demo",gmail:{count:0,last:null,unreadCount:0},linkedin:{count:0,last:null,unreadCount:0},error:null});
+      const refresh = async()=>{
+        try{
+          const data = await apiGetJSON("/api/sync/today");
+          setSync({status:"live",gmail:{count:data.gmail.count,last:data.gmail.last,unreadCount:data.gmail.unreadCount},linkedin:{count:data.linkedin.count,last:data.linkedin.last,unreadCount:data.linkedin.unreadCount},error:null});
+        }catch(e){
+          const key = dayKeyJohannesburg(new Date());
+          const evts=loadSentEvents().filter(x=>x.dayKey===key);
+          const gmail = evts.filter(x=>x.channel==="gmail");
+          const linkedin = evts.filter(x=>x.channel==="linkedin");
+          setSync({status:"demo",gmail:{count:gmail.length,last:gmail.length?new Date(gmail[gmail.length-1].at).toLocaleTimeString():null,unreadCount:GMAIL_INBOX_DEMO.filter(m=>m.unread).length},linkedin:{count:linkedin.length,last:linkedin.length?new Date(linkedin[linkedin.length-1].at).toLocaleTimeString():null,unreadCount:LI_NOTIFS_DEMO.filter(n=>n.unread).length},error:null});
+        }
+      };
+      useEffect(()=>{ refresh(); const t=setInterval(refresh,30000); return()=>clearInterval(t); },[]);
+      return {sync,refresh};
+    }
+
+    function buildLifeCoachPrompt(os){
+      return `✦ You are Tiyani's Life Coach. Personal OS (today): Gmail unread ${os.gmailUnread}, LinkedIn unread ${os.liUnread}, Gmail sent ${os.sentGCount}, LinkedIn sent ${os.sentLICount}. Provide actionable advice.`;
+    }
+
+    /* ----------------------------- VIEWS ----------------------------- */
+    function TodayView({onNav, sync, todaySentG, todaySentLI, nowStr}){
+      const hour=new Date().getHours();
+      const greet=hour<12?"Good morning":hour<17?"Good afternoon":"Good evening";
+      const mailUnread = sync.gmail.unreadCount;
+      const liUnread = sync.linkedin.unreadCount;
+      const blocks=[
+        {v:"4",l:"Active Goals",s:"in progress",color:C.p},
+        {v:"7+",l:"Projects Live",s:"and shipping",color:C.g},
+        {v:"13+",l:"Certifications",s:"AWS · Azure · FNB",color:C.a},
+        {v:String(mailUnread+liUnread),l:"Needs Attention",s:`${mailUnread} email · ${liUnread} LinkedIn`,color:C.r},
+      ];
+      return (
+        <div style={{height:"100%",overflowY:"auto",padding:"26px 28px",animation:"fadeIn .25s ease"}}>
+          <div style={{display:"flex",justifyContent:"space-between",marginBottom:18,flexWrap:"wrap"}}>
+            <div><div className="muted" style={{fontSize:12}}>Daily Brief · Johannesburg TZ</div><div style={{fontSize:28,fontWeight:1000}}>{greet}, Tiyani ✦</div><div style={{fontSize:14,color:C.ts}}>Junior Software Developer · {ME.location}</div></div>
+            <div className="pill"><span style={{width:7,height:7,borderRadius:"50%",background:sync.status==="live"?C.g:C.pl}}/><span>{sync.status==="live"?"Live sync":"Demo mode"}</span></div>
           </div>
-        ) : (
-          <div>
-            <div className="muted" style={{fontSize:13,marginBottom:14}}>
-              Paste any LinkedIn URL for an instant AI summary.
-              <div style={{marginTop:4}}>Try: <span className="mono" style={{color:C.pl}}>linkedin.com/in/tiyani-manganyi-137625316</span></div>
-            </div>
+          <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:10,marginBottom:16}}>{blocks.map(b=><Card key={b.l} style={{padding:"12px 14px"}}><div style={{fontSize:12,fontWeight:950,color:b.color}}>{b.l}</div><div style={{fontSize:22,fontWeight:1000,color:b.color}}>{b.v}</div><div style={{fontSize:11,color:C.ts}}>{b.s}</div></Card>)}</div>
+          <Card glow style={{padding:"16px"}}><div style={{display:"flex",justifyContent:"space-between",marginBottom:12}}><div><div style={{fontWeight:1000}}>Sent today tracker</div><div className="muted" style={{fontSize:11}}>Auto-updates</div></div><div className="pill"><span className="mono">{nowStr}</span></div></div><div style={{display:"grid",gridTemplateColumns:"repeat(2,1fr)",gap:10}}><div style={{background:C.bg3,borderRadius:14,padding:12}}><div className="muted" style={{fontSize:11}}>Gmail sent today</div><div style={{fontSize:20,fontWeight:1000,color:C.g}}>{todaySentG.count}</div><div className="muted" style={{fontSize:11}}>Last: {todaySentG.last||"—"}</div></div><div style={{background:C.bg3,borderRadius:14,padding:12}}><div className="muted" style={{fontSize:11}}>LinkedIn sent today</div><div style={{fontSize:20,fontWeight:1000,color:C.b}}>{todaySentLI.count}</div><div className="muted" style={{fontSize:11}}>Last: {todaySentLI.last||"—"}</div></div></div><div className="divider" style={{margin:"14px 0"}}/><div><div style={{display:"flex",gap:12,padding:"9px 12px",background:C.bg1,borderRadius:12,marginBottom:8}}><span style={{fontSize:11,color:C.ts,width:64}}>08:00</span><span style={{width:8,height:8,borderRadius:"50%",background:C.g}}/><span>Apply — IT Interns West Rand (TUT reminder)</span></div></div><div style={{marginTop:12,display:"flex",gap:10}}><Btn onClick={()=>onNav("inbox")}>📩 Gmail</Btn><Btn onClick={()=>onNav("linkedin")}>🔗 LinkedIn</Btn><Btn onClick={()=>onNav("coach")}>✦ Life Coach</Btn></div></Card>
+        </div>
+      );
+    }
 
-            <div style={{display:"flex",gap:10,marginBottom:18}}>
-              <input value={link} onChange={e=>setLink(e.target.value)} onKeyDown={e=>e.key==="Enter"&&summarize()}
-                placeholder="Paste LinkedIn URL here…"
-                style={{
-                  flex:1,background:C.bg2,border:`1px solid ${C.border}`,borderRadius:12,
-                  color:C.tx,fontSize:14,padding:"11px 14px",outline:"none",fontWeight:800
-                }}/>
-              <Btn v="primary" onClick={summarize}
+    function GoalsView(){return (<div style={{padding:"26px 28px",overflowY:"auto"}}><div style={{fontSize:24,fontWeight:1000}}>Goals</div><div style={{display:"grid",gridTemplateColumns:"repeat(2,1fr)",gap:14,marginTop:18}}>{GOALS.map(g=><Card key={g.id}><div><Badge label={g.cat}/><div style={{fontSize:16,fontWeight:1000}}>{g.emoji} {g.title}</div></div><Bar pct={g.progress} color={g.color}/><div style={{marginTop:14}}>{g.milestones.map((m,i)=><div key={i} style={{display:"flex",gap:8,marginBottom:6}}><div style={{width:18,height:18,borderRadius:"50%",background:g.done.includes(i)?g.color:C.bg3,border:`2px solid ${g.done.includes(i)?g.color:C.border}`}}>{g.done.includes(i)?"✓":""}</div><div style={{fontSize:12,textDecoration:g.done.includes(i)?"line-through":"none"}}>{m}</div></div>)}</div>{g.notes && <div style={{marginTop:12,padding:10,background:C.bg2,borderRadius:12,fontSize:12}}>{g.notes}</div>}</Card>)}</div></div>);}
+    function ProjectsView(){return (<div style={{padding:"26px 28px",overflowY:"auto"}}><div style={{fontSize:24,fontWeight:1000}}>Projects</div><div style={{display:"grid",gridTemplateColumns:"repeat(2,1fr)",gap:14,marginTop:16}}>{PROJECTS.map(p=><Card key={p.id}><div><Badge label={p.cat}/><div style={{fontWeight:1000}}>{p.name}</div><div className="muted" style={{fontSize:12,lineHeight:1.6}}>{p.desc}</div><div style={{display:"flex",flexWrap:"wrap",gap:6,margin:"8px 0"}}>{p.tech.map(t=><Badge key={t} label={t} color={p.color}/>)}</div>{p.live && <a href={p.live} target="_blank" className="btn btn-ghost" style={{display:"inline-block",marginRight:8}}>Live</a>}{p.code && <a href={p.code} target="_blank" className="btn btn-ghost">Code</a>}</div></Card>)}</div></div>);}
+    function CertsView(){return (<div style={{padding:"26px 28px",overflowY:"auto"}}><div style={{fontSize:24,fontWeight:1000}}>Certificates</div><div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:12,marginTop:16}}>{CERTS.map(c=><Card key={c.id}><div style={{fontSize:24}}>{c.emoji}</div><div style={{fontWeight:1000}}>{c.name}</div><div className="muted" style={{fontSize:11}}>{c.issuer} · {c.year}</div><Badge label={c.tech[0]} color={c.color}/></Card>)}</div></div>);}
+    function CalendarView(){return (<div style={{padding:"26px 28px",overflowY:"auto"}}><div style={{fontSize:24,fontWeight:1000}}>Calendar · June 2026</div><div style={{display:"grid",gridTemplateColumns:"repeat(7,1fr)",gap:2,marginTop:16}}>{Array.from({length:30},(_,i)=>{const day=i+1;const evts=CALENDAR_EVENTS.filter(e=>e.day===day);return (<div key={day} style={{background:day===2?C.pp:C.bg2,border:`1px solid ${day===2?C.pg:C.border}`,borderRadius:12,padding:8}}><div style={{fontSize:12,fontWeight:day===2?1000:800}}>{day}</div>{evts.map(e=><div key={e.time} style={{fontSize:10,background:e.color+"22",color:e.color,borderRadius:6,padding:"2px 4px",marginTop:2}}>{e.time} {e.title}</div>)}</div>)})}</div></div>);}
+    function NotionView(){const [notes]=useState(NOTION_NOTES);const [active,setActive]=useState("n1");const note=notes.find(n=>n.id===active);return (<div style={{display:"flex",height:"100%"}}><div style={{width:240,borderRight:`1px solid ${C.border}`,padding:14}}>{notes.map(n=><div key={n.id} onClick={()=>setActive(n.id)} style={{padding:"10px 12px",borderRadius:12,background:active===n.id?C.bg3:"transparent",marginBottom:6,cursor:"pointer"}}><div style={{display:"flex",gap:8}}><span style={{width:8,height:8,borderRadius:"50%",background:n.color}}/><span style={{fontWeight:1000}}>{n.title}</span></div><div className="muted" style={{fontSize:11,marginLeft:16}}>{n.date}</div></div>)}</div><div style={{flex:1,padding:22,overflowY:"auto"}}><div style={{fontSize:18,fontWeight:1000}}>{note?.title}</div><div className="muted" style={{fontSize:12,marginBottom:16}}>{note?.date}</div><div style={{background:C.bg2,borderRadius:14,padding:16,whiteSpace:"pre-wrap",lineHeight:1.8}}>{note?.content}</div></div></div>);}
+    function InboxView({onSentGmail}){const [sel,setSel]=useState(null);const [compose,setCompose]=useState(false);const [to,setTo]=useState("");const [subj,setSubj]=useState("");const [body,setBody]=useState("");const [aiDrafting,setAiDrafting]=useState(false);const [sendState,setSendState]=useState("idle");const email=sel?GMAIL_INBOX_DEMO.find(m=>m.id===sel):null;const sendNow=async()=>{if(!subj.trim()||!body.trim()||!to.trim()){setSendState("error");return;}setSendState("sending");await new Promise(r=>setTimeout(r,300));const evt={id:"g_"+Date.now(),channel:"gmail",dayKey:dayKeyJohannesburg(new Date()),to,subject:subj,preview:body.slice(0,90),at:new Date().toISOString()};addSentEvent(evt);onSentGmail?.(evt);setSendState("sent");setTimeout(()=>setCompose(false),600);};return (<div style={{display:"flex",height:"100%"}}><div style={{width:320,borderRight:`1px solid ${C.border}`,padding:12}}><Btn v="primary" onClick={()=>setCompose(true)} style={{width:"100%",marginBottom:12}}>✉️ Compose</Btn>{GMAIL_INBOX_DEMO.map(m=><div key={m.id} onClick={()=>setSel(m.id)} style={{padding:"10px 12px",borderRadius:12,background:sel===m.id?C.bg3:"transparent",marginBottom:6,cursor:"pointer"}}><div style={{display:"flex",gap:8}}><Av seed={m.name} label={m.avatar} color={m.avatarColor} size={28}/><div><div style={{fontWeight:m.unread?1000:800}}>{m.subject}</div><div className="muted" style={{fontSize:11}}>{m.name} · {m.time}</div></div></div></div>)}</div><div style={{flex:1,padding:22,overflowY:"auto"}}>{email?<><div style={{fontSize:18,fontWeight:1000}}>{email.subject}</div><div className="muted" style={{marginBottom:16}}>{email.from}</div><div style={{background:C.bg2,borderRadius:14,padding:16,whiteSpace:"pre-wrap"}}>{email.body}</div><div style={{marginTop:16,display:"flex",gap:10}}><Btn v="primary" onClick={()=>{setCompose(true);setTo(email.from);setSubj(`Re: ${email.subject}`);setBody("");}}>Reply with AI</Btn></div></>:<div className="muted">Select an email</div>}</div>{compose && <div style={{position:"absolute",bottom:0,right:0,width:500,background:C.bg1,border:`1px solid ${C.bh}`,borderRadius:"16px 16px 0 0",padding:20,zIndex:200}}><div style={{fontWeight:1000}}>New message</div><input placeholder="To" value={to} onChange={e=>setTo(e.target.value)} style={{width:"100%",background:C.bg2,marginTop:8,padding:8,borderRadius:8,border:`1px solid ${C.border}`,color:C.tx}}/><input placeholder="Subject" value={subj} onChange={e=>setSubj(e.target.value)} style={{width:"100%",background:C.bg2,marginTop:8,padding:8,borderRadius:8,border:`1px solid ${C.border}`,color:C.tx}}/><textarea placeholder="Body" rows={5} value={body} onChange={e=>setBody(e.target.value)} style={{width:"100%",background:C.bg2,marginTop:8,padding:8,borderRadius:8,border:`1px solid ${C.border}`,color:C.tx}}/><div style={{display:"flex",gap:10,marginTop:12,justifyContent:"flex-end"}}><Btn onClick={()=>setCompose(false)}>Cancel</Btn><Btn v="primary" onClick={sendNow} disabled={sendState==="sending"}>{sendState==="sending"?"Sending...":"Send"}</Btn></div></div>}</div>);}
+    function LinkedInView({onSentLinkedIn}){const [compose,setCompose]=useState(false);const [target,setTarget]=useState("");const [msg,setMsg]=useState("");const [sendState,setSendState]=useState("idle");const sendMessage=async()=>{if(!target.trim()||!msg.trim()){setSendState("error");return;}setSendState("sending");await new Promise(r=>setTimeout(r,300));const evt={id:"li_"+Date.now(),channel:"linkedin",dayKey:dayKeyJohannesburg(new Date()),target,preview:msg.slice(0,90),at:new Date().toISOString()};addSentEvent(evt);onSentLinkedIn?.(evt);setSendState("sent");setTimeout(()=>setCompose(false),600);};return (<div style={{padding:"26px 28px"}}><div style={{fontSize:24,fontWeight:1000}}>LinkedIn Activity</div><Btn v="primary" onClick={()=>setCompose(true)} style={{margin:"16px 0"}}>✉️ Send Message</Btn><div style={{background:C.bg2,borderRadius:16,padding:16}}>{LI_NOTIFS_DEMO.map(n=><div key={n.id} style={{marginBottom:12,paddingBottom:8,borderBottom:`1px solid ${C.border}`}}><div style={{fontWeight:1000}}>{n.title}</div><div className="muted" style={{fontSize:12}}>{n.body}</div></div>)}</div>{compose && <Modal onClose={()=>setCompose(false)}><div><div style={{fontWeight:1000}}>Send LinkedIn Message</div><input placeholder="Recipient" value={target} onChange={e=>setTarget(e.target.value)} style={{width:"100%",marginTop:12,padding:10,background:C.bg2,borderRadius:12,border:`1px solid ${C.border}`,color:C.tx}}/><textarea placeholder="Message" rows={5} value={msg} onChange={e=>setMsg(e.target.value)} style={{width:"100%",marginTop:12,padding:10,background:C.bg2,borderRadius:12,border:`1px solid ${C.border}`,color:C.tx}}/><div style={{display:"flex",gap:10,marginTop:16,justifyContent:"flex-end"}}><Btn onClick={()=>setCompose(false)}>Cancel</Btn><Btn v="primary" onClick={sendMessage}>{sendState==="sending"?"Sending...":"Send"}</Btn></div></div></Modal>}</div>);}
+    function CoachView({sync, todaySentG, todaySentLI}){const [prompt,setPrompt]=useState("");const [response,setResponse]=useState("");const askCoach=()=>{const os={gmailUnread:sync.gmail.unreadCount,liUnread:sync.linkedin.unreadCount,sentGCount:todaySentG.count,sentLICount:todaySentLI.count};const sys=buildLifeCoachPrompt(os);setResponse(`Personal OS (today): Gmail unread ${os.gmailUnread}, LinkedIn unread ${os.liUnread}, Gmail sent ${os.sentGCount}, LinkedIn sent ${os.sentLICount}. ${prompt ? `You asked: "${prompt}". Focus on applying to roles, improving portfolio, and networking.` : "Stay consistent with daily applications and refine your AI projects."}`);};return (<div style={{padding:"26px 28px"}}><div style={{fontSize:24,fontWeight:1000}}>✦ AI Life Coach</div><div style={{marginTop:16}}><textarea placeholder="Ask for career / productivity advice..." rows={3} value={prompt} onChange={e=>setPrompt(e.target.value)} style={{width:"100%",background:C.bg2,borderRadius:16,padding:12,border:`1px solid ${C.border}`,color:C.tx}}/><Btn v="primary" onClick={askCoach} style={{marginTop:12}}>Ask Coach</Btn></div>{response && <div style={{marginTop:24,background:C.bg3,borderRadius:16,padding:20,whiteSpace:"pre-wrap",lineHeight:1.8}}>{response}</div>}</div>);}
+
+    /* ----------------------------- App Shell ----------------------------- */
+    function App(){
+      const [view,setView]=useState("today");
+      const {sync}=useTodaySync();
+      const [todaySentG,setTodaySentG]=useState({count:0,last:null});
+      const [todaySentLI,setTodaySentLI]=useState({count:0,last:null});
+      const refreshCounters=()=>{
+        const key=dayKeyJohannesburg(new Date());
+        const evts=loadSentEvents().filter(e=>e.dayKey===key);
+        const g=evts.filter(e=>e.channel==="gmail");
+        const l=evts.filter(e=>e.channel==="linkedin");
+        setTodaySentG({count:g.length,last:g.length?new Date(g[g.length-1].at).toLocaleTimeString():null});
+        setTodaySentLI({count:l.length,last:l.length?new Date(l[l.length-1].at).toLocaleTimeString():null});
+      };
+      useEffect(()=>{refreshCounters();const i=setInterval(refreshCounters,5000);return()=>clearInterval(i);},[]);
+      const navItems=["today","goals","projects","certs","calendar","notion","inbox","linkedin","coach"];
+      return (<div style={{display:"flex",height:"100%"}}><div style={{width:220,borderRight:`1px solid ${C.border}`,padding:"28px 16px",display:"flex",flexDirection:"column",gap:6}}><div style={{marginBottom:24,fontWeight:1000,fontSize:18,letterSpacing:-.5}}>⌘ Tiyani OS</div>{navItems.map(item=><button key={item} onClick={()=>setView(item)} style={{background:"transparent",border:"none",textAlign:"left",padding:"12px 16px",borderRadius:12,fontWeight:view===item?1000:700,color:view===item?C.pl:C.ts,background:view===item?C.bg3:"transparent",cursor:"pointer"}}>{item.charAt(0).toUpperCase()+item.slice(1)}</button>)}</div><div style={{flex:1,overflow:"hidden"}}>{view==="today" && <TodayView onNav={setView} sync={sync} todaySentG={todaySentG} todaySentLI={todaySentLI} nowStr={new Date().toLocaleTimeString()}/>}{view==="goals" && <GoalsView/>}{view==="projects" && <ProjectsView/>}{view==="certs" && <CertsView/>}{view==="calendar" && <CalendarView/>}{view==="notion" && <NotionView/>}{view==="inbox" && <InboxView onSentGmail={refreshCounters}/>}{view==="linkedin" && <LinkedInView onSentLinkedIn={refreshCounters}/>}{view==="coach" && <CoachView sync={sync} todaySentG={todaySentG} todaySentLI={todaySentLI}/>}</div></div>);
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+  </script>
+</body>
+</html>
